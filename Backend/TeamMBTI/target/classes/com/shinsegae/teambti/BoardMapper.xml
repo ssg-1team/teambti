@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shinsegae.teambti.BoardMapper">
+
+	<insert id="boardInsert" useGeneratedKeys="true" keyProperty="no" parameterType="com.shinsegae.teambti.BoardVO">
+		INSERT INTO board (
+			title, content, regdate, member_no
+		) VALUES (
+			#{title}, #{content}, now(), #{member_no}
+		)
+
+	</insert>
+	
+	<select id="selectOne" 
+			parameterType="int" 
+			resultType="com.shinsegae.teambti.BoardVO">
+		SELECT * FROM board WHERE no = #{no}
+	</select>
+	<select id="selectList"
+			resultType="com.shinsegae.teambti.BoardVO">
+		SELECT * FROM board
+	</select>
+	
+</mapper>
