@@ -6,6 +6,7 @@ import Assignment from "./pages/assignment/Assignment";
 import Comparison from "./pages/comparison/Comparison";
 import Mypage from "./pages/mypage/Mypage";
 import Character from "./pages/character/Character";
+import Character2 from "./pages/character/Character2";
 
 import Home from "./pages/home/Home";
 import Test from "./pages/home/Test";
@@ -23,7 +24,8 @@ function App() {
 
           {/* 캐릭터화면 */}
           <Route path="/character" element={<Character></Character>}></Route>
-          
+          <Route path="/character2" element={<Character2></Character2>}></Route>
+
           {/* 업무할당 */}
           <Route path="/assignment" element={<Assignment></Assignment>}></Route>
 
@@ -36,7 +38,6 @@ function App() {
           {/* 여기 밑으로는 테스트 */}
           <Route path="/home" element={<Home></Home>}></Route>
           <Route path="/test" element={<Test></Test>}></Route>
-          
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,3 +1,9 @@
-.character {
-    background-color: red;
+.characterDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.characterOne {
+  background-color: red;
+  width: 80%;
 }
