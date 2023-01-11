@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -10,6 +9,9 @@ import Mypage from "./pages/mypage/Mypage";
 
 import Home from "./pages/home/Home";
 import Test from "./pages/home/Test";
+
+import Card from "./components/Card";
+import Paper from "./components/Paper";
 
 function App() {
   return (
@@ -34,6 +36,9 @@ function App() {
           {/* 여기 밑으로는 테스트 */}
           <Route path="/home" element={<Home></Home>}></Route>
           <Route path="/test" element={<Test></Test>}></Route>
+          <Route path="/card" element={<Card></Card>}></Route>
+          <Route path="/paper" element={<Paper></Paper>}></Route>
+          
           
         </Routes>
       </BrowserRouter>
