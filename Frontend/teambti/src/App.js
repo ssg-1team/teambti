@@ -1,5 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Router from "./Router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Main from "./pages/main/Main";
+import Login from "./pages/login/Login";
+import Assignment from "./pages/assignment/Assignment";
+import Comparison from "./pages/comparison/Comparison";
+import Mypage from "./pages/mypage/Mypage";
+import Character from "./pages/character/Character";
+import Character2 from "./pages/character/Character2";
+
+import Home from "./pages/home/Home";
+import Test from "./pages/home/Test";
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState(false);

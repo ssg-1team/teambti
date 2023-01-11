@@ -224,6 +224,7 @@ function Character() {
                 <button onClick={() => {setMyEars(6)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={ears6} alt=""/></button>
                 <button onClick={() => {setMyEars(7)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={ears7} alt=""/></button>
                 <button onClick={() => {setMyEars(8)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={ears8} alt=""/></button>
+
               </Typography>
             </AccordionDetails>
           </Accordion>
