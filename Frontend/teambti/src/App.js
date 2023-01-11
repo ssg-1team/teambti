@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/main/Main";
@@ -21,6 +19,9 @@ function App() {
 
           {/* 메인화면 */}
           <Route path="/main" element={<Main></Main>}></Route>
+
+          {/* 캐릭터화면 */}
+          <Route path="/character" element={<Character></Character>}></Route>
           
           {/* 업무할당 */}
           <Route path="/assignment" element={<Assignment></Assignment>}></Route>
