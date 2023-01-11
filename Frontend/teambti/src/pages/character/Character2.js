@@ -183,7 +183,7 @@ function Character() {
     <div>
       <div>캐릭터페이지</div>
       <div className={styles.characterDiv}>
-        <div style={{ width: "20%" }}>
+        <div style={{ width: "50%" }}>
           <Accordion expanded>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -394,7 +394,7 @@ function Character() {
       <div style={{position:"absolute"}}>
         <img style={{ position: "absolute", top:"20px", height:"300px",width: "200px" }} src={require(`../../assets/image/parts/back/${myBack}.svg`)} alt="" />
         <img style={{ position: "absolute", top:"95px", left:"3px", width: "180px" }} src={require(`../../assets/image/parts/body/${myBody}.svg`)} alt="" />
-        <img style={{ position: "absolute", top:"15px", left:"20px",width: "150px" }} src={require(`../../assets/image/parts/ears/${myEars}.svg`)} alt="" />
+        <img style={{ position: "absolute", top:"30px", left:"35px",width: "120px" }} src={require(`../../assets/image/parts/ears/${myEars}.svg`)} alt="" />
         <img style={{ position: "absolute", top:"35px", left:"20px",width: "150px" }} src={require(`../../assets/image/parts/head/${myHead}.svg`)} alt="" />
         <img style={{ position: "absolute", top:"95px", left:"45px", width: "100px" }} src={require(`../../assets/image/parts/mouth/${myMouth}.svg`)} alt="" />
         <img style={{ position: "absolute", top:"65px", left:"45px", width: "100px" }} src={require(`../../assets/image/parts/eyes/${myEyes}.svg`)} alt="" />
