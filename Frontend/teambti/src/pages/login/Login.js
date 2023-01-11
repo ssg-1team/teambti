@@ -28,7 +28,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function login() {
+export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -78,7 +78,7 @@ export default function login() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="ID"
                 name="email"
                 autoComplete="email"
                 autoFocus
