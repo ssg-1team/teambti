@@ -7,6 +7,10 @@ import Comparison from "./pages/comparison/Comparison";
 import Mypage from "./pages/mypage/Mypage";
 import Home from "./pages/home/Home";
 import Test from "./pages/home/Test";
+import Character from "./pages/character/Character";
+import Character2 from "./pages/character/Character2";
+import Card from "./components/Card";
+import Paper from "./components/Paper";
 
 const Router = ({ isLoggedIn, login }) => {
   return (
@@ -17,9 +21,9 @@ const Router = ({ isLoggedIn, login }) => {
           <Login login={login} />
         }></Route>
 
-        {/* 캐릭터화면 */}
-        {/* <Route path="/character" element={<Character></Character>}></Route> */}
-        
+          {/* 캐릭터화면 */}
+          <Route path="/character" element={<Character />}></Route>
+          <Route path="/character2" element={<Character2 />}></Route>        
         {/* 업무할당 */}
         <Route path="/assignment" element={<Assignment />}></Route>
 
@@ -32,7 +36,8 @@ const Router = ({ isLoggedIn, login }) => {
         {/* 여기 밑으로는 테스트 */}
         <Route path="/home" element={<Home />}></Route>
         <Route path="/test" element={<Test />}></Route>
-        
+        <Route path="/card" element={<Card />}></Route>
+        <Route path="/paper" element={<Paper />}></Route>        
       </Routes>
   </BrowserRouter>
   );
