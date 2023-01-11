@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import Assignment from "./pages/assignment/Assignment";
 import Comparison from "./pages/comparison/Comparison";
 import Mypage from "./pages/mypage/Mypage";
+import Character from "./pages/character/Character";
 
 import Home from "./pages/home/Home";
 import Test from "./pages/home/Test";
