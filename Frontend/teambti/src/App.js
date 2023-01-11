@@ -14,6 +14,7 @@ import Test from "./pages/home/Test";
 function App() {
   return (
     <div className="App">
+      <div>안녕하세요?</div>
       <BrowserRouter>
         <Routes>
           {/* 로그인화면 */}
