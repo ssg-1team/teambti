@@ -12,8 +12,15 @@ import Home from "./pages/home/Home";
 import Test from "./pages/home/Test";
 
 function App() {
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+
+  const login = (bool) => {
+    setisLoggedIn(bool);
+  }
+  
   return (
     <div className="App">
+      <div>안녕하세요?</div>
       <BrowserRouter>
         <Routes>
           {/* 로그인화면 */}
