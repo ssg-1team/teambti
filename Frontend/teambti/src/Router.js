@@ -11,19 +11,23 @@ import Character from "./pages/character/Character";
 import Character2 from "./pages/character/Character2";
 import Card from "./components/Card";
 import Paper from "./components/Paper";
+import Test2 from "./pages/home/Test2";
+import Test3 from "./pages/home/Test3";
 
 const Router = ({ isLoggedIn, login }) => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={
-          isLoggedIn ? <Main login={login} /> :
-          <Login login={login} />
-        }></Route>
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? <Main login={login} /> : <Login login={login} />
+          }
+        ></Route>
 
-          {/* 캐릭터화면 */}
-          <Route path="/character" element={<Character />}></Route>
-          <Route path="/character2" element={<Character2 />}></Route>        
+        {/* 캐릭터화면 */}
+        <Route path="/character" element={<Character />}></Route>
+        <Route path="/character2" element={<Character2 />}></Route>
         {/* 업무할당 */}
         <Route path="/assignment" element={<Assignment />}></Route>
 
@@ -37,9 +41,11 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/home" element={<Home />}></Route>
         <Route path="/test" element={<Test />}></Route>
         <Route path="/card" element={<Card />}></Route>
-        <Route path="/paper" element={<Paper />}></Route>        
+        <Route path="/paper" element={<Paper />}></Route>
+        <Route path="/test2" element={<Test2 />}></Route>
+        <Route path="/test3" element={<Test3 />}></Route>
       </Routes>
-  </BrowserRouter>
+    </BrowserRouter>
   );
 };
 
