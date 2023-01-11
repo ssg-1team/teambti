@@ -16,99 +16,96 @@ import { CardActionArea } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
 
 // 1번
-import ears1 from "../../assets/image/parts/ears/1.svg";
-import head1 from "../../assets/image/parts/head/1.svg";
-import mouth1 from "../../assets/image/parts/mouth/1.svg";
-import eyes1 from "../../assets/image/parts/eyes/1.svg";
-import body1 from "../../assets/image/parts/body/1.svg";
-import back1 from "../../assets/image/parts/back/1.svg";
-import acc1 from "../../assets/image/parts/acc/1.svg";
+import ears1 from "../../assets/image/parts/ears/1.png";
+import head1 from "../../assets/image/parts/head/1.png";
+import mouth1 from "../../assets/image/parts/mouth/1.png";
+import eyes1 from "../../assets/image/parts/eyes/1.png";
+import body1 from "../../assets/image/parts/body/1.png";
+import back1 from "../../assets/image/parts/back/1.png";
+import acc1 from "../../assets/image/parts/acc/1.png";
 // 2번
-import ears2 from "../../assets/image/parts/ears/2.svg";
-import head2 from "../../assets/image/parts/head/2.svg";
-import mouth2 from "../../assets/image/parts/mouth/2.svg";
-import eyes2 from "../../assets/image/parts/eyes/2.svg";
-import body2 from "../../assets/image/parts/body/2.svg";
-import back2 from "../../assets/image/parts/back/2.svg";
-import acc2 from "../../assets/image/parts/acc/2.svg";
+import ears2 from "../../assets/image/parts/ears/2.png";
+import head2 from "../../assets/image/parts/head/2.png";
+import mouth2 from "../../assets/image/parts/mouth/2.png";
+import eyes2 from "../../assets/image/parts/eyes/2.png";
+import body2 from "../../assets/image/parts/body/2.png";
+import back2 from "../../assets/image/parts/back/2.png";
+import acc2 from "../../assets/image/parts/acc/2.png";
 // 3번
-import ears3 from "../../assets/image/parts/ears/3.svg";
-import head3 from "../../assets/image/parts/head/3.svg";
-import mouth3 from "../../assets/image/parts/mouth/3.svg";
-import eyes3 from "../../assets/image/parts/eyes/3.svg";
-import body3 from "../../assets/image/parts/body/3.svg";
-import back3 from "../../assets/image/parts/back/3.svg";
-import acc3 from "../../assets/image/parts/acc/3.svg";
+import ears3 from "../../assets/image/parts/ears/3.png";
+import head3 from "../../assets/image/parts/head/3.png";
+import mouth3 from "../../assets/image/parts/mouth/3.png";
+import eyes3 from "../../assets/image/parts/eyes/3.png";
+import body3 from "../../assets/image/parts/body/3.png";
+import back3 from "../../assets/image/parts/back/3.png";
+import acc3 from "../../assets/image/parts/acc/3.png";
 // 4번
-import ears4 from "../../assets/image/parts/ears/4.svg";
-import head4 from "../../assets/image/parts/head/4.svg";
-import mouth4 from "../../assets/image/parts/mouth/4.svg";
-import eyes4 from "../../assets/image/parts/eyes/4.svg";
-import body4 from "../../assets/image/parts/body/4.svg";
-import back4 from "../../assets/image/parts/back/4.svg";
-import acc4 from "../../assets/image/parts/acc/4.svg";
+import ears4 from "../../assets/image/parts/ears/4.png";
+import head4 from "../../assets/image/parts/head/4.png";
+import mouth4 from "../../assets/image/parts/mouth/4.png";
+import eyes4 from "../../assets/image/parts/eyes/4.png";
+import body4 from "../../assets/image/parts/body/4.png";
+import back4 from "../../assets/image/parts/back/4.png";
+import acc4 from "../../assets/image/parts/acc/4.png";
 // 5번
-import ears5 from "../../assets/image/parts/ears/5.svg";
-import head5 from "../../assets/image/parts/head/5.svg";
-import mouth5 from "../../assets/image/parts/mouth/5.svg";
-import eyes5 from "../../assets/image/parts/eyes/5.svg";
-import body5 from "../../assets/image/parts/body/5.svg";
-import back5 from "../../assets/image/parts/back/5.svg";
-import acc5 from "../../assets/image/parts/acc/5.svg";
+import ears5 from "../../assets/image/parts/ears/5.png";
+import head5 from "../../assets/image/parts/head/5.png";
+import mouth5 from "../../assets/image/parts/mouth/5.png";
+import eyes5 from "../../assets/image/parts/eyes/5.png";
+import body5 from "../../assets/image/parts/body/5.png";
+import back5 from "../../assets/image/parts/back/5.png";
+import acc5 from "../../assets/image/parts/acc/5.png";
 // 6번
-import ears6 from "../../assets/image/parts/ears/6.svg";
-import head6 from "../../assets/image/parts/head/6.svg";
-import mouth6 from "../../assets/image/parts/mouth/6.svg";
-import eyes6 from "../../assets/image/parts/eyes/6.svg";
-import body6 from "../../assets/image/parts/body/6.svg";
-import back6 from "../../assets/image/parts/back/6.svg";
-import acc6 from "../../assets/image/parts/acc/6.svg";
+import ears6 from "../../assets/image/parts/ears/6.png";
+import head6 from "../../assets/image/parts/head/6.png";
+import mouth6 from "../../assets/image/parts/mouth/6.png";
+import eyes6 from "../../assets/image/parts/eyes/6.png";
+import body6 from "../../assets/image/parts/body/6.png";
+import back6 from "../../assets/image/parts/back/6.png";
+import acc6 from "../../assets/image/parts/acc/6.png";
 // 7번
-import ears7 from "../../assets/image/parts/ears/7.svg";
-import head7 from "../../assets/image/parts/head/7.svg";
-import mouth7 from "../../assets/image/parts/mouth/7.svg";
-import eyes7 from "../../assets/image/parts/eyes/7.svg";
-import body7 from "../../assets/image/parts/body/7.svg";
-import back7 from "../../assets/image/parts/back/7.svg";
-import acc7 from "../../assets/image/parts/acc/7.svg";
+import ears7 from "../../assets/image/parts/ears/7.png";
+import head7 from "../../assets/image/parts/head/7.png";
+import mouth7 from "../../assets/image/parts/mouth/7.png";
+import eyes7 from "../../assets/image/parts/eyes/7.png";
+import body7 from "../../assets/image/parts/body/7.png";
+import back7 from "../../assets/image/parts/back/7.png";
+import acc7 from "../../assets/image/parts/acc/7.png";
 // 8번
-import ears8 from "../../assets/image/parts/ears/8.svg";
-import head8 from "../../assets/image/parts/head/8.svg";
-import mouth8 from "../../assets/image/parts/mouth/8.svg";
-import eyes8 from "../../assets/image/parts/eyes/8.svg";
-import body8 from "../../assets/image/parts/body/8.svg";
-import back8 from "../../assets/image/parts/back/8.svg";
-import acc8 from "../../assets/image/parts/acc/8.svg";
+import ears8 from "../../assets/image/parts/ears/8.png";
+import head8 from "../../assets/image/parts/head/8.png";
+import mouth8 from "../../assets/image/parts/mouth/8.png";
+import eyes8 from "../../assets/image/parts/eyes/8.png";
+import body8 from "../../assets/image/parts/body/8.png";
+import back8 from "../../assets/image/parts/back/8.png";
+import acc8 from "../../assets/image/parts/acc/8.png";
 // 9번
-import ears9 from "../../assets/image/parts/ears/9.svg";
-import head9 from "../../assets/image/parts/head/9.svg";
-import mouth9 from "../../assets/image/parts/mouth/9.svg";
-import eyes9 from "../../assets/image/parts/eyes/9.svg";
-import body9 from "../../assets/image/parts/body/9.svg";
-import back9 from "../../assets/image/parts/back/9.svg";
+import mouth9 from "../../assets/image/parts/mouth/9.png";
+import eyes9 from "../../assets/image/parts/eyes/9.png";
+import body9 from "../../assets/image/parts/body/9.png";
+import back9 from "../../assets/image/parts/back/9.png";
 
 // 10번
 
-import eyes10 from "../../assets/image/parts/eyes/10.svg";
-import body10 from "../../assets/image/parts/body/10.svg";
-import back10 from "../../assets/image/parts/back/10.svg";
+import eyes10 from "../../assets/image/parts/eyes/10.png";
+import body10 from "../../assets/image/parts/body/10.png";
+import back10 from "../../assets/image/parts/back/10.png";
 
 // 11번
 
-import eyes11 from "../../assets/image/parts/eyes/11.svg";
-import body11 from "../../assets/image/parts/body/11.svg";
-import back11 from "../../assets/image/parts/back/11.svg";
+import eyes11 from "../../assets/image/parts/eyes/11.png";
+import body11 from "../../assets/image/parts/body/11.png";
+import back11 from "../../assets/image/parts/back/11.png";
 
 // 12번
 
-import eyes12 from "../../assets/image/parts/eyes/12.svg";
-import body12 from "../../assets/image/parts/body/12.svg";
-import back12 from "../../assets/image/parts/back/12.svg";
+import eyes12 from "../../assets/image/parts/eyes/12.png";
+import body12 from "../../assets/image/parts/body/12.png";
 
 // eyes는 15번까지
-import eyes13 from "../../assets/image/parts/eyes/13.svg";
-import eyes14 from "../../assets/image/parts/eyes/14.svg";
-import eyes15 from "../../assets/image/parts/eyes/15.svg";
+import eyes13 from "../../assets/image/parts/eyes/13.png";
+import eyes14 from "../../assets/image/parts/eyes/14.png";
+import eyes15 from "../../assets/image/parts/eyes/15.png";
 
 function Copyright(props) {
   return (
@@ -183,7 +180,7 @@ function Character() {
     <div>
       <div>캐릭터페이지</div>
       <div className={styles.characterDiv}>
-        <div style={{ width: "50%" }}>
+        <div style={{ width: "20%" }}>
           <Accordion expanded>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -203,7 +200,6 @@ function Character() {
                 <button onClick={() => {setMyHead(6)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head6} alt="" /></button>
                 <button onClick={() => {setMyHead(7)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head7} alt="" /></button>
                 <button onClick={() => {setMyHead(8)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head8} alt="" /></button>
-                <button onClick={() => {setMyHead(9)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head9} alt="" /></button>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -228,7 +224,6 @@ function Character() {
                 <button onClick={() => {setMyEars(6)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={ears6} alt=""/></button>
                 <button onClick={() => {setMyEars(7)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={ears7} alt=""/></button>
                 <button onClick={() => {setMyEars(8)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={ears8} alt=""/></button>
-                <button onClick={() => {setMyEars(9)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={ears9} alt=""/></button>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -254,12 +249,12 @@ function Character() {
                 <button onClick={() => {setMyEyes(7)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes7} alt=""/></button>
                 <button onClick={() => {setMyEyes(8)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes8} alt=""/></button>
                 <button onClick={() => {setMyEyes(9)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes9} alt=""/></button>
-                <button onClick={() => {setMyEyes(4)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes10} alt=""/></button>
-                <button onClick={() => {setMyEyes(5)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes11} alt=""/></button>
-                <button onClick={() => {setMyEyes(6)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes12} alt=""/></button>
-                <button onClick={() => {setMyEyes(7)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes13} alt=""/></button>
-                <button onClick={() => {setMyEyes(8)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes14} alt=""/></button>
-                <button onClick={() => {setMyEyes(9)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes15} alt=""/></button>
+                <button onClick={() => {setMyEyes(10)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes10} alt=""/></button>
+                <button onClick={() => {setMyEyes(11)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes11} alt=""/></button>
+                <button onClick={() => {setMyEyes(12)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes12} alt=""/></button>
+                <button onClick={() => {setMyEyes(13)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes13} alt=""/></button>
+                <button onClick={() => {setMyEyes(14)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes14} alt=""/></button>
+                <button onClick={() => {setMyEyes(15)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={eyes15} alt=""/></button>
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -361,10 +356,9 @@ function Character() {
                 <button onClick={() => {setMyBack(6)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={back6} alt=""/></button>
                 <button onClick={() => {setMyBack(7)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={back7} alt=""/></button>
                 <button onClick={() => {setMyBack(8)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={back8} alt=""/></button>
-                {/* <button onClick={() => {setMyBack(9)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={back9} alt=""/></button> */}
+                <button onClick={() => {setMyBack(9)}} className={styles.CharacterBtn}><img style={{width:"30px"}} src={back9} alt=""/></button>
                 <button onClick={() => {setMyBack(10)}}className={styles.CharacterBtn}><img style={{width:"30px"}} src={back10} alt=""/></button>
                 <button onClick={() => {setMyBack(11)}}className={styles.CharacterBtn}><img style={{width:"30px"}} src={back11} alt=""/></button>
-                <button onClick={() => {setMyBack(12)}}className={styles.CharacterBtn}><img style={{width:"30px"}} src={back12} alt=""/></button>
 
               </Typography>
             </AccordionDetails>
@@ -392,13 +386,13 @@ function Character() {
             </CardActionArea>
           </Card> */}
       <div style={{position:"absolute"}}>
-        <img style={{ position: "absolute", top:"20px", height:"300px",width: "200px" }} src={require(`../../assets/image/parts/back/${myBack}.svg`)} alt="" />
-        <img style={{ position: "absolute", top:"95px", left:"3px", width: "180px" }} src={require(`../../assets/image/parts/body/${myBody}.svg`)} alt="" />
-        <img style={{ position: "absolute", top:"30px", left:"35px",width: "120px" }} src={require(`../../assets/image/parts/ears/${myEars}.svg`)} alt="" />
-        <img style={{ position: "absolute", top:"35px", left:"20px",width: "150px" }} src={require(`../../assets/image/parts/head/${myHead}.svg`)} alt="" />
-        <img style={{ position: "absolute", top:"95px", left:"45px", width: "100px" }} src={require(`../../assets/image/parts/mouth/${myMouth}.svg`)} alt="" />
-        <img style={{ position: "absolute", top:"65px", left:"45px", width: "100px" }} src={require(`../../assets/image/parts/eyes/${myEyes}.svg`)} alt="" />
-      {/* <img style={{ position: "absolute", width: "100px" }} src={acc1} alt="" /> */}
+        <img style={{ position: "absolute" }} src={require(`../../assets/image/parts/back/${myBack}.png`)} alt="" />
+        <img style={{ position: "absolute" }} src={require(`../../assets/image/parts/body/${myBody}.png`)} alt="" />
+        <img style={{ position: "absolute" }} src={require(`../../assets/image/parts/ears/${myEars}.png`)} alt="" />
+        <img style={{ position: "absolute" }} src={require(`../../assets/image/parts/head/${myHead}.png`)} alt="" />
+        <img style={{ position: "absolute" }} src={require(`../../assets/image/parts/mouth/${myMouth}.png`)} alt="" />
+        <img style={{ position: "absolute" }} src={require(`../../assets/image/parts/eyes/${myEyes}.png`)} alt="" />
+        <img style={{ position: "absolute" }} src={require(`../../assets/image/parts/acc/${myAcc}.png`)} alt="" />
       </div>
         </div>
       </div>
