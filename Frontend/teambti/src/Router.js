@@ -11,7 +11,6 @@ import Character from "./pages/character/Character";
 import Character2 from "./pages/character/Character2";
 import Card from "./components/Card";
 import Paper from "./components/Paper";
-import Test2 from "./pages/home/Test2";
 import Test3 from "./pages/home/Test3";
 
 const Router = ({ isLoggedIn, login }) => {
@@ -42,7 +41,6 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/test" element={<Test />}></Route>
         <Route path="/card" element={<Card />}></Route>
         <Route path="/paper" element={<Paper />}></Route>
-        <Route path="/test2" element={<Test2 />}></Route>
         <Route path="/test3" element={<Test3 />}></Route>
       </Routes>
     </BrowserRouter>
