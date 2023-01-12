@@ -1,24 +1,54 @@
 import * as React from "react";
-import Assignment from "../pages/assignment/Assignment";
-import AssignmentResult from "../pages/assignment/AssignmentResult";
+
+import MentoMenti from "../pages/mentomenti/MentoMenti";
+import MentoMentiResult from "../pages/mentomenti/MentoMentiResult";
+
+import Coworking from "../pages/coworking/CoWorking";
+import CoworkingStart from "../pages/coworking/CoWorkingStart";
+import CoWorkingResult from "../pages/coworking/CoWorkingResult";
+
 import Home from "../pages/home/Home";
 
 function LinkList(props) {
 
     
-    const [number, setNumber] = React.useState(0)
+    // const [number, setNumber] = React.useState(0)
 
-    const getData = (number) => {
-        setNumber(number);
-        console.log(number);
-        props.getWork('assignmentResult');
+    // const getData = (number) => {
+    //     setNumber(number);
+    //     console.log(number);
+    // }
+    const getDataMentoMenti = () => {
+        props.getWork('mentomentiresult');
+    }
+    const getDataCoWorking = () => {
+        props.getWork('coworkingresult');
+    }
+    const getDataCoWorkingStart = (number) => {
+        if (number == 3) {
+            props.getWork('coworking3');
+        } else if (number == 5) {
+            props.getWork('coworking5');
+        } else if (number == 7) {
+            props.getWork('coworking7');
+        }
     }
     
     switch (props.name){
-        case 'assignment' :
-            return <Assignment number={number} getData={getData} />
-        case 'assignmentResult' : 
-            return <AssignmentResult/>
+        case 'mentomenti' : 
+            return <MentoMenti getDataMentoMenti={getDataMentoMenti}/>
+        case 'mentomentiresult' : 
+            return <MentoMentiResult/>
+        case 'coworking3' :
+            return <Coworking getDataCoWorking={getDataCoWorking} questionsNumber = {3} />
+        case 'coworking5' :
+            return <Coworking getDataCoWorking={getDataCoWorking} questionsNumber = {5} />
+        case 'coworking7' :
+            return <Coworking getDataCoWorking={getDataCoWorking} questionsNumber = {7} />
+        case 'coworkingresult' : 
+            return <CoWorkingResult/>
+        case 'coworkingstart' :
+                return <CoworkingStart getDataCoWorkingStart={getDataCoWorkingStart} />
         case 'home' :
             return <Home />
         default : 

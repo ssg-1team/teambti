@@ -20,7 +20,6 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 
-import Assignment from "./assignment/Assignment";
 import Home from "./home/Home";
 import LinkList from "../components/LinkList";
 
@@ -127,9 +126,18 @@ function MainFrame() {
               color="info"
               endIcon={<Diversity1Icon />}
               sx={{ m: 1 }}
-              onClick={() => setWork('assignment')}
+              onClick={() => setWork('coworkingstart')}
             >
-              업무할당
+              협업하기
+            </Button>
+            <Button
+              variant="contained"
+              color="info"
+              endIcon={<Diversity1Icon />}
+              sx={{ m: 1 }}
+              onClick={() => setWork('mentomenti')}
+            >
+              멘토링
             </Button>
             <Button
               variant="contained"
@@ -213,7 +221,7 @@ function MainFrame() {
           }}
     >
           <Toolbar />
-          <LinkList name={work} getWork={getWork} work={work}/>
+          <LinkList name={work} getWork={getWork}/>
         </Box>
         </Box>
       </ThemeProvider>
