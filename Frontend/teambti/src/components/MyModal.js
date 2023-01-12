@@ -11,15 +11,22 @@ import axios from 'axios';
 import { API_HOST } from '../constant';
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 400px;
+  height: 600px;
+
+  padding: 40px;
+
+  text-align: center;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+  transform: translateX(-50%) translateY(-50%);
 };
 
 export default function MyModal() {
