@@ -9,13 +9,18 @@ import {
   Typography,
   Toolbar,
   Box,
+  Button
 } from "@mui/material";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Assignment() {
+function Assignment({number, getData}) {
+
+    const onClick = () => {
+        getData(number + 1);
+    }
 
     const question = {
         id: 1,
@@ -56,9 +61,8 @@ function Assignment() {
                     </Card>
                 </Grid>                
             </Grid>
+            <Button onClick={onClick}>결과보기</Button>
         </Container>
-
-
     );
 }
 

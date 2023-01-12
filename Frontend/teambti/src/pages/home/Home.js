@@ -1,12 +1,6 @@
 import * as React from "react";
 import {
   Container,
-  CardActionArea,
-  Grid,
-  CardMedia,
-  CardContent,
-  Card,
-  Typography,
   Toolbar,
   Box,
 } from "@mui/material";
@@ -14,8 +8,9 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Profile from "./Profile";
 
-function Home() {
+function Emp() {
   const others = [
     {
       id: 2,
@@ -101,26 +96,7 @@ function Home() {
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Slider {...settings}>
           {others.map((user) => (
-            <Grid>
-              <Card sx={{ maxWidth: 250 }}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="350"
-                    image="images/characterExample.png"
-                    alt="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {user.name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {user.type} / {user.position}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
+            <Profile user = {user}/>
           ))}
         </Slider>
       </Container>
@@ -128,4 +104,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Emp;
