@@ -20,8 +20,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 
-import Test3 from "./Test3";
-import Home from "./Home";
+import Assignment from "./assignment/Assignment";
+import Home from "./home/Home";
+import LinkList from "../components/LinkList";
 
 const drawerWidth = 400;
 
@@ -71,13 +72,13 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function MainFrame() {
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  const [work, setWork] = useState(false);
+  const [work, setWork] = useState('home');
 
   const user = {
     id: 1,
@@ -122,7 +123,7 @@ function DashboardContent() {
               color="info"
               endIcon={<Diversity1Icon />}
               sx={{ m: 1 }}
-              onClick={() => setWork(true)}
+              onClick={() => setWork('assignment')}
             >
               업무할당
             </Button>
@@ -131,7 +132,7 @@ function DashboardContent() {
               color="info"
               endIcon={<Diversity1Icon />}
               sx={{ m: 1 }}
-              onClick={() => setWork(false)}
+              onClick={() => setWork('home')}
             >
               홈
             </Button>
@@ -195,12 +196,24 @@ function DashboardContent() {
             마이페이지
           </Button>
         </Drawer>
-        {work ? <Test3 /> : <Home />}
-      </Box>
-    </ThemeProvider>
+        <Box
+          component="main"
+          sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === "light"
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
+    >
+          <Toolbar />
+          <LinkList name={work}/>
+        </Box>
+        </Box>
+      </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default MainFrame;
