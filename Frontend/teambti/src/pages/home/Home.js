@@ -17,54 +17,63 @@ function Emp() {
       name: "cocoon",
       type: "INFP",
       position: "POS",
+      image: "images/characterExample.png"
     },
     {
       id: 3,
       name: "ultra",
       type: "ESFP",
       position: "IOS",
+      image: "images/characterExample.png"
     },
     {
       id: 4,
       name: "hozae",
       type: "ISTJ",
       position: "AOS",
+      image: "images/characterExample.png"
     },
     {
       id: 4,
       name: "hozae",
       type: "ISTJ",
       position: "AOS",
+      image: "images/characterExample.png"
     },
     {
       id: 4,
       name: "hozae",
       type: "ISTJ",
       position: "AOS",
+      image: "images/characterExample.png"
     },
     {
       id: 4,
       name: "hozae",
       type: "ISTJ",
       position: "AOS",
+      image: "images/characterExample.png"
     },
     {
       id: 4,
       name: "hozae",
       type: "ISTJ",
       position: "AOS",
+      image: "images/characterExample.png"
     },
     {
       id: 4,
       name: "hozae",
       type: "ISTJ",
       position: "AOS",
+      image: "images/characterExample.png"
     },
     {
       id: 4,
       name: "hozae",
       type: "ISTJ",
       position: "AOS",
+      image: "images/characterExample.png"
     },
   ];
 

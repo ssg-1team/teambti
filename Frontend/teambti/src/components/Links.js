@@ -1,9 +1,9 @@
 import * as React from "react";
 import Assignment from "../pages/assignment/Assignment";
 import AssignmentResult from "../pages/assignment/AssignmentResult";
-import Home from "../pages/home/home";
+import Home from "../pages/home/Home";
 
-function LinkList(props) {
+function Links(props) {
 
     
     const [number, setNumber] = React.useState(0)
@@ -26,4 +26,4 @@ function LinkList(props) {
     }
 }
 
-export default LinkList;
+export default Links;
