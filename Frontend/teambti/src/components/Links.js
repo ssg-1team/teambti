@@ -1,7 +1,7 @@
 import * as React from "react";
 import Assignment from "../pages/assignment/Assignment";
 import AssignmentResult from "../pages/assignment/AssignmentResult";
-import Home from "../pages/home/Home";
+import Home from "../pages/home/home";
 
 function LinkList(props) {
 
@@ -15,12 +15,12 @@ function LinkList(props) {
     }
     
     switch (props.name){
+        case 'home' :
+            return <Home />
         case 'assignment' :
             return <Assignment number={number} getData={getData} />
         case 'assignmentResult' : 
             return <AssignmentResult/>
-        case 'home' :
-            return <Home />
         default : 
             return <h4>{props.name}</h4>
     }
