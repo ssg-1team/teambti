@@ -230,6 +230,7 @@ function Main({login}) {
               </CardContent>
             </Card>
           </Box>
+          <Button onClick={() => setWork('character')}>프로필 편집</Button>
         </Drawer>
         <Box
           component="main"
