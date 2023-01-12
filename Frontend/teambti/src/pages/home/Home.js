@@ -1,12 +1,6 @@
 import * as React from "react";
 import {
   Container,
-  CardActionArea,
-  Grid,
-  CardMedia,
-  CardContent,
-  Card,
-  Typography,
   Toolbar,
   Box,
 } from "@mui/material";
@@ -14,10 +8,9 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import EmpModal from "../../components/EmpModal";
 import Profile from "./Profile";
 
-function Home() {
+function Emp() {
   const others = [
     {
       id: 2,
@@ -111,4 +104,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Emp;
