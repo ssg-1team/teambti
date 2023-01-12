@@ -8,42 +8,9 @@ import {
     Typography,
     Modal,
     Box,
-    MenuItem,
-    FormControl,
-    InputLabel,
   } from "@mui/material";
-import { Container } from "@mui/system";
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 500,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
-const boxStyle = {
-  mx: 'auto',
-  p: 1,
-  mr: 1,
-  mt: 3,
-  bgcolor: (theme) =>
-    theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
-  color: (theme) =>
-    theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
-  border: '1px solid',
-  borderColor: (theme) =>
-    theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-  borderRadius: 2,
-  textAlign: 'center',
-  fontSize: '0.875rem',
-  fontWeight: '300',
-  display: 'inline',
-}
+  
+import { boxStyle, modalStyle } from "./Profile.module";
 
 function Profile({user, id}) {
 
@@ -52,20 +19,20 @@ function Profile({user, id}) {
   const handleClose = () => setOpen(false);
 
   const tags = [
-  {
-    id: 1,
-    content: "내향적이지만"
-  },
+    {
+      id: 1,
+      content: "내향적이지만"
+    },
 
-  {
-    id: 2,
-    content: "사람을좋아해"
-  },
-  {
-    id: 3,
-    content: "젤리도좋아"
-  },
-];
+    {
+      id: 2,
+      content: "사람을좋아해"
+    },
+    {
+      id: 3,
+      content: "젤리도좋아"
+    },
+  ];
 
   return (
     <Grid>
@@ -93,14 +60,14 @@ function Profile({user, id}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={modalStyle}>
           <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <Grid item xs={6}>
               <Card sx={{ maxWidth: 200 }}>
                 <CardMedia
                   component="img"
                   height="300"
-                  image={user.image}
+                  image={user.image == null ? "images/characterExample.png" : user.image}
                   alt="green iguana"
                 />
               </Card>
@@ -112,8 +79,8 @@ function Profile({user, id}) {
             </Grid>
 
             <Grid item xs={12}>
-              {tags.map((tag) => (
-                <Box sx={boxStyle}>
+              {tags.map((tag, id) => (
+                <Box sx={boxStyle} key={id}>
                   # {tag.content}
                 </Box>
               ))}

@@ -147,15 +147,15 @@ function Main({login}) {
             >
               <ChevronRightIcon />
             </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              TeaMBTI
-            </Typography>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+                {!open ? "teaMBTI" : null}
+              </Typography>
             <Button
               variant="contained"
               color="info"
@@ -195,7 +195,7 @@ function Main({login}) {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              My Character
+              teaMBTI
             </Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
