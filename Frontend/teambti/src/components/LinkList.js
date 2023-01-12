@@ -4,10 +4,19 @@ import AssignmentResult from "../pages/assignment/AssignmentResult";
 import Home from "../pages/home/Home";
 
 function LinkList(props) {
+
+    
+    const [number, setNumber] = React.useState(0)
+
+    const getData = (number) => {
+        setNumber(number);
+        console.log(number);
+        props.getWork('assignmentResult');
+    }
     
     switch (props.name){
         case 'assignment' :
-            return <Assignment/>
+            return <Assignment number={number} getData={getData} />
         case 'assignmentResult' : 
             return <AssignmentResult/>
         case 'home' :
