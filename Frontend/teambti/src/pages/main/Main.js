@@ -109,7 +109,7 @@ function Main({login}) {
     })
     .then((response) => {
       // console.log(response.data)
-      setName("김혜림");
+      setName(response.data.name);
       setPosition(response.data.position);
       setMbti(response.data.mbti);
     })
@@ -225,11 +225,7 @@ function Main({login}) {
                   {name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {/* {{mbti} == null ? 
-                    <MbtiModal /> : {mbti}
-                  }
-                  -/ {position} */}
-                  {mbti == null ? <MbtiModal /> : mbti}
+                  {mbti == null ? <MbtiModal /> : mbti} / {position}
                 </Typography>
               </CardContent>
             </Card>

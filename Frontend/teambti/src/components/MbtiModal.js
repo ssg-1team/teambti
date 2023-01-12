@@ -9,7 +9,6 @@ import Select from '@mui/material/Select';
 import axios from "axios";
 
 import { API_HOST } from '../constant';
-import { ContactlessOutlined } from "@mui/icons-material";
 
 const style = {
   position: 'absolute',
@@ -26,14 +25,38 @@ const style = {
 export default function MbtiModal() {
     // constants
   const e_id = parseInt(localStorage.getItem('e_id'));
-  // Modal
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   // mbti
-  const [mbti, setMbti] = useState(0);
+  const [mbtiListDb, setMbtiListDb] = useState([]);
+  const [mbti, setMbti] = useState(0); // m_id
   // tags
   const [tags, setTags] = useState([]);
+  // Modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true)
+
+    axios
+    .get(`${API_HOST}/mbti/getAllMbti`, {
+      headers: {
+        // "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      setMbtiListDb(response.data);
+    })
+    .catch((error) => {
+      const status = error?.response?.status;
+      if (status === undefined) {
+        console.dir("데이터 오류" + JSON.stringify(error));
+      } else if (status === 400) {
+        console.dir("400에러");
+      } else if (status === 500) {
+        console.dir("내부 서버 오류");
+      }
+    });
+  };
+  const handleClose = () => setOpen(false);
 
   // 함수
   // mbti
@@ -41,75 +64,7 @@ export default function MbtiModal() {
     setMbti(event.target.value); // m_id
   };
 
-  const mbtiListDb = [
-    {
-        "m_id": 1,
-        "type": "INTJ"
-    },
-    {
-        "m_id": 2,
-        "type": "INTP"
-    },
-    {
-        "m_id": 3,
-        "type": "ENTJ"
-    },
-    {
-        "m_id": 4,
-        "type": "ENTP"
-    },
-    {
-        "m_id": 5,
-        "type": "INFJ"
-    },
-    {
-        "m_id": 6,
-        "type": "INFP"
-    },
-    {
-        "m_id": 7,
-        "type": "ENFJ"
-    },
-    {
-        "m_id": 8,
-        "type": "ENFP"
-    },
-    {
-        "m_id": 9,
-        "type": "ISTJ"
-    },
-    {
-        "m_id": 10,
-        "type": "ISFJ"
-    },
-    {
-        "m_id": 11,
-        "type": "ESTJ"
-    },
-    {
-        "m_id": 12,
-        "type": "ESFJ"
-    },
-    {
-        "m_id": 13,
-        "type": "ISTP"
-    },
-    {
-        "m_id": 14,
-        "type": "ISFP"
-    },
-    {
-        "m_id": 15,
-        "type": "ESTP"
-    },
-    {
-        "m_id": 16,
-        "type": "ESFP"
-    }
-  ];
-
   const mbtiList = mbtiListDb.map((data, i) => (
-    // console.log(i, data)
 		<MenuItem value={data.m_id} key={i}>
 			{data.type}
 		</MenuItem>
