@@ -2,6 +2,7 @@ import * as React from "react";
 import Assignment from "../pages/assignment/Assignment";
 import AssignmentResult from "../pages/assignment/AssignmentResult";
 import Home from "../pages/home/Home";
+import Character2 from "../pages/character/Character2";
 
 function Links(props) {
 
@@ -21,6 +22,8 @@ function Links(props) {
             return <Assignment number={number} getData={getData} />
         case 'assignmentResult' : 
             return <AssignmentResult/>
+        case 'character' :
+            return <Character2/>
         default : 
             return <h4>{props.name}</h4>
     }
