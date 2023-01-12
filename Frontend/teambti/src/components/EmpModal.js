@@ -24,8 +24,8 @@ export default function EmpModal() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>동료</Button>
+    <>
+      <Button onClick={handleOpen}>EMP</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -35,6 +35,6 @@ export default function EmpModal() {
         <Box sx={style}>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

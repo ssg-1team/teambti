@@ -8,7 +8,7 @@ import {
     Typography,
   } from "@mui/material";
 
-function Profile(props) {
+function Profile({user, id}) {
   return (
     <Grid>
         <Card sx={{ maxWidth: 250 }}>
@@ -21,10 +21,10 @@ function Profile(props) {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {props.user.name}
+                      {user.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {props.user.type} / {props.user.position}
+                      {user.type} / {user.position}
                     </Typography>
                 </CardContent>
             </CardActionArea>
