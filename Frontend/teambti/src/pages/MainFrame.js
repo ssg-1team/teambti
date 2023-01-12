@@ -80,6 +80,10 @@ function MainFrame() {
 
   const [work, setWork] = useState('home');
 
+  const getWork = (work) => {
+    setWork(work);
+  }
+
   const user = {
     id: 1,
     name: "hereme",
@@ -209,7 +213,7 @@ function MainFrame() {
           }}
     >
           <Toolbar />
-          <LinkList name={work}/>
+          <LinkList name={work} getWork={getWork} work={work}/>
         </Box>
         </Box>
       </ThemeProvider>
