@@ -13,6 +13,7 @@ import Profile from '../../components/Profile';
 import axios from 'axios';
 
 function Home() {
+  const e_id = localStorage.getItem('e_id');
   const [emps, setEmps] = useState([]);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ function Home() {
     .then((response) => {
       // console.log(response.data)
       setEmps(response.data);
+      console.log(response.data);
     })
     .catch((error) => {
       const status = error?.response?.status;
@@ -67,6 +69,7 @@ function Home() {
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Slider {...settings}>
           {emps.map((user, id) => (
+            (user.e_id != e_id) &&
             <Profile user = {user} key = {id}/>
           ))}
         </Slider>

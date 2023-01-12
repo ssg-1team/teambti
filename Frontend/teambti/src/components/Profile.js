@@ -74,15 +74,15 @@ function Profile({user, id}) {
               <CardMedia
                   component="img"
                   height="350"
-                  image={user.image}
-                  alt="green iguana"
+                  image={user.image == null ? "images/characterExample.png" : user.image}
+                  alt="IMAGE"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {user.name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {user.type} / {user.position}
+                    {user.mbti} / {user.position}
                   </Typography>
               </CardContent>
           </CardActionArea>
