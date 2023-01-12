@@ -74,8 +74,8 @@ function Profile({user, id}) {
               <CardMedia
                   component="img"
                   height="350"
-                  image={user.image}
-                  alt="green iguana"
+                  image={user.image == null ? "images/characterExample.png" : user.image}
+                  alt="IMAGE"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
