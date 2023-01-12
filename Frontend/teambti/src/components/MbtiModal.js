@@ -19,7 +19,7 @@ const style = {
   height:600,
   padding:40,
   bgcolor: 'background.paper',
-  border: '10px solid #000',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
