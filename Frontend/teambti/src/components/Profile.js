@@ -100,14 +100,14 @@ function Profile({user, id}) {
                 <CardMedia
                   component="img"
                   height="300"
-                  image="images/characterExample.png"
+                  image={user.image}
                   alt="green iguana"
                 />
               </Card>
             </Grid>
             <Grid item xs={6}>
               <Box sx={{ textAlign: 'center', fontSize: 'h8.fontSize', fontWeight: 'medium', p:2}}>{user.name}</Box>
-              <Box sx={{ textAlign: 'center', fontSize: 'h6.fontSize', fontWeight: 'medium', p:2 }}>{user.type}</Box>
+              <Box sx={{ textAlign: 'center', fontSize: 'h6.fontSize', fontWeight: 'medium', p:2 }}>{user.mbti}</Box>
               <Box sx={{ textAlign: 'center', fontSize: 'h8.fontSize', fontWeight: 'medium', p:2 }}>선의의 옹호자</Box>
             </Grid>
 
