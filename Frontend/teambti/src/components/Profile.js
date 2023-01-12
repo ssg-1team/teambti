@@ -32,7 +32,7 @@ const boxStyle = {
   mr: 1,
   mt: 3,
   bgcolor: (theme) =>
-   theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+    theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
   color: (theme) =>
     theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
   border: '1px solid',
@@ -45,7 +45,7 @@ const boxStyle = {
   display: 'inline',
 }
 
-function Profile({user}) {
+function Profile({user, id}) {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);

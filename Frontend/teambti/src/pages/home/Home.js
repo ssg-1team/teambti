@@ -1,81 +1,43 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Toolbar,
   Box,
 } from "@mui/material";
+import { API_HOST } from "../../constant";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Profile from "./Profile";
+import Profile from '../../components/Profile';
+import axios from 'axios';
 
-function Emp() {
-  const others = [
-    {
-      id: 2,
-      name: "cocoon",
-      type: "INFP",
-      position: "POS",
-      image: "images/characterExample.png"
-    },
-    {
-      id: 3,
-      name: "ultra",
-      type: "ESFP",
-      position: "IOS",
-      image: "images/characterExample.png"
-    },
-    {
-      id: 4,
-      name: "hozae",
-      type: "ISTJ",
-      position: "AOS",
-      image: "images/characterExample.png"
-    },
-    {
-      id: 4,
-      name: "hozae",
-      type: "ISTJ",
-      position: "AOS",
-      image: "images/characterExample.png"
-    },
-    {
-      id: 4,
-      name: "hozae",
-      type: "ISTJ",
-      position: "AOS",
-      image: "images/characterExample.png"
-    },
-    {
-      id: 4,
-      name: "hozae",
-      type: "ISTJ",
-      position: "AOS",
-      image: "images/characterExample.png"
-    },
-    {
-      id: 4,
-      name: "hozae",
-      type: "ISTJ",
-      position: "AOS",
-      image: "images/characterExample.png"
-    },
-    {
-      id: 4,
-      name: "hozae",
-      type: "ISTJ",
-      position: "AOS",
-      image: "images/characterExample.png"
-    },
-    {
-      id: 4,
-      name: "hozae",
-      type: "ISTJ",
-      position: "AOS",
-      image: "images/characterExample.png"
-    },
-  ];
+function Home() {
+  const [emps, setEmps] = useState([]);
+
+  useEffect(() => {
+    axios
+    .get(`${API_HOST}/member/getAll`, {
+      headers: {
+        // "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      // console.log(response.data)
+      setEmps(response.data);
+    })
+    .catch((error) => {
+      const status = error?.response?.status;
+      if (status === undefined) {
+        console.dir("데이터 오류" + JSON.stringify(error));
+      } else if (status === 400) {
+        console.dir("400에러");
+      } else if (status === 500) {
+        console.dir("내부 서버 오류");
+      }
+    });
+  }, []);
 
   const settings = {
     // 슬라이드 옵션들
@@ -104,8 +66,8 @@ function Emp() {
 
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Slider {...settings}>
-          {others.map((user) => (
-            <Profile user = {user}/>
+          {emps.map((user, id) => (
+            <Profile user = {user} key = {id}/>
           ))}
         </Slider>
       </Container>
@@ -113,4 +75,4 @@ function Emp() {
   );
 }
 
-export default Emp;
+export default Home;

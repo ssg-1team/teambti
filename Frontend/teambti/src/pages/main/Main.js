@@ -25,6 +25,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 import LinkList from "../../components/Links";
+import MbtiModal from '../../components/MbtiModal';
 
 const drawerWidth = 400;
 
@@ -76,7 +77,10 @@ const mdTheme = createTheme();
 
 function Main({login}) {
   const e_id = localStorage.getItem('e_id');
-  const [emps, setEmps] = useState([]);
+  // API
+  const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+  const [mbti, setMbti] = useState("");
 
   // logout
   const handleLogout = () => {
@@ -84,17 +88,30 @@ function Main({login}) {
     login(false);
   }
 
+  const [open, setOpen] = useState(true);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
+  const [work, setWork] = useState('home');
+
+  const getWork = (work) => {
+    setWork(work);
+  }
+
   useEffect(() => {
     axios
-    .get(`${API_HOST}/member/getAll`, {
+    .get(`${API_HOST}/member/getEmp/${e_id}`, {
       headers: {
         // "Access-Control-Allow-Origin" : "*",
         "Content-Type": "application/json",
       },
     })
     .then((response) => {
-      console.log(response.data)
-      setEmps(response.data);
+      // console.log(response.data)
+      setName(response.data.name);
+      setPosition(response.data.position);
+      setMbti(response.data.mbti);
     })
     .catch((error) => {
       const status = error?.response?.status;
@@ -107,24 +124,6 @@ function Main({login}) {
       }
     });
   }, []);
-  
-  const [open, setOpen] = useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
-
-  const [work, setWork] = useState('home');
-
-  const getWork = (work) => {
-    setWork(work);
-  }
-
-  const user = {
-    id: 1,
-    name: "hereme",
-    type: "INFJ",
-    position: "Web",
-  };
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -175,7 +174,7 @@ function Main({login}) {
             >
               홈
             </Button>
-            <Button variant="contained" color="info" endIcon={<LogoutIcon />}>
+            <Button onClick={handleLogout} variant="contained" color="info" endIcon={<LogoutIcon />}>
               로그아웃
             </Button>
           </Toolbar>
@@ -223,17 +222,14 @@ function Main({login}) {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {user.name}
+                  {name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {user.type} / {user.position}
+                  {mbti == null ? <MbtiModal /> : mbti} / {position}
                 </Typography>
               </CardContent>
             </Card>
           </Box>
-          <Button variant="contained" color="inherit" sx={{ m: 4 }}>
-            마이페이지
-          </Button>
         </Drawer>
         <Box
           component="main"
