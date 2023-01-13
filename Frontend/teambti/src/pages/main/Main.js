@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import LeftDrawer from "../../components/base/LeftDrawer";
-import Home from "../home/Home";
-
-const Main = () => {
-  return (
-    <>
-      <Home />
-    </>
-=======
 import React, { useEffect, useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import {
@@ -26,7 +15,7 @@ import {
 } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import MuiDrawer from "@mui/material/Drawer";
-import axios from 'axios';
+import axios from "axios";
 // icon
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -34,8 +23,9 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 // components
 import LinkList from "../../components/Links";
-import MbtiModal from '../../components/MbtiModal';
+import MbtiModal from "../../components/MbtiModal";
 import { API_HOST } from "../../constant";
+import Home from "../home/Home";
 
 const drawerWidth = 400;
 
@@ -85,11 +75,11 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme({
   palette: {
-    theme1 : {
-      red : '#FFD4B2',
-      yellow : '#FFF6BD',
-      lightgreen : '#CEEDC7',
-      darkgreen : '#86C8BC',
+    theme1: {
+      red: "#FFD4B2",
+      yellow: "#FFF6BD",
+      lightgreen: "#CEEDC7",
+      darkgreen: "#86C8BC",
     },
   },
 });
@@ -102,7 +92,7 @@ function Main({ login }) {
   const [mbti, setMbti] = useState("");
 
   const [open, setOpen] = useState(true); // Drawer
-  const [work, setWork] = useState('home');
+  const [work, setWork] = useState("home");
 
   // logout
   const handleLogout = () => {
@@ -127,7 +117,7 @@ function Main({ login }) {
         },
       })
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         setName(response.data.name);
         setPosition(response.data.position);
         setMbti(response.data.mbti);
@@ -145,6 +135,9 @@ function Main({ login }) {
   }, []);
 
   return (
+    // <>
+    // <Home/>
+    // </>
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
@@ -180,25 +173,30 @@ function Main({ login }) {
               <Button
                 variant="contained"
                 color="info"
-                onClick={() => setWork('home')}
+                onClick={() => setWork("home")}
               >
                 홈
               </Button>
               <Button
                 variant="contained"
                 color="info"
-                onClick={() => setWork('assignment')}
+                onClick={() => setWork("assignment")}
               >
                 멘토-멘티
               </Button>
               <Button
                 variant="contained"
                 color="info"
-                onClick={() => setWork('assignment')}
+                onClick={() => setWork("assignment")}
               >
                 CO-WORKING
               </Button>
-              <Button onClick={handleLogout} variant="contained" color="info" endIcon={<LogoutIcon />}>
+              <Button
+                onClick={handleLogout}
+                variant="contained"
+                color="info"
+                endIcon={<LogoutIcon />}
+              >
                 로그아웃
               </Button>
             </ButtonGroup>
@@ -255,27 +253,26 @@ function Main({ login }) {
               </CardContent>
             </Card>
           </Box>
-          <Button onClick={() => setWork('character')}>프로필 편집</Button>
+          <Button onClick={() => setWork("character")}>프로필 편집</Button>
         </Drawer>
         <Box
           component="main"
           sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
           }}
-    >
+        >
           <Toolbar />
-          <LinkList name={work} getWork={getWork} work={work}/>
+          <LinkList name={work} getWork={getWork} work={work} />
         </Box>
       </Box>
     </ThemeProvider>
->>>>>>> 6b709511f199ac087cca2a17f78a96c48ccd5a69
   );
-};
+}
 
 export default Main;
