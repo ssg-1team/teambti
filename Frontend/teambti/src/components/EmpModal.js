@@ -9,33 +9,9 @@ import {
 import { API_HOST } from '../constant';
 import axios from 'axios';
 import { tagStyle, modalStyle } from "./Profile.module";
+import { ConnectingAirportsOutlined } from "@mui/icons-material";
 
-export default function EmpModal({user, open, handleClose}) {
-  const [tags, setTags] = useState([]);
-  const e_id = user.e_id;
-  
-  if(open) {
-    axios
-    .get(`${API_HOST}/member/tag/${e_id}`, {
-      headers: {
-        // "Access-Control-Allow-Origin" : "*",
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      setTags(response.data);
-    })
-    .catch((error) => {
-      const status = error?.response?.status;
-      if (status === undefined) {
-        console.dir("데이터 오류" + JSON.stringify(error));
-      } else if (status === 400) {
-        console.dir("400에러");
-      } else if (status === 500) {
-        console.dir("내부 서버 오류");
-      }
-    });
-  }
+export default function EmpModal({user, open, handleClose, tags}) {
 
   return (
     <>
@@ -65,7 +41,7 @@ export default function EmpModal({user, open, handleClose}) {
             <Grid item xs={12}>
               {tags.map((tag, id) => (
                 <Box sx={tagStyle} key={id}>
-                  # {tag}
+                  # {tag.content}
                 </Box>
               ))}
             </Grid>
