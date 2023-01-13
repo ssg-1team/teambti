@@ -4,6 +4,17 @@
 }
 
 .characterOne {
-  background-color: red;
+  /* background-color: red; */
   width: 80%;
+}
+
+.CharacterBtn {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: transparent;
+  margin:10px;
+}
+
+.CharacterBtn:hover {
+  border: 1px solid black;
 }
