@@ -15,7 +15,6 @@ export default function ActionAreaCard() {
           image="images/characterExample.png"
           alt="green iguana"
         />
-
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             Lizard

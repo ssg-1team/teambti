@@ -57,7 +57,6 @@ function Home() {
       }}
     >
       <Toolbar />
-
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Slider {...settings}>
           {emps.map((user, id) => (

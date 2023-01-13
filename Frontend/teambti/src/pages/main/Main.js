@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import axios from 'axios';
-import { API_HOST } from "../../constant";
-
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   CssBaseline,
@@ -16,16 +12,18 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
-
 import MuiAppBar from "@mui/material/AppBar";
 import MuiDrawer from "@mui/material/Drawer";
-
+import axios from 'axios';
+// icon
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
+// components
 import LinkList from "../../components/Links";
 import MbtiModal from '../../components/MbtiModal';
+import { API_HOST } from "../../constant";
 
 const drawerWidth = 400;
 
@@ -82,18 +80,18 @@ function Main({login}) {
   const [position, setPosition] = useState("");
   const [mbti, setMbti] = useState("");
 
+  const [open, setOpen] = useState(true); // Drawer
+  const [work, setWork] = useState('home');
+
   // logout
   const handleLogout = () => {
     localStorage.removeItem('e_id');
     login(false);
   }
 
-  const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
-  const [work, setWork] = useState('home');
 
   const getWork = (work) => {
     setWork(work);

@@ -1,4 +1,4 @@
-export const boxStyle = {
+export const tagStyle = {
   mx: 'auto',
   p: 1,
   mr: 1,
