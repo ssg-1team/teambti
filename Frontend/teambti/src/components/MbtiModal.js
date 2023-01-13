@@ -10,7 +10,6 @@ import axios from "axios";
 import { modalStyle } from "./Profile.module";
 
 import { API_HOST } from '../constant';
-import Tag from "./Tag";
 
 export default function MbtiModal() {
     // constants
@@ -18,8 +17,6 @@ export default function MbtiModal() {
   // mbti
   const [mbtiListDb, setMbtiListDb] = useState([]);
   const [mbti, setMbti] = useState(0); // m_id
-  // tags
-  const [tags, setTags] = useState([]);
   // Modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -115,8 +112,7 @@ export default function MbtiModal() {
               {mbtiList}
             </Select>
           </FormControl>
-          <Tag />
-          {tags}
+          {/* <Tag /> */}
           <Button onClick={save}>저장하기</Button>
         </Box>
       </Modal>
