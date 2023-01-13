@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import axios from 'axios';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import axios from "axios";
 
-import { API_HOST } from '../constant';
+import { API_HOST } from "../constant";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -26,13 +26,13 @@ export default function MyModal() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [mbti, setMbti] = useState('');
+  const [mbti, setMbti] = useState("");
 
   // tags
   const [tags, setTags] = useState([]);
 
   // constants
-  const e_id = localStorage.getItem('e_id');
+  const e_id = localStorage.getItem("e_id");
 
   const handleChange = (event) => {
     setMbti(event.target.value);
@@ -40,26 +40,26 @@ export default function MyModal() {
 
   useEffect(() => {
     axios
-    .get(`${API_HOST}/member/tag/${e_id}`, {
-      headers: {
-        // "Access-Control-Allow-Origin" : "*",
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      console.log(response.data)
-      setTags(response.data);
-    })
-    .catch((error) => {
-      const status = error?.response?.status;
-      if (status === undefined) {
-        console.dir("데이터 오류" + JSON.stringify(error));
-      } else if (status === 400) {
-        console.dir("400에러");
-      } else if (status === 500) {
-        console.dir("내부 서버 오류");
-      }
-    });
+      .get(`${API_HOST}/member/tag/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setTags(response.data);
+      })
+      .catch((error) => {
+        const status = error?.response?.status;
+        if (status === undefined) {
+          console.dir("데이터 오류" + JSON.stringify(error));
+        } else if (status === 400) {
+          console.dir("400에러");
+        } else if (status === 500) {
+          console.dir("내부 서버 오류");
+        }
+      });
   }, []);
 
   return (
