@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from "react";
 import styles from "./Character.module.css";
-import * as React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -43,12 +43,14 @@ function Character() {
   }));
 
   const [expanded, setExpanded] = React.useState(false);
+    // tags
+    const [tags, setTags] = useState([]);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-    <div>
+    <>
       <div>캐릭터페이지</div>
       <div className={styles.characterDiv}>
         <div style={{ width: "20%" }}>
@@ -222,7 +224,7 @@ function Character() {
           </Card>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

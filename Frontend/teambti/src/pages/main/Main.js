@@ -107,7 +107,7 @@ function Main({ login }) {
         },
       })
       .then((response) => {
-        // console.log(response.data)
+        console.log(response.data)
         setName(response.data.name);
         setPosition(response.data.position);
         setMbti(response.data.mbti);

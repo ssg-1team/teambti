@@ -30,7 +30,7 @@ export default function ComparisionArrow({comparision}) {
         <TimelineSeparator>
           <TimelineDot color="primary">
             <ArrowForwardIcon fontSize="small"/>  
-          </TimelineDot>
+        </TimelineDot>
         </TimelineSeparator>
         <TimelineContent
           sx={{ mt: 1.5 }}

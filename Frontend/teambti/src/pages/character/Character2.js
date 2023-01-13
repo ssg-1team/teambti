@@ -106,6 +106,7 @@ import body12 from "../../assets/image/parts/body/12.png";
 import eyes13 from "../../assets/image/parts/eyes/13.png";
 import eyes14 from "../../assets/image/parts/eyes/14.png";
 import eyes15 from "../../assets/image/parts/eyes/15.png";
+import Tag from "../../components/Tag";
 
 function Copyright(props) {
   return (
@@ -177,6 +178,10 @@ function Character() {
     setExpanded(isExpanded ? panel : false);
   };
   return (
+    <>
+    <Box sx={{m:2}}>
+      <Tag />
+    </Box>
     <Box sx={{m:2}}>
       <div>캐릭터페이지</div>
       <div className={styles.characterDiv}>
@@ -397,6 +402,7 @@ function Character() {
         </div>
       </div>
     </Box>
+    </>
   );
 }
 

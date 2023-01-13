@@ -65,7 +65,7 @@ export default function Profile({user, key, setComparision}) {
                     {user.name}
                   </Typography>
                   <Typography variant="h7" color="text.secondary">
-                    {user.mbti} / {user.position} 
+                    {user.mbti !== null ? user.mbti : "뭘까요?"} / {user.position} 
                   </Typography>
               </CardContent>
           </CardActionArea>
