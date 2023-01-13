@@ -12,7 +12,7 @@ import { API_HOST } from '../constant';
 import axios from 'axios';
 import EmpModal from "./EmpModal";
 
-function Profile({user, key}) {
+export default function Profile({user, key, setComparision}) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
 
@@ -44,6 +44,10 @@ function Profile({user, key}) {
   
   const handleClose = () => setOpen(false);
 
+  const goComparision = () => {
+    setComparision(user);
+  }
+
   return (
     <Grid>
       <Card sx={{ maxWidth: 250 }}>
@@ -55,17 +59,21 @@ function Profile({user, key}) {
                   alt="IMAGE"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h6" component="div">
                     {user.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {user.mbti} / {user.position}
+                  <Typography variant="h7" color="text.secondary">
+                    {user.mbti} / {user.position} 
                   </Typography>
               </CardContent>
           </CardActionArea>
-          <EmpModal user={user} open={open} handleClose={handleClose} tags={tags}/>
+          <CardActions>
+          <Button size="small" color="primary" onClick={goComparision}>
+            성격비교
+          </Button>
+        </CardActions>
+        <EmpModal user={user} open={open} handleClose={handleClose} tags={tags}/>
       </Card>
     </Grid>
-  );
+  ) 
 }
-export default Profile;
