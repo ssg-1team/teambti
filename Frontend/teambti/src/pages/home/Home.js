@@ -12,6 +12,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Profile from '../../components/Profile';
 import axios from 'axios';
 
+import { settings } from "./Home.module";
+
 function Home({setComparision}) {
   const e_id = localStorage.getItem('e_id');
   const [emps, setEmps] = useState([]);
@@ -41,16 +43,6 @@ function Home({setComparision}) {
     });
   }, []);
 
-  const settings = {
-    // 슬라이드 옵션들
-    arrows: true, // 화살표 표시
-    dots: true, // 밑에 현재 페이지와 나머지 페이지 점으로 표시
-    infinite: false, // 무한 반복
-    speed: 500, // 넘기는 속도
-    slidesToShow: 4, // 슬라이드에 보여지는 아이템 개수
-    slidesToScroll: 4, // 슬라이드 넘기는 아이템 개수
-  };
-
   return (
     <Box
       component="main"
@@ -65,7 +57,6 @@ function Home({setComparision}) {
       }}
     >
       <Toolbar />
-
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Slider {...settings}>
           {emps.map((user, id) => (
