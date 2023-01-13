@@ -16,7 +16,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Coworking({ getDataCoWorking, questionsNumber }) {
+export default function Coworking({ getDataCoWorking, questionsNumber }) {
   // ENFJ 우선순위
   const questionsCoWorkingEI = [
     {
@@ -213,5 +213,3 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     // </Container>
   );
 }
-
-export default Coworking;

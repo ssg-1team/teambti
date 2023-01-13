@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Container,
   Toolbar,
@@ -15,6 +15,7 @@ import axios from 'axios';
 import { settings } from "./Home.module";
 
 function Home({setComparision}) {
+
   const e_id = localStorage.getItem('e_id');
   const [emps, setEmps] = useState([]);
 
@@ -44,18 +45,7 @@ function Home({setComparision}) {
   }, []);
 
   return (
-    <Box
-      component="main"
-      sx={{
-        backgroundColor: (theme) =>
-          theme.palette.mode === "light"
-            ? theme.palette.grey[100]
-            : theme.palette.grey[900],
-        flexGrow: 1,
-        height: "100vh",
-        overflow: "auto",
-      }}
-    >
+    <>
       <Toolbar />
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Slider {...settings}>
@@ -65,7 +55,7 @@ function Home({setComparision}) {
           ))}
         </Slider>
       </Container>
-    </Box>
+    </>
   );
 }
 

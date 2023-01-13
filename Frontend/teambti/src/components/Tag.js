@@ -3,6 +3,9 @@ import "../css/Tag.css";
 import axios from 'axios';
 import { API_HOST } from '../constant';
 import userEvent from "@testing-library/user-event";
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 export default function Tag () {
   // constants
@@ -118,29 +121,35 @@ export default function Tag () {
     });
   }, []);
 
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
   return (
-    <div className="wrapper">
-      <div className="tag-container">
-        <ul className="tag-tags">
-          {tags.map((tag, idx) => (
-            <li className="tag-tag" key={idx} id={tag.t_id}>
-              <span>{tag.content}</span>
-              <span
-                className="tag-remove-button"
-                onClick={() => removeTag(idx, tag.t_id)}
-              >
-                ❌
-              </span>
-            </li>
-          ))}
-          <input
-            className="tag-input"
-            type="text"
-            onKeyUp={(e) => (e.key === "Enter" ? addTag(e) : null)}
-            placeholder="Press enter to add tags"
-          />
-        </ul>
-      </div>
-    </div>
+    <Item>
+      <ul className="tag-tags">
+        {tags.map((tag, idx) => (
+          <li className="tag-tag" key={idx} id={tag.t_id}>
+            <span>{tag.content}</span>
+            <span
+              className="tag-remove-button"
+              onClick={() => removeTag(idx, tag.t_id)}
+            >
+              ❌
+            </span>
+          </li>
+        ))}
+        <input
+          className="tag-input"
+          type="text"
+          onKeyUp={(e) => (e.key === "Enter" ? addTag(e) : null)}
+          placeholder="Press enter to add tags"
+        />
+      </ul>
+    </Item>
   );
 };

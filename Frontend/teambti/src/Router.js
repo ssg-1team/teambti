@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "./pages/main/Main";
 import Login from "./pages/login/Login";
-import CoWorking from "./pages/coworking/CoWorking";
+import Coworking from "./pages/coworking/Coworking";
 import Comparison from "./pages/comparison/Comparison";
 import Mypage from "./pages/mypage/Mypage";
 import Character from "./pages/character/Character";
@@ -24,13 +24,13 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/character" element={<Character />}></Route>
         <Route path="/character2" element={<Character2 />}></Route>
         {/* 업무할당 */}
-        <Route path="/coworking" element={<CoWorking />}></Route>
+        <Route path="/coworking" element={<Coworking />}></Route>
 
         {/* 1:1 성격 비교 */}
         <Route path="/comparison" element={<Comparison />}></Route>
 
         {/* 마이페이지 */}
-        <Route path="/mypage" element={<Mypage />}></Route>
+        {/* <Route path="/mypage" element={<Mypage />}></Route> */}
 
         {/* 여기 밑으로는 테스트 */}
         <Route path="/comparisionarrow" element={<ComparisionArrow />}></Route>    

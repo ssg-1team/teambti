@@ -1,0 +1,20 @@
+:root {
+  --purple: #4207c6;
+  --white: #fff;
+  --gray: #dcdcdc;
+  --black: #000000;
+
+  --radius_large: 2em;
+  --radius_medium: 1em;
+  --radius_small: 0.5em;
+
+  --padding_large: 2em;
+  --padding_medium: 1em;
+  --padding_small: 0.5em;
+  --padding_micro: 0.2em;
+
+  --margin_large: 2em;
+  --margin_medium: 1em;
+  --margin_small: 0.5em;
+  --margin_micro: 0.2em;
+}
