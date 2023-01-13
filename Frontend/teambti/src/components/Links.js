@@ -3,7 +3,7 @@ import * as React from "react";
 import MentoMenti from "../pages/mentomenti/MentoMenti";
 import MentoMentiResult from "../pages/mentomenti/MentoMentiResult";
 
-import Coworking from "../pages/coworking/Coworking";
+import Coworking from "../pages/coworking/CoWorking";
 import CoworkingStart from "../pages/coworking/CoWorkingStart";
 import CoWorkingResult from "../pages/coworking/CoWorkingResult";
 
