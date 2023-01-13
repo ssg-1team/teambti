@@ -146,54 +146,36 @@ function Main({ login }) {
             >
               <ChevronRightIcon />
             </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+                {!open ? "teaMBTI" : null}
+              </Typography>
+            <Button
+              variant="contained"
+              color="info"
+              endIcon={<Diversity1Icon />}
+              sx={{ m: 1 }}
+              onClick={() => setWork('assignment')}
             >
-              TeaMBTI
-            </Typography>
-            <ButtonGroup variant="text">
-              <Button
-                variant="contained"
-                color="info"
-                onClick={() => setWork('home')}
-              >
-                홈
-              </Button>
-
-              <Button>
-                variant="contained"
-                color="info"
-                endIcon={<Diversity1Icon />}
-                sx={{ m: 1 }}
-                onClick={() => setWork("coworkingstart")}
-              >
-                협업하기
-              </Button>
-              <Button
-                variant="contained"
-                color="info"
-                endIcon={<Diversity1Icon />}
-                sx={{ m: 1 }}
-                onClick={() => setWork("mentomenti")}
-              >
-                멘토링
-              </Button>
-              
-              <Button
-                variant="contained"
-                color="info"
-                onClick={() => setWork('comparision')}
-              >
-                1:1 성격비교
-              </Button>
-              <Button onClick={handleLogout} variant="contained" color="info" endIcon={<LogoutIcon />}>
-                로그아웃
-              </Button>
-            </ButtonGroup>
+              업무할당
+            </Button>
+            <Button
+              variant="contained"
+              color="info"
+              endIcon={<Diversity1Icon />}
+              sx={{ m: 1 }}
+              onClick={() => setWork('home')}
+            >
+              홈
+            </Button>
+            <Button onClick={handleLogout} variant="contained" color="info" endIcon={<LogoutIcon />}>
+              로그아웃
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -239,32 +221,30 @@ function Main({ login }) {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {user.name}
+                  {name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {user.type} / {user.position}
+                  {mbti == null ? <MbtiModal /> : mbti} / {position}
                 </Typography>
               </CardContent>
             </Card>
           </Box>
-          <Button variant="contained" color="inherit" sx={{ m: 4 }}>
-            마이페이지
-          </Button>
+          <Button onClick={() => setWork('character')}>프로필 편집</Button>
         </Drawer>
         <Box
           component="main"
           sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
+          backgroundColor: (theme) =>
+            theme.palette.mode === "light"
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
           }}
-        >
+    >
           <Toolbar />
-          <LinkList name={work} getWork={getWork} />
+          <LinkList name={work} getWork={getWork} work={work}/>
         </Box>
       </Box>
     </ThemeProvider>
