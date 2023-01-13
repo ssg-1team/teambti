@@ -11,8 +11,11 @@ import {
     MenuItem,
     FormControl,
     InputLabel,
+    Button,
+    CardActions,
   } from "@mui/material";
 import { Container } from "@mui/system";
+import { SettingsSuggestRounded, SupervisedUserCircle } from "@mui/icons-material";
 
 const style = {
   position: 'absolute',
@@ -45,12 +48,15 @@ const boxStyle = {
   display: 'inline',
 }
 
-function Profile({user, id}) {
+function Profile({user, id, setComparision}) {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const goComparision = () => {
+    setComparision(user);
+  }
   const tags = [
   {
     id: 1,
@@ -70,22 +76,27 @@ function Profile({user, id}) {
   return (
     <Grid>
       <Card sx={{ maxWidth: 250 }}>
-          <CardActionArea onClick={handleOpen}>
-              <CardMedia
-                  component="img"
-                  height="350"
-                  image={user.image == null ? "images/characterExample.png" : user.image}
-                  alt="IMAGE"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {user.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {user.mbti} / {user.position}
-                  </Typography>
-              </CardContent>
-          </CardActionArea>
+        <CardActionArea onClick={handleOpen}>
+            <CardMedia 
+                component="img"
+                height="350"
+                image={user.image == null ? "images/characterExample.png" : user.image}
+                alt="IMAGE"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h6" component="div">
+                  {user.name}
+                </Typography>
+                <Typography variant="h7" color="text.secondary">
+                  {user.mbti} / {user.position} 
+                </Typography>
+            </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary" onClick={goComparision}>
+            성격비교
+          </Button>
+        </CardActions>
       </Card>
       <Modal
         open={open}

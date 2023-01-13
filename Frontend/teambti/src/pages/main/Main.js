@@ -15,6 +15,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  ButtonGroup,
 } from "@mui/material";
 
 import MuiAppBar from "@mui/material/AppBar";
@@ -156,36 +157,46 @@ function Main({ login }) {
             >
               TeaMBTI
             </Typography>
-            <Button
-              variant="contained"
-              color="info"
-              endIcon={<Diversity1Icon />}
-              sx={{ m: 1 }}
-              onClick={() => setWork("coworkingstart")}
-            >
-              협업하기
-            </Button>
-            <Button
-              variant="contained"
-              color="info"
-              endIcon={<Diversity1Icon />}
-              sx={{ m: 1 }}
-              onClick={() => setWork("mentomenti")}
-            >
-              멘토링
-            </Button>
-            <Button
-              variant="contained"
-              color="info"
-              endIcon={<Diversity1Icon />}
-              sx={{ m: 1 }}
-              onClick={() => setWork("home")}
-            >
-              홈
-            </Button>
-            <Button variant="contained" color="info" endIcon={<LogoutIcon />}>
-              로그아웃
-            </Button>
+            <ButtonGroup variant="text">
+              <Button
+                variant="contained"
+                color="info"
+                onClick={() => setWork('home')}
+              >
+                홈
+              </Button>
+ 
+              <Button>
+                variant="contained"
+                color="info"
+                endIcon={<Diversity1Icon />}
+                sx={{ m: 1 }}
+                onClick={() => setWork("coworkingstart")}
+              >
+                협업하기
+              </Button>
+              <Button
+                variant="contained"
+                color="info"
+                endIcon={<Diversity1Icon />}
+                sx={{ m: 1 }}
+                onClick={() => setWork("mentomenti")}
+              >
+                멘토링
+              </Button>
+              
+              <Button
+                variant="contained"
+                color="info"
+                onClick={() => setWork('comparision')}
+              >
+                1:1 성격비교
+              </Button>
+
+              <Button onClick={handleLogout} variant="contained" color="info" endIcon={<LogoutIcon />}>
+                로그아웃
+              </Button>
+            </ButtonGroup>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
