@@ -7,6 +7,7 @@ import Comparison from "./pages/comparison/Comparison";
 import Mypage from "./pages/mypage/Mypage";
 import Character from "./pages/character/Character";
 import Character2 from "./pages/character/Character2";
+import ComparisionArrow from "./components/ComparisionArrow";
 
 const Router = ({ isLoggedIn, login }) => {
   return (
@@ -32,7 +33,7 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/mypage" element={<Mypage />}></Route>
 
         {/* 여기 밑으로는 테스트 */}
-
+        <Route path="/comparisionarrow" element={<ComparisionArrow />}></Route>    
       </Routes>
     </BrowserRouter>
   );

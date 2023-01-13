@@ -7,22 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from "axios";
+import { modalStyle } from "./Profile.module";
 
 import { API_HOST } from '../constant';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  height:600,
-  padding:40,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function MbtiModal() {
     // constants
@@ -30,8 +17,6 @@ export default function MbtiModal() {
   // mbti
   const [mbtiListDb, setMbtiListDb] = useState([]);
   const [mbti, setMbti] = useState(0); // m_id
-  // tags
-  const [tags, setTags] = useState([]);
   // Modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -84,7 +69,7 @@ export default function MbtiModal() {
 		};
     
     axios
-    .get(`${API_HOST}/member/setMbti`, data, {
+    .post(`${API_HOST}/member/setMbti`, data, {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin" : "*",
@@ -114,7 +99,7 @@ export default function MbtiModal() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={modalStyle}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">MBTI</InputLabel>
             <Select
@@ -127,7 +112,7 @@ export default function MbtiModal() {
               {mbtiList}
             </Select>
           </FormControl>
-          {tags}
+          {/* <Tag /> */}
           <Button onClick={save}>저장하기</Button>
         </Box>
       </Modal>
