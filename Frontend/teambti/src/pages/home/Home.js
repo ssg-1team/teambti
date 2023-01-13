@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "@mui/material";
+import { Container, Toolbar, Box } from "@mui/material";
 import { API_HOST } from "../../constant";
 
 import Slider from "react-slick";

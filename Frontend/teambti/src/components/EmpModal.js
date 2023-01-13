@@ -38,7 +38,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
               <Box
                 sx={{
                   textAlign: "center",
-                  fontSize: "h3.fontSize",
+                  fontSize: "h8.fontSize",
                   fontWeight: "medium",
                   p: 2,
                 }}
@@ -48,7 +48,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
               <Box
                 sx={{
                   textAlign: "center",
-                  fontSize: "h5.fontSize",
+                  fontSize: "h6.fontSize",
                   fontWeight: "medium",
                   p: 2,
                 }}

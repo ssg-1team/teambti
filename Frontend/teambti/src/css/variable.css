@@ -3,10 +3,13 @@
   --white: #fff;
   --gray: #dcdcdc;
   --black: #000000;
+<<<<<<< HEAD
   --primary_color_m: #fffcee;
   --primary_color_s: #44383c;
   --secondary_color_m: #f5c150;
   --secondary_color_s: #f4644c;
+=======
+>>>>>>> 6b709511f199ac087cca2a17f78a96c48ccd5a69
 
   --radius_large: 2em;
   --radius_medium: 1em;
@@ -21,4 +24,8 @@
   --margin_medium: 1em;
   --margin_small: 0.5em;
   --margin_micro: 0.2em;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6b709511f199ac087cca2a17f78a96c48ccd5a69

@@ -1,5 +1,9 @@
+import React, { useEffect, useState } from "react";
 import styles from "./Character.module.css";
+<<<<<<< HEAD
 import React, { useEffect, useState, useCallback } from "react";
+=======
+>>>>>>> 6b709511f199ac087cca2a17f78a96c48ccd5a69
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -154,6 +158,8 @@ function Character() {
   const [myBack, setMyBack] = useState(1);
 
   const [expanded, setExpanded] = React.useState(false);
+    // tags
+    const [tags, setTags] = useState([]);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -161,6 +167,7 @@ function Character() {
 
   return (
     <>
+<<<<<<< HEAD
       <Typography>캐릭터페이지</Typography>
       <Grid container spacing={0}>
         <Grid container xs={8}>
@@ -190,6 +197,33 @@ function Character() {
             <Accordion
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
+=======
+      <div>캐릭터페이지</div>
+      <div className={styles.characterDiv}>
+        <div style={{ width: "20%" }}>
+          <Accordion expanded>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography>머리</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <div>머리는 1개로 고정임</div>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2bh-content"
+              id="panel2bh-header"
+>>>>>>> 6b709511f199ac087cca2a17f78a96c48ccd5a69
             >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -785,6 +819,7 @@ function Character() {
                     <img style={{ width: "30px" }} src={back11} alt="" />
                   </button>
                 </Typography>
+<<<<<<< HEAD
               </AccordionDetails>
             </Accordion>
           </Grid>
@@ -830,6 +865,13 @@ function Character() {
           <Tag />
         </Grid>
       </Grid>
+=======
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </div>
+      </div>
+>>>>>>> 6b709511f199ac087cca2a17f78a96c48ccd5a69
     </>
   );
 }
