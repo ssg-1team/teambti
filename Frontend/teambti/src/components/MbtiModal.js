@@ -10,6 +10,7 @@ import axios from "axios";
 import { modalStyle } from "./Profile.module";
 
 import { API_HOST } from "../constant";
+import { bigButtonStyle, smallButtonStyle } from "./_shared.module";
 
 export default function MbtiModal() {
   // constants
@@ -92,7 +93,9 @@ export default function MbtiModal() {
 
   return (
     <>
-      <Button onClick={handleOpen}>MBTI 등록하기</Button>
+      <Button sx={smallButtonStyle} onClick={handleOpen}>
+        MBTI 등록하기
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

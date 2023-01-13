@@ -51,7 +51,10 @@ function Home({ setComparision }) {
   return (
     <>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <Slider {...settings}>
+        <Slider
+          {...settings}
+          sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+        >
           {emps.map(
             (user, id) =>
               user.e_id != 2 && (

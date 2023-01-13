@@ -19,6 +19,7 @@ import { user } from "../constant/mock";
 import { purple } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import Character from "../pages/character/Character";
+import { bigButtonStyle } from "./_shared.module";
 
 const MyProfile = () => {
   const e_id = localStorage.getItem("e_id");
@@ -63,14 +64,6 @@ const MyProfile = () => {
   });
   // [e]
 
-  const ColorButton = styled(Button)(({ theme }) => ({
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: purple[500],
-    "&:hover": {
-      backgroundColor: purple[700],
-    },
-  }));
-
   return (
     <>
       <Card sx={{ maxWidth: 340 }}>
@@ -81,7 +74,7 @@ const MyProfile = () => {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -89,10 +82,9 @@ const MyProfile = () => {
           </Typography>
         </CardContent>
       </Card>
-      <ColorButton variant="contained" href="/Character">
+      <Button sx={bigButtonStyle} href="/Character">
         프로필 편집
-      </ColorButton>
-      <Button href="/Character">프로필 편집</Button>
+      </Button>
     </>
   );
 };
