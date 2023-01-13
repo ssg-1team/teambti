@@ -5,13 +5,8 @@ import Login from "./pages/login/Login";
 import CoWorking from "./pages/coworking/CoWorking";
 import Comparison from "./pages/comparison/Comparison";
 import Mypage from "./pages/mypage/Mypage";
-import Home from "./pages/home/Home";
-import MainFrame from "./pages/MainFrame";
 import Character from "./pages/character/Character";
 import Character2 from "./pages/character/Character2";
-import Card from "./components/Card";
-import Paper from "./components/Paper";
-import Test3 from "./pages/home/TestMain";
 
 const Router = ({ isLoggedIn, login }) => {
   return (
@@ -37,11 +32,7 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/mypage" element={<Mypage />}></Route>
 
         {/* 여기 밑으로는 테스트 */}
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/mainframe" element={<MainFrame />}></Route>
-        <Route path="/card" element={<Card />}></Route>
-        <Route path="/paper" element={<Paper />}></Route>
-        <Route path="/test3" element={<Test3 />}></Route>
+
       </Routes>
     </BrowserRouter>
   );

@@ -6,7 +6,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import axios from 'axios';
+import axios from "axios";
 
 import { API_HOST } from '../constant';
 
@@ -16,39 +16,36 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
+  height:600,
+  padding:40,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
 
-export default function MyModal() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [mbti, setMbti] = useState('');
-
+export default function MbtiModal() {
+    // constants
+  const e_id = parseInt(localStorage.getItem('e_id'));
+  // mbti
+  const [mbtiListDb, setMbtiListDb] = useState([]);
+  const [mbti, setMbti] = useState(0); // m_id
   // tags
   const [tags, setTags] = useState([]);
+  // Modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true)
 
-  // constants
-  const e_id = localStorage.getItem('e_id');
-
-  const handleChange = (event) => {
-    setMbti(event.target.value);
-  };
-
-  useEffect(() => {
     axios
-    .get(`${API_HOST}/member/tag/${e_id}`, {
+    .get(`${API_HOST}/mbti/getAllMbti`, {
       headers: {
         // "Access-Control-Allow-Origin" : "*",
         "Content-Type": "application/json",
       },
     })
     .then((response) => {
-      console.log(response.data)
-      setTags(response.data);
+      setMbtiListDb(response.data);
     })
     .catch((error) => {
       const status = error?.response?.status;
@@ -60,11 +57,57 @@ export default function MyModal() {
         console.dir("내부 서버 오류");
       }
     });
-  }, []);
+  };
+  const handleClose = () => setOpen(false);
+
+  // 함수
+  // mbti
+  const handleChange = (event) => {
+    setMbti(event.target.value); // m_id
+  };
+
+  const mbtiList = mbtiListDb.map((data, i) => (
+		<MenuItem value={data.m_id} key={i}>
+			{data.type}
+		</MenuItem>
+	));
+
+  const save = () => {
+    if (mbti == 0) {
+      alert("mbti를 선택해주세요!");
+      return
+    }
+
+    const data = {
+			e_id: e_id,
+			m_id: mbti,
+		};
+    
+    axios
+    .get(`${API_HOST}/member/setMbti`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin" : "*",
+      },
+    })
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((error) => {
+      const status = error?.response?.status;
+      if (status === undefined) {
+        console.dir("데이터 오류" + JSON.stringify(error));
+      } else if (status === 400) {
+        console.dir("400에러");
+      } else if (status === 500) {
+        console.dir("내부 서버 오류");
+      }
+    });
+  }
 
   return (
-    <div>
-      <Button onClick={handleOpen}>MyPage</Button>
+    <>
+      <Button onClick={handleOpen}>MBTI 등록하기</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -81,14 +124,13 @@ export default function MyModal() {
               label="MBTI"
               onChange={handleChange}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {mbtiList}
             </Select>
           </FormControl>
           {tags}
+          <Button onClick={save}>저장하기</Button>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

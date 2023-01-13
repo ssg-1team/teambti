@@ -12,7 +12,7 @@ import Link from "@mui/material/Link";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea } from "@mui/material";
+import { Box, CardActionArea } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
 
 // 1번
@@ -177,7 +177,7 @@ function Character() {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-    <div>
+    <Box sx={{m:2}}>
       <div>캐릭터페이지</div>
       <div className={styles.characterDiv}>
         <div style={{ width: "20%" }}>
@@ -396,7 +396,7 @@ function Character() {
       </div>
         </div>
       </div>
-    </div>
+    </Box>
   );
 }
 

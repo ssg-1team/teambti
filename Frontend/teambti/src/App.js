@@ -7,7 +7,14 @@ function App() {
   const login = (bool) => {
     setisLoggedIn(bool);
   }
-  
+
+  useEffect(() => {
+    const e_id = localStorage.getItem('e_id');
+    if (e_id != null) {
+      setisLoggedIn(true);
+    }
+  }, []);
+
   return (
     <div className="App">
       <Router isLoggedIn={isLoggedIn} login={login} />
