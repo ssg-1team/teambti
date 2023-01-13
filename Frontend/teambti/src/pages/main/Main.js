@@ -93,6 +93,13 @@ function Main({ login }) {
     setOpen(!open);
   };
 
+  const user = {
+    id: 1,
+    name: "hereme",
+    type: "INFJ",
+    position: "Web",
+  };
+
   const [work, setWork] = useState("home");
 
   const getWork = (work) => {
