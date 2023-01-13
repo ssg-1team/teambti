@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "./pages/main/Main";
 import Login from "./pages/login/Login";
-import Assignment from "./pages/assignment/Assignment";
+import CoWorking from "./pages/coworking/CoWorking";
 import Comparison from "./pages/comparison/Comparison";
 import Mypage from "./pages/mypage/Mypage";
 import Character from "./pages/character/Character";
@@ -23,7 +23,7 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/character" element={<Character />}></Route>
         <Route path="/character2" element={<Character2 />}></Route>
         {/* 업무할당 */}
-        <Route path="/assignment" element={<Assignment />}></Route>
+        <Route path="/coworking" element={<CoWorking />}></Route>
 
         {/* 1:1 성격 비교 */}
         <Route path="/comparison" element={<Comparison />}></Route>
