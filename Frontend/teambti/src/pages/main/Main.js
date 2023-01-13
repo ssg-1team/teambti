@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import axios from 'axios';
+import axios from "axios";
 import { API_HOST } from "../../constant";
 
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
@@ -26,7 +26,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 import LinkList from "../../components/Links";
-import MbtiModal from '../../components/MbtiModal';
+import MbtiModal from "../../components/MbtiModal";
 
 const drawerWidth = 400;
 
@@ -76,8 +76,8 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
-function Main({login}) {
-  const e_id = localStorage.getItem('e_id');
+function Main({ login }) {
+  const e_id = localStorage.getItem("e_id");
   // API
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
@@ -85,45 +85,45 @@ function Main({login}) {
 
   // logout
   const handleLogout = () => {
-    localStorage.removeItem('e_id');
+    localStorage.removeItem("e_id");
     login(false);
-  }
+  };
 
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  const [work, setWork] = useState('home');
+  const [work, setWork] = useState("home");
 
   const getWork = (work) => {
     setWork(work);
-  }
+  };
 
   useEffect(() => {
     axios
-    .get(`${API_HOST}/member/getEmp/${e_id}`, {
-      headers: {
-        // "Access-Control-Allow-Origin" : "*",
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      // console.log(response.data)
-      setName(response.data.name);
-      setPosition(response.data.position);
-      setMbti(response.data.mbti);
-    })
-    .catch((error) => {
-      const status = error?.response?.status;
-      if (status === undefined) {
-        console.dir("데이터 오류" + JSON.stringify(error));
-      } else if (status === 400) {
-        console.dir("400에러");
-      } else if (status === 500) {
-        console.dir("내부 서버 오류");
-      }
-    });
+      .get(`${API_HOST}/member/getEmp/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data)
+        setName(response.data.name);
+        setPosition(response.data.position);
+        setMbti(response.data.mbti);
+      })
+      .catch((error) => {
+        const status = error?.response?.status;
+        if (status === undefined) {
+          console.dir("데이터 오류" + JSON.stringify(error));
+        } else if (status === 400) {
+          console.dir("400에러");
+        } else if (status === 500) {
+          console.dir("내부 서버 오류");
+        }
+      });
   }, []);
 
   return (
@@ -158,20 +158,31 @@ function Main({login}) {
               TeaMBTI
             </Typography>
             <ButtonGroup variant="text">
-            <Button
+              <Button
                 variant="contained"
                 color="info"
                 onClick={() => setWork('home')}
               >
                 홈
               </Button>
-
+ 
+              <Button>
+                variant="contained"
+                color="info"
+                endIcon={<Diversity1Icon />}
+                sx={{ m: 1 }}
+                onClick={() => setWork("coworkingstart")}
+              >
+                협업하기
+              </Button>
               <Button
                 variant="contained"
                 color="info"
-                onClick={() => setWork('assignment')}
+                endIcon={<Diversity1Icon />}
+                sx={{ m: 1 }}
+                onClick={() => setWork("mentomenti")}
               >
-                Co-Working
+                멘토링
               </Button>
               
               <Button
@@ -231,30 +242,32 @@ function Main({login}) {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {name}
+                  {user.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {mbti == null ? <MbtiModal /> : mbti} / {position}
+                  {user.type} / {user.position}
                 </Typography>
               </CardContent>
             </Card>
           </Box>
-          <Button onClick={() => setWork('character')}>프로필 편집</Button>
+          <Button variant="contained" color="inherit" sx={{ m: 4 }}>
+            마이페이지
+          </Button>
         </Drawer>
         <Box
           component="main"
           sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
           }}
         >
           <Toolbar />
-          <LinkList name={work} getWork={getWork} work={work}/>
+          <LinkList name={work} getWork={getWork} />
         </Box>
       </Box>
     </ThemeProvider>
