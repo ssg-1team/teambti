@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Profile from '../../components/Profile';
 import axios from 'axios';
 
-function Home() {
+function Home({setComparision}) {
   const e_id = localStorage.getItem('e_id');
   const [emps, setEmps] = useState([]);
 
@@ -70,7 +70,7 @@ function Home() {
         <Slider {...settings}>
           {emps.map((user, id) => (
             (user.e_id != e_id) &&
-            <Profile user = {user} key = {id}/>
+            <Profile user = {user} key = {id} setComparision = {setComparision}/>
           ))}
         </Slider>
       </Container>

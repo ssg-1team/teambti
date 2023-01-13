@@ -15,6 +15,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  ButtonGroup,
 } from "@mui/material";
 
 import MuiAppBar from "@mui/material/AppBar";
@@ -156,27 +157,35 @@ function Main({login}) {
             >
               TeaMBTI
             </Typography>
+            <ButtonGroup variant="text">
             <Button
-              variant="contained"
-              color="info"
-              endIcon={<Diversity1Icon />}
-              sx={{ m: 1 }}
-              onClick={() => setWork('assignment')}
-            >
-              업무할당
-            </Button>
-            <Button
-              variant="contained"
-              color="info"
-              endIcon={<Diversity1Icon />}
-              sx={{ m: 1 }}
-              onClick={() => setWork('home')}
-            >
-              홈
-            </Button>
-            <Button onClick={handleLogout} variant="contained" color="info" endIcon={<LogoutIcon />}>
-              로그아웃
-            </Button>
+                variant="contained"
+                color="info"
+                onClick={() => setWork('home')}
+              >
+                홈
+              </Button>
+
+              <Button
+                variant="contained"
+                color="info"
+                onClick={() => setWork('assignment')}
+              >
+                Co-Working
+              </Button>
+              
+              <Button
+                variant="contained"
+                color="info"
+                onClick={() => setWork('comparision')}
+              >
+                1:1 성격비교
+              </Button>
+
+              <Button onClick={handleLogout} variant="contained" color="info" endIcon={<LogoutIcon />}>
+                로그아웃
+              </Button>
+            </ButtonGroup>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -243,7 +252,7 @@ function Main({login}) {
             height: "100vh",
             overflow: "auto",
           }}
-    >
+        >
           <Toolbar />
           <LinkList name={work} getWork={getWork} work={work}/>
         </Box>
