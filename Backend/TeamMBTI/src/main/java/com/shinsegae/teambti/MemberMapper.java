@@ -11,6 +11,7 @@ public interface MemberMapper {
 	List<MemberResponseVO> getAll();
 	MemberResponseVO getEmp(int id);
 	int setMbti(MemberVO vo);
-	List<String> getTag(int id);
+	List<MemberResponseVO> getTag(int id);
 	int setTag(MemberVO vo);
+	int deleteTag(MemberVO vo);
 }

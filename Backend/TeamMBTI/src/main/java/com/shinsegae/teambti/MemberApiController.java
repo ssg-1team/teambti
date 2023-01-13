@@ -60,18 +60,31 @@ public class MemberApiController {
     	return result;
     }
     
-    //
-    @GetMapping("/tag/{id}")
-    public List<String> getTag(@PathVariable int id) {
-    	List<String> entity = memberService.getTag(id);
+    @GetMapping("/getTag/{id}")
+    public List<MemberResponseVO> getTag(@PathVariable int id) {
+    	List<MemberResponseVO> entity = memberService.getTag(id);
         return entity;
     }
     
     @PostMapping("/setTag")
     public String setTag(@RequestBody MemberVO params) {
-    	String result = "Success";
+    	String result = "Success Insert";
     	try {
     		int r = memberService.setTag(params);
+    		if (r < 1) {
+    			result = "0건 처리 : fail";
+    		}
+    	} catch(Exception e) {
+    		result="Exception : fail";
+    	}
+    	return result;    	
+    }
+    
+    @PostMapping("/deleteTag")
+    public String deleteTag(@RequestBody MemberVO params) {
+    	String result = "Success Delete";
+    	try {
+    		int r = memberService.deleteTag(params);
     		if (r < 1) {
     			result = "0건 처리 : fail";
     		}

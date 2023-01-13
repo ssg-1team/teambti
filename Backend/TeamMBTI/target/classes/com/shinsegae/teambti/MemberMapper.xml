@@ -19,7 +19,7 @@
 	<select id="getAll" resultType="com.shinsegae.teambti.MemberResponseVO">
 		SELECT e.*, m.`type` as MBTI
 		FROM employ e
-		JOIN mbti m on e.m_id = m.m_id
+		LEFT JOIN mbti m on e.m_id = m.m_id
 	</select>
 
 	<select id="getEmp" parameterType="int" resultType="com.shinsegae.teambti.MemberResponseVO">
@@ -33,8 +33,8 @@
 		WHERE e_id=#{e_id}
 	</update>
 
-	<select id="getTag" parameterType="int" resultType="String">
-		SELECT content FROM tag
+	<select id="getTag" parameterType="int" resultType="com.shinsegae.teambti.MemberResponseVO">
+		SELECT e_id, t_id, content FROM tag
 		WHERE e_id = #{id};
 	</select>
 	
@@ -46,4 +46,9 @@
 	<select id="getMbti" resultType="com.shinsegae.teambti.MemberResponseVO">
 		SELECT * FROM employ
 	</select>	
+	
+	<delete id="deleteTag" parameterType="com.shinsegae.teambti.MemberVO">
+		DELETE FROM tag 
+		WHERE t_id = #{t_id};
+	</delete>
 </mapper>

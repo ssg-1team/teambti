@@ -32,13 +32,18 @@ public class MemberServiceImpl implements MemberService {
 		return r;
 	}
 	
-	public List<String> getTag(int id) {
-		List<String> entity = memberMapper.getTag(id);
+	public List<MemberResponseVO> getTag(int id) {
+		List<MemberResponseVO> entity = memberMapper.getTag(id);
 		return entity;		
 	}
 	
 	public int setTag(MemberVO vo) {
 		int r = memberMapper.setTag(vo);
+		return r;
+	}
+	
+	public int deleteTag(MemberVO vo) {
+		int r = memberMapper.deleteTag(vo);
 		return r;
 	}
 }
