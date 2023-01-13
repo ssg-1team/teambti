@@ -61,3 +61,19 @@ export const emps_list = [
     position: "AOS",
   },
 ];
+
+export const tags_list = [
+  {
+    id: 1,
+    content: "내향적이지만",
+  },
+
+  {
+    id: 2,
+    content: "사람을좋아해",
+  },
+  {
+    id: 3,
+    content: "젤리도좋아",
+  },
+];

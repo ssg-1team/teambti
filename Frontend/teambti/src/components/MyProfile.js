@@ -16,6 +16,9 @@ import {
 } from "@mui/material";
 import MbtiModal from "./MbtiModal";
 import { user } from "../constant/mock";
+import { purple } from "@mui/material/colors";
+import { styled } from "@mui/material/styles";
+import Character from "../pages/character/Character";
 
 const MyProfile = () => {
   const e_id = localStorage.getItem("e_id");
@@ -60,6 +63,14 @@ const MyProfile = () => {
   });
   // [e]
 
+  const ColorButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    "&:hover": {
+      backgroundColor: purple[700],
+    },
+  }));
+
   return (
     <>
       <Card sx={{ maxWidth: 340 }}>
@@ -78,7 +89,10 @@ const MyProfile = () => {
           </Typography>
         </CardContent>
       </Card>
-      <Button>프로필 편집</Button>
+      <ColorButton variant="contained" href="/Character">
+        프로필 편집
+      </ColorButton>
+      <Button href="/Character">프로필 편집</Button>
     </>
   );
 };

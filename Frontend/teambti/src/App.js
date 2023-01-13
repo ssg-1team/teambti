@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      {isLoggedIn && <Header />}
+      {isLoggedIn && <Header login={login} />}
       <Router isLoggedIn={isLoggedIn} login={login} />
     </div>
   );

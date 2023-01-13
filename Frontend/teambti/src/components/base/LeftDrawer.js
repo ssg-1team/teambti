@@ -28,32 +28,18 @@ const LeftDrawer = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>"text"</List>
-      <Divider />
-      <List>"text"</List>
-    </Box>
-  );
-
   return (
     <>
-      <React.Fragment key={"left"}>
+      <Fragment key={"left"}>
         <Button onClick={toggleDrawer("left", true)}>Left</Button>
         <Drawer
           anchor={"left"}
           open={state["left"]}
           onClose={toggleDrawer("left", false)}
         >
-          {/* {list("left")} */}
           <MyProfile />
         </Drawer>
-      </React.Fragment>
+      </Fragment>
     </>
   );
 };
