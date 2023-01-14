@@ -16,15 +16,11 @@ import "../../css/header.css";
 import LeftDrawer from "./LeftDrawer";
 import myTheme from "./MyTheme";
 import { ThemeProvider } from "@emotion/react";
+import { ButtonGroup } from "@mui/material";
 
 const pages = [
   { name: "Mento-Menti", link: "/mentomenti" },
   { name: "Co-Working", link: "/coworking" },
-];
-
-// const settings = ["Profile", "Account", "Dashboard", "Logout"];
-const settings = [
-  { name: "Logout", link: "/" },
 ];
 
 const Header = ({ login }) => {
@@ -58,24 +54,25 @@ const Header = ({ login }) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <LeftDrawer />
-          <Typography
-            variant="h3"
-            noWrap
-            component="a"
-            href="/"
-            color="secondary.light"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "GangwonEduSaeeum_OTFMediumA",
-              fontWeight: 800,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
-            }}
-          >
-            TeaMBTI
-          </Typography>
-
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Typography
+              variant="h3"
+              noWrap
+              component="a"
+              href="/"
+              color="secondary"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "LeferiPoint",
+                fontWeight: 800,
+                letterSpacing: ".3rem",
+                textDecoration: "none",
+              }}
+            >
+              TeaMBTI
+            </Typography>
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -133,54 +130,27 @@ const Header = ({ login }) => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page, id) => (
+          <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page, id) => (
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  key={id}
+                  onClick={handleCloseNavMenu}
+                  href={page.link}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page.name}
+                </Button>
+              ))}
               <Button
-                key={id}
-                onClick={handleCloseNavMenu}
-                href={page.link}
+                variant="outlined"
+                color="secondary"
+                onClick={handleLogout}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page.name}
+                    Logout
               </Button>
-            ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting, id) => (
-                <MenuItem key={id} onClick={handleCloseUserMenu}>
-                  {/* <Typography textAlign="center">{setting.name}</Typography> */}
-                  <Button
-                    key={id}
-                    onClick={handleLogout}
-                    sx={{ color: "black", display: "block" }}
-                  >
-                    {setting.name}
-                  </Button>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
         </Toolbar>
       </Container>
