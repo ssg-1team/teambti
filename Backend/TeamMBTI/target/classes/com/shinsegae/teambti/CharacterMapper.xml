@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shinsegae.teambti.CharacterMapper">
+    
+	<insert id="setChar" parameterType="com.shinsegae.teambti.CharacterVO">
+		INSERT INTO `character`(
+			head, ear, mouth, eye, body, accessory, background, e_id
+		)
+		VALUES (
+			#{head}, #{ear}, #{mouth}, #{eye}, #{body}, #{accessory}, #{background}, #{e_id}
+		);
+	</insert>
+
+	<select id="getChar" parameterType="int" resultType="com.shinsegae.teambti.CharacterResponseVO">
+		SELECT * FROM `character`
+		WHERE e_id = #{id}
+	</select>
+	
+	<select id="getCharCnt" parameterType="int" resultType="int">
+		SELECT count(*) FROM `character`
+		WHERE e_id = #{id}
+	</select>	
+	
+	<update id="updateChar" parameterType="com.shinsegae.teambti.CharacterResponseVO">
+		UPDATE `character` 
+		SET head = #{head}, ear = #{ear}, mouth = #{mouth}, eye=#{eye}, body = #{body}, accessory = #{accessory}, background = #{background}
+		WHERE e_id=#{e_id}
+	</update>
+</mapper>
