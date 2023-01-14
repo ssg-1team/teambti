@@ -46,4 +46,9 @@ public class MemberServiceImpl implements MemberService {
 		int r = memberMapper.deleteTag(vo);
 		return r;
 	}
+	
+	public int setDefaultTag(MemberVO vo) {
+		int r = memberMapper.setDefaultTag(vo);
+		return r;
+	}
 }

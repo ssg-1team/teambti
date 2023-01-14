@@ -14,4 +14,5 @@ public interface MemberMapper {
 	List<MemberResponseVO> getTag(int id);
 	int setTag(MemberVO vo);
 	int deleteTag(MemberVO vo);
+	int setDefaultTag(MemberVO vo);
 }

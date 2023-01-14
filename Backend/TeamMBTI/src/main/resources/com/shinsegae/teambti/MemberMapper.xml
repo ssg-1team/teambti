@@ -53,4 +53,11 @@
 		DELETE FROM tag 
 		WHERE t_id = #{t_id};
 	</delete>
+	
+	<insert id="setDefaultTag" parameterType="com.shinsegae.teambti.MemberVO" useGeneratedKeys="true" keyProperty="t_id">
+		INSERT INTO tag(content, e_id)
+		SELECT mt.content, e.e_id FROM mbti_tag mt , employ e 
+		WHERE e.e_id = #{e_id} and mt.m_id = e.m_id;
+	</insert>
+	
 </mapper>

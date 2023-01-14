@@ -21,4 +21,5 @@ public class MbtiApiController {
     	List<MbtiResponseVO> entity = mbtiService.getAllMbti();
         return entity;
     }
+    
 }

@@ -94,4 +94,19 @@ public class MemberApiController {
     	}
     	return result;    	
     }
+    
+    @PostMapping("/setDefaultTag")
+    public String setDefaultTag(@RequestBody MemberVO params) {
+    	String result = "Success set Default Tags";
+    	try {
+    		int r = memberService.setDefaultTag(params);
+    		if (r < 1) {
+    			result = "0건 처리 : fail";
+    		}
+    	} catch(Exception e) {
+    		
+    		result="Exception : fail";
+    	}
+    	return result;
+    }
 }

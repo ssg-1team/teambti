@@ -11,4 +11,5 @@ public interface MemberService {
 	public List<MemberResponseVO> getTag(int id);
 	public int setTag(MemberVO vo);
 	public int deleteTag(MemberVO vo);
+	public int setDefaultTag(MemberVO vo);
 }
