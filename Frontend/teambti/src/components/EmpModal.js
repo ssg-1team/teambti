@@ -30,10 +30,10 @@ export default function EmpModal({ user, open, handleClose, tags }) {
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
             <Grid item xs={4}>
-              <Card sx={{ maxWidth: 200 }}>
+              <Card sx={{ maxWidth: 250 }}>
                 <CardMedia
                   component="img"
-                  height="300"
+                  height="370"
                   image={
                     user.image == null
                       ? "images/characterExample.png"
@@ -47,7 +47,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
               <Box
                 sx={{
                   textAlign: "center",
-                  fontSize: "h8.fontSize",
+                  fontSize: "h6.fontSize",
                   fontWeight: "medium",
                   p: 2,
                 }}
@@ -60,6 +60,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                   fontSize: "h8.fontSize",
                   fontWeight: "medium",
                   p: 2,
+                  mb: 3
                 }}
               >
                 {mbtiInfo.map(
@@ -72,7 +73,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
               <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example">
+                    <TabList onChange={handleChange} aria-label="lab API tabs example" centered>
                       <Tab label="성격 장점" value="1" />
                       <Tab label="성격 단점" value="2" />
                       <Tab label="업무 스타일" value="3" />
@@ -108,7 +109,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                 </TabContext>
               </Box>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{mt:5}}>
               {tags.map((tag, id) => (
                 <Box sx={tagStyle} key={id}>
                   # {tag.content}
