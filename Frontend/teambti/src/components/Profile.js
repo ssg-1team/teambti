@@ -25,30 +25,30 @@ export default function Profile({ user, key, setComparision }) {
 
   const handleOpen = () => {
     // #####[s]삭제NO
-    // axios
-    //   .get(`${API_HOST}/member/getTag/${e_id}`, {
-    //     headers: {
-    //       // "Access-Control-Allow-Origin" : "*",
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //   .then((response) => {
-    //     setTags(response.data);
-    //   })
-    //   .catch((error) => {
-    //     const status = error?.response?.status;
-    //     if (status === undefined) {
-    //       console.dir("데이터 오류" + JSON.stringify(error));
-    //     } else if (status === 400) {
-    //       console.dir("400에러");
-    //     } else if (status === 500) {
-    //       console.dir("내부 서버 오류");
-    //     }
-    //   });
+    axios
+      .get(`${API_HOST}/member/getTag/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setTags(response.data);
+      })
+      .catch((error) => {
+        const status = error?.response?.status;
+        if (status === undefined) {
+          console.dir("데이터 오류" + JSON.stringify(error));
+        } else if (status === 400) {
+          console.dir("400에러");
+        } else if (status === 500) {
+          console.dir("내부 서버 오류");
+        }
+      });
     // #####[e]삭제NO
 
     // [s]삭제예정
-    setTags(tags_list);
+    // setTags(tags_list);
     // [e]
     setOpen(true);
   };

@@ -29,39 +29,39 @@ const MyProfile = () => {
   const [mbti, setMbti] = useState("");
 
   // #####[s]삭제NO
-  // useEffect(() => {
-  //   axios
-  //     .get(`${API_HOST}/member/getEmp/${e_id}`, {
-  //       headers: {
-  //         // "Access-Control-Allow-Origin" : "*",
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setName(response.data.name);
-  //       setPosition(response.data.position);
-  //       setMbti(response.data.mbti);
-  //     })
-  //     .catch((error) => {
-  //       const status = error?.response?.status;
-  //       if (status === undefined) {
-  //         console.dir("데이터 오류" + JSON.stringify(error));
-  //       } else if (status === 400) {
-  //         console.dir("400에러");
-  //       } else if (status === 500) {
-  //         console.dir("내부 서버 오류");
-  //       }
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(`${API_HOST}/member/getEmp/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setName(response.data.name);
+        setPosition(response.data.position);
+        setMbti(response.data.mbti);
+      })
+      .catch((error) => {
+        const status = error?.response?.status;
+        if (status === undefined) {
+          console.dir("데이터 오류" + JSON.stringify(error));
+        } else if (status === 400) {
+          console.dir("400에러");
+        } else if (status === 500) {
+          console.dir("내부 서버 오류");
+        }
+      });
+  }, []);
   // #####[e]삭제NO
 
   // [s]삭제예정
-  useEffect(() => {
-    setName(user.name);
-    setPosition(user.position);
-    setMbti(user.mbti);
-  });
+  // useEffect(() => {
+  //   setName(user.name);
+  //   setPosition(user.position);
+  //   setMbti(user.mbti);
+  // });
   // [e]
 
   return (
