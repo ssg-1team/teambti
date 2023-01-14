@@ -11,7 +11,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  ButtonGroup,
 } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import MuiDrawer from "@mui/material/Drawer";
@@ -25,7 +24,6 @@ import Diversity1Icon from "@mui/icons-material/Diversity1";
 import LinkList from "../../components/Links";
 import MbtiModal from "../../components/MbtiModal";
 import { API_HOST } from "../../constant";
-import Home from "../home/Home";
 
 const drawerWidth = 400;
 
@@ -73,16 +71,7 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme({
-  palette: {
-    theme1: {
-      red: "#FFD4B2",
-      yellow: "#FFF6BD",
-      lightgreen: "#CEEDC7",
-      darkgreen: "#86C8BC",
-    },
-  },
-});
+const mdTheme = createTheme();
 
 function Main({ login }) {
   const e_id = localStorage.getItem("e_id");
@@ -135,9 +124,6 @@ function Main({ login }) {
   }, []);
 
   return (
-    // <>
-    // <Home/>
-    // </>
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
@@ -145,7 +131,6 @@ function Main({ login }) {
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
-              color: "primary",
             }}
           >
             <IconButton
@@ -169,37 +154,32 @@ function Main({ login }) {
             >
               {!open ? "teaMBTI" : null}
             </Typography>
-            <ButtonGroup>
-              <Button
-                variant="contained"
-                color="info"
-                onClick={() => setWork("home")}
-              >
-                홈
-              </Button>
-              <Button
-                variant="contained"
-                color="info"
-                onClick={() => setWork("assignment")}
-              >
-                멘토-멘티
-              </Button>
-              <Button
-                variant="contained"
-                color="info"
-                onClick={() => setWork("assignment")}
-              >
-                CO-WORKING
-              </Button>
-              <Button
-                onClick={handleLogout}
-                variant="contained"
-                color="info"
-                endIcon={<LogoutIcon />}
-              >
-                로그아웃
-              </Button>
-            </ButtonGroup>
+            <Button
+              variant="contained"
+              color="info"
+              endIcon={<Diversity1Icon />}
+              sx={{ m: 1 }}
+              onClick={() => setWork("assignment")}
+            >
+              업무할당
+            </Button>
+            <Button
+              variant="contained"
+              color="info"
+              endIcon={<Diversity1Icon />}
+              sx={{ m: 1 }}
+              onClick={() => setWork("home")}
+            >
+              홈
+            </Button>
+            <Button
+              onClick={handleLogout}
+              variant="contained"
+              color="info"
+              endIcon={<LogoutIcon />}
+            >
+              로그아웃
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -214,7 +194,7 @@ function Main({ login }) {
             <Typography
               component="h1"
               variant="h6"
-              color="primary"
+              color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
             >
