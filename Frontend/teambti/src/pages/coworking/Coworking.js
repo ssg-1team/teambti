@@ -267,16 +267,16 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
   useEffect(() => {
     let interval = setInterval(() => {
     if (questionsNumber * 4 == questionsNowNumber) {
-      alert(`EICnt : ${EICnt}
-NSCnt : ${NSCnt}
-FTCnt : ${FTCnt}
-JPCnt : ${JPCnt}
-EI : ${EI}
-NS : ${NS}
-FT : ${FT}
-JP : ${JP}
-MBTI : ${MBTI}
-`)
+//       alert(`EICnt : ${EICnt}
+// NSCnt : ${NSCnt}
+// FTCnt : ${FTCnt}
+// JPCnt : ${JPCnt}
+// EI : ${EI}
+// NS : ${NS}
+// FT : ${FT}
+// JP : ${JP}
+// MBTI : ${MBTI}
+// `)
       clearInterval(interval);
       // getDataCoWorking();
       }
@@ -364,11 +364,9 @@ MBTI : ${MBTI}
   }
   return (
     <div>
-      <div>안녕하세요?</div>
-      <div>{questionsNumber}</div>
       {questionsNumber * 4 > questionsNowNumber ? (
         <div>
-          <button>
+          {/* <button>
             {EI}, {EICnt}
           </button>
           <button>
@@ -379,8 +377,8 @@ MBTI : ${MBTI}
           </button>
           <button>
             {JP}, {JPCnt}
-          </button>
-          <div>{questionsNowNumber + 1}번째 선택</div>
+          </button> */}
+          <div>{questionsNowNumber + 1} / {questionsNumber * 4}</div>
           {myQuestions.map((question, index) => (
             <div
               style={{
@@ -398,7 +396,7 @@ MBTI : ${MBTI}
               ))}
             </div>
           ))}
-          {myQuestions.map((question, index) => (
+          {/* {myQuestions.map((question, index) => (
             <div>
               {Object.entries(question).map(([key, value]) => (
                 <button>
@@ -406,7 +404,7 @@ MBTI : ${MBTI}
                 </button>
               ))}
             </div>
-          ))}
+          ))} */}
         </div>
       ) : (
         <div>
