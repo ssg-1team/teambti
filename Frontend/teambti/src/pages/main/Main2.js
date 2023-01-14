@@ -21,7 +21,6 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 // components
-import LinkList from "../../components/Links";
 import MbtiModal from "../../components/MbtiModal";
 import { API_HOST } from "../../constant";
 
@@ -248,7 +247,6 @@ function Main({ login }) {
           }}
         >
           <Toolbar />
-          <LinkList name={work} getWork={getWork} work={work} />
         </Box>
       </Box>
     </ThemeProvider>

@@ -11,10 +11,42 @@ import axios from "axios";
 import { settings } from "./Home.module";
 import { emps_list } from "../../constant/mock";
 
-function Home({ setComparision }) {
+function Home() {
   const e_id = localStorage.getItem("e_id");
   const [emps, setEmps] = useState([]);
 
+  const empTest = [
+    {
+      name : "김혜림",
+      mbti : "INFP",
+      position : "사원",
+      image : "images/characterExample.png"
+    },
+    {
+      name : "이소정",
+      mbti : "ISFJ",
+      position : "사원",
+      image : "images/characterExample.png"
+    },
+    {
+      name : "이준호",
+      mbti : "ESTP",
+      position : "사원",
+      image : "images/characterExample.png"
+    },
+    {
+      name : "김수진",
+      mbti : "INTJ",
+      position : "사원",
+      image : "images/characterExample.png"
+    },
+    {
+      name : "장현우",
+      mbti : "INFP",
+      position : "사원",
+      image : "images/characterExample.png"
+    },
+  ];
   // #####[s]삭제NO
   useEffect(() => {
     axios
@@ -58,7 +90,7 @@ function Home({ setComparision }) {
           {emps.map(
             (user, id) =>
               user.e_id != 2 && (
-                <Profile user={user} key={id} setComparision={setComparision} />
+                <Profile user={user} key={id} />
               )
           )}
         </Slider>
