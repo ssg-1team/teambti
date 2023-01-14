@@ -16,8 +16,9 @@ import axios from "axios";
 import EmpModal from "./EmpModal";
 import { tags_list } from "../constant/mock";
 import { smallButtonStyle } from "./_shared.module";
+import { Link } from "react-router-dom";
 
-export default function Profile({ user, key, setComparision }) {
+export default function Profile({ user, key }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
 
@@ -55,10 +56,6 @@ export default function Profile({ user, key, setComparision }) {
 
   const handleClose = () => setOpen(false);
 
-  const goComparision = () => {
-    setComparision(user);
-  };
-
   return (
     <Box>
       <Card sx={{ maxWidth: 250 }}>
@@ -81,9 +78,15 @@ export default function Profile({ user, key, setComparision }) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button sx={smallButtonStyle} onClick={goComparision}>
-            성격비교
-          </Button>
+          <Link 
+            to={`/comparison`}
+            state={{other : user}}
+            style={{ textDecoration: "none" }}
+          >
+            <Button sx={smallButtonStyle}>
+              성격비교 
+            </Button>
+          </Link>
         </CardActions>
         <EmpModal
           user={user}

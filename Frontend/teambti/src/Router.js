@@ -25,6 +25,7 @@ const Router = ({ isLoggedIn, login }) => {
         {/* 캐릭터화면 */}
         <Route path="/characterTest" element={<CharacterTest />}></Route>
         <Route path="/character" exact element={<Character />}></Route>
+
         {/* 업무할당 */}
         <Route path="/coworking" exact element={<CoworkingStart/>}></Route>
         <Route path="/coworking3" exact element={<Coworking questionsNumber={3}/>}></Route>

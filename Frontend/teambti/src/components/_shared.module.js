@@ -21,7 +21,7 @@ export const bigButtonStyle = {
 };
 
 export const smallButtonStyle = {
-  width: 1 / 2,
+  width: 100,
   bgcolor: secondary_color_m,
   color: primary_color_m,
   borderRadius: 5,

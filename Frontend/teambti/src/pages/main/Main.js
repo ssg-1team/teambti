@@ -22,7 +22,6 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 // components
-import LinkList from "../../components/Links";
 import MbtiModal from "../../components/MbtiModal";
 import { API_HOST } from "../../constant";
 import Home from "../home/Home";
@@ -72,17 +71,6 @@ const Drawer = styled(MuiDrawer, {
     }),
   },
 }));
-
-const mdTheme = createTheme({
-  palette: {
-    theme1: {
-      red: "#FFD4B2",
-      yellow: "#FFF6BD",
-      lightgreen: "#CEEDC7",
-      darkgreen: "#86C8BC",
-    },
-  },
-});
 
 function Main({ login }) {
   const e_id = localStorage.getItem("e_id");

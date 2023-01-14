@@ -1,8 +1,43 @@
 import { Card, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import * as React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { API_HOST } from "../../constant";
+import { useLocation } from "react-router-dom";
 import ComaparisionArrow from "../../components/ComparisionArrow"
-function Comparision({comparisionUser}) {
+function Comparision() {
+    const e_id = localStorage.getItem("e_id");
+    // API
+    const [name, setName] = React.useState("");
+    const [position, setPosition] = useState("");
+    const [mbti, setMbti] = useState("");
+
+    // #####[s]삭제NO
+    useEffect(() => {
+        axios
+        .get(`${API_HOST}/member/getEmp/${e_id}`, {
+            headers: {
+            // "Access-Control-Allow-Origin" : "*",
+            "Content-Type": "application/json",
+            },
+        })
+        .then((response) => {
+            console.log(response.data);
+            setName(response.data.name);
+            setPosition(response.data.position);
+            setMbti(response.data.mbti);
+        })
+        .catch((error) => {
+            const status = error?.response?.status;
+            if (status === undefined) {
+            console.dir("데이터 오류" + JSON.stringify(error));
+            } else if (status === 400) {
+            console.dir("400에러");
+            } else if (status === 500) {
+            console.dir("내부 서버 오류");
+            }
+        });
+    }, []);
 
     const user = {
         name : "김혜림",
@@ -10,11 +45,7 @@ function Comparision({comparisionUser}) {
         position : "사원",
     }
     
-    const other = {
-        name : "이소정",
-        mbti : "ISTJ",
-        position : "사원"
-    }
+    const other = useLocation();
 
     const comparision = {
         user1 : "즉흥적인 일에 대한 해결방안을 잘 제시해요",
@@ -44,10 +75,10 @@ function Comparision({comparisionUser}) {
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h7" component="div">
-                                    {user.name}
+                                    {name}
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary">
-                                    {user.mbti} / {user.position}
+                                    {mbti} / {position}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -87,10 +118,10 @@ function Comparision({comparisionUser}) {
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h7" component="div">
-                                    {other.name}
+                                    {other.state.other.name}
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary">
-                                    {other.mbti} / {other.position}
+                                    {other.state.other.mbti} / {other.state.other.position}
                                 </Typography>
                             </CardContent>
                         </Card>

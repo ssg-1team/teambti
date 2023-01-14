@@ -14,18 +14,17 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import "../../css/header.css";
 import LeftDrawer from "./LeftDrawer";
+import myTheme from "./MyTheme";
+import { ThemeProvider } from "@emotion/react";
 
 const pages = [
-  { name: "Products", link: "/character" },
-  { name: "1:1매칭", link: "/character" },
-  { name: "Blog", link: "/character" },
+  { name: "Mento-Menti", link: "/mentomenti" },
+  { name: "Co-Working", link: "/coworking" },
 ];
 
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const settings = [
-  { name: "Products", link: "/character" },
-  { name: "1:1매칭", link: "/character" },
-  { name: "Logout", link: "/character" },
+  { name: "Logout", link: "/" },
 ];
 
 const Header = ({ login }) => {
@@ -54,27 +53,27 @@ const Header = ({ login }) => {
   };
 
   return (
+  <ThemeProvider theme={myTheme}>
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <LeftDrawer />
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h3"
             noWrap
             component="a"
             href="/"
+            color="secondary.light"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
+              fontFamily: "GangwonEduSaeeum_OTFMediumA",
+              fontWeight: 800,
               letterSpacing: ".3rem",
-              color: "inherit",
               textDecoration: "none",
             }}
           >
-            teaMBTI
+            TeaMBTI
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -186,6 +185,7 @@ const Header = ({ login }) => {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
   );
 };
 
