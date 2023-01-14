@@ -8,45 +8,13 @@ import "slick-carousel/slick/slick-theme.css";
 import Profile from "../../components/Profile";
 import axios from "axios";
 
-import { settings } from "./Home.module";
+import { settings_lg, settings_md, settings_xs } from "./Home.module";
 import { emps_list } from "../../constant/mock";
 
 function Home() {
   const e_id = localStorage.getItem("e_id");
   const [emps, setEmps] = useState([]);
 
-  const empTest = [
-    {
-      name : "김혜림",
-      mbti : "INFP",
-      position : "사원",
-      image : "images/characterExample.png"
-    },
-    {
-      name : "이소정",
-      mbti : "ISFJ",
-      position : "사원",
-      image : "images/characterExample.png"
-    },
-    {
-      name : "이준호",
-      mbti : "ESTP",
-      position : "사원",
-      image : "images/characterExample.png"
-    },
-    {
-      name : "김수진",
-      mbti : "INTJ",
-      position : "사원",
-      image : "images/characterExample.png"
-    },
-    {
-      name : "장현우",
-      mbti : "INFP",
-      position : "사원",
-      image : "images/characterExample.png"
-    },
-  ];
   // #####[s]삭제NO
   useEffect(() => {
     axios
@@ -82,14 +50,40 @@ function Home() {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      <Container maxWidth="lg" sx={{ mt: 4, mb: 4, display: { xs: "none", md:"none", lg: "block" }}}>
         <Slider
-          {...settings}
+          {...settings_lg}
           sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
         >
           {emps.map(
             (user, id) =>
-              user.e_id != 2 && (
+              user.e_id != e_id && (
+                <Profile user={user} key={id} />
+              )
+          )}
+        </Slider>
+      </Container>
+      <Container maxWidth="lg" sx={{ mt: 4, mb: 4, display: { xs: "none", md:"block", lg: "none" }}}>
+        <Slider
+          {...settings_md}
+          sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+        >
+          {emps.map(
+            (user, id) =>
+              user.e_id != e_id && (
+                <Profile user={user} key={id} />
+              )
+          )}
+        </Slider>
+      </Container>
+      <Container maxWidth="lg" sx={{ mt: 4, mb: 4, display: { xs: "block", md:"none", lg: "none" }}}>
+        <Slider
+          {...settings_xs}
+          sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+        >
+          {emps.map(
+            (user, id) =>
+              user.e_id != e_id && (
                 <Profile user={user} key={id} />
               )
           )}
