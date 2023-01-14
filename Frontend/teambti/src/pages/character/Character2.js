@@ -14,6 +14,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Box, CardActionArea } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
+import axios from "axios";
+import { API_HOST } from '../../constant/index';
 
 // 1번
 import ears1 from "../../assets/image/parts/ears/1.png";
@@ -159,6 +161,24 @@ function Character() {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  const e_id = parseInt(localStorage.getItem('e_id'));
+  function characterOpen() {
+    axios
+      .get(`${API_HOST}/getEmp/${e_id}`,{
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+  }
+
 
   return (
     <>

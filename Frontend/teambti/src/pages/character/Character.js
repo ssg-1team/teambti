@@ -14,6 +14,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Box, CardActionArea } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
+import axios from "axios";
+import { API_HOST } from '../../constant/index';
 
 // 1번
 import ears1 from "../../assets/image/parts/ears/1.png";
@@ -150,8 +152,76 @@ function Character() {
   const [myEyes, setMyEyes] = useState(1);
   const [myMouth, setMyMouth] = useState(1);
   const [myBody, setMyBody] = useState(1);
-  const [myAcc, setMyAcc] = useState(1);
-  const [myBack, setMyBack] = useState(1);
+  const [myAcc, setMyAcc] = useState(0);
+  const [myBack, setMyBack] = useState(0);
+
+  // 사용자의 id를 가져오기
+  const e_id = parseInt(localStorage.getItem('e_id'));
+
+  useEffect(() => {
+    setMyParts();
+  },[])
+
+
+  axios
+    .get(`${API_HOST}/member/getEmp/${e_id}`,{
+      headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error.data);
+    });
+  
+  function setMyParts() {
+    axios
+    .get(`${API_HOST}/char/getChar/${e_id}`,{
+      headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      setMyEars(response.data.ear);
+      setMyAcc(response.data.accessory);
+      setMyBody(response.data.body);
+      setMyEyes(response.data.eye);
+      setMyHead(response.data.head);
+      setMyMouth(response.data.mouth);
+      setMyBack(response.data.background);
+    })
+    .catch((error) => {
+      console.log(error.data);
+    });
+  }  
+
+  function saveMyParts() {
+    const data = {
+      "head" : myHead,
+      "background" : myBack,
+      "body" : myBody,
+      "ear" : myEars,
+      "eye" : myEyes,
+      "mouth" : myMouth,
+      "e_id" : e_id,
+      "accessory" : myAcc
+      }
+    axios
+    .post(`${API_HOST}/char/setChar`,data, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin" : "*",
+      },
+    })
+    .then(() => {
+      alert('저장되었습니다!')
+    })
+  }
+
 
   const [expanded, setExpanded] = React.useState(false);
   // tags
@@ -163,7 +233,7 @@ function Character() {
 
   return (
     <>
-      <Typography>캐릭터페이지</Typography>
+      
       <Grid container spacing={0}>
         <Grid container xs={8}>
           <Grid xs={4}>
@@ -791,47 +861,52 @@ function Character() {
             </Accordion>
           </Grid>
           <Grid xs={8}>
-            <img
-              style={{ position: "absolute" }}
-              src={require(`../../assets/image/parts/back/${myBack}.png`)}
-              alt=""
-            />
-            <img
-              style={{ position: "absolute" }}
-              src={require(`../../assets/image/parts/body/${myBody}.png`)}
-              alt=""
-            />
-            <img
-              style={{ position: "absolute" }}
-              src={require(`../../assets/image/parts/ears/${myEars}.png`)}
-              alt=""
-            />
-            <img
-              style={{ position: "absolute" }}
-              src={require(`../../assets/image/parts/head/${myHead}.png`)}
-              alt=""
-            />
-            <img
-              style={{ position: "absolute" }}
-              src={require(`../../assets/image/parts/mouth/${myMouth}.png`)}
-              alt=""
-            />
-            <img
-              style={{ position: "absolute" }}
-              src={require(`../../assets/image/parts/eyes/${myEyes}.png`)}
-              alt=""
-            />
-            <img
-              style={{ position: "absolute" }}
-              src={require(`../../assets/image/parts/acc/${myAcc}.png`)}
-              alt=""
-            />
+            <div>
+              <img
+                style={{ position: "absolute" }}
+                src={require(`../../assets/image/parts/back/${myBack}.png`)}
+                alt=""
+              />
+              <img
+                style={{ position: "absolute" }}
+                src={require(`../../assets/image/parts/body/${myBody}.png`)}
+                alt=""
+              />
+              <img
+                style={{ position: "absolute" }}
+                src={require(`../../assets/image/parts/ears/${myEars}.png`)}
+                alt=""
+              />
+              <img
+                style={{ position: "absolute" }}
+                src={require(`../../assets/image/parts/head/${myHead}.png`)}
+                alt=""
+              />
+              <img
+                style={{ position: "absolute" }}
+                src={require(`../../assets/image/parts/mouth/${myMouth}.png`)}
+                alt=""
+              />
+              <img
+                style={{ position: "absolute" }}
+                src={require(`../../assets/image/parts/eyes/${myEyes}.png`)}
+                alt=""
+              />
+              <img
+                style={{ position: "absolute" }}
+                src={require(`../../assets/image/parts/acc/${myAcc}.png`)}
+                alt=""
+              />
+            </div>
           </Grid>
         </Grid>
         <Grid xs={4}>
           <Tag />
         </Grid>
       </Grid>
+      <button onClick={saveMyParts}>저장</button>
+      <button onClick={setMyParts}>초기화</button>
+      <></>
     </>
   );
 }
