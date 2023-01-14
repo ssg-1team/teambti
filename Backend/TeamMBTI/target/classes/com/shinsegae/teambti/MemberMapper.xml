@@ -23,8 +23,10 @@
 	</select>
 
 	<select id="getEmp" parameterType="int" resultType="com.shinsegae.teambti.MemberResponseVO">
-		SELECT * FROM employ
-		WHERE e_id = #{e_id}
+		SELECT e.*, m.`type` as MBTI
+		FROM employ e
+		LEFT JOIN mbti m ON e.m_id = m.m_id
+		WHERE e.e_id = #{e_id};
 	</select>
 
 	<update id="setMbti" parameterType="com.shinsegae.teambti.MemberVO">
