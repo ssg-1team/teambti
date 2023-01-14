@@ -1,4 +1,6 @@
 import * as React from "react";
+import { BrowserRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
+import Coworking from "./Coworking";
 import {
   Container,
   CardActionArea,
@@ -18,14 +20,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 function CoworkingStart({getDataCoWorkingStart}) {
 
-    
-
-    const [questionsNumber, setQuestionsNumber] = React.useState(0) // 적음, 중간, 많음
     console.log('start');
 
-    const lessQuestion = () => {
-        getDataCoWorkingStart(3);
-    }
     const normalQuestion = () => {
         getDataCoWorkingStart(5);
     }
@@ -35,9 +31,15 @@ function CoworkingStart({getDataCoWorkingStart}) {
 
     return (
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Button onClick={lessQuestion}>질문 수 적음 버튼</Button>
-            <Button onClick={normalQuestion}>질문 수 적당 버튼</Button>
-            <Button onClick={moreQuestion}>질문 수 많음 버튼</Button>
+            <Link to = '/coworking3'> 
+                <Button>질문 수 적음 버튼</Button>
+            </Link>
+            <Link to = '/coworking5'> 
+                <Button>질문 수 보통 버튼</Button>
+            </Link>
+            <Link to = '/coworking7'> 
+                <Button>질문 수 많음 버튼</Button>
+            </Link>
         </Container>
     );
 }
