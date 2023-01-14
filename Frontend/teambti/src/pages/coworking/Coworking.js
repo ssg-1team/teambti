@@ -13,12 +13,51 @@ import {
   Box,
   Button,
 } from "@mui/material";
+import LinearProgress from '@mui/material/LinearProgress';
+import axios from "axios";
+import { API_HOST } from '../../constant/index';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { style } from "@mui/system";
 import { Link } from "react-router-dom";
+
+function LinearProgressWithLabel(props) {
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ width: '100%', mr: 1 }}>
+        <LinearProgress variant="determinate" {...props} />
+      </Box>
+      <Box sx={{ minWidth: 35 }}>
+        <Typography variant="body2" color="text.secondary">{`${Math.round(
+          props.value,
+        )}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
+
+const e_id = parseInt(localStorage.getItem('e_id'));
+let myTeamList = [[1, 'ESTJ'], [2, 'ESTP'], [3, 'ENTP'], [4, 'INFJ'], [5, 'ESTJ'], [6, 'ESFP'], [7, 'ISTJ'], [8, 'ENFP'], [9, 'ESFJ'], [10, 'ENTJ']];
+
+axios
+    .get(`${API_HOST}/member/getAll/`,{
+      headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      // console.log(response.data)
+      myTeamList = response.data.map(function(data){
+        return [data.e_id, data.mbti, data.position, data.name, data.content]
+      })
+      // console.log(myTeamList);
+    })
+    .catch((error) => {
+      console.log(error.data);
+    });
 
 // ENFJ 우선순위 -> MBTICoWorking 선택지
 const questionsCoWorkingEI = [
@@ -202,7 +241,7 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     myQuestions = myQuestions7;
   }
   // 선택지 3/5/7 개수에 따라서 myQuestions 지정 
-
+  const [progress, setProgress] = React.useState((1/questionsNumber*4)*100);
   const [questionsNowNumber, setQuestionsNowNumber] = React.useState(0);
   const [EICnt, setEICnt] = React.useState(0);
   const [NSCnt, setNSCnt] = React.useState(0);
@@ -251,11 +290,12 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     }, 1);
   }, [EI, NS, FT, JP])
 
-  useEffect(() => {
-    console.log("MBTI", MBTI);
-  }, [MBTI, questionsNowNumber])
+  // useEffect(() => {
+  //   console.log("MBTI", MBTI);
+  // }, [MBTI, questionsNowNumber])
 
   useEffect(() => {
+    setProgress((questionsNowNumber+1)/(questionsNumber*4)*100);
     if (questionsNumber * 4 == questionsNowNumber) {
       let interval = setInterval(() => {
         setMBTICheck(MBTICheck + 1);
@@ -283,13 +323,13 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     }, 10);
   }, [MBTICheck])
 
-  function onClick() {
-    getDataCoWorking();
-    // getCoworkingMBTI();
-  }
+  // function onClick() {
+  //   getDataCoWorking();
+  //   // getCoworkingMBTI();
+  // }
 
   function updateQuestions(key, value) {
-    console.log(key, value);
+    // console.log(key, value);
     if (key === "E") {
       setEICnt(EICnt + 1);
     } else if (key === "I") {
@@ -310,21 +350,25 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     setQuestionsNowNumber(questionsNowNumber + 1);
   }
 
+  useEffect(() => {
+    setMBTICheck(MBTICheck + 1);
+  }, [progress])
+
   // 아래 데이터를 API를 통해서 받아와서 정리해야함. -> MBTI가 아닌 ID를 반환해서 그 ID로 캐릭터 팻말 세우기
   let selectMBTI = MBTI;
-  let myTeamList = ['ESTJ', 'ESTP', 'ENTP', 'INFJ', 'ESTJ', 'ESFP', 'ISTJ', 'ENFP', 'ESFJ', 'ENTJ'];
+  // let myTeamList = ['ESTJ', 'ESTP', 'ENTP', 'INFJ', 'ESTJ', 'ESFP', 'ISTJ', 'ENFP', 'ESFJ', 'ENTJ'];
   let myTeamListSelected = []
   // ex) [4, 3, 2, 1, 4, 2, 3, 1, 3, 3]
   
   // 팀의 MBTI와 문자열 일치 정도 파악
-  let myTeamSameNumberList = myTeamList.map((member)=> {
+  let myTeamSameNumberList = myTeamList.map(([e_id, mbti])=> {
     let cnt = 0;
     for (let i =0;i<4;i++){
-      if (selectMBTI[i] == member[i]) {
+      if (selectMBTI[i] == mbti[i]) {
         cnt += 1;
-      }
+      } 
     }
-    return {member, cnt}
+    return {e_id, mbti, cnt}
   })
   // 내림차순 정렬
   let myTeamSameNumberListSorted = myTeamSameNumberList.sort(function (a, b) {
@@ -362,6 +406,22 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
   } else if (myTeamSameNumberList4.length == 0) {
     myTeamListSelected = myTeamSameNumberListSorted.slice(0,3);
   }
+  
+  // let myRecomanded = myTeamListSelected.map((member)=> {
+  //   axios
+  //   .get(`${API_HOST}/member/getEmp/${member.e_id}/`,{
+  //     headers: {
+  //       "Access-Control-Allow-Origin" : "*",
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //   .then((response) => {
+  //     // console.log(response.data)
+  //     return response.data
+  //   })
+  // })
+  // console.log(myRecomanded)
+
   return (
     <div>
       {questionsNumber * 4 > questionsNowNumber ? (
@@ -402,9 +462,12 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
                 <button>
                   <div>{value}</div>
                 </button>
-              ))}
+              ))}P
             </div>
           ))} */}
+    <Box sx={{ width: '100%' }}>
+      <LinearProgressWithLabel value={progress} />
+    </Box>
         </div>
       ) : (
         <div>
@@ -413,42 +476,12 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
         </Link>
           <div>Coworking : {MBTI}</div>
           {myTeamListSelected.map((member, index) => (
-            <div>{index + 1}번째 추천 : {member.member}</div>
+            <div>{index + 1}번째 추천 : {member.mbti}, {member.e_id}, {member.content}, {member.position}, {member.name}</div>
           ))}
           {/* mbti로 이제 사람 찾는 로직 구현 */}
         </div>
       )}
     </div>
-    // <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-    //     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-    //         <Grid item xs={12}>
-    //             <Typography gutterBottom variant="h5" component="div" align="center">
-    //                 협업하기
-    //             </Typography>
-    //         </Grid>
-    //         <Grid item xs={6}>
-    //             <Card>
-    //                 <CardActionArea>
-    //                     <CardContent>
-    //                         <Typography variant="h6" component="div" align="center">
-    //                         </Typography>
-    //                     </CardContent>
-    //                 </CardActionArea>
-    //             </Card>
-    //         </Grid>
-    //         <Grid item xs={6}>
-    //             <Card>
-    //                 <CardActionArea>
-    //                     <CardContent>
-    //                         <Typography variant="h6" component="div" align="center">
-    //                         </Typography>
-    //                     </CardContent>
-    //                 </CardActionArea>
-    //             </Card>
-    //         </Grid>
-    //     </Grid>
-    //     <Button onClick={onClick}>결과보기</Button>
-    // </Container>
   );
 }
 
