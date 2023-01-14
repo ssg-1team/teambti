@@ -7,58 +7,34 @@ export const user = {
 
 export const emps_list = [
   {
-    id: 2,
-    name: "cocoon",
-    type: "INFP",
-    position: "POS",
+    name : "김혜림",
+    mbti : "INFP",
+    position : "사원",
+    image : "images/characterExample.png"
   },
   {
-    id: 3,
-    name: "ultra",
-    type: "ESFP",
-    position: "IOS",
+    name : "이소정",
+    mbti : "ISFJ",
+    position : "사원",
+    image : "images/characterExample.png"
   },
   {
-    id: 4,
-    name: "hozae",
-    type: "ISTJ",
-    position: "AOS",
+    name : "이준호",
+    mbti : "ESTP",
+    position : "사원",
+    image : "images/characterExample.png"
   },
   {
-    id: 4,
-    name: "hozae",
-    type: "ISTJ",
-    position: "AOS",
+    name : "김수진",
+    mbti : "INTJ",
+    position : "사원",
+    image : "images/characterExample.png"
   },
   {
-    id: 4,
-    name: "hozae",
-    type: "ISTJ",
-    position: "AOS",
-  },
-  {
-    id: 4,
-    name: "hozae",
-    type: "ISTJ",
-    position: "AOS",
-  },
-  {
-    id: 4,
-    name: "hozae",
-    type: "ISTJ",
-    position: "AOS",
-  },
-  {
-    id: 4,
-    name: "hozae",
-    type: "ISTJ",
-    position: "AOS",
-  },
-  {
-    id: 4,
-    name: "hozae",
-    type: "ISTJ",
-    position: "AOS",
+    name : "장현우",
+    mbti : "INFP",
+    position : "사원",
+    image : "images/characterExample.png"
   },
 ];
 
