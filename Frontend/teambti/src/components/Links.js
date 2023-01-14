@@ -3,8 +3,8 @@ import * as React from "react";
 import MentoMenti from "../pages/mentomenti/MentoMenti";
 import MentoMentiResult from "../pages/mentomenti/MentoMentiResult";
 
-import Coworking from "../pages/coworking/Coworking";
-import CoworkingStart from "../pages/coworking/CoWorkingStart";
+import CoWorking from "../pages/coworking/Coworking";
+import CoWorkingStart from "../pages/coworking/CoWorkingStart";
 import CoWorkingResult from "../pages/coworking/CoWorkingResult";
 
 import Home from "../pages/home/Home";
@@ -54,20 +54,20 @@ function Links(props) {
       return <MentoMentiResult />;
     case "coworking3":
       return (
-        <Coworking getDataCoWorking={getDataCoWorking} questionsNumber={3} />
+        <CoWorking getDataCoWorking={getDataCoWorking} questionsNumber={3} />
       );
     case "coworking5":
       return (
-        <Coworking getDataCoWorking={getDataCoWorking} questionsNumber={5} />
+        <CoWorking getDataCoWorking={getDataCoWorking} questionsNumber={5} />
       );
     case "coworking7":
       return (
-        <Coworking getDataCoWorking={getDataCoWorking} questionsNumber={7} />
+        <CoWorking getDataCoWorking={getDataCoWorking} questionsNumber={7} />
       );
     case "coworkingresult":
       return <CoWorkingResult />;
     case "coworkingstart":
-      return <CoworkingStart getDataCoWorkingStart={getDataCoWorkingStart} />;
+      return <CoWorkingStart getDataCoWorkingStart={getDataCoWorkingStart} />;
     case "home":
       return <Home setComparision={setComparision} />;
     case "character":

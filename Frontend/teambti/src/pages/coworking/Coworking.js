@@ -170,6 +170,7 @@ export default function Coworking({ getDataCoWorking, questionsNumber }) {
 
   return (
     <div>
+      <div>안녕하세요?</div>
       {myQuestions.map((question) => (
         <div>
           {Object.values(question).map((item) => (
