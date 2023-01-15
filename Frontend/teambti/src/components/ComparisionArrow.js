@@ -7,8 +7,9 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { matchingInfo } from "./MBTIInfo";
 
-export default function ComparisionArrow({comparision}) {
+export default function ComparisionArrow({user1, user2}) {
   return (
     <Timeline position="alternate" sx={{pl:0, m:0}}>
       <TimelineItem>
@@ -23,7 +24,12 @@ export default function ComparisionArrow({comparision}) {
           align="left"
           variant="caption"
           color="text.secondary">
-            {comparision.user2}
+            {matchingInfo.map(
+              (info, id) =>
+                info.mbti1 == user1 && info.mbti2 == user2 && (
+                  info.content
+              )
+            )}
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
@@ -37,7 +43,12 @@ export default function ComparisionArrow({comparision}) {
           align="right"
           variant="caption"
           color="text.secondary">
-            {comparision.user1}
+            {matchingInfo.map(
+              (info, id) =>
+                info.mbti1 == user2 && info.mbti2 == user1 && (
+                  info.content
+              )
+            )}
           </TimelineContent>
       </TimelineItem>
     </Timeline>

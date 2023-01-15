@@ -176,7 +176,7 @@ function Comparision() {
                         },
                         }}
                     >
-                        <ComaparisionArrow comparision={comparision}/>
+                        <ComaparisionArrow user1={mbti} user2={other.state.other.mbti}/>
                     </Box>
                 </Grid>
                 <Grid item xs={4}>
