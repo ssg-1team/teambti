@@ -409,7 +409,7 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
   // console.log(myRecomanded)
 
   return (
-    <div style={{height:"100%"}}>
+    <div style={{height:"100%", backgroundColor:'black'}}>
       {questionsNumber * 4 > questionsNowNumber ? (
         <div style={{height:"100%"}}>
           <Box sx={{ width: '100%', height:'20px' }}>
