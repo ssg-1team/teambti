@@ -61,30 +61,24 @@ export default function Login({ isLoggedIn, login }) {
           <Grid
             item
             xs={false}
-            sm={4}
-            md={7}
+            sm={6}
+            md={8}
             sx={{
-              backgroundImage: "url(https://source.unsplash.com/random)",
-              backgroundRepeat: "no-repeat",
-              backgroundColor: (t) =>
-                t.palette.mode === "light"
-                  ? t.palette.grey[50]
-                  : t.palette.grey[900],
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+
             }}
           />
           <Grid
             item
             xs={12}
-            sm={8}
-            md={5}
+            sm={6}
+            md={4}
             component={Paper}
             elevation={6}
             square
           >
             <Box
               sx={{
+                fontFamily:"Pretendard-Regular",
                 my: 8,
                 mx: 4,
                 display: "flex",
@@ -92,11 +86,13 @@ export default function Login({ isLoggedIn, login }) {
                 alignItems: "center",
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                <LockOutlinedIcon />
-              </Avatar>
               <Typography component="h1" variant="h5">
-                Sign in
+                <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+                <div>
+                <img src={require(`../../assets/image/login_gif.gif`)} style={{width:200}} alt=""/>
+                </div>
+                <div style={{fontFamily:"Pretendard-Regular"}}>MBTI로 우리팀 바로 알기, TEAMBTI</div>
+                </div>
               </Typography>
               <Box
                 component="form"
@@ -124,31 +120,22 @@ export default function Login({ isLoggedIn, login }) {
                   id="password"
                   autoComplete="current-password"
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign In
+                  Login
                 </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link href="#" variant="body2">
-                      {"Don't have an account? Sign Up"}
-                    </Link>
-                  </Grid>
-                </Grid>
               </Box>
+              <br></br>
+              <br></br>
+              <div style={{ fontSize: "15px" }}>
+              우) 04529 서울 중구 남대문시장10길 2 MESA 빌딩
+              <br />
+              COPYRIGHT (c) 2022. TEAM_1. All rights reserved.
+            </div>
             </Box>
           </Grid>
         </Grid>
