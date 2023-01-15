@@ -23,7 +23,7 @@ export const modalStyle = {
   width: 900,
   height: 450,
   bgcolor: "background.paper",
-  borderRadius: 10,
+  borderRadius: 5,
   boxShadow: 24,
   p: 4,
 };

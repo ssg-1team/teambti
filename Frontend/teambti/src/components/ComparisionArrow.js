@@ -7,39 +7,35 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { matchingInfo } from "./MBTIInfo";
 
-export default function ComparisionArrow({comparision}) {
+export default function ComparisionArrow({user1, user2}) {
   return (
-    <Timeline position="alternate" sx={{pl:0, m:0}}>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color="primary">
-            <ArrowBackIcon fontSize="small"/>
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent 
-          sx={{ mt: 1.5 }}
-          align="left"
-          variant="caption"
-          color="text.secondary">
-            {comparision.user2}
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color="primary">
-            <ArrowForwardIcon fontSize="small"/>  
-        </TimelineDot>
-        </TimelineSeparator>
-        <TimelineContent
-          sx={{ mt: 1.5 }}
-          align="right"
-          variant="caption"
-          color="text.secondary">
-            {comparision.user1}
-          </TimelineContent>
-      </TimelineItem>
-    </Timeline>
+    <>
+      <div style={{marginTop:"50px", justifyContent:"center", textAlign:"center"}}>
+        {matchingInfo.map(
+          (info, id) =>
+            info.mbti1 == user1 && info.mbti2 == user2 && (
+              info.content
+          )
+        )}
+        <div style={{marginTop:"30px"}}>
+          <img src="images/rightArrow.png" style={{height:70}}></img>
+        </div>
+      </div>
+      
+      <div style={{marginTop:"70px", justifyContent:"center", textAlign:"center"}}> 
+        <div style={{marginBottom:"30px"}}>
+          <img src="images/leftArrow.png" style={{height:70}}></img> 
+        </div>
+        {matchingInfo.map(
+          (info, id) =>
+            info.mbti1 == user2 && info.mbti2 == user1 && (
+              info.content
+          )
+        )}
+      </div>
+
+    </>
   );
 }

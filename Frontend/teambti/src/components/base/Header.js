@@ -112,13 +112,13 @@ const Header = ({ login }) => {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "GangwonEduSaeeum_OTFMediumA",
+              fontFamily: "PFStardust",
               fontWeight: 700,
               letterSpacing: ".3rem",
               textDecoration: "none",
             }}
           >
-            TeaMBTI
+            TEAMBTI
           </Typography>
           <Box sx={{ color:"black", flexGrow: 0, display: { xs: "none", md: "flex" } }}>
             <Button
