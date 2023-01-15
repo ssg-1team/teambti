@@ -31,11 +31,10 @@ function CoworkingStart({getDataCoWorkingStart}) {
     }
 
     return (
-        <Container maxWidth="lg" sx={{width:'100%', height:'100%', backgroundColor:'violet'}}>
-            <Button variant="contained" sx={{ width: '33%', height: '100%'}} component={Link} to="/coworking3">12 
-            Questions</Button>
-            <Button variant="contained" sx={{ width: '33%', height: '100%'}}component={Link} to="/coworking5">20<br></br>Questions</Button>
-            <Button variant="contained" sx={{ width: '33%', height: '100%'}}component={Link} to="/coworking7">28 Questions</Button>
+        <Container maxWidth="lg" sx={{width:'100%', height:'100%'}}>
+            <Button variant="contained" sx={{ width: '33%', height: '100%', textAlign:'center'}}component={Link} to="/coworking3"><div style={{fontSize:40}}>12</div><div>Questions</div></Button>
+            <Button variant="contained" sx={{ width: '33%', height: '100%', textAlign:'center'}}component={Link} to="/coworking5"><div style={{fontSize:40}}>20</div><div>Questions</div></Button>
+            <Button variant="contained" sx={{ width: '33%', height: '100%', textAlign:'center'}}component={Link} to="/coworking7"><div style={{fontSize:40}}>28</div><div>Questions</div></Button>
         </Container>
     );
 }

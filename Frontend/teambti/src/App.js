@@ -20,11 +20,12 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{height:"100vh", backgroundColor:'yellow'}}>
-      <div>
+    <div className="App" style={{height:"100%", boxSizing:"border-box", backgroundColor:'red'}}>
+      <div style={{height:"9%"}}>
       {isLoggedIn && <Header login={login} />}
-      <Router style={{height:'100%'}} isLoggedIn={isLoggedIn} login={login} />
-      {/* <div>안녕?</div> */}
+      </div>
+      <div style={{height:"91%"}}>
+      <Router isLoggedIn={isLoggedIn} login={login}></Router>
       </div>
     </div>
   );

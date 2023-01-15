@@ -12,7 +12,7 @@ import CharacterTest from "./pages/character/CharacterTest";
 
 const Router = ({ isLoggedIn, login }) => {
   return (
-    <div style={{height:'100%', backgroundColor:'black'}}>
+    <div style={{height:'100%'}}>
     <BrowserRouter>
       <Routes>
         <Route
