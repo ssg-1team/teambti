@@ -26,14 +26,14 @@ import { Link } from "react-router-dom";
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ width: '100%', mr: 1 }}>
-        <LinearProgress variant="determinate" {...props} />
+      <Box sx={{ width: '100%'}}>
+        <LinearProgress variant="determinate" {...props} sx={{height:35}} />
       </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(
+      {/* <Box sx={{ minWidth: 35 }}>
+        <Typography variant="body2" color="text.danger">{`${Math.round(
           props.value,
         )}%`}</Typography>
-      </Box>
+      </Box> */}
     </Box>
   );
 }
@@ -55,9 +55,6 @@ axios
       })
       // console.log(myTeamList);
     })
-    .catch((error) => {
-      console.log(error.data);
-    });
 
 // ENFJ 우선순위 -> MBTICoWorking 선택지
 const questionsCoWorkingEI = [
@@ -361,15 +358,16 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
   // ex) [4, 3, 2, 1, 4, 2, 3, 1, 3, 3]
   
   // 팀의 MBTI와 문자열 일치 정도 파악
-  let myTeamSameNumberList = myTeamList.map(([e_id, mbti])=> {
+  let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, content])=> {
     let cnt = 0;
     for (let i =0;i<4;i++){
       if (selectMBTI[i] == mbti[i]) {
         cnt += 1;
       } 
     }
-    return {e_id, mbti, cnt}
+    return {e_id, mbti, cnt, position, name, content}
   })
+  // console.log(myTeamSameNumberList)
   // 내림차순 정렬
   let myTeamSameNumberListSorted = myTeamSameNumberList.sort(function (a, b) {
     if (a.cnt < b.cnt) return 1
@@ -423,9 +421,12 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
   // console.log(myRecomanded)
 
   return (
-    <div>
+    <div style={{height:"100%"}}>
       {questionsNumber * 4 > questionsNowNumber ? (
-        <div>
+        <div style={{height:"100%"}}>
+          <Box sx={{ width: '100%', height:'20px' }}>
+            <LinearProgressWithLabel value={progress} />
+          </Box>
           {/* <button>
             {EI}, {EICnt}
           </button>
@@ -438,15 +439,15 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
           <button>
             {JP}, {JPCnt}
           </button> */}
-          <div>{questionsNowNumber + 1} / {questionsNumber * 4}</div>
+          {/* <div>{questionsNowNumber + 1} / {questionsNumber * 4}</div> */}
           {myQuestions.map((question, index) => (
             <div
               style={{
-                display: questionsNowNumber == index ? "block" : "none",
+                display: questionsNowNumber == index ? "block" : "none", marginTop: 10,
               }}
             >
               {Object.entries(question).map(([key, value]) => (
-                <button
+                <button style={{width:"45%", height:"45%"}}
                   onClick={() => {
                     updateQuestions(key, value);
                   }}
@@ -465,9 +466,6 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
               ))}P
             </div>
           ))} */}
-    <Box sx={{ width: '100%' }}>
-      <LinearProgressWithLabel value={progress} />
-    </Box>
         </div>
       ) : (
         <div>

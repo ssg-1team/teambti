@@ -53,6 +53,7 @@ const Header = ({ login }) => {
   };
 
   return (
+    <div style={{height:"100%"}}>
   <ThemeProvider theme={myTheme}>
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -186,6 +187,8 @@ const Header = ({ login }) => {
       </Container>
     </AppBar>
     </ThemeProvider>
+          
+    </div>
   );
 };
 

@@ -16,6 +16,7 @@ import { Box, CardActionArea } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import axios from "axios";
 import { API_HOST } from '../../constant/index';
+import html2canvas from 'html2canvas';
 
 // 1번
 import ears1 from "../../assets/image/parts/ears/1.png";
@@ -157,6 +158,17 @@ function Character() {
 
   // 사용자의 id를 가져오기
   const e_id = parseInt(localStorage.getItem('e_id'));
+  let myName = 'TEAMBTI'
+  axios
+    .get(`${API_HOST}/member/getEmp/${e_id}`,{
+      headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      myName = `${response.data.name}`
+    })
 
   useEffect(() => {
     setMyParts();
@@ -171,11 +183,19 @@ function Character() {
       },
     })
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
     })
-    .catch((error) => {
-      console.log(error.data);
+
+  function downloadMyCharacter() {
+    const el = document.getElementById('myCharacterDiv');
+    html2canvas(el, {width: 441, height:566}).then(function(canvas, width) {
+      let downloadURL = canvas.toDataURL('image/png');
+      let aTag = document.getElementById('target');
+      aTag.href = downloadURL;
+      aTag.download =`${myName}.jpg`
+      aTag.click();
     });
+  }
   
   function setMyParts() {
     axios
@@ -200,6 +220,11 @@ function Character() {
   }  
 
   function saveMyParts() {
+    const el = document.getElementById('myCharacterDiv');
+    html2canvas(el, {width: 441, height:566}).then((canvas) => {
+      let content = canvas.toDataURL('image/png', 1.0);
+      console.log("content", content)
+    });
     const data = {
       "head" : myHead,
       "background" : myBack,
@@ -232,7 +257,7 @@ function Character() {
   };
 
   return (
-    <>
+    <div>
       
       <Grid container spacing={0}>
         <Grid container xs={8}>
@@ -259,6 +284,7 @@ function Character() {
                   </Typography>
                 </AccordionDetails>
               </Accordion> */}
+            <div style={{overflowY:"auto", maxHeight:"566px"}}>
             <Accordion
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
@@ -859,10 +885,14 @@ function Character() {
                 </Typography>
               </AccordionDetails>
             </Accordion>
+            </div>
           </Grid>
           <Grid xs={8}>
-            <div>
-              <img
+            <div style={{position:"relative"}} id="myCharacterDiv">
+              <div>안녕하세요?</div>
+              <div style={{backgroundColor:"red", width:"400px"}}></div>
+              <div style={{position:"absolute",top:"0", left:"0"}}>
+              <img 
                 style={{ position: "absolute" }}
                 src={require(`../../assets/image/parts/back/${myBack}.png`)}
                 alt=""
@@ -897,6 +927,7 @@ function Character() {
                 src={require(`../../assets/image/parts/acc/${myAcc}.png`)}
                 alt=""
               />
+              </div>
             </div>
           </Grid>
         </Grid>
@@ -904,10 +935,14 @@ function Character() {
           <Tag />
         </Grid>
       </Grid>
-      <button onClick={saveMyParts}>저장</button>
+      <button onClick={saveMyParts}>설정</button>
+      <button onClick={downloadMyCharacter}>다운로드</button>
       <button onClick={setMyParts}>초기화</button>
-      <></>
-    </>
+      {/* <img src=""/> */}
+      <a id="target" style={{display:"none"}}>안녕?</a>
+      {/* <a id="target" style="display: none" href="#">다운로드</a> */}
+      {/* <></> */}
+    </div>
   );
 }
 
