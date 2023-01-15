@@ -1,12 +1,24 @@
-import { Card, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
+import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Tab, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_HOST } from "../../constant";
 import { useLocation } from "react-router-dom";
 import ComaparisionArrow from "../../components/ComparisionArrow"
+import EmpModal from "../../components/EmpModal";
+import { mbtiInfo } from "../../components/MBTIInfo";
+import { tagStyle, modalStyle } from "../../components/Profile.module";
+import { TabContext, TabPanel, TabList } from "@mui/lab";
 function Comparision() {
+
+    const [value, setValue] = React.useState('1');
+
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+
     const e_id = localStorage.getItem("e_id");
+
     // API
     const [name, setName] = React.useState("");
     const [position, setPosition] = useState("");
@@ -53,38 +65,107 @@ function Comparision() {
     }
 
     return(
-        <Container maxWidth='auto' sx={{ ml:0, mr:0, mt: 4, mb: 4}}>
+        <Container maxWidth='flex' sx={{ ml:0, mr:0, mt: 10, mb: 4}}>
             <Grid container spacing={2} sx={{m:0}}>
-                <Grid item xs={3}>
-                    <Box
-                        sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        "& > :not(style)": {
-                            width: "auto",
-                            height: "auto",
-                        },
-                        }}
-                    >
-                        <Card sx={{ maxWidth: 200 }}>
-                            <CardMedia
-                                component="img"
-                                height="250"
-                                image="images/characterExample.png"
-                                alt="green iguana"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h7" component="div">
-                                    {name}
-                                </Typography>
-                                <Typography variant="caption" color="text.secondary">
-                                    {mbti} / {position}
-                                </Typography>
-                            </CardContent>
-                        </Card>
+                <Grid item xs={4}>
+                    <Box>
+                        <Grid
+                            container
+                            rowSpacing={1}
+                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        >
+                            <Grid item xs={12}>
+                                <Card sx={{ maxWidth: 200}}>
+                                    <CardMedia
+                                    component="img"
+                                    height="300"
+                                    image={
+                                        user.image == null
+                                        ? "images/characterExample.png"
+                                        : user.image
+                                    }
+                                    alt="green iguana"
+                                    />
+                                </Card>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Box
+                                    sx={{
+                                    textAlign: "center",
+                                    fontSize: "h6.fontSize",
+                                    fontWeight: "medium",
+                                    p: 2,
+                                    }}
+                                >
+                                    {name} / {mbti}
+                                </Box>
+                                <Box
+                                    sx={{
+                                    textAlign: "center",
+                                    fontSize: "h8.fontSize",
+                                    fontWeight: "medium",
+                                    p: 2,
+                                    mb: 3
+                                    }}
+                                >
+                                    {mbtiInfo.map(
+                                    (mbtiinfo, id) =>
+                                        mbtiinfo.mbti == mbti && (
+                                        mbtiinfo.comment
+                                        )
+                                    )}
+                                </Box>
+                                <Box sx={{ width: '100%', typography: 'body1' }}>
+                                    <TabContext value={value}>
+                                        <Box sx={{ bgcolor:"#BFEAF5", borderRadius:2}}>
+                                            <TabList 
+                                                onChange={handleChange} 
+                                                aria-label="lab API tabs example" 
+                                                textColor="primary"
+                                                indicatorColor="primary" centered
+                                                
+                                            >
+                                                <Tab label="성격 장점" value="1" />
+                                                <Tab label="성격 단점" value="2" />
+                                                <Tab label="업무 스타일" value="3" />
+                                            </TabList>
+                                        </Box>
+                                        <Box sx={{ bgcolor:"#EAFDFC", borderRadius:2, height:200}}>
+                                        <TabPanel value="1">
+                                            {mbtiInfo.map(
+                                            (mbtiinfo, id) =>
+                                                mbtiinfo.mbti == mbti && (
+                                                mbtiinfo.good.map((good) => <li>{good}</li>)
+                                                )
+                                            )}
+
+                                        </TabPanel>
+                                        <TabPanel value="2">
+                                            {mbtiInfo.map(
+                                            (mbtiinfo, id) =>
+                                                mbtiinfo.mbti == mbti && (
+                                                mbtiinfo.bad.map((bad) => <li>{bad}</li>)
+                                                )
+                                            )}
+
+                                        </TabPanel>
+                                        <TabPanel value="3">
+                                            {mbtiInfo.map(
+                                            (mbtiinfo, id) =>
+                                                mbtiinfo.mbti == mbti && (
+                                                mbtiinfo.work.map((work) => <li>{work}</li>)
+                                                )
+                                            )}
+
+                                        </TabPanel>
+                                        </Box>
+                                    </TabContext>
+                                </Box>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Grid>
-                <Grid item xs={6} sx={{p : 0, ml:0, mt:8}}>
+                <Grid item xs={4}>
                     <Box
                         sx={{
                         display: "flex",
@@ -98,79 +179,94 @@ function Comparision() {
                         <ComaparisionArrow comparision={comparision}/>
                     </Box>
                 </Grid>
-                <Grid item xs={3}>
-                    <Box
-                        sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        "& > :not(style)": {
-                            width: "auto",
-                            height: "auto",
-                        },
-                        }}
-                    >
-                        <Card sx={{ maxWidth: 200 }}>
-                            <CardMedia
-                                component="img"
-                                height="250"
-                                image="images/characterExample.png"
-                                alt="green iguana"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h7" component="div">
-                                    {other.state.other.name}
-                                </Typography>
-                                <Typography variant="caption" color="text.secondary">
-                                    {other.state.other.mbti} / {other.state.other.position}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Box>
-                </Grid>
-                <Grid item xs={3}>
-                    <Box
-                        sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        "& > :not(style)": {
-                            width: "auto",
-                            height: "auto",
-                        },
-                        }}
-                    >
-                        - 공부를 잘합니다<br/>
-                        - 뭐를 좋아합니다<br/>
-                        - 오케오케<br/>
-                    </Box>
-                </Grid>
-                <Grid item xs={6} sx={{p : 0, ml:0, mt:8}}>
-                    <Box
-                        sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        "& > :not(style)": {
-                            width: "auto",
-                            height: "auto",
-                        },
-                        }}
-                    >
-                        
-                    </Box>
-                </Grid>
-                <Grid item xs={3}>
-                    <Box
-                        sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        "& > :not(style)": {
-                            width: "auto",
-                            height: "auto",
-                        },
-                        }}
-                    >
-                        - 공부를 잘합니다<br/>
-                        - 뭐를 좋아합니다<br/>
-                        - 오케오케<br/>
+                <Grid item xs={4}>
+                    <Box>
+                        <Grid
+                            container
+                            rowSpacing={1}
+                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        >
+                            <Grid item xs={12}>
+                                <Card sx={{ maxWidth: 200 }}>
+                                    <CardMedia
+                                    component="img"
+                                    height="300"
+                                    image={
+                                        user.image == null
+                                        ? "images/characterExample.png"
+                                        : user.image
+                                    }
+                                    alt="green iguana"
+                                    />
+                                </Card>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Box
+                                    sx={{
+                                    textAlign: "center",
+                                    fontSize: "h6.fontSize",
+                                    fontWeight: "medium",
+                                    p: 2,
+                                    }}
+                                >
+                                    {other.state.other.name} / {other.state.other.mbti}
+                                </Box>
+                                <Box
+                                    sx={{
+                                    textAlign: "center",
+                                    fontSize: "h8.fontSize",
+                                    fontWeight: "medium",
+                                    p: 2,
+                                    mb: 3
+                                    }}
+                                >
+                                    {mbtiInfo.map(
+                                    (mbti, id) =>
+                                        mbti.mbti == other.state.other.mbti && (
+                                        mbti.comment
+                                        )
+                                    )}
+                                </Box>
+                                <Box sx={{ width: '100%', typography: 'body1' }}>
+                                    <TabContext value={value}>
+                                        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                            <TabList onChange={handleChange} aria-label="lab API tabs example" centered>
+                                                <Tab label="성격 장점" value="1" />
+                                                <Tab label="성격 단점" value="2" />
+                                                <Tab label="업무 스타일" value="3" />
+                                            </TabList>
+                                        </Box>
+                                        <TabPanel value="1">
+                                            {mbtiInfo.map(
+                                            (mbtiinfo, id) =>
+                                                mbtiinfo.mbti == other.state.other.mbti && (
+                                                mbtiinfo.good.map((good) => <li>{good}</li>)
+                                                )
+                                            )}
+
+                                        </TabPanel>
+                                        <TabPanel value="2">
+                                            {mbtiInfo.map(
+                                            (mbtiinfo, id) =>
+                                                mbtiinfo.mbti == other.state.other.mbti && (
+                                                mbtiinfo.bad.map((bad) => <li>{bad}</li>)
+                                                )
+                                            )}
+
+                                        </TabPanel>
+                                        <TabPanel value="3">
+                                            {mbtiInfo.map(
+                                            (mbtiinfo, id) =>
+                                                mbtiinfo.mbti == other.state.other.mbti && (
+                                                mbtiinfo.work.map((work) => <li>{work}</li>)
+                                                )
+                                            )}
+
+                                        </TabPanel>
+                                    </TabContext>
+                                </Box>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Grid>
             </Grid>
