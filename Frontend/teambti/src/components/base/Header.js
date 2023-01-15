@@ -65,13 +65,13 @@ const Header = ({ login }) => {
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "LeferiPoint",
+                fontFamily: "PFStardust",
                 fontWeight: 800,
                 letterSpacing: ".3rem",
                 textDecoration: "none",
               }}
             >
-              TeaMBTI
+              TEAMBTI
             </Typography>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -122,13 +122,13 @@ const Header = ({ login }) => {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "GangwonEduSaeeum_OTFMediumA",
+              fontFamily: "PFStardust",
               fontWeight: 700,
               letterSpacing: ".3rem",
               textDecoration: "none",
             }}
           >
-            TeaMBTI
+            TEAMBTI
           </Typography>
           <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
               {pages.map((page, id) => (
@@ -138,7 +138,7 @@ const Header = ({ login }) => {
                   key={id}
                   onClick={handleCloseNavMenu}
                   href={page.link}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, color: "white", display: "block", fontFamily:"PFStardust" }}
                 >
                   {page.name}
                 </Button>
@@ -147,7 +147,7 @@ const Header = ({ login }) => {
                 variant="outlined"
                 color="secondary"
                 onClick={handleLogout}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: "white", display: "block", fontFamily:"PFStardust" }}
               >
                     Logout
               </Button>

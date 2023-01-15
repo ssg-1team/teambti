@@ -22,15 +22,16 @@ export const bigButtonStyle = {
 
 export const smallButtonStyle = {
   width: 100,
-  bgcolor: secondary_color_m,
-  color: primary_color_m,
+  bgcolor: primary_color_m,
+  color: "#F6F6F6",
   borderRadius: 5,
   textAlign: "center",
   fontSize: "0.8rem",
-  fontWeight: "400",
+  fontWeight: "1000",
   display: "inline",
   // fontFamily: "GangwonEduSaeeum_OTFMediumA",
+  fontFamily:"PFStardust",
   "&:hover": {
-    bgcolor: primary_color_s,
+    bgcolor: "#FFD4B2",
   },
 };
