@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -55,24 +56,12 @@ const Header = ({ login }) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <LeftDrawer />
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Typography
-              variant="h3"
-              noWrap
-              component="a"
-              href="/"
-              color="secondary"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "PFStardust",
-                fontWeight: 800,
-                letterSpacing: ".3rem",
-                textDecoration: "none",
-              }}
-            >
-              TEAMBTI
-            </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }}}>
+          <Typography sx={{display: { ':hover':{cursor:'pointer'}} }}>
+            <a href="/" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+            <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
+            </a>
+          </Typography>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -81,11 +70,12 @@ const Header = ({ login }) => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              // color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
+              color="secondary"
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -130,24 +120,28 @@ const Header = ({ login }) => {
           >
             TEAMBTI
           </Typography>
-          <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ color:"black", flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+            <Button
+              variant="outlined"
+              sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
+            >
+              <a style={{textDecoration:'none', color:'black'}} href="/">HOME</a>
+            </Button>
               {pages.map((page, id) => (
                 <Button
                   variant="outlined"
-                  color="secondary"
                   key={id}
                   onClick={handleCloseNavMenu}
                   href={page.link}
-                  sx={{ my: 2, color: "white", display: "block", fontFamily:"PFStardust" }}
+                  sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
                 >
                   {page.name}
                 </Button>
               ))}
               <Button
                 variant="outlined"
-                color="secondary"
                 onClick={handleLogout}
-                sx={{ my: 2, color: "white", display: "block", fontFamily:"PFStardust" }}
+                sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
               >
                     Logout
               </Button>
@@ -156,7 +150,7 @@ const Header = ({ login }) => {
       </Container>
     </AppBar>
     </ThemeProvider>
-          
+    <div style={{height:3, backgroundColor:'#ff6961'}}></div>
     </div>
   );
 };

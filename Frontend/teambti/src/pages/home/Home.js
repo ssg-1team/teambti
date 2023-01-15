@@ -49,8 +49,10 @@ function Home() {
   // [e]
 
   return (
-    <>
-      <Container maxWidth="lg" sx={{ mt: 15, mb: 4, display: { xs: "none", md:"none", lg: "block"}}}>
+    // <div style={{height:'100%', backgroundColor:'yellow'}}>
+    <div > 
+      <Container maxWidth="lg" sx={{display: { xs: "none", md:"none", lg: "block" }}}>
+
         <Slider
           {...settings_lg}
           sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
@@ -89,7 +91,7 @@ function Home() {
           )}
         </Slider>
       </Container>
-    </>
+    </div>
   );
 }
 

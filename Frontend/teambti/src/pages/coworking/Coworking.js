@@ -40,22 +40,24 @@ function LinearProgressWithLabel(props) {
 }
 
 const e_id = parseInt(localStorage.getItem('e_id'));
+// const [emps, setEmps] = useState([]);
 let myTeamList = [[1, 'ESTJ'], [2, 'ESTP'], [3, 'ENTP'], [4, 'INFJ'], [5, 'ESTJ'], [6, 'ESFP'], [7, 'ISTJ'], [8, 'ENFP'], [9, 'ESFJ'], [10, 'ENTJ']];
 
 axios
-    .get(`${API_HOST}/member/getAll/`,{
-      headers: {
-        "Access-Control-Allow-Origin" : "*",
-        "Content-Type": "application/json",
-      },
+  .get(`${API_HOST}/member/getAll/`,{
+    headers: {
+      "Access-Control-Allow-Origin" : "*",
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => {
+    // setEmps(response.data);
+    // console.log(response.data)
+    myTeamList = response.data.map(function(data){
+      return [data.e_id, data.mbti, data.position, data.name, data.content]
     })
-    .then((response) => {
-      // console.log(response.data)
-      myTeamList = response.data.map(function(data){
-        return [data.e_id, data.mbti, data.position, data.name, data.content]
-      })
-      // console.log(myTeamList);
-    })
+    // console.log(myTeamList);
+  })
 
 // ENFJ 우선순위 -> MBTICoWorking 선택지
 const questionsCoWorkingEI = [
@@ -484,7 +486,9 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
             <div>{MBTI}</div>
           </div>
           {myTeamListSelected.map((member, index) => (
-            <div>{index + 1}번째 추천 : {member.mbti}, {member.e_id}, {member.content}, {member.position}, {member.name}</div>
+            <button>
+              <div>{index + 1}번째 추천 : {member.mbti}, {member.e_id}, {member.content}, {member.position}, {member.name}</div>
+            </button>
           ))}
           {/* mbti로 이제 사람 찾는 로직 구현 */}
         <Link to='/coworking'>

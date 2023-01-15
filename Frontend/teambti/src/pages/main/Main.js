@@ -123,9 +123,10 @@ function Main({ login }) {
   }, []);
 
   return (
-    <>
+    <div>
+      {/* <div style={{height:'100%', backgroundColor:'green'}}> */}
     <Home/>
-    </>
+    </div>
   );
 }
 
