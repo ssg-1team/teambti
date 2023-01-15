@@ -58,11 +58,11 @@ export default function Profile({ user, key }) {
 
   return (
     <Box>
-      <Card sx={{ maxWidth: 250 }}>
+      <Card sx={{ width: "100%" }}>
         <CardActionArea onClick={handleOpen}>
           <CardMedia
             component="img"
-            height="350"
+            height="100%"
             image={
               user.image == null ? "images/characterExample.png" : user.image
             }
@@ -72,7 +72,7 @@ export default function Profile({ user, key }) {
             <Typography gutterBottom variant="h6" component="div">
               {user.name}
             </Typography>
-            <Typography variant="h7" color="text.secondary">
+            <Typography variant="h7" color="text.secondary" sx={{fontFamily:"PFStardust"}}>
               {user.mbti !== null ? user.mbti : "뭘까요?"} / {user.position}
             </Typography>
           </CardContent>
