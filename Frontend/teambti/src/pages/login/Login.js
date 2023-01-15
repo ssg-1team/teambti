@@ -56,7 +56,7 @@ export default function Login({ isLoggedIn, login }) {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: "100vh" }}>
+        <Grid container component="main" sx={{ height: "100%", backgroundColor:'black' }}>
           <CssBaseline />
           <Grid
             item

@@ -12,6 +12,7 @@ import CharacterTest from "./pages/character/CharacterTest";
 
 const Router = ({ isLoggedIn, login }) => {
   return (
+    <div style={{height:'100%', backgroundColor:'black'}}>
     <BrowserRouter>
       <Routes>
         <Route
@@ -20,7 +21,7 @@ const Router = ({ isLoggedIn, login }) => {
           element={
             isLoggedIn ? <Main login={login} /> : <Login login={login} />
           }
-        ></Route>
+          ></Route>
 
         {/* 캐릭터화면 */}
         <Route path="/characterTest" element={<CharacterTest />}></Route>
@@ -42,6 +43,7 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/comparisionarrow" element={<ComparisionArrow />}></Route>
       </Routes>
     </BrowserRouter>
+          </div>
   );
 };
 

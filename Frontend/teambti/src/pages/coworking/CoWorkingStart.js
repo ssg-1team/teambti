@@ -12,6 +12,7 @@ import {
   Toolbar,
   Box,
   Button
+
 } from "@mui/material";
 
 import Slider from "react-slick";
@@ -30,16 +31,11 @@ function CoworkingStart({getDataCoWorkingStart}) {
     }
 
     return (
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Link to = '/coworking3'> 
-                <Button>질문 수 적음 버튼</Button>
-            </Link>
-            <Link to = '/coworking5'> 
-                <Button>질문 수 보통 버튼</Button>
-            </Link>
-            <Link to = '/coworking7'> 
-                <Button>질문 수 많음 버튼</Button>
-            </Link>
+        <Container maxWidth="lg" sx={{width:'100%', height:'100%', backgroundColor:'violet'}}>
+            <Button variant="contained" sx={{ width: '33%', height: '100%'}} component={Link} to="/coworking3">12 
+            Questions</Button>
+            <Button variant="contained" sx={{ width: '33%', height: '100%'}}component={Link} to="/coworking5">20<br></br>Questions</Button>
+            <Button variant="contained" sx={{ width: '33%', height: '100%'}}component={Link} to="/coworking7">28 Questions</Button>
         </Container>
     );
 }
