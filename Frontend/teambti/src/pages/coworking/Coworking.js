@@ -449,7 +449,16 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
                     fontSize:20,
                     transition:'all 1s',
                     ":hover":{
-                      backgroundColor:'#FFD495', 
+                      backgroundColor: 
+                       key==='E' ? '#ff6961' : 
+                      (key==='I' ? '#ffb480' : 
+                      (key==='S' ? '#f8f38d' : 
+                      (key==='N' ? '#42d6a4' : 
+                      (key==='F' ? '#08cad1' : 
+                      (key==='T' ? '#59adf6' : 
+                      (key==='J' ? '#9d94ff' : 
+                      (key==='P' ? '#c780e8' : 
+                       '#ffffff'))))))), 
                       color:`white`,
                       fontSize:25
                     }
