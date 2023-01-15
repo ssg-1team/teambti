@@ -32,9 +32,9 @@ function CoworkingStart({getDataCoWorkingStart}) {
 
     return (
         <Container maxWidth="lg" sx={{height:'100%', display:'flex', justifyContent:'center'}}>
-            <Button variant="contained" sx={{ margin:'2%', width: '30%', height: '93%', textAlign:'center', backgroundColor:'gray'}}component={Link} to="/coworking3"><div style={{fontSize:20}}><div style={{fontSize:100}}>12</div>Questions</div></Button>
-            <Button variant="contained" sx={{ margin:'2%', width: '30%', height: '93%', textAlign:'center', backgroundColor:'gray'}}component={Link} to="/coworking5"><div style={{fontSize:20}}><div style={{fontSize:100}}>20</div>Questions</div></Button>
-            <Button variant="contained" sx={{ margin:'2%', width: '30%', height: '93%', textAlign:'center', backgroundColor:'gray'}}component={Link} to="/coworking7"><div style={{fontSize:20}}><div style={{fontSize:100}}>28</div>Questions</div></Button>
+            <Button variant="contained" sx={{ margin:'2%', width: '30%', height: '93%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#FAAB78', color:"white", fontSize:100}}}component={Link} to="/coworking3"><div>12<div style={{fontSize:20}}>Questions</div></div></Button>
+            <Button variant="contained" sx={{ margin:'2%', width: '30%', height: '93%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#FAAB78', color:"white", fontSize:100}}}component={Link} to="/coworking5"><div>20<div style={{fontSize:20}}>Questions</div></div></Button>
+            <Button variant="contained" sx={{ margin:'2%', width: '30%', height: '93%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#FAAB78', color:"white", fontSize:100}}}component={Link} to="/coworking7"><div>28<div style={{fontSize:20}}>Questions</div></div></Button>
         </Container>
     );
 }

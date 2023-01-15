@@ -22,6 +22,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { style } from "@mui/system";
 import { Link } from "react-router-dom";
+import LeftDrawer from "../../components/base/LeftDrawer";
 
 function LinearProgressWithLabel(props) {
   return (
@@ -435,13 +436,26 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
               }}
             >
               {Object.entries(question).map(([key, value]) => (
-                <button style={{width:"50%", height:"100%"}}
-                  onClick={() => {
-                    updateQuestions(key, value);
-                  }}
-                >
-                  <div style={{fontSize:40}}>{value}</div>
-                </button>
+                <Button 
+                  style={{
+                    width:"50%", 
+                    height:"100%", 
+                    }} 
+                  onClick={() => {updateQuestions(key, value)}}
+                  sx={{ 
+                    textAlign:'center', 
+                    backgroundColor:'gray', 
+                    color:"white",
+                    fontSize:20,
+                    transition:'all 1s',
+                    ":hover":{
+                      backgroundColor:'#FFD495', 
+                      color:`white`,
+                      fontSize:25
+                    }
+                  }}>
+                    <div>{value}</div>
+                </Button>
               ))}
             </div>
           ))}
