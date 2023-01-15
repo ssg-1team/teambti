@@ -409,9 +409,9 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
   // console.log(myRecomanded)
 
   return (
-    <div style={{height:"100%", backgroundColor:'black'}}>
+    <div style={{height:'100%',display: 'flex', flexDirection:'column'}}>
       {questionsNumber * 4 > questionsNowNumber ? (
-        <div style={{height:"100%"}}>
+        <div style={{height:"100%", display:'flex', flexDirection:'column'}}>
           <Box sx={{ width: '100%', height:'20px' }}>
             <LinearProgressWithLabel value={progress} />
           </Box>
@@ -430,17 +430,17 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
           {/* <div>{questionsNowNumber + 1} / {questionsNumber * 4}</div> */}
           {myQuestions.map((question, index) => (
             <div
-              style={{
+              style={{ height:'100%', backgroundColor:'violet', display:'flex', flexDirection:'column',
                 display: questionsNowNumber == index ? "block" : "none", marginTop: 10,
               }}
             >
               {Object.entries(question).map(([key, value]) => (
-                <button style={{width:"45%", height:"45%"}}
+                <button style={{width:"50%", height:"100%"}}
                   onClick={() => {
                     updateQuestions(key, value);
                   }}
                 >
-                  <div>{value}</div>
+                  <div style={{fontSize:40}}>{value}</div>
                 </button>
               ))}
             </div>
