@@ -18,6 +18,10 @@ import axios from "axios";
 import { API_HOST } from '../../constant/index';
 import html2canvas from 'html2canvas';
 
+// 0번
+import back0 from "../../assets/image/parts/back/0.png";
+import acc0 from "../../assets/image/parts/acc/0.png";
+
 // 1번
 import ears1 from "../../assets/image/parts/ears/1.png";
 import head1 from "../../assets/image/parts/head/1.png";
@@ -83,6 +87,7 @@ import body8 from "../../assets/image/parts/body/8.png";
 import back8 from "../../assets/image/parts/back/8.png";
 import acc8 from "../../assets/image/parts/acc/8.png";
 // 9번
+import ears9 from "../../assets/image/parts/ears/9.png";
 import mouth9 from "../../assets/image/parts/mouth/9.png";
 import eyes9 from "../../assets/image/parts/eyes/9.png";
 import body9 from "../../assets/image/parts/body/9.png";
@@ -262,7 +267,8 @@ function Character() {
       <Grid container spacing={0}>
         <Grid container xs={8}>
           <Grid xs={4}>
-            {/* <Accordion expanded>
+          <div style={{overflowY:"auto", maxHeight:"566px"}}>
+            <Accordion expanded>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1bh-content"
@@ -283,8 +289,7 @@ function Character() {
                     <button onClick={() => {setMyHead(8)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head8} alt="" /></button>
                   </Typography>
                 </AccordionDetails>
-              </Accordion> */}
-            <div style={{overflowY:"auto", maxHeight:"566px"}}>
+              </Accordion>
             <Accordion
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
@@ -361,6 +366,14 @@ function Character() {
                     className={styles.CharacterBtn}
                   >
                     <img style={{ width: "30px" }} src={ears8} alt="" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMyEars(9);
+                    }}
+                    className={styles.CharacterBtn}
+                  >
+                    <img style={{ width: "30px" }} src={ears9} alt="" />
                   </button>
                 </Typography>
               </AccordionDetails>
@@ -716,6 +729,14 @@ function Character() {
                 <Typography>
                   <button
                     onClick={() => {
+                      setMyAcc(0);
+                    }}
+                    className={styles.CharacterBtn}
+                  >
+                    <img style={{ width: "30px" }} src={acc0} alt="" />
+                  </button>
+                  <button
+                    onClick={() => {
                       setMyAcc(1);
                     }}
                     className={styles.CharacterBtn}
@@ -794,6 +815,14 @@ function Character() {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
+                  <button
+                    onClick={() => {
+                      setMyBack(0);
+                    }}
+                    className={styles.CharacterBtn}
+                  >
+                    <img style={{ width: "30px" }} src={back0} alt="" />
+                  </button>
                   <button
                     onClick={() => {
                       setMyBack(1);
@@ -889,7 +918,7 @@ function Character() {
           </Grid>
           <Grid xs={8}>
             <div style={{position:"relative"}} id="myCharacterDiv">
-              <div>안녕하세요?</div>
+
               <div style={{backgroundColor:"red", width:"400px"}}></div>
               <div style={{position:"absolute",top:"0", left:"0"}}>
               <img 
