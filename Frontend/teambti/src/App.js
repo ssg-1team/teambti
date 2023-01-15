@@ -6,7 +6,7 @@ import "./App.css";
 import Header from "./components/base/Header";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
 
   const login = (bool) => {
     setisLoggedIn(bool);

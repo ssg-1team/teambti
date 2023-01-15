@@ -449,7 +449,16 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
                     fontSize:20,
                     transition:'all 1s',
                     ":hover":{
-                      backgroundColor:'#FFD495', 
+                      backgroundColor: 
+                       key==='E' ? '#ff6961' : 
+                      (key==='I' ? '#ffb480' : 
+                      (key==='S' ? '#f8f38d' : 
+                      (key==='N' ? '#42d6a4' : 
+                      (key==='F' ? '#08cad1' : 
+                      (key==='T' ? '#59adf6' : 
+                      (key==='J' ? '#9d94ff' : 
+                      (key==='P' ? '#c780e8' : 
+                       '#ffffff'))))))), 
                       color:`white`,
                       fontSize:25
                     }
@@ -471,14 +480,16 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
         </div>
       ) : (
         <div>
-        <Link to='/coworking'>
-          <button>다시하기</button>
-        </Link>
-          <div>Coworking : {MBTI}</div>
+          <div>님과 어울리는 MBTI
+            <div>{MBTI}</div>
+          </div>
           {myTeamListSelected.map((member, index) => (
             <div>{index + 1}번째 추천 : {member.mbti}, {member.e_id}, {member.content}, {member.position}, {member.name}</div>
           ))}
           {/* mbti로 이제 사람 찾는 로직 구현 */}
+        <Link to='/coworking'>
+          <button>다시하기</button>
+        </Link>
         </div>
       )}
     </div>

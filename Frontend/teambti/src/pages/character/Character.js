@@ -262,7 +262,7 @@ function Character() {
   };
 
   return (
-    <div>
+    <div style={{height:'100%', backgroundColor:'red'}}>
       
       <Grid container spacing={0}>
         <Grid container xs={8}>

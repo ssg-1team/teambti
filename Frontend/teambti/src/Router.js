@@ -9,6 +9,7 @@ import Mypage from "./pages/mypage/Mypage";
 import Character from "./pages/character/Character";
 import ComparisionArrow from "./components/ComparisionArrow";
 import CharacterTest from "./pages/character/CharacterTest";
+import Mentomenti from "./pages/mentomenti/MentoMenti";
 
 const Router = ({ isLoggedIn, login }) => {
   return (
@@ -27,11 +28,13 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/characterTest" element={<CharacterTest />}></Route>
         <Route path="/character" exact element={<Character />}></Route>
 
-        {/* 업무할당 */}
+        {/* coworking */}
         <Route path="/coworking" exact element={<CoworkingStart/>}></Route>
         <Route path="/coworking3" exact element={<Coworking questionsNumber={3}/>}></Route>
         <Route path="/coworking5" exact element={<Coworking questionsNumber={5}/>}></Route>
         <Route path="/coworking7" exact element={<Coworking questionsNumber={7}/>}></Route>
+        {/* mentomenti */}
+        <Route path="/mentomenti" exact element={<Mentomenti/>}></Route>
 
         {/* 1:1 성격 비교 */}
         <Route path="/comparison" exact element={<Comparison />}></Route>
