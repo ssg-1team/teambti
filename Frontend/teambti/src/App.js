@@ -21,9 +21,9 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
+    <div className="App" style={{fontFamily:'Pretendard-Regular'}}>
       {/* 합칠 수 있는 방법이 없나 */}
-      {isLoggedIn && <Header login={login} />}
+      {isLoggedIn && <Header  login={login} />}
       {isLoggedIn ?
       <div className="body-wrapper">
         <Router></Router>
