@@ -31,7 +31,7 @@ const LeftDrawer = () => {
   };
 
   return (
-    <>
+    <div>
       <Fragment key={"left"}>
         <IconButton onClick={toggleDrawer("left", true)} size="large" sx={{color:"#F38181"}}>
           <AccessibilityNewIcon fontSize="inherit"/>
@@ -44,7 +44,7 @@ const LeftDrawer = () => {
           <MyProfile />
         </Drawer>
       </Fragment>
-    </>
+    </div>
   );
 };
 

@@ -21,7 +21,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App" style={{backgroundColor:"#FFD4B2"}}>
+    <div className="App">
       {/* 합칠 수 있는 방법이 없나 */}
       {isLoggedIn && <Header login={login} />}
       {isLoggedIn ?
