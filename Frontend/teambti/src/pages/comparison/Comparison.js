@@ -70,7 +70,7 @@ function Comparision() {
                             alignItems="center"
                             
                         >
-                            <Grid item xs={6}>
+                            <Grid item xs={6} sx={{ml:18}}>
                                 <Card sx={{ Width: "100%", height : "100%"}}>
                                     <CardMedia
                                     component="img"
@@ -124,7 +124,7 @@ function Comparision() {
                             justifyContent="center"
                             alignItems="center"
                         >
-                            <Grid item xs={6}>
+                            <Grid item xs={6} sx={{mr:18}}>
                                 <Card sx={{ Width: "100%", height : "100%" }}>
                                     <CardMedia
                                     component="img"
