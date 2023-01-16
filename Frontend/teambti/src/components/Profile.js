@@ -72,7 +72,7 @@ export default function Profile({ user, key }) {
             <Typography gutterBottom variant="h6" component="div">
               {user.name}
             </Typography>
-            <Typography variant="h7" color="text.secondary" sx={{fontFamily:"PFStardust"}}>
+            <Typography variant="h7" color="text.secondary">
               {user.mbti !== null ? user.mbti : "뭘까요?"} / {user.position}
             </Typography>
           </CardContent>
