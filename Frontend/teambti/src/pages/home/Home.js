@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Toolbar, Box } from "@mui/material";
+import { Container } from "@mui/material";
 import { API_HOST } from "../../constant";
 
 import Slider from "react-slick";
@@ -51,7 +51,6 @@ function Home() {
   return (
     <> 
       <Container maxWidth="lg" sx={{display: { xs: "none", md:"none", lg: "block" }}}>
-
         <Slider
           {...settings_lg}
           sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
@@ -64,7 +63,7 @@ function Home() {
           )}
         </Slider>
       </Container>
-      <Container maxWidth="lg" sx={{ mt: 15, mb: 4, display: { xs: "none", md:"block", lg: "none" }}}>
+      <Container maxWidth="md" sx={{ display: { xs: "none", md:"block", lg: "none" }}}>
         <Slider
           {...settings_md}
           sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
@@ -77,7 +76,7 @@ function Home() {
           )}
         </Slider>
       </Container>
-      <Container maxWidth="lg" sx={{ mt: 15, mb: 4, display: { xs: "block", md:"none", lg: "none" }}}>
+      <Container maxWidth="xs" sx={{ display: { xs: "block", md:"none", lg: "none" }}}>
         <Slider
           {...settings_xs}
           sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}

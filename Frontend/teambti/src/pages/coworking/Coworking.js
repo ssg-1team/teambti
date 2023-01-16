@@ -234,8 +234,8 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
         },
       })
       .then((response) => {
-        setEmps(response.data);
         // console.log(response.data)
+        setEmps(response.data);
         myTeamList = response.data.map(function(data){
           return [data.e_id, data.mbti, data.position, data.name, data.content]
         })
@@ -252,7 +252,7 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
       })
       .then((response) => {
         // setEmps(response.data);
-        // console.log(response.data)
+        console.log(response.data)
         // myTeamList = response.data.map(function(data){
         //   return [data.e_id, data.mbti, data.position, data.name, data.content]
         // })
@@ -384,11 +384,13 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
   // let myTeamList = ['ESTJ', 'ESTP', 'ENTP', 'INFJ', 'ESTJ', 'ESFP', 'ISTJ', 'ENFP', 'ESFJ', 'ENTJ'];
   let myTeamListSelected = []
   // ex) [4, 3, 2, 1, 4, 2, 3, 1, 3, 3]
-
+  console.log('myTeamList', myTeamList)
   // 팀의 MBTI와 문자열 일치 정도 파악
   let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, content])=> {
     let cnt = 0;
+    
     for (let i =0;i<4;i++){
+      if (!mbti) continue
       if (selectMBTI[i] == mbti[i]) {
         cnt += 1;
       } 
