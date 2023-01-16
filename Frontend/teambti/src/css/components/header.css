@@ -8,3 +8,10 @@
   color: orange;
   margin-right: 0.5em;
 }
+
+/* header */
+.css-1ab7a8b-MuiPaper-root-MuiAppBar-root {
+  /* position:relative;
+  z-index: 999; */
+  height:8vh;
+}

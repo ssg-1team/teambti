@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "./pages/main/Main";
-import Login from "./pages/login/Login";
 import Coworking from "./pages/coworking/Coworking";
 import CoworkingStart from "./pages/coworking/CoWorkingStart";
 import Comparison from "./pages/comparison/Comparison";
@@ -10,7 +8,6 @@ import ComparisionArrow from "./components/ComparisionArrow";
 import CharacterTest from "./pages/character/CharacterTest";
 import Mentomenti from "./pages/mentomenti/MentoMenti";
 import Home from "./pages/home/Home";
-import Header from "./components/base/Header";
 
 const Router = () => {
   return (
