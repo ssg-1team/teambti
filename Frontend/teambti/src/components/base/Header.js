@@ -13,11 +13,11 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import "../../css/header.css";
 import LeftDrawer from "./LeftDrawer";
 import myTheme from "./MyTheme";
 import { ThemeProvider } from "@emotion/react";
 import { ButtonGroup } from "@mui/material";
+import "../../css/components/header.css";
 
 const pages = [
   { name: "멘토찾기", link: "/mentomenti" },
