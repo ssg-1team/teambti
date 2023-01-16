@@ -227,7 +227,7 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     const e_id = parseInt(localStorage.getItem('e_id'));
     // const [emps, setEmps] = useState([]);
     axios
-      .get(`${API_HOST}/member/getAll/`,{
+      .get(`${API_HOST}/member/getAll/${e_id}`,{
         headers: {
           "Access-Control-Allow-Origin" : "*",
           "Content-Type": "application/json",
