@@ -20,8 +20,8 @@ import { ThemeProvider } from "@emotion/react";
 import { ButtonGroup } from "@mui/material";
 
 const pages = [
-  { name: "Mento-Menti", link: "/mentomenti" },
-  { name: "Co-Working", link: "/coworking" },
+  { name: "멘토찾기", link: "/mentomenti" },
+  { name: "도움요청", link: "/coworking" },
 ];
 
 const Header = ({ login }) => {
@@ -49,7 +49,7 @@ const Header = ({ login }) => {
     login(false);
   };
 
-  return (
+ return (
     <ThemeProvider theme={myTheme}>
       <AppBar position="static">
         <Container maxWidth="xl">
@@ -113,7 +113,7 @@ const Header = ({ login }) => {
                 flexGrow: 1,
                 fontFamily: "PFStardust",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: "     .3rem",
                 textDecoration: "none",
               }}
             >
@@ -144,12 +144,23 @@ const Header = ({ login }) => {
                 >
                       Logout
                 </Button>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
+              ))}
+              <Button
+                variant="outlined"
+                onClick={handleLogout}
+                sx={{ fontFamily:'', fontSize:17, textTransform:'none', my: 1, color: "black", display: "block" }}
+              >
+                    로그아웃
+              </Button>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
     </ThemeProvider>
+    <div style={{height:2, backgroundColor:'#ff6961'}}></div>
+    </div>
   );
 };
+
 
 export default Header;

@@ -120,7 +120,7 @@ const questionsMentomentiFT = [
     },
     {
         "F":"좋다&나쁘다 판단하는 사람",
-        "T":"옳다&아니다 판단하는 사름"
+        "T":"옳다&아니다 판단하는 사람"
     },
 ]
 const questionsMentomentiJP = [
