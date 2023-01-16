@@ -1,83 +1,105 @@
 import React, { useState } from "react";
-import { Avatar, Button, CssBaseline, FormControlLabel, Link, Paper, Box, Grid, Typography, Checkbox, TextField } from '@mui/material/';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
-import { API_HOST } from '../../constant';
-import Main from "../main/Main";
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  FormControlLabel,
+  Link,
+  Paper,
+  Box,
+  Grid,
+  Typography,
+  Checkbox,
+  TextField,
+} from "@mui/material/";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import { API_HOST } from "../../constant";
+import Main from "../main/Main2";
 
 const theme = createTheme();
 
-export default function Login({isLoggedIn, login}) {
-
+export default function Login({ isLoggedIn, login }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const fData = new FormData(event.currentTarget);
     const data = {
-      id: fData.get('email'),
-      password: fData.get('password'),
-		};
+      id: fData.get("email"),
+      password: fData.get("password"),
+    };
 
-		axios
-			.post(`${API_HOST}/member/login`, data, {
-				headers: {
-					// 'Access-Control-Allow-Origin' : '*',
-					"Content-Type": "application/json",
-				},
-			})
-			.then((response) => {
-        localStorage.setItem('e_id', response.data.e_id);
+    axios
+      .post(`${API_HOST}/member/login`, data, {
+        headers: {
+          // 'Access-Control-Allow-Origin' : '*',
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        localStorage.setItem("e_id", response.data.e_id);
         login(true);
         console.log(response);
-			})
-			.catch((error) => {
-				const status = error?.response?.status;
-				if (status === undefined) {
-					console.dir("데이터 오류" + JSON.stringify(error));
-				} else if (status === 400) {
-					console.dir("400에러");
-				} else if (status === 500) {
-					console.dir("내부 서버 오류");
-				}
-			});
+      })
+      .catch((error) => {
+        const status = error?.response?.status;
+        if (status === undefined) {
+          console.dir("데이터 오류" + JSON.stringify(error));
+        } else if (status === 400) {
+          console.dir("400에러");
+        } else if (status === 500) {
+          console.dir("내부 서버 오류");
+        }
+      });
   };
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid container component="main" sx={{ height: "100%", backgroundColor:'black' }}>
           <CssBaseline />
           <Grid
             item
             xs={false}
-            sm={4}
-            md={7}
+            sm={6}
+            md={8}
             sx={{
-              backgroundImage: 'url(https://source.unsplash.com/random)',
-              backgroundRepeat: 'no-repeat',
-              backgroundColor: (t) =>
-                t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+
             }}
           />
-          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            component={Paper}
+            elevation={6}
+            square
+          >
             <Box
               sx={{
+                fontFamily:"Pretendard-Regular",
                 my: 8,
                 mx: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-              </Avatar>
               <Typography component="h1" variant="h5">
-                Sign in
+                <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+                <div>
+                <img src={require(`../../assets/image/login_gif.gif`)} style={{width:200}} alt=""/>
+                </div>
+                <div style={{fontFamily:"Pretendard-Regular"}}>MBTI로 우리팀 바로 알기, TEAMBTI</div>
+                </div>
               </Typography>
-              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+                sx={{ mt: 1 }}
+              >
                 <TextField
                   margin="normal"
                   required
@@ -98,31 +120,22 @@ export default function Login({isLoggedIn, login}) {
                   id="password"
                   autoComplete="current-password"
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign In
+                  Login
                 </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link href="#" variant="body2">
-                      {"Don't have an account? Sign Up"}
-                    </Link>
-                  </Grid>
-                </Grid>
               </Box>
+              <br></br>
+              <br></br>
+              <div style={{ fontSize: "15px" }}>
+              우) 04529 서울 중구 남대문시장10길 2 MESA 빌딩
+              <br />
+              COPYRIGHT (c) 2022. TEAM_1. All rights reserved.
+            </div>
             </Box>
           </Grid>
         </Grid>

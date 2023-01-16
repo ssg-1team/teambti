@@ -1,0 +1,10 @@
+.navbar {
+  font-size: 2rem;
+  padding: 1em;
+  background-color: blanchedalmond;
+}
+
+.navbar-logo {
+  color: orange;
+  margin-right: 0.5em;
+}
