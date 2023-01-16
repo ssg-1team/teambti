@@ -5,22 +5,21 @@ import Login from "./pages/login/Login";
 import Coworking from "./pages/coworking/Coworking";
 import CoworkingStart from "./pages/coworking/CoWorkingStart";
 import Comparison from "./pages/comparison/Comparison";
-import Mypage from "./pages/mypage/Mypage";
 import Character from "./pages/character/Character";
 import ComparisionArrow from "./components/ComparisionArrow";
 import CharacterTest from "./pages/character/CharacterTest";
 import Mentomenti from "./pages/mentomenti/MentoMenti";
+import Home from "./pages/home/Home";
 
 const Router = ({ isLoggedIn, login }) => {
   return (
-    <div style={{height:'100%'}}>
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
           exact
           element={
-            isLoggedIn ? <Main login={login} /> : <Login login={login} />
+            isLoggedIn ? <Home login={login} /> : <Login login={login} />
           }
           ></Route>
 
@@ -46,7 +45,6 @@ const Router = ({ isLoggedIn, login }) => {
         <Route path="/comparisionarrow" element={<ComparisionArrow />}></Route>
       </Routes>
     </BrowserRouter>
-          </div>
   );
 };
 

@@ -58,8 +58,8 @@ function Comparision() {
 
     return(
         <Container maxWidth='flex' id="half">
-            <Grid container spacing={2}  >
-                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 10, mb: 4}}>
+            <Grid container spacing={2} >
+                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 3}}>
                     <Box>
                         <Grid
                             container
@@ -88,7 +88,7 @@ function Comparision() {
                                         textAlign: "center",
                                         fontSize: "h5.fontSize",
                                         fontWeight: "medium",
-                                        p: 2,
+                                        p: 1,
                                     
                                     }}
                                 >
@@ -99,8 +99,8 @@ function Comparision() {
                                         textAlign: "center",
                                         fontSize: "h8.fontSize",
                                         fontWeight: "medium",
-                                        p: 2,
-                                        mb: 3
+                                        p: 1,
+                                        mb: 1
                                     }}
                                 >
                                     {mbtiInfo.map(
@@ -110,57 +110,11 @@ function Comparision() {
                                         )
                                     )}
                                 </Box>
-                                <Box sx={{ width: '100%', typography: 'body1' }}>
-                                    <TabContext value={value}>
-                                        <Box sx={{ bgcolor:"white", borderRadius:1, mb:1, boxShadow:24}}>
-                                            <TabList 
-                                                onChange={handleChange} 
-                                                aria-label="lab API tabs example" 
-                                                textColor="primary"
-                                                indicatorColor="primary" centered
-                                                
-                                            >
-                                                <Tab label="성격 장점" value="1" />
-                                                <Tab label="성격 단점" value="2" />
-                                                <Tab label="업무 스타일" value="3" />
-                                            </TabList>
-                                        </Box>
-                                        <Box sx={{ bgcolor:"white", borderRadius:1, height:200}}>
-                                            <TabPanel value="1">
-                                                {mbtiInfo.map(
-                                                (mbti, id) =>
-                                                    mbti.mbti == userMbti && (
-                                                    mbti.good.map((good) => <li>{good}</li>)
-                                                    )
-                                                )}
-
-                                            </TabPanel>
-                                            <TabPanel value="2">
-                                                {mbtiInfo.map(
-                                                (mbti, id) =>
-                                                    mbti.mbti == userMbti && (
-                                                    mbti.bad.map((bad) => <li>{bad}</li>)
-                                                    )
-                                                )}
-
-                                            </TabPanel>
-                                            <TabPanel value="3">
-                                                {mbtiInfo.map(
-                                                (mbti, id) =>
-                                                    mbti.mbti == userMbti && (
-                                                        mbti.work.map((work) => <li>{work}</li>)
-                                                    )
-                                                )}
-
-                                            </TabPanel>
-                                        </Box>
-                                    </TabContext>
-                                </Box>
                             </Grid>
                         </Grid>
                     </Box>
                 </Grid>
-                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 10, mb: 4}}>
+                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 3}}>
                     <Box
                         sx={{
                         display: "flex",
@@ -176,7 +130,7 @@ function Comparision() {
                         <ComaparisionArrow user1={userMbti} user2={other.state.other.mbti}/>
                     </Box>
                 </Grid>
-                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 10, mb: 4}}>
+                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 3}}>
                     <Box>
                         <Grid
                             container
@@ -204,7 +158,7 @@ function Comparision() {
                                     textAlign: "center",
                                     fontSize: "h6.fontSize",
                                     fontWeight: "medium",
-                                    p: 2,
+                                    p: 1,
                                     }}
                                 >
                                     {other.state.other.name} / {other.state.other.mbti}
@@ -214,8 +168,8 @@ function Comparision() {
                                     textAlign: "center",
                                     fontSize: "h8.fontSize",
                                     fontWeight: "medium",
-                                    p: 2,
-                                    mb: 3
+                                    p: 1,
+                                    mb: 1
                                     }}
                                 >
                                     {mbtiInfo.map(
@@ -225,51 +179,101 @@ function Comparision() {
                                         )
                                     )}
                                 </Box>
-                                <Box sx={{ width: '100%', typography: 'body1' }}>
-                                    <TabContext value={value}>
-                                        <Box sx={{ bgcolor:"white", borderRadius:1, mb:1, boxShadow:24 }}>
-                                            <TabList onChange={handleChange} aria-label="lab API tabs example" centered>
-                                                <Tab label="성격 장점" value="1" />
-                                                <Tab label="성격 단점" value="2" />
-                                                <Tab label="업무 스타일" value="3" />
-                                            </TabList>
-                                        </Box>
-                                        <Box sx={{ bgcolor:"white", borderRadius:1, height:200}}>
-                                            <TabPanel value="1">
-                                                {mbtiInfo.map(
-                                                (mbtiinfo, id) =>
-                                                    mbtiinfo.mbti == other.state.other.mbti && (
-                                                    mbtiinfo.good.map((good) => <li>{good}</li>)
-                                                    )
-                                                )}
-
-                                            </TabPanel>
-                                            <TabPanel value="2">
-                                                {mbtiInfo.map(
-                                                (mbtiinfo, id) =>
-                                                    mbtiinfo.mbti == other.state.other.mbti && (
-                                                    mbtiinfo.bad.map((bad) => <li>{bad}</li>)
-                                                    )
-                                                )}
-
-                                            </TabPanel>
-                                            <TabPanel value="3">
-                                                {mbtiInfo.map(
-                                                (mbtiinfo, id) =>
-                                                    mbtiinfo.mbti == other.state.other.mbti && (
-                                                    mbtiinfo.work.map((work) => <li>{work}</li>)
-                                                    )
-                                                )}
-
-                                            </TabPanel>
-                                        </Box>
-                                    </TabContext>
-                                </Box>
                             </Grid>
                         </Grid>
                     </Box>
                 </Grid>
-            </Grid>
+								<Grid item xs={6}>
+									<Box sx={{ width: '100%', typography: 'body1' }}>
+											<TabContext value={value}>
+													<Box sx={{ bgcolor:"white", borderRadius:1, mb:1, boxShadow:24}}>
+															<TabList 
+																	onChange={handleChange} 
+																	aria-label="lab API tabs example" 
+																	textColor="primary"
+																	indicatorColor="primary" centered
+																	
+															>
+																	<Tab label="성격 장점" value="1" />
+																	<Tab label="성격 단점" value="2" />
+																	<Tab label="업무 스타일" value="3" />
+															</TabList>
+													</Box>
+													<Box sx={{ bgcolor:"white", borderRadius:1}}>
+															<TabPanel value="1">
+																	{mbtiInfo.map(
+																	(mbti, id) =>
+																			mbti.mbti == userMbti && (
+																			mbti.good.map((good) => <li>{good}</li>)
+																			)
+																	)}
+
+															</TabPanel>
+															<TabPanel value="2">
+																	{mbtiInfo.map(
+																	(mbti, id) =>
+																			mbti.mbti == userMbti && (
+																			mbti.bad.map((bad) => <li>{bad}</li>)
+																			)
+																	)}
+
+															</TabPanel>
+															<TabPanel value="3">
+																	{mbtiInfo.map(
+																	(mbti, id) =>
+																			mbti.mbti == userMbti && (
+																					mbti.work.map((work) => <li>{work}</li>)
+																			)
+																	)}
+															</TabPanel>
+													</Box>
+											</TabContext>
+									</Box>
+
+								</Grid>
+								<Grid item xs={6}>
+								<Box sx={{ width: '100%', typography: 'body1' }}>
+										<TabContext value={value}>
+												<Box sx={{ bgcolor:"white", borderRadius:1, mb:1, boxShadow:24 }}>
+														<TabList onChange={handleChange} aria-label="lab API tabs example" centered>
+																<Tab label="성격 장점" value="1" />
+																<Tab label="성격 단점" value="2" />
+																<Tab label="업무 스타일" value="3" />
+														</TabList>
+												</Box>
+												<Box sx={{ bgcolor:"white", borderRadius:1}}>
+														<TabPanel value="1">
+																{mbtiInfo.map(
+																(mbtiinfo, id) =>
+																		mbtiinfo.mbti == other.state.other.mbti && (
+																		mbtiinfo.good.map((good) => <li>{good}</li>)
+																		)
+																)}
+
+														</TabPanel>
+														<TabPanel value="2">
+																{mbtiInfo.map(
+																(mbtiinfo, id) =>
+																		mbtiinfo.mbti == other.state.other.mbti && (
+																		mbtiinfo.bad.map((bad) => <li>{bad}</li>)
+																		)
+																)}
+
+														</TabPanel>
+														<TabPanel value="3">
+																{mbtiInfo.map(
+																(mbtiinfo, id) =>
+																		mbtiinfo.mbti == other.state.other.mbti && (
+																		mbtiinfo.work.map((work) => <li>{work}</li>)
+																		)
+																)}
+
+														</TabPanel>
+												</Box>
+										</TabContext>
+								</Box>
+								</Grid>
+						</Grid>													
         </Container>
     );
 
