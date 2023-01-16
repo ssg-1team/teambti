@@ -20,7 +20,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App" style={{}}>
+    <div className="App">
       {isLoggedIn && <Header login={login} />}
       <div className="body-wrapper">
         <Router isLoggedIn={isLoggedIn} login={login}></Router>

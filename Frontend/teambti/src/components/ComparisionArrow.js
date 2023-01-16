@@ -13,7 +13,7 @@ import { Typography } from '@mui/material';
 export default function ComparisionArrow({user1, user2}) {
   return (
     <>
-      <div style={{marginTop:"50px", justifyContent:"center", textAlign:"center"}}>
+      <div style={{marginTop:"80px", justifyContent:"center", textAlign:"center"}}>
         <Typography sx={{bgcolor:"#F38181", pl:2, pr:2, pt:1, pb:1, borderRadius:3, boxShadow:4, color:"white"}}>
           {matchingInfo.map(
             (info, id) =>
