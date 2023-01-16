@@ -102,11 +102,9 @@ const Header = ({ login }) => {
               </Menu>
             </Box>
             <Typography
-              variant="h3"
               noWrap
               component="a"
               href="/"
-              color="secondary.light"
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },
@@ -117,7 +115,11 @@ const Header = ({ login }) => {
                 textDecoration: "none",
               }}
             >
-              TEAMBTI
+              <Typography sx={{display: { ':hover':{cursor:'pointer'}} }}>
+              <a href="/" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+              <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
+              </a>
+            </Typography>
             </Typography>
             <Box sx={{ color:"black", flexGrow: 0, display: { xs: "none", md: "flex" } }}>
               <Button
