@@ -49,7 +49,8 @@ const Header = ({ login }) => {
     login(false);
   };
 
- return (
+  return (
+    <div>
     <ThemeProvider theme={myTheme}>
       <AppBar position="static">
         <Container maxWidth="xl">
@@ -137,14 +138,6 @@ const Header = ({ login }) => {
                     {page.name}
                   </Button>
                 ))}
-                <Button
-                  variant="outlined"
-                  onClick={handleLogout}
-                  sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
-                >
-                      Logout
-                </Button>
-              ))}
               <Button
                 variant="outlined"
                 onClick={handleLogout}
