@@ -17,15 +17,13 @@ function App() {
     if (e_id != null) {
       setisLoggedIn(true);
     }
-  }, []);
+  }, [])
 
   return (
-    <div className="App" style={{height:"100%", boxSizing:"border-box", display:'flex', flexDirection:'column', backgroundColor:"#FFD4B2"}}>
-      <div>
+    <div className="App" style={{backgroundColor:"#FFD4B2"}}>
       {isLoggedIn && <Header login={login} />}
-      </div>
-      <div style={{height:'100%'}}>
-      <Router isLoggedIn={isLoggedIn}  login={login}></Router>
+      <div className="body-wrapper">
+        <Router isLoggedIn={isLoggedIn} login={login}></Router>
       </div>
     </div>
   );
