@@ -10,18 +10,13 @@ import ComparisionArrow from "./components/ComparisionArrow";
 import CharacterTest from "./pages/character/CharacterTest";
 import Mentomenti from "./pages/mentomenti/MentoMenti";
 import Home from "./pages/home/Home";
+import Header from "./components/base/Header";
 
-const Router = ({ isLoggedIn, login }) => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          exact
-          element={
-            isLoggedIn ? <Home login={login} /> : <Login login={login} />
-          }
-          ></Route>
+        <Route path="/" exact element={<Home />}></Route>
 
         {/* 캐릭터화면 */}
         <Route path="/characterTest" element={<CharacterTest />}></Route>
