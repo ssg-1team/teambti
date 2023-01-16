@@ -18,7 +18,7 @@ function Home() {
   // #####[s]삭제NO
   useEffect(() => {
     axios
-      .get(`${API_HOST}/member/getAll`, {
+      .get(`${API_HOST}/member/getAll/${e_id}`, {
         headers: {
           // "Access-Control-Allow-Origin" : "*",
           "Content-Type": "application/json",
