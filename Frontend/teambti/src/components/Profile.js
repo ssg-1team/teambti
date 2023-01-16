@@ -15,7 +15,7 @@ import { API_HOST } from "../constant";
 import axios from "axios";
 import EmpModal from "./EmpModal";
 import { tags_list } from "../constant/mock";
-import { smallButtonStyle } from "./_shared.module";
+import { smallButtonStyle, flexButtonStyle } from "./_shared.module";
 import { Link } from "react-router-dom";
 
 export default function Profile({ user, key }) {
@@ -72,18 +72,18 @@ export default function Profile({ user, key }) {
             <Typography gutterBottom variant="h6" component="div">
               {user.name}
             </Typography>
-            <Typography variant="h7" color="text.secondary" sx={{fontFamily:"PFStardust"}}>
+            <Typography variant="h7" color="text.secondary">
               {user.mbti !== null ? user.mbti : "뭘까요?"} / {user.position}
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions sx={{ justifyContent:"center", jusalignItems:"center"}}>
           <Link 
             to={`/comparison`}
             state={{other : user}}
             style={{ textDecoration: "none" }}
           >
-            <Button sx={smallButtonStyle}>
+            <Button sx={flexButtonStyle} variant="contained" >
               성격비교 
             </Button>
           </Link>

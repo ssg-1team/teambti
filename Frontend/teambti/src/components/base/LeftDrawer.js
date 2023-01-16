@@ -12,6 +12,8 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Profile from "../Profile";
 import MyProfile from "../MyProfile";
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import { IconButton } from "@mui/material";
 
 const LeftDrawer = () => {
   const [state, setState] = useState({
@@ -31,7 +33,9 @@ const LeftDrawer = () => {
   return (
     <div>
       <Fragment key={"left"}>
-        <Button sx={{color:'red'}} onClick={toggleDrawer("left", true)}>Left</Button>
+        <IconButton onClick={toggleDrawer("left", true)} size="large" sx={{color:"#F38181"}}>
+          <AccessibilityNewIcon fontSize="inherit"/>
+        </IconButton>
         <Drawer
           anchor={"left"}
           open={state["left"]}

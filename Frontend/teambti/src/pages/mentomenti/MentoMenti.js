@@ -336,29 +336,16 @@ function Mentomenti() {
   // console.log(myRecomanded)
 
   return (
-    <div style={{height:'100%',display: 'flex', flexDirection:'column'}}>
+    <div style={{height:"100%", width:"100%"}}>
       {20 > questionsNowNumber ? (
-        <div style={{height:"100%", display:'flex', flexDirection:'column'}}>
-          <Box sx={{ width: '100%', height:'20px' }}>
+        <div style={{height:"100%", width:"100%"}}>
+          <Box sx={{ width: '100%'}}>
             <LinearProgressWithLabel value={progress} />
           </Box>
-          {/* <button>
-            {EI}, {EICnt}
-          </button>
-          <button>
-            {NS}, {NSCnt}
-          </button>
-          <button>
-            {FT}, {FTCnt}
-          </button>
-          <button>
-            {JP}, {JPCnt}
-          </button> */}
-          {/* <div>{questionsNowNumber + 1} / {questionsNumber * 4}</div> */}
           {myQuestions.map((question, index) => (
             <div
-              style={{ height:'100%', backgroundColor:'violet', display:'flex', flexDirection:'column',
-                display: questionsNowNumber == index ? "block" : "none", marginTop: 10,
+              style={{ height:'94.7%', backgroundColor:'violet', display:'flex', flexDirection:'column',
+                display: questionsNowNumber == index ? "block" : "none"
               }}
             >
               {Object.entries(question).map(([key, value]) => (

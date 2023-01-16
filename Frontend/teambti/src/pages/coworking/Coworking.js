@@ -470,8 +470,8 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
           {/* <div>{questionsNowNumber + 1} / {questionsNumber * 4}</div> */}
           {myQuestions.map((question, index) => (
             <div
-              style={{ height:'100%', backgroundColor:'violet', display:'flex', flexDirection:'column',
-                display: questionsNowNumber == index ? "block" : "none", marginTop: 10,
+              style={{ height:'94.7%', backgroundColor:'violet', display:'flex', flexDirection:'column',
+                display: questionsNowNumber == index ? "block" : "none",
               }}
             >
               {Object.entries(question).map(([key, value]) => (

@@ -49,8 +49,7 @@ function Home() {
   // [e]
 
   return (
-    // <div style={{height:'100%', backgroundColor:'yellow'}}>
-    <div > 
+    <> 
       <Container maxWidth="lg" sx={{display: { xs: "none", md:"none", lg: "block" }}}>
 
         <Slider
@@ -91,7 +90,7 @@ function Home() {
           )}
         </Slider>
       </Container>
-    </div>
+    </>
   );
 }
 
