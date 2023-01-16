@@ -22,10 +22,10 @@ public class CharacterApiController {
     	String result = "Success";
     	int r = 0;
     	int cnt = characterService.getCharCnt(params.getE_id());
-    	if (cnt > 0) {
+    	if (cnt > 0) { // 캐릭터가 이미 존재하면
     		// update
     		r = characterService.updateChar(params);
-    	} else {
+    	} else { // 없으면
     		// insert
     		r = characterService.setChar(params);
     	}

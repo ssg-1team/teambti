@@ -4,10 +4,10 @@
     
 	<insert id="setChar" parameterType="com.shinsegae.teambti.CharacterVO">
 		INSERT INTO `character`(
-			head, ear, mouth, eye, body, accessory, background, e_id
+			head, ear, mouth, eye, body, accessory, background, e_id, completed
 		)
 		VALUES (
-			#{head}, #{ear}, #{mouth}, #{eye}, #{body}, #{accessory}, #{background}, #{e_id}
+			#{head}, #{ear}, #{mouth}, #{eye}, #{body}, #{accessory}, #{background}, #{e_id}, #{completed}
 		);
 	</insert>
 
@@ -23,7 +23,9 @@
 	
 	<update id="updateChar" parameterType="com.shinsegae.teambti.CharacterResponseVO">
 		UPDATE `character` 
-		SET head = #{head}, ear = #{ear}, mouth = #{mouth}, eye=#{eye}, body = #{body}, accessory = #{accessory}, background = #{background}
+		SET head = #{head}, ear = #{ear}, mouth = #{mouth}, eye=#{eye}
+			, body = #{body}, accessory = #{accessory}, background = #{background}
+			, completed = #{completed}
 		WHERE e_id=#{e_id}
 	</update>
 </mapper>

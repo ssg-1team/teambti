@@ -14,6 +14,6 @@ public class CharacterVO {
 	private int body;
 	private int accessory;
 	private int background;
-//	private String completed;
+	private String completed;
 	
 }

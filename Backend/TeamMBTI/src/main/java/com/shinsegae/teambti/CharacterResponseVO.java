@@ -13,5 +13,5 @@ public class CharacterResponseVO {
 	private int body;
 	private int accessory;
 	private int background;
-//	private String completed;
+	private String completed; // 완성된 캐릭터 이미지 url
 }
