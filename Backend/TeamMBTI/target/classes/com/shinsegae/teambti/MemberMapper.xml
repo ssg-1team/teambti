@@ -16,10 +16,14 @@
 			AND password = #{password}
     </select>
     
-	<select id="getAll" resultType="com.shinsegae.teambti.MemberResponseVO">
-		SELECT e.*, m.`type` as MBTI
+	<select id="getAll" parameterType="int" resultType="com.shinsegae.teambti.MemberResponseVO">
+	 	SELECT e.*, m.`type` AS MBTI
 		FROM employ e
-		LEFT JOIN mbti m on e.m_id = m.m_id
+		LEFT JOIN mbti m ON e.m_id = m.m_id
+		WHERE e.D_ID = (
+			SELECT d_id  FROM employ e 
+			WHERE e_id = #{e_id}
+		);
 	</select>
 
 	<select id="getEmp" parameterType="int" resultType="com.shinsegae.teambti.MemberResponseVO">
@@ -27,18 +31,22 @@
 		FROM employ e
 		LEFT JOIN mbti m ON e.m_id = m.m_id
 		LEFT JOIN `character` c ON e.e_id = c.e_id
-		WHERE e.e_id = #{e_id};
+		WHERE e.e_id = #{e_id}
 	</select>
 
 	<update id="setMbti" parameterType="com.shinsegae.teambti.MemberVO">
-		UPDATE employ 
-		SET m_id = #{m_id}
-		WHERE e_id=#{e_id}
+		UPDATE employ e, `character` c
+		SET e.m_id = #{m_id}, 
+			c.COMPLETED = (
+			SELECT m.BASEIMAGE FROM mbti m 
+			WHERE  M_ID = #{m_id}
+			)
+		WHERE e.e_id=#{e_id} and c.e_id = #{e_id}
 	</update>
 
 	<select id="getTag" parameterType="int" resultType="com.shinsegae.teambti.MemberResponseVO">
 		SELECT e_id, t_id, content FROM tag
-		WHERE e_id = #{id};
+		WHERE e_id = #{id}
 	</select>
 	
 	<insert id="setTag" parameterType="com.shinsegae.teambti.MemberVO" useGeneratedKeys="true" keyProperty="t_id">
@@ -52,13 +60,13 @@
 	
 	<delete id="deleteTag" parameterType="com.shinsegae.teambti.MemberVO">
 		DELETE FROM tag 
-		WHERE t_id = #{t_id};
+		WHERE t_id = #{t_id}
 	</delete>
 	
 	<insert id="setDefaultTag" parameterType="com.shinsegae.teambti.MemberVO">
 		INSERT INTO tag(content, e_id)
 		SELECT mt.content, e.e_id FROM mbti_tag mt , employ e 
-		WHERE e.e_id = #{e_id} and mt.m_id = e.m_id;
+		WHERE e.e_id = #{e_id} and mt.m_id = e.m_id
 	</insert>
 	
 	<insert id="loginLog" parameterType="int">

@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberMapper {
 	
 	LoginResponseVO login(MemberVO param);
-	List<MemberResponseVO> getAll();
+	List<MemberResponseVO> getAll(int id);
 	MemberResponseVO getEmp(int id);
 	int setMbti(MemberVO vo);
 	List<MemberResponseVO> getTag(int id);

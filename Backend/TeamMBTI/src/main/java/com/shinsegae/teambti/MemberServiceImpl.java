@@ -17,8 +17,8 @@ public class MemberServiceImpl implements MemberService {
 		return entity;
 	}
 	
-	public List<MemberResponseVO> getAll() {
-		List<MemberResponseVO> entity = memberMapper.getAll();
+	public List<MemberResponseVO> getAll(int id) {
+		List<MemberResponseVO> entity = memberMapper.getAll(id);
 		return entity;
 	}
 	

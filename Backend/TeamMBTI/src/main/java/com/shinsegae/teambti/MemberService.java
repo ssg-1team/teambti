@@ -5,7 +5,7 @@ import java.util.List;
 public interface MemberService {
 	
 	public LoginResponseVO login(MemberVO vo);
-	public List<MemberResponseVO> getAll();
+	public List<MemberResponseVO> getAll(int id);
 	public MemberResponseVO getEmp(int id);
 	public int setMbti(MemberVO vo);
 	public List<MemberResponseVO> getTag(int id);

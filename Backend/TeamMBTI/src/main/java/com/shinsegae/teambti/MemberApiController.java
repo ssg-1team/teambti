@@ -18,6 +18,7 @@ public class MemberApiController {
 	
 	@Autowired
 	MemberService memberService;
+	CharacterService characterService;
 
 	@GetMapping(value="/get", produces="text/plain;charset=utf-8")
 	public String get() {
@@ -32,9 +33,9 @@ public class MemberApiController {
     }
     
     // home > 직원 불러오기
-    @GetMapping("/getAll")
-    public List<MemberResponseVO> getAll() {
-    	List<MemberResponseVO> entity = memberService.getAll();
+    @GetMapping("/getAll/{id}")
+    public List<MemberResponseVO> getAll(@PathVariable int id) {
+    	List<MemberResponseVO> entity = memberService.getAll(id);
         return entity;
     }
     
@@ -50,10 +51,7 @@ public class MemberApiController {
     public String setMbti(@RequestBody MemberVO params) {
     	String result = "Success";
     	try {
-    		int r = memberService.setMbti(params);
-    		if (r < 1) {
-    			result = "0건 처리 : fail";
-    		}
+    		memberService.setMbti(params);
     	} catch(Exception e) {
     		result="Exception : fail";
     	}
