@@ -7,6 +7,7 @@ import Character from "./pages/character/Character";
 import ComparisionArrow from "./components/ComparisionArrow";
 import CharacterTest from "./pages/character/CharacterTest";
 import Mentomenti from "./pages/mentomenti/MentoMenti";
+import MentomentiStart from "./pages/mentomenti/MentoMentiStart";
 import Home from "./pages/home/Home";
 
 const Router = () => {
@@ -20,11 +21,12 @@ const Router = () => {
         <Route path="/character" exact element={<Character />}></Route>
 
         {/* coworking */}
-        <Route path="/coworking" exact element={<CoworkingStart/>}></Route>
+        <Route path="/coworkingstart" exact element={<CoworkingStart/>}></Route>
         <Route path="/coworking3" exact element={<Coworking questionsNumber={3}/>}></Route>
         <Route path="/coworking5" exact element={<Coworking questionsNumber={5}/>}></Route>
         <Route path="/coworking7" exact element={<Coworking questionsNumber={7}/>}></Route>
         {/* mentomenti */}
+        <Route path="/mentomentistart" exact element={<MentomentiStart/>}></Route>
         <Route path="/mentomenti" exact element={<Mentomenti/>}></Route>
 
         {/* 1:1 성격 비교 */}

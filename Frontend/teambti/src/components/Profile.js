@@ -18,10 +18,9 @@ import { tags_list } from "../constant/mock";
 import { smallButtonStyle, flexButtonStyle } from "./_shared.module";
 import { Link } from "react-router-dom";
 
-export default function Profile({ user, key }) {
+export default function Profile({ user, key, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
-
   const e_id = user.e_id;
 
   const handleOpen = () => {
@@ -57,7 +56,8 @@ export default function Profile({ user, key }) {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box>
+    <Box style={{position:'relative'}}>
+      {ranking > 0 ? <img style={{position:'absolute', top:0, left:0, width:100, zIndex:20}} src={require(`../assets/image/icon/medal${ranking}.png`)} alt=""/> : <></>}
       <Card sx={{ width: "100%" }}>
         <CardActionArea onClick={handleOpen}>
           <CardMedia
@@ -69,25 +69,28 @@ export default function Profile({ user, key }) {
             alt="IMAGE"
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="div">
-              {user.name}
+            <Typography gutterBottom>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+              <div><span style={{fontSize:25}}>{user.name}</span> <span>{user.position}</span></div>
+              <div style={{fontSize:30}}>{user.mbti !== null ? user.mbti : "MBTI"}</div>
+              </div>
             </Typography>
-            <Typography variant="h7" color="text.secondary">
-              {user.mbti !== null ? user.mbti : "뭘까요?"} / {user.position}
-            </Typography>
+            <div style={{width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+              <Button style={{width:'45%'}} variant="contained" >
+                프로필
+              </Button>
+              <Link 
+                to={`/comparison`}
+                state={{other : user}}
+                style={{ textDecoration: "none", width:'45%'}}
+                >
+                <Button variant="contained" style={{width:'100%'}} >
+                  성격비교 
+                </Button>
+              </Link>
+            </div>
           </CardContent>
         </CardActionArea>
-        <CardActions sx={{ justifyContent:"center", jusalignItems:"center"}}>
-          <Link 
-            to={`/comparison`}
-            state={{other : user}}
-            style={{ textDecoration: "none" }}
-          >
-            <Button sx={flexButtonStyle} variant="contained" >
-              성격비교 
-            </Button>
-          </Link>
-        </CardActions>
         <EmpModal
           user={user}
           open={open}
