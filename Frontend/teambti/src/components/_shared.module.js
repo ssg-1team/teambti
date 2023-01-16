@@ -30,7 +30,6 @@ export const smallButtonStyle = {
   fontWeight: "1000",
   display: "inline",
   // fontFamily: "GangwonEduSaeeum_OTFMediumA",
-  fontFamily:"PFStardust",
   "&:hover": {
     bgcolor: "#FFD4B2",
   },
