@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/Tag.css";
+import "../css/components/tag.css";
 import axios from 'axios';
 import { API_HOST } from '../constant';
 import userEvent from "@testing-library/user-event";

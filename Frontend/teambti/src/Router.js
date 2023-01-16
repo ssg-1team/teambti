@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "./pages/main/Main";
-import Login from "./pages/login/Login";
 import Coworking from "./pages/coworking/Coworking";
 import CoworkingStart from "./pages/coworking/CoWorkingStart";
 import Comparison from "./pages/comparison/Comparison";
@@ -11,17 +9,11 @@ import CharacterTest from "./pages/character/CharacterTest";
 import Mentomenti from "./pages/mentomenti/MentoMenti";
 import Home from "./pages/home/Home";
 
-const Router = ({ isLoggedIn, login }) => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          exact
-          element={
-            isLoggedIn ? <Home login={login} /> : <Login login={login} />
-          }
-          ></Route>
+        <Route path="/" exact element={<Home />}></Route>
 
         {/* 캐릭터화면 */}
         <Route path="/characterTest" element={<CharacterTest />}></Route>
