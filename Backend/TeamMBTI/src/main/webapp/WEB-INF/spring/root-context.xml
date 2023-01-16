@@ -20,8 +20,8 @@
 		<property name="minimumIdle" value="20" />
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://teambti.cmhhzjrbfo8p.ap-northeast-2.rds.amazonaws.com:3306/teambti" />
-		<property name="username" value="teambti" /> 
-		<property name="password" value="teambti1234" /> 		
+		<property name="username" value="teambti" />
+		<property name="password" value="teambti1234" />
 	</bean>	
 
 	<!-- mybatis SqlSessionFactoryBean -->

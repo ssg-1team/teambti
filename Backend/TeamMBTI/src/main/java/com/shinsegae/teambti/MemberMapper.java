@@ -15,4 +15,6 @@ public interface MemberMapper {
 	int setTag(MemberVO vo);
 	int deleteTag(MemberVO vo);
 	int setDefaultTag(MemberVO vo);
+	int loginLog(int id);
+	int loginCnt(int id);
 }

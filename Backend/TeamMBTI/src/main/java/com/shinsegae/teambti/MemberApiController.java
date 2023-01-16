@@ -95,18 +95,41 @@ public class MemberApiController {
     	return result;    	
     }
     
-    @PostMapping("/setDefaultTag")
-    public String setDefaultTag(@RequestBody MemberVO params) {
+    @PostMapping("/setDefaultTag/{id}")
+    public String setDefaultTag(@RequestBody MemberVO params, @PathVariable int id) {
     	String result = "Success set Default Tags";
-    	try {
-    		int r = memberService.setDefaultTag(params);
+    	int cnt = memberService.loginCnt(id);
+    	if (cnt < 2) { // 처음 로그인을 하였을 때
+    		int r = memberService.setDefaultTag(params); // 디폴트 태그 설정
+    		// 디폴트 이미지 설정
+    		// 디폴트 파츠가 저장되어있는 테이블 만들기
     		if (r < 1) {
-    			result = "0건 처리 : fail";
+			result = "0건 처리 : fail";
     		}
-    	} catch(Exception e) {
-    		
-    		result="Exception : fail";
     	}
+//    	try {
+//    		int r = memberService.setDefaultTag(params);
+//    		if (r < 1) {
+//    			result = "0건 처리 : fail";
+//    		}
+//    	} catch(Exception e) {
+//    		
+//    		result="Exception : fail";
+//    	}
     	return result;
+    }
+    
+    // 로그인 기록 남기기
+    @PostMapping("/loginLog")
+    public String loginLog(@RequestBody int id) {
+    	String result = "Success";
+    	memberService.loginLog(id);
+    	return result;
+    }
+    
+    @GetMapping("/loginCnt/{id}")
+    public int loginCnt(@PathVariable int id) {
+    	int r = memberService.loginCnt(id);
+    	return r;
     }
 }

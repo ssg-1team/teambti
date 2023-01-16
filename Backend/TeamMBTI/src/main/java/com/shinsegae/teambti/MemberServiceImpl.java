@@ -51,4 +51,14 @@ public class MemberServiceImpl implements MemberService {
 		int r = memberMapper.setDefaultTag(vo);
 		return r;
 	}
+	
+	public int loginLog(int id) {
+		int r = memberMapper.loginLog(id);
+		return r;
+	}
+	
+	public int loginCnt(int id) {
+		int cnt = memberMapper.loginCnt(id);
+		return cnt;
+	}
 }

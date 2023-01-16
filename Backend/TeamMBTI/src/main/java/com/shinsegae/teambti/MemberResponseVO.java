@@ -12,6 +12,10 @@ public class MemberResponseVO {
 	private String mbti;
 	private String name;
 	
+	// tag
 	private int t_id;
-	private String content; // tag
+	private String content; // tag 내용
+	
+	// image
+	private String image; // image url
 }

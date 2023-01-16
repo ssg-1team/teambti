@@ -12,4 +12,6 @@ public interface MemberService {
 	public int setTag(MemberVO vo);
 	public int deleteTag(MemberVO vo);
 	public int setDefaultTag(MemberVO vo);
+	public int loginLog(int id);
+	public int loginCnt(int id);
 }
