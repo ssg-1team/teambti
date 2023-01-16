@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.cb724890.css",
-    "main.js": "/static/js/main.d26a6698.js",
+    "main.css": "/static/css/main.63cf94d1.css",
+    "main.js": "/static/js/main.dc2e7d0f.js",
     "static/js/787.3345da90.chunk.js": "/static/js/787.3345da90.chunk.js",
     "static/media/login_gif.gif": "/static/media/login_gif.eb6d3a59de7333170b2c.gif",
     "static/media/10.png": "/static/media/10.26dbc54da185f782c4c4.png",
@@ -17,6 +17,9 @@
     "static/media/5.png": "/static/media/5.f80bd5a6acc159de88fd.png",
     "static/media/12.png": "/static/media/12.5bc19811dfd00b508fea.png",
     "static/media/7.png": "/static/media/7.7acd2bd7849ebd611e29.png",
+    "static/media/medal2.png": "/static/media/medal2.9147fb88f18523f4e13a.png",
+    "static/media/medal3.png": "/static/media/medal3.39ac075cdc0f7eb962e9.png",
+    "static/media/medal1.png": "/static/media/medal1.4bdad9f09dbedebf3b4a.png",
     "static/media/15.png": "/static/media/15.3fbf1057edde251f54c5.png",
     "static/media/13.png": "/static/media/13.b998eb1e9b399bf5b9d8.png",
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -24,12 +27,12 @@
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.cb724890.css.map": "/static/css/main.cb724890.css.map",
-    "main.d26a6698.js.map": "/static/js/main.d26a6698.js.map",
+    "main.63cf94d1.css.map": "/static/css/main.63cf94d1.css.map",
+    "main.dc2e7d0f.js.map": "/static/js/main.dc2e7d0f.js.map",
     "787.3345da90.chunk.js.map": "/static/js/787.3345da90.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cb724890.css",
-    "static/js/main.d26a6698.js"
+    "static/css/main.63cf94d1.css",
+    "static/js/main.dc2e7d0f.js"
   ]
 }

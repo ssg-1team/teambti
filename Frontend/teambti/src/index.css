@@ -19,10 +19,13 @@ code {
 }
 
 .body-wrapper {
-  height:88vh;
+  height:87.5vh;
   display: flex;
   align-items: center;
   padding:2vh;
+  /* padding-top:2vh;
+  padding-bottom:2vh; */
+  /* background-color: brown; */
 }
 
 /* progress bar */

@@ -20,8 +20,9 @@ import { ButtonGroup } from "@mui/material";
 import "../../css/components/header.css";
 
 const pages = [
-  { name: "멘토찾기", link: "/mentomenti" },
-  { name: "도움요청", link: "/coworking" },
+  { name: "홈", link: "/" },
+  { name: "멘토찾기", link: "/mentomentistart" },
+  { name: "도움요청", link: "/coworkingstart" },
 ];
 
 const Header = ({ login }) => {
@@ -50,7 +51,7 @@ const Header = ({ login }) => {
   };
 
   return (
-    <div>
+    <div style={{height:'8.5%', display:'flex', flexDirection:'column', backgroundColor:'green' ,boxSizing:'border-box'}}>
     <ThemeProvider theme={myTheme}>
       <AppBar position="static">
         <Container maxWidth="xl">
@@ -123,12 +124,6 @@ const Header = ({ login }) => {
             </Typography>
             </Typography>
             <Box sx={{ color:"black", flexGrow: 0, display: { xs: "none", md: "flex" } }}>
-              <Button
-                variant="outlined"
-                sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
-              >
-                <a style={{textDecoration:'none', color:'black'}} href="/">HOME</a>
-              </Button>
                 {pages.map((page, id) => (
                   <Button
                     variant="outlined"
@@ -143,7 +138,7 @@ const Header = ({ login }) => {
               <Button
                 variant="outlined"
                 onClick={handleLogout}
-                sx={{ fontFamily:'', fontSize:17, textTransform:'none', my: 1, color: "black", display: "block" }}
+                sx={{ fontFamily:'', fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
               >
                     로그아웃
               </Button>
@@ -152,7 +147,7 @@ const Header = ({ login }) => {
       </Container>
     </AppBar>
     </ThemeProvider>
-    <div style={{height:2, backgroundColor:'#ff6961'}}></div>
+    <div style={{height:'0.5vh', backgroundColor:'#ff6961'}}></div>
     </div>
   );
 };

@@ -32,7 +32,7 @@ function LinearProgressWithLabel(props) {
       <Box sx={{ width: '100%', height:'100%'}}>
         <LinearProgress variant="determinate" {...props} 
           sx={{
-            height:20,     
+            height:25,     
             backgroundColor: `#FFE8E8`,
             "& .MuiLinearProgress-bar": {
               backgroundColor: `#FFB4B4`
@@ -207,6 +207,7 @@ for (let i = 0; i < 7; i++) {
   myQuestions7.push(questionsCoWorkingFT[i]);
   myQuestions7.push(questionsCoWorkingJP[i]);
 }
+
 // 질문이 3/5/7개인 경우 case 분리
 // 질문 섞기
 function shuffle(array) {
@@ -218,7 +219,7 @@ shuffle(myQuestions7);
 // 질문 섞기
 let myTeamList = [[1, 'ESTJ'], [2, 'ESTP'], [3, 'ENTP'], [4, 'INFJ'], [5, 'ESTJ'], [6, 'ESFP'], [7, 'ISTJ'], [8, 'ENFP'], [9, 'ESFJ'], [10, 'ENTJ']];
 // Coworking 실행부
-function Coworking({ getDataCoWorking, questionsNumber }) {
+function Coworking({ questionsNumber }) {
 
   const [emps, setEmps] = useState([]);
   const [myName, setMyName] = useState('');
@@ -415,10 +416,12 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     return array;
   };
   // 일치하는 개수따라 분리 후 객체를 섞음
+  let myTeamSameNumberList0 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 0);
   let myTeamSameNumberList1 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 1);
   let myTeamSameNumberList2 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 2);
   let myTeamSameNumberList3 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 3);
   let myTeamSameNumberList4 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 4);
+  shuffleArray(myTeamSameNumberList0);
   shuffleArray(myTeamSameNumberList1);
   shuffleArray(myTeamSameNumberList2);
   shuffleArray(myTeamSameNumberList3);
@@ -435,47 +438,40 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     myTeamListSelected = myTeamSameNumberListSorted.slice(0,3);
   }
   
-  // let myRecomanded = myTeamListSelected.map((member)=> {
-  //   axios
-  //   .get(`${API_HOST}/member/getEmp/${member.e_id}/`,{
-  //     headers: {
-  //       "Access-Control-Allow-Origin" : "*",
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //   .then((response) => {
-  //     // console.log(response.data)
-  //     return response.data
-  //   })
-  // })
-  // console.log(myRecomanded)
+  let myRecomanded = myTeamListSelected.map((member)=> {
+    axios
+    .get(`${API_HOST}/member/getEmp/${member.e_id}/`,{
+      headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      // console.log(response.data)
+      return response.data
+    })
+  })
+  console.log(myRecomanded)
 
   return (
-    <div style={{height:'100%', display: 'flex', flexDirection:'column'}}>
+    <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
+    {/* <Box sx={{ width: `100%`, height:10, position:'absolute', top:'8.5vh', left:'0vh', zIndex:10}}> */}
+
+    <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column', backgroundColor:'yellow'}}>
       {questionsNumber * 4 > questionsNowNumber ? (
-        <div style={{height:"100%", display:'flex', flexDirection:'column'}}>
-          <Box sx={{ width: '100%', height:'10px' }}>
-            <LinearProgressWithLabel value={progress} />
-          </Box>
-          {/* <button>
-            {EI}, {EICnt}
-          </button>
-          <button>
-            {NS}, {NSCnt}
-          </button>
-          <button>
-            {FT}, {FTCnt}
-          </button>
-          <button>
-            {JP}, {JPCnt}
-          </button> */}
-          {/* <div>{questionsNowNumber + 1} / {questionsNumber * 4}</div> */}
+        <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
           {myQuestions.map((question, index) => (
             <div
-              style={{ height:'94.7%', backgroundColor:'violet', display:'flex', flexDirection:'column',
-                display: questionsNowNumber == index ? "block" : "none",
-              }}
-            >
+            style={{ height:'100%', display:'flex', flexDirection:'column',
+            display: questionsNowNumber == index ? "block" : "none",
+          }}
+          >
+            <Box sx={{ width: `100%`, height:25}}>
+              <LinearProgressWithLabel value={progress} />
+            </Box>
+            <div style={{width:'100%', height:50, fontSize:30, color:'white', backgroundColor:'rgba(0, 0, 0, 0.5)',position:'absolute', top:25, zIndex: 20, display:'flex', justifyContent:'center', alignItems:'center'}}>
+              {myName}님의 상황은 어떤가요?
+            </div>
               {Object.entries(question).map(([key, value]) => (
                 <Button 
                   style={{
@@ -521,7 +517,7 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
         </div>
       ) : (
         <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
-          <div style={{width:'25%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+          <div style={{fontFamily:'Pretendard-Regular', width:'25%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             {myName}님과 어울리는 MBTI
             <div>{MBTI}</div>
             <Link to='/coworking'>
@@ -538,6 +534,7 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
           ))}
         </div>
       )}
+    </div>
     </div>
   );
 }
