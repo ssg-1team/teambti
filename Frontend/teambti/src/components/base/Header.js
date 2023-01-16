@@ -20,8 +20,8 @@ import { ThemeProvider } from "@emotion/react";
 import { ButtonGroup } from "@mui/material";
 
 const pages = [
-  { name: "Mento-Menti", link: "/mentomenti" },
-  { name: "Co-Working", link: "/coworking" },
+  { name: "멘토찾기", link: "/mentomenti" },
+  { name: "도움요청", link: "/coworking" },
 ];
 
 const Header = ({ login }) => {
@@ -57,11 +57,11 @@ const Header = ({ login }) => {
         <Toolbar disableGutters>
           <LeftDrawer />
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }}}>
-          <Typography sx={{display: { ':hover':{cursor:'pointer'}} }}>
-            <a href="/" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-            <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
-            </a>
-          </Typography>
+            <Typography sx={{display: { ':hover':{cursor:'pointer'}} }}>
+              <a href="/" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+              <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
+              </a>
+            </Typography>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -123,9 +123,9 @@ const Header = ({ login }) => {
           <Box sx={{ color:"black", flexGrow: 0, display: { xs: "none", md: "flex" } }}>
             <Button
               variant="outlined"
-              sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
+              sx={{ fontSize:17, textTransform:'none', my: 1, color: "black", display: "block" }}
             >
-              <a style={{textDecoration:'none', color:'black'}} href="/">HOME</a>
+              <a style={{textDecoration:'none', color:'black'}} href="/">홈</a>
             </Button>
               {pages.map((page, id) => (
                 <Button
@@ -133,7 +133,7 @@ const Header = ({ login }) => {
                   key={id}
                   onClick={handleCloseNavMenu}
                   href={page.link}
-                  sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
+                  sx={{ fontSize:17, textTransform:'none', my: 1, color: "black", display: "block" }}
                 >
                   {page.name}
                 </Button>
@@ -141,16 +141,16 @@ const Header = ({ login }) => {
               <Button
                 variant="outlined"
                 onClick={handleLogout}
-                sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
+                sx={{ fontFamily:'', fontSize:17, textTransform:'none', my: 1, color: "black", display: "block" }}
               >
-                    Logout
+                    로그아웃
               </Button>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
     </ThemeProvider>
-    <div style={{height:3, backgroundColor:'#ff6961'}}></div>
+    <div style={{height:2, backgroundColor:'#ff6961'}}></div>
     </div>
   );
 };

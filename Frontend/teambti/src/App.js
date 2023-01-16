@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{height:"100%", boxSizing:"border-box", display:'flex', flexDirection:'column', backgroundColor:"#FFD4B2"}}>
+    <div className="App" style={{height:"100%", boxSizing:"border-box", display:'flex', flexDirection:'column'}}>
       <div>
       {isLoggedIn && <Header login={login} />}
       </div>

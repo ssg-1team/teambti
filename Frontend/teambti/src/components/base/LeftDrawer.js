@@ -29,9 +29,9 @@ const LeftDrawer = () => {
   };
 
   return (
-    <>
+    <div>
       <Fragment key={"left"}>
-        <Button onClick={toggleDrawer("left", true)}>Left</Button>
+        <Button sx={{color:'red'}} onClick={toggleDrawer("left", true)}>Left</Button>
         <Drawer
           anchor={"left"}
           open={state["left"]}
@@ -40,7 +40,7 @@ const LeftDrawer = () => {
           <MyProfile />
         </Drawer>
       </Fragment>
-    </>
+    </div>
   );
 };
 
