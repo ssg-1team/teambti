@@ -460,15 +460,15 @@ function Coworking({ questionsNumber }) {
     <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column', backgroundColor:'yellow'}}>
       {questionsNumber * 4 > questionsNowNumber ? (
         <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
+            <Box sx={{ width: `100%`, height:25}}>
+              <LinearProgressWithLabel value={progress} />
+            </Box>
           {myQuestions.map((question, index) => (
             <div
             style={{ height:'100%', display:'flex', flexDirection:'column',
             display: questionsNowNumber == index ? "block" : "none",
           }}
           >
-            <Box sx={{ width: `100%`, height:25}}>
-              <LinearProgressWithLabel value={progress} />
-            </Box>
             <div style={{width:'100%', height:50, fontSize:30, color:'white', backgroundColor:'rgba(0, 0, 0, 0.5)',position:'absolute', top:25, zIndex: 20, display:'flex', justifyContent:'center', alignItems:'center'}}>
               {myName}님의 상황은 어떤가요?
             </div>
