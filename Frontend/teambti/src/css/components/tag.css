@@ -18,25 +18,13 @@
 
 .tag-tag {
   margin: var(--margin_micro);
-  padding: 0 var(--padding_small);
+  padding: 0 var(--padding_micro);
   display: flex;
   width: auto;
   height: 30px;
   align-items: center;
   justify-content: center;
-  background-color: var(--purple);
   color: var(--white);
-  border-radius: var(--radius_small);
-}
-
-.tag-remove-button {
-  cursor: pointer;
-  margin-left: var(--margin_small);
-  padding: var(--padding_micro);
-  font-size: 10px;
-  border-radius: 50%;
-  background-color: var(--white);
-  color: var(--black);
 }
 
 .tag-input {
