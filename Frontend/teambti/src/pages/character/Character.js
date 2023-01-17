@@ -12,12 +12,12 @@ import Link from "@mui/material/Link";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { Box, CardActionArea } from "@mui/material";
+import { Box, Button, ButtonGroup, CardActionArea } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import axios from "axios";
 import { API_HOST } from '../../constant/index';
 import html2canvas from 'html2canvas';
-
+import { characterButtonStyle } from "./CharacterButtonStyle";
 // 0번
 import back0 from "../../assets/image/parts/back/0.png";
 import acc0 from "../../assets/image/parts/acc/0.png";
@@ -262,11 +262,9 @@ function Character() {
   };
 
   return (
-    <div style={{height:'100%', backgroundColor:'red'}}>
-      
-      <Grid container spacing={0}>
-        <Grid container xs={8}>
-          <Grid xs={4}>
+    <Container maxWidth='flex' sx={{height:'100%', width:'100%', backgroundColor:'#FFF6BD', borderRadius:'20px'}}>
+      <Grid container spacing={2} sx={{ ml:3, mr:0, mt: 3}}>
+        <Grid xs={4} >
           <div style={{overflowY:"auto", maxHeight:"566px"}}>
             <Accordion expanded>
                 <AccordionSummary
@@ -914,9 +912,10 @@ function Character() {
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            </div>
+          </div>
+          
           </Grid>
-          <Grid xs={8}>
+          <Grid xs={4}>
             <div style={{position:"relative"}} id="myCharacterDiv">
 
               <div style={{backgroundColor:"red", width:"400px"}}></div>
@@ -957,21 +956,35 @@ function Character() {
                 alt=""
               />
               </div>
+              <div>
+                
+              </div>
+              
             </div>
           </Grid>
+          <Grid xs={4} sx={{pt:15, pr:10}}>
+            <Tag/>
+            <Button variant="contained" style={{background:"#86C8BC"}} sx={{mt:10, width:'100%'}} href="/">
+                    홈으로 돌아가기
+            </Button>
+          <Grid>
         </Grid>
-        <Grid xs={4}>
-          <Tag />
+        
         </Grid>
+      
+        <ButtonGroup>
+                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={saveMyParts}>
+                    저장하기
+                  </Button>
+                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={downloadMyCharacter}>
+                    다운로드
+                  </Button>
+                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={setMyParts}>
+                    초기화
+                  </Button>
+                </ButtonGroup>
       </Grid>
-      <button onClick={saveMyParts}>설정</button>
-      <button onClick={downloadMyCharacter}>다운로드</button>
-      <button onClick={setMyParts}>초기화</button>
-      {/* <img src=""/> */}
-      <a id="target" style={{display:"none"}}>안녕?</a>
-      {/* <a id="target" style="display: none" href="#">다운로드</a> */}
-      {/* <></> */}
-    </div>
+    </Container>
   );
 }
 

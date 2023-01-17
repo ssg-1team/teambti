@@ -6,6 +6,8 @@ import userEvent from "@testing-library/user-event";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { Chip, TextField } from "@mui/material";
+import InputAdornment from '@mui/material/InputAdornment';
 
 export default function Tag () {
   // constants
@@ -40,7 +42,7 @@ export default function Tag () {
     if (e.target.value !== "") {
       // const newTags = [...tags, e.target.value];
       // setTags([...new Set(newTags.flat())]);
-      
+
       const data = {
         e_id: e_id,
         content : e.target.value
@@ -126,6 +128,7 @@ export default function Tag () {
     ...theme.typography.body2,
     padding: theme.spacing(2),
     textAlign: "center",
+    width: "92%",
     color: theme.palette.text.secondary,
   }));
 
@@ -134,22 +137,21 @@ export default function Tag () {
       <ul className="tag-tags">
         {tags.map((tag, idx) => (
           <li className="tag-tag" key={idx} id={tag.t_id}>
-            <span>{tag.content}</span>
-            <span
-              className="tag-remove-button"
-              onClick={() => removeTag(idx, tag.t_id)}
-            >
-              ❌
-            </span>
+            <Chip label={tag.content} onDelete={() => removeTag(idx, tag.t_id)} />
+
           </li>
         ))}
-        <input
-          className="tag-input"
-          type="text"
-          onKeyUp={(e) => (e.key === "Enter" ? addTag(e) : null)}
-          placeholder="Press enter to add tags"
-        />
       </ul>
+      <TextField
+          label="자신을 표현할 수 있는 태그 입력"
+          id="outlined-start-adornment"
+          sx={{ mt: 2, mb: 2, width: '100%' }}
+          onKeyUp={(e) => (e.key === "Enter" ? addTag(e) : null)}
+          InputProps={{
+            startAdornment: 
+              <InputAdornment position="start" >#</InputAdornment>,
+          }}
+        />
     </Item>
   );
 };

@@ -60,7 +60,7 @@ function Comparision() {
     return(
         <Container maxWidth='flex' id="half">
             <Grid container spacing={2} >
-                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 3}}>
+                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 2}}>
                     <Box>
                         <Grid
                             container
@@ -70,7 +70,7 @@ function Comparision() {
                             alignItems="center"
                             
                         >
-                            <Grid item xs={6} sx={{ml:18}}>
+                            <Grid item xs={6}>
                                 <Card sx={{ Width: "100%", height : "100%"}}>
                                     <CardMedia
                                     component="img"
@@ -99,15 +99,15 @@ function Comparision() {
                         </Grid>
                     </Box>
                 </Grid>
-                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 3}}>
+                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 2}}>
                     <Box
                         sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        "& > :not(style)": {
-                            width: "auto",
-                            height: "auto",
-                        },
+                            display: "flex",
+                            flexWrap: "wrap",
+                            "& > :not(style)": {
+                                width: "auto",
+                                height: "auto",
+                            },
                         justifyContent:"center",
                             alignItems:"center"
                         }}
@@ -115,7 +115,7 @@ function Comparision() {
                         <ComaparisionArrow user1={userMbti} user2={other.state.other.mbti}/>
                     </Box>
                 </Grid>
-                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 3}}>
+                <Grid item xs={4} sx={{ ml:0, mr:0, mt: 2}}>
                     <Box>
                         <Grid
                             container
@@ -124,7 +124,7 @@ function Comparision() {
                             justifyContent="center"
                             alignItems="center"
                         >
-                            <Grid item xs={6} sx={{mr:18}}>
+                            <Grid item xs={6}>
                                 <Card sx={{ Width: "100%", height : "100%" }}>
                                     <CardMedia
                                     component="img"
