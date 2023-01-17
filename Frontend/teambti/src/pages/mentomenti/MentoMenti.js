@@ -24,6 +24,7 @@ import { style } from "@mui/system";
 import { Link } from "react-router-dom";
 import LeftDrawer from "../../components/base/LeftDrawer";
 import Profile from "../../components/Profile";
+import ProfileMin from "../../components/ProfileMin";
 
 
 function LinearProgressWithLabel(props) {
@@ -424,13 +425,19 @@ function MentoMenti() {
               <button>다시하기</button>
             </Link>
           </div>
+          <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }}}>
           {myTeamListSelected.map((member, index) => (
-            <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                <Profile user={member} key={index} ranking={ranking[index]}>
-                  <div></div>
-                </Profile>
-            </div>
+                <Profile user={member} key={index} ranking={ranking[index]} />
+                // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                //     <Profile user={member} key={index} ranking={ranking[index]} />
+                // </div>
           ))}
+          </Container>
+          <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
+          {myTeamListSelected.map((member, index) => (
+              <ProfileMin user={member} key={index} ranking={ranking[index]} />
+          ))}
+          </Container>
         </div>
       )}
   </div>
