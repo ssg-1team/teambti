@@ -37,12 +37,13 @@ const MyProfile = () => {
     .then((response) => {
       if (!response.data.body) {
         alert('먼저 MBTI를 설정해주세요')
-        
+        document.location.href = 'http://localhost:3000/character';
         // 배포할때는 위에 내용으로 결정하기
         // document.location.href = 'http://teambti.site/character';
+        // document.location.href = 'http://localhost:3000/character';
       } else {
+        // document.location.href = 'http://localhost:3000/character';
         document.location.href = 'http://localhost:3000/character';
-        
       }
     })
   }

@@ -215,13 +215,13 @@ function Character() {
       },
     })
     .then((response) => {
-        setMyEars(response.data.ear);
-        setMyAcc(response.data.accessory);
-        setMyBody(response.data.body);
-        setMyEyes(response.data.eye);
-        setMyHead(response.data.head);
-        setMyMouth(response.data.mouth);
-        setMyBack(response.data.background);
+        // setMyEars(response.data.ear);
+        // setMyAcc(response.data.accessory);
+        // setMyBody(response.data.body);
+        // setMyEyes(response.data.eye);
+        // setMyHead(response.data.head);
+        // setMyMouth(response.data.mouth);
+        // setMyBack(response.data.background);
       }
       )
   }  
