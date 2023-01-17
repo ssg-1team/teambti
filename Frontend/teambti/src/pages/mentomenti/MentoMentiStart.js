@@ -25,9 +25,9 @@ function MentoMentiStart() {
 
     return (
         <Container maxWidth="lg" sx={{width:'100%', height:'100%', display:'flex', justifyContent:'center', flexDirection:'column'}}>
-            <div style={{width:'100%',height:'50%', backgroundColor:'red'}}>
+            {/* <div style={{width:'100%',height:'50%', backgroundColor:'red'}}>
                 멘토찾기 사용 방법
-            </div>
+            </div> */}
             <div style={{width:'100%',height:'50%'}}>
                 <Button variant="contained" sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '96%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#ff6961', color:"white", fontSize:100}}}component={Link} to="/mentomenti">시작</Button>
             </div>

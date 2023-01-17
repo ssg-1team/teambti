@@ -228,7 +228,6 @@ function Character() {
     const el = document.getElementById('myCharacterDiv');
     html2canvas(el, {width: 441, height:566}).then((canvas) => {
       let content = canvas.toDataURL('image/png', 1.0);
-      // console.log("content", content)
       const data = {
         "head" : myHead,
         "background" : myBack,
@@ -267,7 +266,7 @@ function Character() {
       <Grid container spacing={2} sx={{ ml:3, mr:0, mt: 3}}>
         <Grid xs={4} >
           <div style={{overflowY:"auto", maxHeight:"566px"}}>
-            <Accordion expanded>
+            {/* <Accordion expanded>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1bh-content"
@@ -288,7 +287,7 @@ function Character() {
                     <button onClick={() => {setMyHead(8)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head8} alt="" /></button>
                   </Typography>
                 </AccordionDetails>
-              </Accordion>
+              </Accordion> */}
             <Accordion
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
@@ -970,7 +969,7 @@ function Character() {
             </Button>
           <Grid>
         </Grid>
-        
+        <a id = 'target' style={{display:'none'}} href=""></a>
         </Grid>
       
         <ButtonGroup>
