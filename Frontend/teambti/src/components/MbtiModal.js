@@ -114,7 +114,7 @@ export default function MbtiModal({title}) {
             </Select>
           </FormControl>
           {/* <Tag /> */}
-          <Button onClick={save}>저장하기</Button>
+          <Button onClick={save} sx={bigButtonStyle}>저장하기</Button>
         </Box>
       </Modal>
     </>

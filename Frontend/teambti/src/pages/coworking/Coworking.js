@@ -23,12 +23,20 @@ import "slick-carousel/slick/slick-theme.css";
 import { style } from "@mui/system";
 import { Link } from "react-router-dom";
 import LeftDrawer from "../../components/base/LeftDrawer";
+import Profile from "../../components/Profile";
+
 
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ width: '100%'}}>
-        <LinearProgress variant="determinate" {...props} sx={{height:35}} />
+      <Box sx={{ width: '100%', height:'100%'}}>
+        <LinearProgress variant="determinate" {...props} 
+          sx={{
+            height:25,     
+            backgroundColor: `#FFE8E8`,
+            "& .MuiLinearProgress-bar": {
+              backgroundColor: `#FFB4B4`
+          }}} />
       </Box>
       {/* <Box sx={{ minWidth: 35 }}>
         <Typography variant="body2" color="text.danger">{`${Math.round(
@@ -39,25 +47,7 @@ function LinearProgressWithLabel(props) {
   );
 }
 
-const e_id = parseInt(localStorage.getItem('e_id'));
-// const [emps, setEmps] = useState([]);
-let myTeamList = [[1, 'ESTJ'], [2, 'ESTP'], [3, 'ENTP'], [4, 'INFJ'], [5, 'ESTJ'], [6, 'ESFP'], [7, 'ISTJ'], [8, 'ENFP'], [9, 'ESFJ'], [10, 'ENTJ']];
 
-axios
-  .get(`${API_HOST}/member/getAll/`,{
-    headers: {
-      "Access-Control-Allow-Origin" : "*",
-      "Content-Type": "application/json",
-    },
-  })
-  .then((response) => {
-    // setEmps(response.data);
-    // console.log(response.data)
-    myTeamList = response.data.map(function(data){
-      return [data.e_id, data.mbti, data.position, data.name, data.content]
-    })
-    // console.log(myTeamList);
-  })
 
 // ENFJ 우선순위 -> MBTICoWorking 선택지
 const questionsCoWorkingEI = [
@@ -104,8 +94,8 @@ const questionsCoWorkingNS = [
     S: "객관적인 사실 중요",
   },
   {
-    S: "일처리를 깔끔하게 처리해야 함",
-    N: "일처리를 신속하게 처리해야 함",
+    S: "일처리가 깔끔해야 함",
+    N: "일처리가 신속해야 함",
   },
   {
     N: "미래를 봐야 함",
@@ -217,6 +207,7 @@ for (let i = 0; i < 7; i++) {
   myQuestions7.push(questionsCoWorkingFT[i]);
   myQuestions7.push(questionsCoWorkingJP[i]);
 }
+
 // 질문이 3/5/7개인 경우 case 분리
 // 질문 섞기
 function shuffle(array) {
@@ -226,9 +217,56 @@ shuffle(myQuestions3);
 shuffle(myQuestions5);
 shuffle(myQuestions7);
 // 질문 섞기
+let myTeamList = [[1, 'ESTJ'], [2, 'ESTP'], [3, 'ENTP'], [4, 'INFJ'], [5, 'ESTJ'], [6, 'ESFP'], [7, 'ISTJ'], [8, 'ENFP'], [9, 'ESFJ'], [10, 'ENTJ']];
 // Coworking 실행부
-function Coworking({ getDataCoWorking, questionsNumber }) {
-  // 선택지 3/5/7 개수에 따라서 myQuestions 지정 
+function Coworking({ questionsNumber }) {
+
+  const [emps, setEmps] = useState([]);
+  const [myName, setMyName] = useState('');
+  // 선택지 3/5/7 개수에 따라서 myQuestions 지정
+  useEffect(() => {
+    const e_id = parseInt(localStorage.getItem('e_id'));
+    // const [emps, setEmps] = useState([]);
+    axios
+      .get(`${API_HOST}/member/getAll/${e_id}`,{
+        headers: {
+          "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data)
+        setEmps(response.data);
+        myTeamList = response.data.map(function(data){
+          return [data.e_id, data.mbti, data.position, data.name, data.content]
+        })
+        // console.log(myTeamList)
+        // console.log(myTeamList);
+        // console.log('여기임')
+      })
+    axios
+      .get(`${API_HOST}/member/getEmp/${e_id}`,{
+        headers: {
+          "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // setEmps(response.data);
+        console.log(response.data)
+        // myTeamList = response.data.map(function(data){
+        //   return [data.e_id, data.mbti, data.position, data.name, data.content]
+        // })
+        // console.log(myTeamList)
+        // console.log(myTeamList);
+        // console.log('여기임')
+        setMyName(response.data.name);
+      })
+  }, []) 
+  useEffect(()=>{
+    console.log(myTeamList)
+  },[myTeamList])
+
   let myQuestions = [];
   if (questionsNumber == 3) {
     myQuestions = myQuestions3;
@@ -347,11 +385,13 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
   // let myTeamList = ['ESTJ', 'ESTP', 'ENTP', 'INFJ', 'ESTJ', 'ESFP', 'ISTJ', 'ENFP', 'ESFJ', 'ENTJ'];
   let myTeamListSelected = []
   // ex) [4, 3, 2, 1, 4, 2, 3, 1, 3, 3]
-
+  console.log('myTeamList', myTeamList)
   // 팀의 MBTI와 문자열 일치 정도 파악
   let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, content])=> {
     let cnt = 0;
+    
     for (let i =0;i<4;i++){
+      if (!mbti) continue
       if (selectMBTI[i] == mbti[i]) {
         cnt += 1;
       } 
@@ -376,10 +416,12 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     return array;
   };
   // 일치하는 개수따라 분리 후 객체를 섞음
+  let myTeamSameNumberList0 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 0);
   let myTeamSameNumberList1 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 1);
   let myTeamSameNumberList2 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 2);
   let myTeamSameNumberList3 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 3);
   let myTeamSameNumberList4 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 4);
+  shuffleArray(myTeamSameNumberList0);
   shuffleArray(myTeamSameNumberList1);
   shuffleArray(myTeamSameNumberList2);
   shuffleArray(myTeamSameNumberList3);
@@ -396,47 +438,40 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
     myTeamListSelected = myTeamSameNumberListSorted.slice(0,3);
   }
   
-  // let myRecomanded = myTeamListSelected.map((member)=> {
-  //   axios
-  //   .get(`${API_HOST}/member/getEmp/${member.e_id}/`,{
-  //     headers: {
-  //       "Access-Control-Allow-Origin" : "*",
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //   .then((response) => {
-  //     // console.log(response.data)
-  //     return response.data
-  //   })
-  // })
-  // console.log(myRecomanded)
+  let myRecomanded = myTeamListSelected.map((member)=> {
+    axios
+    .get(`${API_HOST}/member/getEmp/${member.e_id}/`,{
+      headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      // console.log(response.data)
+      return response.data
+    })
+  })
+  console.log(myRecomanded)
 
   return (
-    <div style={{height:"100%", width:"100%"}}>
+    <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
+    {/* <Box sx={{ width: `100%`, height:10, position:'absolute', top:'8.5vh', left:'0vh', zIndex:10}}> */}
+
+    <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column', backgroundColor:'yellow'}}>
       {questionsNumber * 4 > questionsNowNumber ? (
-        <div style={{height:"100%", width:"100%"}}>
-          <Box sx={{ width: '100%'}}>
-            <LinearProgressWithLabel value={progress} />
-          </Box>
-          {/* <button>
-            {EI}, {EICnt}
-          </button>
-          <button>
-            {NS}, {NSCnt}
-          </button>
-          <button>
-            {FT}, {FTCnt}
-          </button>
-          <button>
-            {JP}, {JPCnt}
-          </button> */}
-          {/* <div>{questionsNowNumber + 1} / {questionsNumber * 4}</div> */}
+        <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
           {myQuestions.map((question, index) => (
             <div
-              style={{ height:'94.7%', backgroundColor:'violet', display:'flex', flexDirection:'column',
-                display: questionsNowNumber == index ? "block" : "none",
-              }}
-            >
+            style={{ height:'100%', display:'flex', flexDirection:'column',
+            display: questionsNowNumber == index ? "block" : "none",
+          }}
+          >
+            <Box sx={{ width: `100%`, height:25}}>
+              <LinearProgressWithLabel value={progress} />
+            </Box>
+            <div style={{width:'100%', height:50, fontSize:30, color:'white', backgroundColor:'rgba(0, 0, 0, 0.5)',position:'absolute', top:25, zIndex: 20, display:'flex', justifyContent:'center', alignItems:'center'}}>
+              {myName}님의 상황은 어떤가요?
+            </div>
               {Object.entries(question).map(([key, value]) => (
                 <Button 
                   style={{
@@ -481,21 +516,25 @@ function Coworking({ getDataCoWorking, questionsNumber }) {
           ))} */}
         </div>
       ) : (
-        <div>
-          <div>님과 어울리는 MBTI
+        <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
+          <div style={{fontFamily:'Pretendard-Regular', width:'25%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+            {myName}님과 어울리는 MBTI
             <div>{MBTI}</div>
+            <Link to='/coworking'>
+              <button>다시하기</button>
+            </Link>
           </div>
           {myTeamListSelected.map((member, index) => (
-            <button>
-              <div>{index + 1}번째 추천 : {member.mbti}, {member.e_id}, {member.content}, {member.position}, {member.name}</div>
-            </button>
+            <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+              <button style={{height:'100%'}}>
+                {/* <div>{index + 1}번째 추천 : {member.mbti}, {member.e_id}, {member.content}, {member.position}, {member.name}</div> */}
+                <Profile user={member} key={index} />
+              </button>
+            </div>
           ))}
-          {/* mbti로 이제 사람 찾는 로직 구현 */}
-        <Link to='/coworking'>
-          <button>다시하기</button>
-        </Link>
         </div>
       )}
+    </div>
     </div>
   );
 }

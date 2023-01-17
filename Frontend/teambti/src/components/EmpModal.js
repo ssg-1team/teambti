@@ -6,6 +6,7 @@ import { tagStyle, modalStyle } from "./Profile.module";
 import { ConnectingAirportsOutlined } from "@mui/icons-material";
 import { mbtiInfo } from "./MBTIInfo";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import "../css/List.css";
 
 export default function EmpModal({ user, open, handleClose, tags }) {
 
@@ -95,7 +96,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                           mbti.bad.map((bad) => <li>{bad}</li>)
                         )
                     )}
-
+      
                   </TabPanel>
                   <TabPanel value="3">
                     {mbtiInfo.map(

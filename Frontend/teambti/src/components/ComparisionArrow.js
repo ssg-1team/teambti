@@ -8,32 +8,37 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { matchingInfo } from "./MBTIInfo";
+import { Typography } from '@mui/material';
 
 export default function ComparisionArrow({user1, user2}) {
   return (
     <>
-      <div style={{marginTop:"50px", justifyContent:"center", textAlign:"center"}}>
-        {matchingInfo.map(
-          (info, id) =>
-            info.mbti1 == user1 && info.mbti2 == user2 && (
-              info.content
-          )
-        )}
-        <div style={{marginTop:"30px"}}>
-          <img src="images/rightArrow.png" style={{height:70}}></img>
+      <div style={{marginTop:"80px", justifyContent:"center", textAlign:"center"}}>
+        <Typography sx={{bgcolor:"#F38181", pl:2, pr:2, pt:1, pb:1, borderRadius:3, boxShadow:4, color:"white"}}>
+          {matchingInfo.map(
+            (info, id) =>
+              info.mbti1 == user1 && info.mbti2 == user2 && (
+                info.content
+            )
+          )}
+        </Typography>
+        <div style={{marginTop:"10px"}}>
+          <img src="images/rightArrow.png" style={{height:60}}></img>
         </div>
       </div>
       
-      <div style={{marginTop:"70px", justifyContent:"center", textAlign:"center"}}> 
-        <div style={{marginBottom:"30px"}}>
-          <img src="images/leftArrow.png" style={{height:70}}></img> 
+      <div style={{marginTop:"40px", justifyContent:"center", textAlign:"center"}}> 
+        <div style={{marginBottom:"10px"}}>
+          <img src="images/leftArrow.png" style={{height:60}}></img> 
         </div>
-        {matchingInfo.map(
-          (info, id) =>
-            info.mbti1 == user2 && info.mbti2 == user1 && (
-              info.content
-          )
-        )}
+        <Typography sx={{bgcolor:"#F38181", pl:2, pr:2, pt:1, pb:1, borderRadius:3, boxShadow:4, color:"white"}}>
+          {matchingInfo.map(
+            (info, id) =>
+              info.mbti1 == user2 && info.mbti2 == user1 && (
+                info.content
+            )
+          )}
+        </Typography>
       </div>
 
     </>

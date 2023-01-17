@@ -79,7 +79,7 @@ const MyProfile = () => {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {mbti == null ? "" : mbti} / {position}
-            {mbti == null ? <MbtiModal title="등록"/> : <MbtiModal title="수정"/> }
+            {mbti == null ? <MbtiModal title="등록"/> : <MbtiModal title="수정"/>}
           </Typography>
         </CardContent>
       </Card>

@@ -20,8 +20,9 @@ import { ButtonGroup } from "@mui/material";
 import "../../css/components/header.css";
 
 const pages = [
-  { name: "Mento-Menti", link: "/mentomenti" },
-  { name: "Co-Working", link: "/coworking" },
+  { name: "홈", link: "/" },
+  { name: "멘토찾기", link: "/mentomentistart" },
+  { name: "도움요청", link: "/coworkingstart" },
 ];
 
 const Header = ({ login }) => {
@@ -50,6 +51,7 @@ const Header = ({ login }) => {
   };
 
   return (
+    <div style={{height:'8.5%', display:'flex', flexDirection:'column', backgroundColor:'green' ,boxSizing:'border-box'}}>
     <ThemeProvider theme={myTheme}>
       <AppBar position="static">
         <Container maxWidth="xl">
@@ -102,30 +104,26 @@ const Header = ({ login }) => {
               </Menu>
             </Box>
             <Typography
-              variant="h3"
               noWrap
               component="a"
               href="/"
-              color="secondary.light"
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
                 fontFamily: "PFStardust",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: "     .3rem",
                 textDecoration: "none",
               }}
             >
-              TEAMBTI
+              <Typography sx={{display: { ':hover':{cursor:'pointer'}} }}>
+              <a href="/" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+              <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
+              </a>
+            </Typography>
             </Typography>
             <Box sx={{ color:"black", flexGrow: 0, display: { xs: "none", md: "flex" } }}>
-              <Button
-                variant="outlined"
-                sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
-              >
-                <a style={{textDecoration:'none', color:'black'}} href="/">HOME</a>
-              </Button>
                 {pages.map((page, id) => (
                   <Button
                     variant="outlined"
@@ -137,19 +135,22 @@ const Header = ({ login }) => {
                     {page.name}
                   </Button>
                 ))}
-                <Button
-                  variant="outlined"
-                  onClick={handleLogout}
-                  sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
-                >
-                      Logout
-                </Button>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
+              <Button
+                variant="outlined"
+                onClick={handleLogout}
+                sx={{ fontFamily:'', fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
+              >
+                    로그아웃
+              </Button>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
     </ThemeProvider>
+    <div style={{height:'0.5vh', backgroundColor:'#ff6961'}}></div>
+    </div>
   );
 };
+
 
 export default Header;
