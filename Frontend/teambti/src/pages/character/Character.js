@@ -115,6 +115,7 @@ import eyes13 from "../../assets/image/parts/eyes/13.png";
 import eyes14 from "../../assets/image/parts/eyes/14.png";
 import eyes15 from "../../assets/image/parts/eyes/15.png";
 import Tag from "../../components/Tag";
+import { Navigate } from "react-router-dom";
 
 // function changeMyHead (selectHead) {
 //   this.myhead = selectHead;
@@ -152,6 +153,7 @@ function Character() {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+  // const navigate = useNavigate();
 
   const [myHead, setMyHead] = useState(1);
   const [myEars, setMyEars] = useState(1);
@@ -211,45 +213,44 @@ function Character() {
       },
     })
     .then((response) => {
-      setMyEars(response.data.ear);
-      setMyAcc(response.data.accessory);
-      setMyBody(response.data.body);
-      setMyEyes(response.data.eye);
-      setMyHead(response.data.head);
-      setMyMouth(response.data.mouth);
-      setMyBack(response.data.background);
-    })
-    .catch((error) => {
-      console.log(error.data);
-    });
+        setMyEars(response.data.ear);
+        setMyAcc(response.data.accessory);
+        setMyBody(response.data.body);
+        setMyEyes(response.data.eye);
+        setMyHead(response.data.head);
+        setMyMouth(response.data.mouth);
+        setMyBack(response.data.background);
+      }
+      )
   }  
 
   function saveMyParts() {
     const el = document.getElementById('myCharacterDiv');
     html2canvas(el, {width: 441, height:566}).then((canvas) => {
       let content = canvas.toDataURL('image/png', 1.0);
-      console.log("content", content)
+      // console.log("content", content)
+      const data = {
+        "head" : myHead,
+        "background" : myBack,
+        "body" : myBody,
+        "ear" : myEars,
+        "eye" : myEyes,
+        "mouth" : myMouth,
+        "e_id" : e_id,
+        "accessory" : myAcc,
+        "completed" : content
+        }
+      axios
+      .post(`${API_HOST}/char/setChar`,data, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin" : "*",
+        },
+      })
+      .then(() => {
+        alert('저장되었습니다!')
+      })
     });
-    const data = {
-      "head" : myHead,
-      "background" : myBack,
-      "body" : myBody,
-      "ear" : myEars,
-      "eye" : myEyes,
-      "mouth" : myMouth,
-      "e_id" : e_id,
-      "accessory" : myAcc
-      }
-    axios
-    .post(`${API_HOST}/char/setChar`,data, {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin" : "*",
-      },
-    })
-    .then(() => {
-      alert('저장되었습니다!')
-    })
   }
 
 

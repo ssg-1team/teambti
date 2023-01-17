@@ -365,57 +365,56 @@ function MentoMenti() {
   return (
     <div>
       {20 > questionsNowNumber ? (
-            <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
-            <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column'}}>
-        <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
-          {myQuestions.map((question, index) => (
-            <div
-            style={{ height:'100%', display:'flex', flexDirection:'column',
-            display: questionsNowNumber == index ? "block" : "none",
-          }}
-          >
-          <Box sx={{ width: `100%`, height:25}}>
-            <LinearProgressWithLabel value={progress} />
-          </Box>
-          <div style={{width:'100%', height:50, fontSize:30, color:'white', backgroundColor:'rgba(0, 0, 0, 0.5)',position:'absolute', top:25, zIndex: 20, display:'flex', justifyContent:'center', alignItems:'center'}}>
-            {myName}님이 바라는 멘토는?
+        <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
+          <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column'}}>
+            <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
+              <Box sx={{ width: `100%`, height:25}}>
+                <LinearProgressWithLabel value={progress} />
+              </Box>
+              {myQuestions.map((question, index) => (
+                <div
+                style={{ height:'100%', display:'flex', flexDirection:'column',
+                display: questionsNowNumber == index ? "block" : "none",
+              }}>
+
+                <div style={{width:'100%', height:50, fontSize:30, color:'white', backgroundColor:'rgba(0, 0, 0, 0.5)',position:'absolute', top:25, zIndex: 20, display:'flex', justifyContent:'center', alignItems:'center'}}>
+                  {myName}님이 바라는 멘토는?
+                </div>
+                {Object.entries(question).map(([key, value]) => (
+                  <Button 
+                    style={{
+                      width:"50%", 
+                      height:"100%", 
+                    }} 
+                    onClick={() => {updateQuestions(key, value)}}
+                    sx={{ 
+                        textAlign:'center', 
+                        backgroundColor:'gray', 
+                        color:"white",
+                        fontSize:20,
+                        transition:'all 1s',
+                        ":hover":{
+                          backgroundColor: 
+                          key==='E' ? '#ff6961' : 
+                          (key==='I' ? '#ffb480' : 
+                          (key==='S' ? '#f8f38d' : 
+                          (key==='N' ? '#42d6a4' : 
+                          (key==='F' ? '#08cad1' : 
+                          (key==='T' ? '#59adf6' : 
+                          (key==='J' ? '#9d94ff' : 
+                          (key==='P' ? '#c780e8' : 
+                          '#ffffff'))))))), 
+                          color:`white`,
+                          fontSize:25
+                        }
+                      }}>
+                      <div>{value}</div>
+                  </Button>
+                ))}
+              </div>))}
+            </div>
           </div>
-              {Object.entries(question).map(([key, value]) => (
-                <Button 
-                style={{
-                  width:"50%", 
-                  height:"100%", 
-                }} 
-                onClick={() => {updateQuestions(key, value)}}
-                sx={{ 
-                    textAlign:'center', 
-                    backgroundColor:'gray', 
-                    color:"white",
-                    fontSize:20,
-                    transition:'all 1s',
-                    ":hover":{
-                      backgroundColor: 
-                      key==='E' ? '#ff6961' : 
-                      (key==='I' ? '#ffb480' : 
-                      (key==='S' ? '#f8f38d' : 
-                      (key==='N' ? '#42d6a4' : 
-                      (key==='F' ? '#08cad1' : 
-                      (key==='T' ? '#59adf6' : 
-                      (key==='J' ? '#9d94ff' : 
-                      (key==='P' ? '#c780e8' : 
-                      '#ffffff'))))))), 
-                      color:`white`,
-                      fontSize:25
-                    }
-                  }}>
-                    <div>{value}</div>
-                </Button>
-              ))}
-            </div>
-          ))}
         </div>
-            </div>
-            </div>
       ) : (
         <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
           <div style={{width:'25%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>

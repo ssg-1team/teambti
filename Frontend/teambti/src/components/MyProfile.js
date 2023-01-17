@@ -20,8 +20,30 @@ import { purple } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import Character from "../pages/character/Character";
 import { bigButtonStyle } from "./_shared.module";
+import { Navigate, useNavigate } from "react-router-dom";
 
+// navigate('/character')
 const MyProfile = () => {
+  // const navigate = useNavigate();
+  
+  function editprofile() {
+    axios
+    .get(`${API_HOST}/char/getChar/${e_id}`,{
+      headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      if (!response.data.body) {
+        alert('먼저 MBTI를 설정해주세요')
+        // 배포할때는 위에 내용으로 결정하기
+      } else {
+        // document.location.href = 'http://teambti.site/character';
+        document.location.href = 'http://localhost:3000/character';
+      }
+    })
+  }
   const e_id = localStorage.getItem("e_id");
   // API
   const [name, setName] = useState("");
@@ -83,7 +105,7 @@ const MyProfile = () => {
           </Typography>
         </CardContent>
       </Card>
-      <Button sx={bigButtonStyle} href="/Character">
+      <Button sx={bigButtonStyle} onClick={editprofile}>
         프로필 편집
       </Button>
     </>
