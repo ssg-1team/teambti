@@ -56,6 +56,7 @@ function Home() {
         <Slider style={{height:'98%'}}
           {...settings_lg}
           sx={{display: { xs: "none", md: "flex" }, mr: 1 }}
+
         >
           {emps.map(
             (user, id) =>
@@ -79,6 +80,7 @@ function Home() {
         </Slider>
       </Container>
       <Container maxWidth="xs" sx={{margin:0, padding:0, width:'100%', height:'100%',  display: { xs: "block", md:"none", lg: "none" }}}>
+
         <Slider
           {...settings_xs}
           sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }}
@@ -100,6 +102,7 @@ function Home() {
           )}      
       </Container>
     </div>
+
   );
 }
 

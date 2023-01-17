@@ -970,6 +970,7 @@ function Character() {
           <Grid>
         </Grid>
         <a id = 'target' style={{display:'none'}} href=""></a>
+
         </Grid>
       
         <ButtonGroup>

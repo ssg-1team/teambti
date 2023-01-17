@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
 export default function ProfileMin({ user, id, ranking }) {
+
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const e_id = user.e_id;
@@ -78,6 +79,7 @@ export default function ProfileMin({ user, id, ranking }) {
               handleClose={handleClose}
               tags={tags}
             />
+
             <Link 
               to={`/comparison`}
               state={{other : user}}
