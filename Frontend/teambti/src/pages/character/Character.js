@@ -12,12 +12,12 @@ import Link from "@mui/material/Link";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { Box, CardActionArea } from "@mui/material";
+import { Box, Button, ButtonGroup, CardActionArea } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import axios from "axios";
 import { API_HOST } from '../../constant/index';
 import html2canvas from 'html2canvas';
-
+import { characterButtonStyle } from "./CharacterButtonStyle";
 // 0번
 import back0 from "../../assets/image/parts/back/0.png";
 import acc0 from "../../assets/image/parts/acc/0.png";
@@ -115,6 +115,7 @@ import eyes13 from "../../assets/image/parts/eyes/13.png";
 import eyes14 from "../../assets/image/parts/eyes/14.png";
 import eyes15 from "../../assets/image/parts/eyes/15.png";
 import Tag from "../../components/Tag";
+import { Navigate } from "react-router-dom";
 
 // function changeMyHead (selectHead) {
 //   this.myhead = selectHead;
@@ -152,6 +153,7 @@ function Character() {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+  // const navigate = useNavigate();
 
   const [myHead, setMyHead] = useState(1);
   const [myEars, setMyEars] = useState(1);
@@ -211,45 +213,43 @@ function Character() {
       },
     })
     .then((response) => {
-      setMyEars(response.data.ear);
-      setMyAcc(response.data.accessory);
-      setMyBody(response.data.body);
-      setMyEyes(response.data.eye);
-      setMyHead(response.data.head);
-      setMyMouth(response.data.mouth);
-      setMyBack(response.data.background);
-    })
-    .catch((error) => {
-      console.log(error.data);
-    });
+        setMyEars(response.data.ear);
+        setMyAcc(response.data.accessory);
+        setMyBody(response.data.body);
+        setMyEyes(response.data.eye);
+        setMyHead(response.data.head);
+        setMyMouth(response.data.mouth);
+        setMyBack(response.data.background);
+      }
+      )
   }  
 
   function saveMyParts() {
     const el = document.getElementById('myCharacterDiv');
     html2canvas(el, {width: 441, height:566}).then((canvas) => {
       let content = canvas.toDataURL('image/png', 1.0);
-      console.log("content", content)
+      const data = {
+        "head" : myHead,
+        "background" : myBack,
+        "body" : myBody,
+        "ear" : myEars,
+        "eye" : myEyes,
+        "mouth" : myMouth,
+        "e_id" : e_id,
+        "accessory" : myAcc,
+        "completed" : content
+        }
+      axios
+      .post(`${API_HOST}/char/setChar`,data, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin" : "*",
+        },
+      })
+      .then(() => {
+        alert('저장되었습니다!')
+      })
     });
-    const data = {
-      "head" : myHead,
-      "background" : myBack,
-      "body" : myBody,
-      "ear" : myEars,
-      "eye" : myEyes,
-      "mouth" : myMouth,
-      "e_id" : e_id,
-      "accessory" : myAcc
-      }
-    axios
-    .post(`${API_HOST}/char/setChar`,data, {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin" : "*",
-      },
-    })
-    .then(() => {
-      alert('저장되었습니다!')
-    })
   }
 
 
@@ -262,13 +262,11 @@ function Character() {
   };
 
   return (
-    <div style={{height:'100%', backgroundColor:'red'}}>
-      
-      <Grid container spacing={0}>
-        <Grid container xs={8}>
-          <Grid xs={4}>
+    <Container maxWidth='flex' sx={{height:'100%', width:'100%', backgroundColor:'#FFF6BD', borderRadius:'20px'}}>
+      <Grid container spacing={2} sx={{ ml:3, mr:0, mt: 3}}>
+        <Grid xs={4} >
           <div style={{overflowY:"auto", maxHeight:"566px"}}>
-            <Accordion expanded>
+            {/* <Accordion expanded>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1bh-content"
@@ -289,7 +287,7 @@ function Character() {
                     <button onClick={() => {setMyHead(8)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head8} alt="" /></button>
                   </Typography>
                 </AccordionDetails>
-              </Accordion>
+              </Accordion> */}
             <Accordion
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
@@ -914,9 +912,10 @@ function Character() {
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            </div>
+          </div>
+          
           </Grid>
-          <Grid xs={8}>
+          <Grid xs={4}>
             <div style={{position:"relative"}} id="myCharacterDiv">
 
               <div style={{backgroundColor:"red", width:"400px"}}></div>
@@ -957,21 +956,35 @@ function Character() {
                 alt=""
               />
               </div>
+              <div>
+                
+              </div>
+              
             </div>
           </Grid>
+          <Grid xs={4} sx={{pt:15, pr:10}}>
+            <Tag/>
+            <Button variant="contained" style={{background:"#86C8BC"}} sx={{mt:10, width:'100%'}} href="/">
+                    홈으로 돌아가기
+            </Button>
+          <Grid>
         </Grid>
-        <Grid xs={4}>
-          <Tag />
+        <a id = 'target' style={{display:'none'}} href=""></a>
         </Grid>
+      
+        <ButtonGroup>
+                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={saveMyParts}>
+                    저장하기
+                  </Button>
+                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={downloadMyCharacter}>
+                    다운로드
+                  </Button>
+                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={setMyParts}>
+                    초기화
+                  </Button>
+                </ButtonGroup>
       </Grid>
-      <button onClick={saveMyParts}>설정</button>
-      <button onClick={downloadMyCharacter}>다운로드</button>
-      <button onClick={setMyParts}>초기화</button>
-      {/* <img src=""/> */}
-      <a id="target" style={{display:"none"}}>안녕?</a>
-      {/* <a id="target" style="display: none" href="#">다운로드</a> */}
-      {/* <></> */}
-    </div>
+    </Container>
   );
 }
 

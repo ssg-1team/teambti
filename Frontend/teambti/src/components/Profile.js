@@ -22,8 +22,20 @@ export default function Profile({ user, key, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const e_id = user.e_id;
+  const [myUrl, setMyUrl] = useState('');
+  const [myMBTI, setMyMBTI] = useState('');
 
-  const handleOpen = () => {
+  const handleOpen = () => {  
+    axios
+      .get(`${API_HOST}/member/getEmp/${e_id}`,{
+        headers: {
+          "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data)
+      })
     // #####[s]삭제NO
     axios
       .get(`${API_HOST}/member/getTag/${e_id}`, {
@@ -45,6 +57,16 @@ export default function Profile({ user, key, ranking }) {
           console.dir("내부 서버 오류");
         }
       });
+    axios
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setMyUrl(response.data.completed)
+      })
     // #####[e]삭제NO
 
     // [s]삭제예정
@@ -64,11 +86,11 @@ export default function Profile({ user, key, ranking }) {
             component="img"
             height="100%"
             image={
-              user.image == null ? "images/characterExample.png" : user.image
+              user.image == null ? "images/characterExample.png" : {myUrl}
             }
             alt="IMAGE"
           />
-          <CardContent>
+          <CardContent style={{}}>
             <Typography gutterBottom>
               <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
               <div><span style={{fontSize:25}}>{user.name}</span> <span>{user.position}</span></div>

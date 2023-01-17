@@ -24,6 +24,7 @@ import { style } from "@mui/system";
 import { Link } from "react-router-dom";
 import LeftDrawer from "../../components/base/LeftDrawer";
 import Profile from "../../components/Profile";
+import ProfileMin from "../../components/ProfileMin";
 
 
 function LinearProgressWithLabel(props) {
@@ -460,15 +461,15 @@ function Coworking({ questionsNumber }) {
     <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column', backgroundColor:'yellow'}}>
       {questionsNumber * 4 > questionsNowNumber ? (
         <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
+            <Box sx={{ width: `100%`, height:25}}>
+              <LinearProgressWithLabel value={progress} />
+            </Box>
           {myQuestions.map((question, index) => (
             <div
             style={{ height:'100%', display:'flex', flexDirection:'column',
             display: questionsNowNumber == index ? "block" : "none",
           }}
           >
-            <Box sx={{ width: `100%`, height:25}}>
-              <LinearProgressWithLabel value={progress} />
-            </Box>
             <div style={{width:'100%', height:50, fontSize:30, color:'white', backgroundColor:'rgba(0, 0, 0, 0.5)',position:'absolute', top:25, zIndex: 20, display:'flex', justifyContent:'center', alignItems:'center'}}>
               {myName}님의 상황은 어떤가요?
             </div>
@@ -524,14 +525,24 @@ function Coworking({ questionsNumber }) {
               <button>다시하기</button>
             </Link>
           </div>
+          <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }}}>
           {myTeamListSelected.map((member, index) => (
+                <Profile user={member} key={index} />
+          ))}
+          </Container>
+          <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
+          {myTeamListSelected.map((member, index) => (
+              <ProfileMin user={member} key={index} />
+          ))}
+          </Container>
+
+          {/* {myTeamListSelected.map((member, index) => (
             <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
               <button style={{height:'100%'}}>
-                {/* <div>{index + 1}번째 추천 : {member.mbti}, {member.e_id}, {member.content}, {member.position}, {member.name}</div> */}
                 <Profile user={member} key={index} />
               </button>
             </div>
-          ))}
+          ))} */}
         </div>
       )}
     </div>

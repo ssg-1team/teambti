@@ -95,11 +95,15 @@ const Header = ({ login }) => {
                 }}
               >
                 {pages.map((page, id) => (
-                  <MenuItem key={id} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" href="/character">
-                      {page.name}
-                    </Typography>
-                  </MenuItem>
+                  <Button
+                    variant="outlined"
+                    key={id}
+                    onClick={handleCloseNavMenu}
+                    href={page.link}
+                    sx={{ fontSize:15, textTransform:'none', my: 1, color: "black", display: "block" }}
+                  >
+                    {page.name}
+                  </Button>
                 ))}
               </Menu>
             </Box>

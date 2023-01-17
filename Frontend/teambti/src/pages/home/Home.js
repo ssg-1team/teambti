@@ -10,6 +10,8 @@ import axios from "axios";
 
 import { settings_lg, settings_md, settings_xs } from "./Home.module";
 import { emps_list } from "../../constant/mock";
+import ProfileMin from "../../components/ProfileMin";
+import "./Home.css";
 
 function Home() {
   const e_id = localStorage.getItem("e_id");
@@ -49,21 +51,21 @@ function Home() {
   // [e]
 
   return (
-    <> 
-      <Container maxWidth="lg" sx={{display: { xs: "none", md:"none", lg: "block" }}}>
-        <Slider
+    <div style={{width:'100%', height:'100%', display:'flex'}}> 
+      <Container maxWidth="false" sx={{margin:0, padding:0, width:'100%', height:'100%', display: { xs: "none", md:"none", lg: "block" }}}>
+        <Slider style={{height:'98%'}}
           {...settings_lg}
-          sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          sx={{display: { xs: "none", md: "flex" }, mr: 1 }}
         >
           {emps.map(
             (user, id) =>
               user.e_id != e_id && (
-                <Profile user={user} key={id} />
+                  <Profile user={user} key={id} />
               )
           )}
         </Slider>
       </Container>
-      <Container maxWidth="md" sx={{ display: { xs: "none", md:"block", lg: "none" }}}>
+      <Container maxWidth="md" sx={{margin:0, padding:0, width:'100%', height:'100%',  display: { xs: "none", md:"block", lg: "none" }}}>
         <Slider
           {...settings_md}
           sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
@@ -76,10 +78,10 @@ function Home() {
           )}
         </Slider>
       </Container>
-      <Container maxWidth="xs" sx={{ display: { xs: "block", md:"none", lg: "none" }}}>
+      <Container maxWidth="xs" sx={{margin:0, padding:0, width:'100%', height:'100%',  display: { xs: "block", md:"none", lg: "none" }}}>
         <Slider
           {...settings_xs}
-          sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }}
         >
           {emps.map(
             (user, id) =>
@@ -89,7 +91,15 @@ function Home() {
           )}
         </Slider>
       </Container>
-    </>
+      <Container maxWidth="xs" sx={{ display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
+      {emps.map(
+            (user) =>
+              user.e_id != e_id && (
+                <ProfileMin user={user} key={user.e_id} />
+              )
+          )}      
+      </Container>
+    </div>
   );
 }
 

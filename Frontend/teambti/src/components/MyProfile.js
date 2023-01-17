@@ -20,13 +20,42 @@ import { purple } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import Character from "../pages/character/Character";
 import { bigButtonStyle } from "./_shared.module";
+import { Navigate, useNavigate } from "react-router-dom";
 
+
+
+// navigate('/character')
 const MyProfile = () => {
+  // const navigate = useNavigate();
+  
+  function editprofile() {
+    axios
+    .get(`${API_HOST}/char/getChar/${e_id}`,{
+      headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      if (!response.data.body) {
+        alert('먼저 MBTI를 설정해주세요')
+      } else {
+        // 배포할때는 위에 내용으로 결정하기
+        // document.location.href = 'http://teambti.site/character';
+        document.location.href = 'http://localhost:3000/character';
+      }
+    })
+  }
   const e_id = localStorage.getItem("e_id");
   // API
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [mbti, setMbti] = useState("");
+  const [myUrl, setMyUrl] = useState(1);
+  useEffect(()=>{
+
+  }, [myUrl])
+  
 
   // #####[s]삭제NO
   useEffect(() => {
@@ -53,7 +82,20 @@ const MyProfile = () => {
           console.dir("내부 서버 오류");
         }
       });
+    axios
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log('response', response.data)
+        setMyUrl(response.data.completed)
+        console.log(myUrl)
+      })
   }, []);
+
   // #####[e]삭제NO
 
   // [s]삭제예정
@@ -70,22 +112,24 @@ const MyProfile = () => {
         <CardMedia
           component="img"
           height="450"
-          image="images/characterExample.png"
+          image={require(`../assets/image/parts/content/${myUrl}.jpg`)}
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
-            {name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {mbti == null ? "" : mbti} / {position}
-            {mbti == null ? <MbtiModal title="등록"/> : <MbtiModal title="수정"/>}
-          </Typography>
+          <div style={{display:'flex', flexDirection:'column'}}>
+            <Typography gutterBottom variant="h4" component="div">
+              {name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {mbti == null ? "" : mbti} / {position}
+              {mbti == null ? <MbtiModal title="등록"/> : <MbtiModal title="수정"/>}
+            </Typography>
+            <Button sx={bigButtonStyle} onClick={editprofile}>
+              프로필 편집
+            </Button>
+          </div>
         </CardContent>
       </Card>
-      <Button sx={bigButtonStyle} href="/Character">
-        프로필 편집
-      </Button>
     </>
   );
 };
