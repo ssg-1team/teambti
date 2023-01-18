@@ -51,7 +51,7 @@ const MyProfile = () => {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [mbti, setMbti] = useState("");
-  const [myUrl, setMyUrl] = useState(1);
+  const [myUrl, setMyUrl] = useState(9);
   // useEffect(()=>{
 
   // }, [myUrl])
@@ -64,7 +64,7 @@ const MyProfile = () => {
       },
     })
     .then((response) => {
-      console.log('response', response.data)
+      // console.log('response', response.data)
       setMyUrl(response.data.completed)
     })
   }, [mbti])
