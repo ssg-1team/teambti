@@ -15,7 +15,8 @@ import EmpModal from "./EmpModal";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
-export default function ProfileMin({ user, id }) {
+export default function ProfileMin({ user, id, ranking }) {
+
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const e_id = user.e_id;
@@ -69,9 +70,16 @@ export default function ProfileMin({ user, id }) {
             </Typography>
           </CardContent>
           <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-            <Button style={{width:'45%'}} variant="contained" >
+            <Button style={{width:'45%'}} variant="contained"  onClick={handleOpen}>
                 프로필
             </Button>
+            <EmpModal
+              user={user}
+              open={open}
+              handleClose={handleClose}
+              tags={tags}
+            />
+
             <Link 
               to={`/comparison`}
               state={{other : user}}
@@ -91,12 +99,6 @@ export default function ProfileMin({ user, id }) {
           }
           alt="Live from space album cover"
         />
-        {/* <EmpModal
-          user={user}
-          open={open}
-          handleClose={handleClose}
-          tags={tags}
-        /> */}
       </Card>                
   );
 }

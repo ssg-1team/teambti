@@ -12,7 +12,9 @@ import { modalStyle } from "./Profile.module";
 import { API_HOST } from '../constant';
 import { bigButtonStyle } from "./_shared.module";
 
-export default function MbtiModal({title}) {
+export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
+
+  const [defaultParts, setDefaultParts] = useState(1)
     // constants
   const e_id = parseInt(localStorage.getItem('e_id'));
   // mbti
@@ -50,12 +52,20 @@ export default function MbtiModal({title}) {
   // mbti
   const handleChange = (event) => {
     setMbti(event.target.value); // m_id
+    setDefaultParts(mbti > 8 ? mbti - 8 : mbti)
+    // handleClose();
+    // console.log(mbti)
   };
 
+  useEffect(()=> {
+    console.log(mbti)
+    setDefaultParts(mbti > 8 ? mbti - 8 : mbti)
+  }, [mbti])
+
   const mbtiList = mbtiListDb.map((data, i) => (
-		<MenuItem value={data.m_id} key={i}>
-			{data.type}
-		</MenuItem>
+      <MenuItem sx={{}} value={data.m_id} key={i}>
+        {data.type}
+      </MenuItem>
 	));
 
   const save = () => {
@@ -68,7 +78,7 @@ export default function MbtiModal({title}) {
 			e_id: e_id,
 			m_id: mbti,
 		};
-    
+
     axios
     .post(`${API_HOST}/member/setMbti`, data, {
       headers: {
@@ -79,16 +89,47 @@ export default function MbtiModal({title}) {
     .then((response) => {
       console.log(response.data)
     })
-    .catch((error) => {
-      const status = error?.response?.status;
-      if (status === undefined) {
-        console.dir("데이터 오류" + JSON.stringify(error));
-      } else if (status === 400) {
-        console.dir("400에러");
-      } else if (status === 500) {
-        console.dir("내부 서버 오류");
+
+    const data2 = {
+      "e_id" : e_id,
+      "head" : defaultParts,
+      "background" : 0,
+      "body" : defaultParts,
+      "ear" : defaultParts,
+      "eye" : defaultParts,
+      "mouth" : defaultParts,
+      "accessory" : 0,
+      "completed" : defaultParts,
       }
-    });
+    axios
+    .post(`${API_HOST}/char/setChar`,data2, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin" : "*",
+      },
+    })
+    .then((response) => {
+      // console.log(response.data)
+      axios
+        .get(`${API_HOST}/mbti/getAllMbti`, {
+          headers: {
+            // "Access-Control-Allow-Origin" : "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          response.data.map((oneMBTI)=>{
+            if(oneMBTI.m_id == defaultParts){
+              getMyMBTI(oneMBTI.type);
+            }
+          })
+          setMbtiListDb(response.data);
+        })  
+      getMyUrl(defaultParts);
+      console.log(data2)
+      alert('저장되었습니다!')
+      handleClose();
+    })
   }
 
   return (
@@ -100,22 +141,37 @@ export default function MbtiModal({title}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={modalStyle}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">MBTI</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={mbti}
-              label="MBTI"
-              onChange={handleChange}
-            >
-              {mbtiList}
-            </Select>
-          </FormControl>
-          {/* <Tag /> */}
-          <Button onClick={save} sx={bigButtonStyle}>저장하기</Button>
-        </Box>
+        <div >
+          <Box sx={modalStyle} style={{width:500, display:'flex', flexDirection:'column'}}>
+            <div style={{width:'100%', height:'90%'}}>
+              <div style={{height:'100%',display:'flex', flexDirection:'row', alignItems:'center'}}>
+                <div style={{width:'50%', height:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                  <div style={{fontSize:25}}>나의 MBTI는?</div>
+                  <br/>
+                  <br/>
+                  <FormControl style={{width:'50%'}}>
+                    <InputLabel id="demo-simple-select-label">MBTI</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={mbti}
+                      label="MBTI"
+                      
+                      onChange={handleChange}
+                      >
+                      {mbtiList}
+                    </Select>
+                  </FormControl>
+                </div>
+                {/* <Tag /> */}
+                <img style={{width:'40%'}} src={require(`../assets/image/parts/content/${mbti > 8? mbti-8 : mbti}.jpg`)} alt=""/>
+              </div>
+            </div>
+            <br/>
+            <br/>
+            <Button onClick={save} style={{width:'100%'}} sx={bigButtonStyle}>저장하기</Button>
+          </Box>
+        </div>
       </Modal>
     </>
   );

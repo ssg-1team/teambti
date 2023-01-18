@@ -30,7 +30,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
-            <Grid item xs={4}>
+            <Grid item sm={4}>
               <Card sx={{ maxWidth: 250 }}>
                 <CardMedia
                   component="img"
@@ -44,7 +44,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                 />
               </Card>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item sm={8}>
               <Box
                 sx={{
                   textAlign: "center",
