@@ -134,7 +134,8 @@ const MyProfile = () => {
         <CardMedia
           component="img"
           height="450"
-          image={myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`)}
+          //image={myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`)}
+          image={myUrl==null? require(`../assets/image/parts/content/0.jpg`) : (myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`))}
           alt="green iguana"
         />
         <CardContent>
@@ -142,12 +143,8 @@ const MyProfile = () => {
             <Typography gutterBottom>
               <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
                 <div><span style={{fontSize:25}}>{name}</span> <span>{position}</span></div>
-                <div style={{fontSize:25}}>{mbti !== null ? <MbtiModal title={mbti}/> : <MbtiModal title="MBTI 등록"/>}</div>
+                {mbti == null ? <MbtiModal title="MBTI 등록" getMyUrl={getMyUrl} getMyMBTI={getMyMBTI}/> : <MbtiModal title={mbti} getMyMBTI={getMyMBTI} getMyUrl={getMyUrl}/>}
               </div>
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {mbti == null ? "" : mbti} / {position}
-              {mbti == null ? <MbtiModal title="등록" getMyUrl={getMyUrl} getMyMBTI={getMyMBTI}/> : <MbtiModal title="수정" getMyMBTI={getMyMBTI} getMyUrl={getMyUrl}/>}
             </Typography>
           </div>
         </CardContent>

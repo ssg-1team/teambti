@@ -55,7 +55,6 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
     setMbti(event.target.value); // m_id
     setDefaultParts(mbti > 8 ? mbti - 8 : mbti)
     // handleClose();
-    // console.log(mbti)
   };
 
   useEffect(()=> {
@@ -135,7 +134,7 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
 
   return (
     <>
-      <Button onClick={handleOpen} variant="outlined" color="secondary" endIcon={<SettingsSuggestIcon sx={{mb:0.5}}/>}>{title}</Button>
+      <Button onClick={handleOpen} color="secondary" fontsize="20px" endIcon={<SettingsSuggestIcon sx={{mb:0.5}}/>}>{title}</Button>
       <Modal
         open={open}
         onClose={handleClose}
