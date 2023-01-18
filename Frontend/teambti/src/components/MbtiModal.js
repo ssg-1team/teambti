@@ -10,7 +10,8 @@ import axios from "axios";
 import { modalStyle } from "./Profile.module";
 
 import { API_HOST } from '../constant';
-import { bigButtonStyle } from "./_shared.module";
+import { bigButtonStyle, mbtiButtonStyle, smallButtonStyle } from "./_shared.module";
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 
 export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
 
@@ -54,7 +55,6 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
     setMbti(event.target.value); // m_id
     setDefaultParts(mbti > 8 ? mbti - 8 : mbti)
     // handleClose();
-    // console.log(mbti)
   };
 
   useEffect(()=> {
@@ -115,7 +115,7 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
           headers: {
             // "Access-Control-Allow-Origin" : "*",
             "Content-Type": "application/json",
-          },
+          },    
         })
         .then((response) => {
           response.data.map((oneMBTI)=>{
@@ -124,7 +124,8 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
             }
           })
           setMbtiListDb(response.data);
-        })  
+        })
+          
       getMyUrl(defaultParts);
       console.log(data2)
       alert('저장되었습니다!')
@@ -134,7 +135,7 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
 
   return (
     <>
-      <Button onClick={handleOpen} sx={bigButtonStyle}>MBTI {title}</Button>
+      <Button onClick={handleOpen} color="secondary" sx={{fontSize:'20px'}} endIcon={<SettingsSuggestIcon sx={{mb:0.5}}/>}>{title}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -152,12 +153,12 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
                   <FormControl style={{width:'50%'}}>
                     <InputLabel id="demo-simple-select-label">MBTI</InputLabel>
                     <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={mbti}
-                      label="MBTI"
-                      
-                      onChange={handleChange}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={mbti}
+                        label="MBTI"
+                        
+                        onChange={handleChange}
                       >
                       {mbtiList}
                     </Select>
