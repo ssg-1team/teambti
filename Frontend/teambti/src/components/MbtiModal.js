@@ -10,7 +10,8 @@ import axios from "axios";
 import { modalStyle } from "./Profile.module";
 
 import { API_HOST } from '../constant';
-import { bigButtonStyle } from "./_shared.module";
+import { bigButtonStyle, mbtiButtonStyle, smallButtonStyle } from "./_shared.module";
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 
 export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
 
@@ -134,7 +135,7 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
 
   return (
     <>
-      <Button onClick={handleOpen} sx={bigButtonStyle}>MBTI {title}</Button>
+      <Button onClick={handleOpen} variant="outlined" color="secondary" endIcon={<SettingsSuggestIcon sx={{mb:0.5}}/>}>{title}</Button>
       <Modal
         open={open}
         onClose={handleClose}

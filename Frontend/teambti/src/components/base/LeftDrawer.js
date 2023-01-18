@@ -12,8 +12,10 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Profile from "../Profile";
 import MyProfile from "../MyProfile";
-import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { IconButton } from "@mui/material";
+import { styled } from '@mui/material/styles';
 
 const LeftDrawer = () => {
   const [state, setState] = useState({
@@ -30,17 +32,30 @@ const LeftDrawer = () => {
     setState({ ...state, [anchor]: open });
   };
 
+  const DrawerHeader = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  }));
+
   return (
     <div>
       <Fragment key={"left"}>
         <IconButton onClick={toggleDrawer("left", true)} size="large" sx={{color:"#F38181"}}>
-          <AccessibilityNewIcon fontSize="inherit"/>
+          <ChevronRightIcon fontSize="inherit"/>
         </IconButton>
         <Drawer
           anchor={"left"}
           open={state["left"]}
-          onClose={toggleDrawer("left", false)}
         >
+          <DrawerHeader>
+            <IconButton onClick={toggleDrawer("left", false)} size="large" sx={{color:"#F38181"}}>
+              <ChevronLeftIcon fontSize="inherit"/>
+            </IconButton>
+          </DrawerHeader>
           <MyProfile />
         </Drawer>
       </Fragment>
