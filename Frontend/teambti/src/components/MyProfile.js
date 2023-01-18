@@ -19,7 +19,7 @@ import { user } from "../constant/mock";
 import { purple } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import Character from "../pages/character/Character";
-import { bigButtonStyle } from "./_shared.module";
+import { bigButtonStyle, flexButtonStyle, smallButtonStyle } from "./_shared.module";
 import { Navigate, useNavigate } from "react-router-dom";
 
 
@@ -41,7 +41,7 @@ const MyProfile = () => {
         alert('먼저 MBTI를 설정해주세요')
       } else {
         // 배포할때는 위에 내용으로 결정하기
-        // document.location.href = 'http://teambti.site/character';
+        // document.location.href = 'http://teambti.site/character'; 
         document.location.href = 'http://localhost:3000/character';
       }
     })
@@ -51,7 +51,7 @@ const MyProfile = () => {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [mbti, setMbti] = useState("");
-  const [myUrl, setMyUrl] = useState(1);
+  const [myUrl, setMyUrl] = useState(9);
   // useEffect(()=>{
 
   // }, [myUrl])
@@ -64,7 +64,7 @@ const MyProfile = () => {
       },
     })
     .then((response) => {
-      console.log('response', response.data)
+      // console.log('response', response.data)
       setMyUrl(response.data.completed)
     })
   }, [mbti])
@@ -130,28 +130,30 @@ const MyProfile = () => {
 
   return (
     <>
-      <Card sx={{ maxWidth: 340 }}>
+      <Card sx={{ maxWidth: 300, m:3}}>
         <CardMedia
           component="img"
           height="450"
-          image={myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`)}
+          //image={myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`)}
+          image={myUrl==null? require(`../assets/image/parts/content/0.jpg`) : (myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`))}
           alt="green iguana"
         />
         <CardContent>
           <div style={{display:'flex', flexDirection:'column'}}>
-            <Typography gutterBottom variant="h4" component="div">
-              {name}
+            <Typography gutterBottom>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <div><span style={{fontSize:25}}>{name}</span> <span>{position}</span></div>
+                {mbti == null ? <MbtiModal title="MBTI 등록" getMyUrl={getMyUrl} getMyMBTI={getMyMBTI}/> : <MbtiModal title={mbti} getMyMBTI={getMyMBTI} getMyUrl={getMyUrl}/>}
+              </div>
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {mbti == null ? "" : mbti} / {position}
-              {mbti == null ? <MbtiModal title="등록" getMyUrl={getMyUrl} getMyMBTI={getMyMBTI}/> : <MbtiModal title="수정" getMyMBTI={getMyMBTI} getMyUrl={getMyUrl}/>}
-            </Typography>
-            <Button sx={bigButtonStyle} onClick={editprofile}>
-              프로필 편집
-            </Button>
           </div>
         </CardContent>
       </Card>
+      <div style={{display: 'flex', justifyContent:'center'}}>
+        <Button sx={flexButtonStyle} onClick={editprofile} display= 'inline-block'>
+          프로필 편집
+        </Button>
+      </div>
     </>
   );
 };
