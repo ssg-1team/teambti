@@ -60,7 +60,7 @@ const Header = ({ login }) => {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }}}>
             <Typography sx={{display: { ':hover':{cursor:'pointer'}} }}>
               <a href="/" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-              <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
+                <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
               </a>
             </Typography>
             </Box>
@@ -123,7 +123,7 @@ const Header = ({ login }) => {
             >
               <Typography sx={{display: { ':hover':{cursor:'pointer'}} }}>
               <a href="/" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-              <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
+                <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200, margin:'auto'}} alt=""/>
               </a>
             </Typography>
             </Typography>

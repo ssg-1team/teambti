@@ -30,7 +30,23 @@ export const smallButtonStyle = {
   display: "inline",
   // fontFamily: "GangwonEduSaeeum_OTFMediumA",
   "&:hover": {
-    bgcolor: "#FFD4B2",
+    bgcolor: "#F7F5EB",
+    color: "black",
+  },
+};
+
+export const mbtiButtonStyle = {
+  width: 100,
+  bgcolor: primary_color_m,
+  color: "#F6F6F6",
+  textAlign: "center",
+  fontSize: "0.8rem",
+  fontWeight: "1000",
+  display: "inline",
+  // fontFamily: "GangwonEduSaeeum_OTFMediumA",
+  "&:hover": {
+    bgcolor: "#F7F5EB",
+    color: "black",
   },
 };
 
