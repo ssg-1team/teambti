@@ -52,10 +52,22 @@ const MyProfile = () => {
   const [position, setPosition] = useState("");
   const [mbti, setMbti] = useState("");
   const [myUrl, setMyUrl] = useState(1);
-  useEffect(()=>{
+  // useEffect(()=>{
 
-  }, [myUrl])
-  
+  // }, [myUrl])
+  useEffect(()=>{
+    axios
+    .get(`${API_HOST}/char/getChar/${e_id}`, {
+      headers: {
+        // "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      console.log('response', response.data)
+      setMyUrl(response.data.completed)
+    })
+  }, [mbti])
 
   // #####[s]삭제NO
   useEffect(() => {
@@ -91,14 +103,24 @@ const MyProfile = () => {
       })
       .then((response) => {
         console.log('response', response.data)
+        // console.log(myUrl)
         setMyUrl(response.data.completed)
-        console.log(myUrl)
+        // console.log(myUrl)
       })
   }, []);
 
   // #####[e]삭제NO
 
   // [s]삭제예정
+
+  function getMyMBTI(mbti) {
+    setMbti(mbti);
+  }
+
+  function getMyUrl(url){
+    setMyUrl(url);
+  }
+  
   // useEffect(() => {
   //   setName(user.name);
   //   setPosition(user.position);
@@ -112,7 +134,7 @@ const MyProfile = () => {
         <CardMedia
           component="img"
           height="450"
-          image={require(`../assets/image/parts/content/${myUrl}.jpg`)}
+          image={myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`)}
           alt="green iguana"
         />
         <CardContent>
@@ -122,6 +144,10 @@ const MyProfile = () => {
                 <div><span style={{fontSize:25}}>{name}</span> <span>{position}</span></div>
                 <div style={{fontSize:25}}>{mbti !== null ? <MbtiModal title={mbti}/> : <MbtiModal title="MBTI 등록"/>}</div>
               </div>
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {mbti == null ? "" : mbti} / {position}
+              {mbti == null ? <MbtiModal title="등록" getMyUrl={getMyUrl} getMyMBTI={getMyMBTI}/> : <MbtiModal title="수정" getMyMBTI={getMyMBTI} getMyUrl={getMyUrl}/>}
             </Typography>
           </div>
         </CardContent>

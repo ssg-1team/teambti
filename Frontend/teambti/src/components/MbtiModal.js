@@ -13,7 +13,9 @@ import { API_HOST } from '../constant';
 import { bigButtonStyle, mbtiButtonStyle, smallButtonStyle } from "./_shared.module";
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 
-export default function MbtiModal({title}) {
+export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
+
+  const [defaultParts, setDefaultParts] = useState(1)
     // constants
   const e_id = parseInt(localStorage.getItem('e_id'));
   // mbti
@@ -51,12 +53,14 @@ export default function MbtiModal({title}) {
   // mbti
   const handleChange = (event) => {
     setMbti(event.target.value); // m_id
+    setDefaultParts(mbti > 8 ? mbti - 8 : mbti)
     // handleClose();
     // console.log(mbti)
   };
 
   useEffect(()=> {
     console.log(mbti)
+    setDefaultParts(mbti > 8 ? mbti - 8 : mbti)
   }, [mbti])
 
   const mbtiList = mbtiListDb.map((data, i) => (
@@ -86,7 +90,6 @@ export default function MbtiModal({title}) {
     .then((response) => {
       console.log(response.data)
     })
-    const defaultParts = mbti > 8 ? mbti - 8 : mbti
 
     const data2 = {
       "e_id" : e_id,
@@ -108,6 +111,22 @@ export default function MbtiModal({title}) {
     })
     .then((response) => {
       // console.log(response.data)
+      axios
+        .get(`${API_HOST}/mbti/getAllMbti`, {
+          headers: {
+            // "Access-Control-Allow-Origin" : "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          response.data.map((oneMBTI)=>{
+            if(oneMBTI.m_id == defaultParts){
+              getMyMBTI(oneMBTI.type);
+            }
+          })
+          setMbtiListDb(response.data);
+        })  
+      getMyUrl(defaultParts);
       console.log(data2)
       alert('저장되었습니다!')
       handleClose();
@@ -126,7 +145,7 @@ export default function MbtiModal({title}) {
         <div >
           <Box sx={modalStyle} style={{width:500, display:'flex', flexDirection:'column'}}>
             <div style={{width:'100%', height:'90%'}}>
-              <div style={{height:'100%',display:'flex', flexDirection:'row'}}>
+              <div style={{height:'100%',display:'flex', flexDirection:'row', alignItems:'center'}}>
                 <div style={{width:'50%', height:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                   <div style={{fontSize:25}}>나의 MBTI는?</div>
                   <br/>
@@ -146,9 +165,11 @@ export default function MbtiModal({title}) {
                   </FormControl>
                 </div>
                 {/* <Tag /> */}
-                <img style={{height:'80%'}} src={require(`../assets/image/parts/content/${mbti > 8? mbti : mbti}.jpg`)} alt=""/>
+                <img style={{width:'40%'}} src={require(`../assets/image/parts/content/${mbti > 8? mbti-8 : mbti}.jpg`)} alt=""/>
               </div>
             </div>
+            <br/>
+            <br/>
             <Button onClick={save} style={{width:'100%'}} sx={bigButtonStyle}>저장하기</Button>
           </Box>
         </div>
