@@ -115,7 +115,7 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
           headers: {
             // "Access-Control-Allow-Origin" : "*",
             "Content-Type": "application/json",
-          },
+          },    
         })
         .then((response) => {
           response.data.map((oneMBTI)=>{
@@ -124,7 +124,8 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
             }
           })
           setMbtiListDb(response.data);
-        })  
+        })
+          
       getMyUrl(defaultParts);
       console.log(data2)
       alert('저장되었습니다!')
@@ -134,7 +135,7 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
 
   return (
     <>
-      <Button onClick={handleOpen} color="secondary" fontsize="20px" endIcon={<SettingsSuggestIcon sx={{mb:0.5}}/>}>{title}</Button>
+      <Button onClick={handleOpen} color="secondary" sx={{fontSize:'20px'}} endIcon={<SettingsSuggestIcon sx={{mb:0.5}}/>}>{title}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -152,12 +153,12 @@ export default function MbtiModal({title, getMyUrl, getMyMBTI}) {
                   <FormControl style={{width:'50%'}}>
                     <InputLabel id="demo-simple-select-label">MBTI</InputLabel>
                     <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={mbti}
-                      label="MBTI"
-                      
-                      onChange={handleChange}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={mbti}
+                        label="MBTI"
+                        
+                        onChange={handleChange}
                       >
                       {mbtiList}
                     </Select>
