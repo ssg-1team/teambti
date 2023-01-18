@@ -51,55 +51,56 @@ function Home() {
   // [e]
 
   return (
-    <div style={{width:'100%', height:'100%', display:'flex'}}> 
-      <Container maxWidth="false" sx={{margin:0, padding:0, width:'100%', height:'100%', display: { xs: "none", md:"none", lg: "block" }}}>
-        <Slider style={{height:'98%'}}
+    <>
+      <Container
+        maxWidth="lg"
+        sx={{ display: { xs: "none", md: "none", lg: "block" } }}
+      >
+        <Slider
           {...settings_lg}
-          sx={{display: { xs: "none", md: "flex" }, mr: 1 }}
+          sx={{ display: { xs: "none", lg: "flex" }, mr: 1 }}
         >
           {emps.map(
-            (user, id) =>
-              user.e_id != e_id && (
-                  <Profile user={user} key={id} />
-              )
+            (user, id) => user.e_id != e_id && <Profile user={user} key={id} />
           )}
         </Slider>
       </Container>
-      <Container maxWidth="md" sx={{margin:0, padding:0, width:'100%', height:'100%',  display: { xs: "none", md:"block", lg: "none" }}}>
+      <Container
+        maxWidth="md"
+        sx={{ display: { xs: "none", md: "block", lg: "none" } }}
+      >
         <Slider
           {...settings_md}
           sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
         >
           {emps.map(
-            (user, id) =>
-              user.e_id != e_id && (
-                <Profile user={user} key={id} />
-              )
+            (user, id) => user.e_id != e_id && <Profile user={user} key={id} />
           )}
         </Slider>
       </Container>
-      <Container maxWidth="xs" sx={{margin:0, padding:0, width:'100%', height:'100%',  display: { xs: "block", md:"none", lg: "none" }}}>
+      <Container
+        maxWidth="sm"
+        sx={{ display: { xs: "none", sm: "block", md: "none", lg: "none" } }}
+      >
         <Slider
           {...settings_xs}
           sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }}
         >
           {emps.map(
-            (user, id) =>
-              user.e_id != e_id && (
-                <Profile user={user} key={id} />
-              )
+            (user, id) => user.e_id != e_id && <Profile user={user} key={id} />
           )}
         </Slider>
       </Container>
-      <Container maxWidth="xs" sx={{ display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
-      {emps.map(
-            (user) =>
-              user.e_id != e_id && (
-                <ProfileMin user={user} key={user.e_id} />
-              )
-          )}      
+      <Container
+        maxWidth="xs"
+        sx={{ display: { xs: "block", sm: "none", md: "none", lg: "none" } }}
+      >
+        {emps.map(
+          (user) =>
+            user.e_id != e_id && <ProfileMin user={user} key={user.e_id} />
+        )}
       </Container>
-    </div>
+    </>
   );
 }
 
