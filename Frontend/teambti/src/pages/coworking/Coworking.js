@@ -226,6 +226,7 @@ function Coworking({ questionsNumber }) {
   const [emps, setEmps] = useState([]);
   const [myName, setMyName] = useState('');
   // 선택지 3/5/7 개수에 따라서 myQuestions 지정
+  const e_id = parseInt(localStorage.getItem('e_id'));
   useEffect(() => {
     const e_id = parseInt(localStorage.getItem('e_id'));
     // const [emps, setEmps] = useState([]);
@@ -339,16 +340,6 @@ function Coworking({ questionsNumber }) {
   useEffect(() => {
     let interval = setInterval(() => {
     if (questionsNumber * 4 == questionsNowNumber) {
-//       alert(`EICnt : ${EICnt}
-// NSCnt : ${NSCnt}
-// FTCnt : ${FTCnt}
-// JPCnt : ${JPCnt}
-// EI : ${EI}
-// NS : ${NS}
-// FT : ${FT}
-// JP : ${JP}
-// MBTI : ${MBTI}
-// `)
       clearInterval(interval);
       // getDataCoWorking();
       }
@@ -389,7 +380,7 @@ function Coworking({ questionsNumber }) {
   // ex) [4, 3, 2, 1, 4, 2, 3, 1, 3, 3]
   console.log('myTeamList', myTeamList)
   // 팀의 MBTI와 문자열 일치 정도 파악
-  let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, content])=> {
+  let myTeamSameNumberList = myTeamList.map(([e_id2, mbti, position, name, content])=> {
     let cnt = 0;
     
     for (let i =0;i<4;i++){
@@ -398,7 +389,9 @@ function Coworking({ questionsNumber }) {
         cnt += 1;
       } 
     }
-    return {e_id, mbti, cnt, position, name, content}
+    return {e_id2, mbti, cnt, position, name, content}
+  }).filter(function({e_id2, mbti, cnt, position, name, content}, index) {
+    return e_id2 !== e_id;
   })
   // console.log(myTeamSameNumberList)
   // 내림차순 정렬
@@ -408,71 +401,41 @@ function Coworking({ questionsNumber }) {
     return 0
   })
   // 배열 섞는 함수
-  const shuffleArray = array => {
-    for (let i = 0; i < array.length; i++) {
-      let j = Math.floor(Math.random() * (i + 1));
-      const x = array[i];
-      array[i] = array[j];
-      array[j] = x;
-    }
-    return array;
-  };
+  // const shuffleArray = array => {
+  //   for (let i = 0; i < array.length; i++) {
+  //     let j = Math.floor(Math.random() * (i + 1));
+  //     const x = array[i];
+  //     array[i] = array[j];
+  //     array[j] = x;
+  //   }
+  //   return array;
+  // };
   // 일치하는 개수따라 분리 후 객체를 섞음
-  let myTeamSameNumberList0 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 0);
-  let myTeamSameNumberList1 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 1);
-  let myTeamSameNumberList2 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 2);
-  let myTeamSameNumberList3 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 3);
-  let myTeamSameNumberList4 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 4);
-  shuffleArray(myTeamSameNumberList0);
-  shuffleArray(myTeamSameNumberList1);
-  shuffleArray(myTeamSameNumberList2);
-  shuffleArray(myTeamSameNumberList3);
-  shuffleArray(myTeamSameNumberList4);
-
-  // 일치하는 사람이 4명이면, 섞은 후 3명만 뽑아낸다.
-  let ranking = []
-    // 일치하는 사람이 4명이면, 섞은 후 3명만 뽑아낸다.
-  if (myTeamSameNumberList4.length > 3) {
-    myTeamListSelected = myTeamSameNumberList4.slice(0,3);
-    let ranking = [1, 1, 1] 
-    // 0~3명이면 4개가 일치한 사람만 결과로 낸다.
-  } else if (myTeamSameNumberList4.length > 0) {
-    myTeamListSelected = myTeamSameNumberList4;
-    if (myTeamSameNumberList4.length == 1) {
-      let ranking = [1]
-    } else if (myTeamSameNumberList4.length == 2) {
-      let ranking = [1, 1]
-    }
-   // 없으면 앞에서 내림차순의 3명만 뺀다.
-  } else if (myTeamSameNumberList4.length == 0) {
-    myTeamListSelected = myTeamSameNumberListSorted.slice(0,3);
-    myTeamListSelected.map((member, idx)=>{
-      if (idx==0) {
-        ranking.push(1)
-      } else {
-        if (myTeamListSelected[idx-1].cnt > myTeamListSelected[idx].cnt) {
-          ranking.push(ranking[idx-1]+1)
-        } else {
-          ranking.push(ranking[idx-1])
-        }
-      }
-    })
-  }
+  // let myTeamSameNumberList0 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 0);
+  // let myTeamSameNumberList1 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 1);
+  // let myTeamSameNumberList2 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 2);
+  // let myTeamSameNumberList3 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 3);
+  // let myTeamSameNumberList4 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 4);
+  // shuffleArray(myTeamSameNumberList0);
+  // shuffleArray(myTeamSameNumberList1);
+  // shuffleArray(myTeamSameNumberList2);
+  // shuffleArray(myTeamSameNumberList3);
+  // shuffleArray(myTeamSameNumberList4);
   
-  let myRecomanded = myTeamListSelected.map((member)=> {
-    axios
-    .get(`${API_HOST}/member/getEmp/${member.e_id}/`,{
-      headers: {
-        "Access-Control-Allow-Origin" : "*",
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      // console.log(response.data)
-      return response.data
-    })
+  // 일치하는 개수가 많은 순서대로 3명만 뽑아낸다.
+  let ranking = []
+  myTeamListSelected = myTeamSameNumberListSorted.slice(0,3);
+  myTeamListSelected.map((member, idx)=>{
+    if (idx==0) {
+      ranking.push(1)
+    } else {
+      if (myTeamListSelected[idx-1].cnt > myTeamListSelected[idx].cnt) {
+        ranking.push(ranking[idx-1]+1)
+      } else {
+        ranking.push(ranking[idx-1])
+      }
+    }
   })
-  console.log(myRecomanded)
 
   return (
     <>
