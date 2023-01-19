@@ -129,6 +129,7 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
             });
             setMbtiListDb(response.data);
           });
+
         getMyUrl(defaultParts);
         console.log(data2);
         alert("저장되었습니다!");
@@ -141,7 +142,7 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
       <Button
         onClick={handleOpen}
         color="secondary"
-        fontsize="20px"
+        sx={{ fontSize: "20px" }}
         endIcon={<SettingsSuggestIcon sx={{ mb: 0.5 }} />}
       >
         {title}

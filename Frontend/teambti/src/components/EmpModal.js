@@ -37,7 +37,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                   height="370"
                   image={
                     user.image == null
-                      ? "images/characterExample.png"
+                      ? require('../assets/image/parts/content/0.jpg')
                       : user.image
                   }
                   alt="green iguana"

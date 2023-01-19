@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardActionArea,
   CardActions,
@@ -22,8 +22,23 @@ export default function Profile({ user, key, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const e_id = user.e_id;
-  const [myUrl, setMyUrl] = useState('');
+  const [myUrl, setMyUrl] = useState(9);
   const [myMBTI, setMyMBTI] = useState('');
+
+  useEffect(()=> {
+    axios
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data)
+        setMyUrl(response.data.completed)
+        // console.log(myUrl);
+      })
+  }, [])
 
   const handleOpen = () => {  
     axios
@@ -66,6 +81,7 @@ export default function Profile({ user, key, ranking }) {
       })
       .then((response) => {
         setMyUrl(response.data.completed)
+        console.log(myUrl);
       })
     // #####[e]삭제NO
 
@@ -86,7 +102,7 @@ export default function Profile({ user, key, ranking }) {
             component="img"
             height="100%"
             image={
-              user.image == null ? "images/characterExample.png" : {myUrl}
+              myUrl == null ? require('../../src/assets/image/parts/content/0.jpg') : (myUrl.length > 10 ? myUrl : require(`../../src/assets/image/parts/content/${myUrl}.jpg`))
             }
             alt="IMAGE"
           />

@@ -41,7 +41,7 @@ const MyProfile = () => {
         alert('먼저 MBTI를 설정해주세요')
       } else {
         // 배포할때는 위에 내용으로 결정하기
-        // document.location.href = 'http://teambti.site/character';
+        // document.location.href = 'http://teambti.site/character'; 
         document.location.href = 'http://localhost:3000/character';
       }
     })
@@ -51,7 +51,7 @@ const MyProfile = () => {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [mbti, setMbti] = useState("");
-  const [myUrl, setMyUrl] = useState(1);
+  const [myUrl, setMyUrl] = useState(9);
   // useEffect(()=>{
 
   // }, [myUrl])
@@ -64,7 +64,7 @@ const MyProfile = () => {
       },
     })
     .then((response) => {
-      console.log('response', response.data)
+      // console.log('response', response.data)
       setMyUrl(response.data.completed)
     })
   }, [mbti])
