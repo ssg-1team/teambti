@@ -142,6 +142,7 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
       <Button
         onClick={handleOpen}
         color="secondary"
+        variant="outlined"
         sx={{ fontSize: "20px" }}
         endIcon={<SettingsSuggestIcon sx={{ mb: 0.5 }} />}
       >
