@@ -105,6 +105,13 @@ const Header = ({ login }) => {
                     {page.name}
                   </Button>
                 ))}
+                <Button
+                variant="outlined"
+                onClick={handleLogout}
+                sx={{ fontSize:15, textTransform:'none', my: 1, color: "black", display: "block" }}
+              >
+                로그아웃
+              </Button>
               </Menu>
             </Box>
             <Typography
