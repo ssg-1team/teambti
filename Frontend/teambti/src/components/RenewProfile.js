@@ -20,24 +20,8 @@ export default function RenewProfile({ user, key, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const e_id = user.e_id;
-  const [myUrl, setMyUrl] = useState(9);
+  const [myUrl, setMyUrl] = useState(user.url);
   const [myMBTI, setMyMBTI] = useState('');
-
-  useEffect(()=> {
-    axios
-      .get(`${API_HOST}/char/getChar/${e_id}`, {
-        headers: {
-          // "Access-Control-Allow-Origin" : "*",
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        // console.log(response.data)
-        setMyUrl(response.data.completed)
-        // console.log(myUrl);
-      })
-  }, [])
-
   const handleOpen = () => {  
     axios
       .get(`${API_HOST}/member/getEmp/${e_id}`,{
@@ -70,17 +54,6 @@ export default function RenewProfile({ user, key, ranking }) {
           console.dir("내부 서버 오류");
         }
       });
-    axios
-      .get(`${API_HOST}/char/getChar/${e_id}`, {
-        headers: {
-          // "Access-Control-Allow-Origin" : "*",
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setMyUrl(response.data.completed)
-        console.log(myUrl);
-      })
     // #####[e]삭제NO
 
     // [s]삭제예정
