@@ -22,23 +22,23 @@ export default function Profile({ user, key, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const e_id = user.e_id;
-  const [myUrl, setMyUrl] = useState(user.url);
+  const [myUrl, setMyUrl] = useState(9);
   const [myMBTI, setMyMBTI] = useState('');
 
-  // useEffect(()=> {
-  //   axios
-  //     .get(`${API_HOST}/char/getChar/${e_id}`, {
-  //       headers: {
-  //         // "Access-Control-Allow-Origin" : "*",
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((response) => {
-  //       // console.log(response.data)
-  //       // setMyUrl(response.data.completed)
-  //       // console.log(myUrl);
-  //     })
-  // }, [])
+  useEffect(()=> {
+    axios
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data)
+        setMyUrl(response.data.completed)
+        // console.log(myUrl);
+      })
+  }, [])
 
   // useEffect(()=> {
 
