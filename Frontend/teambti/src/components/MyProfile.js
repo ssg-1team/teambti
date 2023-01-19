@@ -94,6 +94,7 @@ const MyProfile = () => {
           console.dir("내부 서버 오류");
         }
       });
+      
     axios
       .get(`${API_HOST}/char/getChar/${e_id}`, {
         headers: {

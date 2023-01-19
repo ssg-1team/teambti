@@ -37,6 +37,7 @@ function Comparision() {
   const [userPosition, setPosition] = useState("");
   const [userMbti, setMbti] = useState("");
   const [userImage, setImage] = useState("");
+  const [myUrl, setMyUrl] = useState(9);
 
   // #####[s]삭제NO
   useEffect(() => {
@@ -52,6 +53,7 @@ function Comparision() {
         setName(response.data.name);
         setPosition(response.data.position);
         setMbti(response.data.mbti);
+        setMyUrl(response.data.image);
       })
       .catch((error) => {
         const status = error?.response?.status;
@@ -66,6 +68,7 @@ function Comparision() {
   }, []);
 
   const other = useLocation();
+  console.log(other.state);
 
   const [meOpen, setMeOpen] = useState(true);
   const [youOpen, setYouOpen] = useState(false);
@@ -101,11 +104,7 @@ function Comparision() {
                   <Card sx={{ Width: "100%", height: "100%" }}>
                     <CardMedia
                       component="img"
-                      image={
-                        userImage == null || userImage == ""
-                          ? "images/characterExample.png"
-                          : userImage
-                      }
+                      image={myUrl==null? require(`../../assets/image/parts/content/0.jpg`) : (myUrl.length >= 5 ? myUrl : require(`../../assets/image/parts/content/${myUrl}.jpg`))}
                       alt="green iguana"
                     />
                     <CardContent>
@@ -286,11 +285,7 @@ function Comparision() {
           <Card sx={{ width: "50%" }}>
             <CardMedia
               component="img"
-              image={
-                userImage == null || userImage == ""
-                  ? "images/characterExample.png"
-                  : userImage
-              }
+              image={myUrl==null? require(`../../assets/image/parts/content/0.jpg`) : (myUrl.length >= 5 ? myUrl : require(`../../assets/image/parts/content/${myUrl}.jpg`))}
               alt="green iguana"
             />
             <CardContent>
