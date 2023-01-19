@@ -150,12 +150,13 @@ shuffle(myQuestions);
 let myTeamList = [[1, 'ESTJ'], [2, 'ESTP'], [3, 'ENTP'], [4, 'INFJ'], [5, 'ESTJ'], [6, 'ESFP'], [7, 'ISTJ'], [8, 'ENFP'], [9, 'ESFJ'], [10, 'ENTJ']];
 // Coworking 실행부
 function MentoMenti() {
+  const e_id = parseInt(localStorage.getItem('e_id'));
 
   const [emps, setEmps] = useState([]);
   const [myName, setMyName] = useState('');
   // 선택지 3/5/7 개수에 따라서 myQuestions 지정
   useEffect(() => {
-    const e_id = parseInt(localStorage.getItem('e_id'));
+    // const e_id = parseInt(localStorage.getItem('e_id'));
     // const [emps, setEmps] = useState([]);
     axios
       .get(`${API_HOST}/member/getAll/${e_id}`,{
@@ -434,6 +435,7 @@ function MentoMenti() {
             </div>
             <Container maxWidth="md" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }, marginLeft:0, flexDirection:'row', alignItems:'center'}}>
             {myTeamListSelected.map((member, index) => (
+                  member.e_id !== e_id &&
                   <Profile user={member} key={index} ranking={ranking[index]}/>
                   // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                   //     <Profile user={member} key={index} ranking={ranking[index]} />
@@ -442,6 +444,7 @@ function MentoMenti() {
             </Container>
             <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
               {myTeamListSelected.map((member, index) => (
+                  member.e_id !== e_id &&
                   <ProfileMin user={member} key={index} ranking={ranking[index]} />
               ))}
             </Container>
