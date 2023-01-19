@@ -294,7 +294,9 @@ function MentoMenti() {
       } 
     }
     return {e_id, mbti, cnt, position, name, content}
-  })
+  }).filter(function({e_id2, mbti, cnt, position, name, content}, index) {
+    return e_id2 != e_id
+  });
   // console.log(myTeamSameNumberList)
   // 내림차순 정렬
   let myTeamSameNumberListSorted = myTeamSameNumberList.sort(function (a, b) {
@@ -302,43 +304,29 @@ function MentoMenti() {
     if (a.cnt > b.cnt) return -1
     return 0
   })
-  // 배열 섞는 함수
-  const shuffleArray = array => {
-    for (let i = 0; i < array.length; i++) {
-      let j = Math.floor(Math.random() * (i + 1));
-      const x = array[i];
-      array[i] = array[j];
-      array[j] = x;
-    }
-    return array;
-  };
+ // 배열 섞는 함수
+  // const shuffleArray = array => {
+  //   for (let i = 0; i < array.length; i++) {
+  //     let j = Math.floor(Math.random() * (i + 1));
+  //     const x = array[i];
+  //     array[i] = array[j];
+  //     array[j] = x;
+  //   }
+  //   return array;
+  // };
   // 일치하는 개수따라 분리 후 객체를 섞음
-  let myTeamSameNumberList0 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 0);
-  let myTeamSameNumberList1 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 1);
-  let myTeamSameNumberList2 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 2);
-  let myTeamSameNumberList3 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 3);
-  let myTeamSameNumberList4 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 4);
-  shuffleArray(myTeamSameNumberList0);
-  shuffleArray(myTeamSameNumberList1);
-  shuffleArray(myTeamSameNumberList2);
-  shuffleArray(myTeamSameNumberList3);
-  shuffleArray(myTeamSameNumberList4);
+  // let myTeamSameNumberList0 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 0);
+  // let myTeamSameNumberList1 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 1);
+  // let myTeamSameNumberList2 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 2);
+  // let myTeamSameNumberList3 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 3);
+  // let myTeamSameNumberList4 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 4);
+  // shuffleArray(myTeamSameNumberList0);
+  // shuffleArray(myTeamSameNumberList1);
+  // shuffleArray(myTeamSameNumberList2);
+  // shuffleArray(myTeamSameNumberList3);
+  // shuffleArray(myTeamSameNumberList4);
     // 일치하는 사람이 4명이면, 섞은 후 3명만 뽑아낸다.
     let ranking = []
-  if (myTeamSameNumberList4.length > 3) {
-    myTeamListSelected = myTeamSameNumberList4.slice(0,3);
-    let ranking = [1, 1, 1]
-
-    // 1, 2명이면 4개가 일치한 사람만 결과로 낸다.
-  } else if (myTeamSameNumberList4.length > 0) {
-    myTeamListSelected = myTeamSameNumberList4;
-    if (myTeamSameNumberList4.length == 1) {
-      let ranking = [1]
-    } else if (myTeamSameNumberList4.length == 2) {
-      let ranking = [1, 1]
-    }
-   // 없으면 앞에서 내림차순의 3명만 뺀다.
-  } else if (myTeamSameNumberList4.length == 0) {
     myTeamListSelected = myTeamSameNumberListSorted.slice(0,3);
     myTeamListSelected.map((member, idx)=>{
       if (idx==0) {
@@ -351,8 +339,7 @@ function MentoMenti() {
         }
       }
     })
-  }
-    
+  
   
   return (
     <>
