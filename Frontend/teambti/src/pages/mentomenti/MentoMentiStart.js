@@ -29,11 +29,9 @@ function MentoMentiStart() {
                 멘토찾기 사용 방법
             </div> */}
             <div style={{width:'100%',height:'20%'}}>
-                <span>
                 누군가에게 도움을 요청하기란 쉽지 않죠?  상황에 적합한 인원을 찾아줄게요.
                 지금 어떤 도움이 필요한지 생각하면서 다음 질문에 답해주세요!
                 000님의 상황은 어떤가요?
-                </span>
             </div>
             <div style={{width:'100%',height:'50%'}}>
                 <Button variant="contained" sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '96%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#ff6961', color:"white", fontSize:100}}}component={Link} to="/mentomenti">시작</Button>

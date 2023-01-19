@@ -92,9 +92,9 @@ export default function RenewProfile({ user, key, ranking }) {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box style={{position:'relative', marginLeft:'20px'}}>
-      {ranking > 0 ? <img style={{position:'absolute', marginTop:10 ,top:-30, left:-30, width:80, zIndex:20}} src={require(`../assets/image/icon/medal${ranking}.png`)} alt=""/> : <></>}
-      <Card sx={{ width: "300px" }}>
+    <Box style={{position:'relative', marginLeft:'2 sd0px'}}>
+      {ranking > 0 ? <img style={{position:'absolute', marginTop:10 ,top:-30, left:-5, width:80, zIndex:20}} src={require(`../assets/image/icon/medal${ranking}.png`)} alt=""/> : <></>}
+      <Card sx={{ width: "300px", ml:3 }}>
         <CardActionArea onClick={handleOpen}>
           <CardMedia
             component="img"

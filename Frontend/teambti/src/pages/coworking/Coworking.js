@@ -475,11 +475,11 @@ function Coworking({ questionsNumber }) {
   console.log(myRecomanded)
 
   return (
+    <>
+    {questionsNumber * 4 > questionsNowNumber ? (
     <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
-    {/* <Box sx={{ width: `100%`, height:10, position:'absolute', top:'8.5vh', left:'0vh', zIndex:10}}> */}
-
-    <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column', backgroundColor:'yellow'}}>
-      {questionsNumber * 4 > questionsNowNumber ? (
+      <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column', backgroundColor:'yellow'}}>
+      
         <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
             <Box sx={{ width: `100%`, height:25}}>
               <LinearProgressWithLabel value={progress} />
@@ -488,8 +488,7 @@ function Coworking({ questionsNumber }) {
             <div
             style={{ height:'100%', display:'flex', flexDirection:'column',
             display: questionsNowNumber == index ? "block" : "none",
-          }}
-          >
+          }}>
             <div style={{width:'100%', height:50, fontSize:30, color:'white', backgroundColor:'rgba(0, 0, 0, 0.5)',position:'absolute', top:25, zIndex: 20, display:'flex', justifyContent:'center', alignItems:'center'}}>
               {myName}님의 상황은 어떤가요?
             </div>
@@ -524,17 +523,9 @@ function Coworking({ questionsNumber }) {
                     <div>{value}</div>
                 </Button>
               ))}
-            </div>
-          ))}
-          {/* {myQuestions.map((question, index) => (
-            <div>
-              {Object.entries(question).map(([key, value]) => (
-                <button>
-                  <div>{value}</div>
-                </button>
-              ))}P
-            </div>
-          ))} */}
+            </div>))}
+          </div>
+          </div>
         </div>
       ) : (
         <Container maxWidth='flex' id='rainbow'>
@@ -566,8 +557,7 @@ function Coworking({ questionsNumber }) {
           </div>
         </Container>
       )}
-    </div>
-    </div>
+    </>
   );
 }
 

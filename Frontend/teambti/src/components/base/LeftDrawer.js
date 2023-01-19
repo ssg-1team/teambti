@@ -52,6 +52,7 @@ const LeftDrawer = () => {
           open={state["left"]}
         >
           <DrawerHeader>
+            <img src={require(`../../assets/image/logo_remove.png`)} style={{width:200}} alt=""/>
             <IconButton onClick={toggleDrawer("left", false)} size="large" sx={{color:"#F38181"}}>
               <ChevronLeftIcon fontSize="inherit"/>
             </IconButton>

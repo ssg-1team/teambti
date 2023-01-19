@@ -142,7 +142,7 @@ const MyProfile = () => {
           <div style={{display:'flex', flexDirection:'column'}}>
             <Typography gutterBottom>
               <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
-                <div><span style={{fontSize:25}}>{name}</span> <span>{position}</span></div>
+                <div><span style={{fontSize:25}}>{name}</span></div>
                 {mbti == null ? <MbtiModal title="MBTI 등록" getMyUrl={getMyUrl} getMyMBTI={getMyMBTI}/> : <MbtiModal title={mbti} getMyMBTI={getMyMBTI} getMyUrl={getMyUrl}/>}
               </div>
             </Typography>

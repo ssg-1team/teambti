@@ -370,7 +370,7 @@ function MentoMenti() {
       {20 > questionsNowNumber ? (
         <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
           <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column'}}>
-            <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative', marginLeft:10}}>
+            <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
               <Box sx={{ width: `100%`, height:25}}>
                 <LinearProgressWithLabel value={progress} />
               </Box>
