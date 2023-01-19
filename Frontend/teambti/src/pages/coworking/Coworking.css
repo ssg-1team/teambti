@@ -1,0 +1,13 @@
+#rainbow {
+    background-image: linear-gradient(60deg,
+    #FD8A8A 15%,
+    #FEBE8C 15% 30%,
+    #FFF6BD 30% 45%,
+    #CEEDC7 45% 60%,
+    #BFEAF5 60% 75%,
+    #9EA1D4 75% 95%,
+    #A084CA 95% 100%);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}

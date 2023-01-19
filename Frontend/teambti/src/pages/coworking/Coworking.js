@@ -21,11 +21,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { style } from "@mui/system";
+import ReplayIcon from '@mui/icons-material/Replay';
 import { Link } from "react-router-dom";
 import LeftDrawer from "../../components/base/LeftDrawer";
-import Profile from "../../components/Profile";
+import Profile from "../../components/RenewProfile";
 import ProfileMin from "../../components/ProfileMin";
-
+import "./Coworking.css"
 
 function LinearProgressWithLabel(props) {
   return (
@@ -427,16 +428,35 @@ function Coworking({ questionsNumber }) {
   shuffleArray(myTeamSameNumberList2);
   shuffleArray(myTeamSameNumberList3);
   shuffleArray(myTeamSameNumberList4);
+
+  // 일치하는 사람이 4명이면, 섞은 후 3명만 뽑아낸다.
+  let ranking = []
     // 일치하는 사람이 4명이면, 섞은 후 3명만 뽑아낸다.
   if (myTeamSameNumberList4.length > 3) {
     myTeamListSelected = myTeamSameNumberList4.slice(0,3);
-
+    let ranking = [1, 1, 1] 
     // 0~3명이면 4개가 일치한 사람만 결과로 낸다.
   } else if (myTeamSameNumberList4.length > 0) {
     myTeamListSelected = myTeamSameNumberList4;
+    if (myTeamSameNumberList4.length == 1) {
+      let ranking = [1]
+    } else if (myTeamSameNumberList4.length == 2) {
+      let ranking = [1, 1]
+    }
    // 없으면 앞에서 내림차순의 3명만 뺀다.
   } else if (myTeamSameNumberList4.length == 0) {
     myTeamListSelected = myTeamSameNumberListSorted.slice(0,3);
+    myTeamListSelected.map((member, idx)=>{
+      if (idx==0) {
+        ranking.push(1)
+      } else {
+        if (myTeamListSelected[idx-1].cnt > myTeamListSelected[idx].cnt) {
+          ranking.push(ranking[idx-1]+1)
+        } else {
+          ranking.push(ranking[idx-1])
+        }
+      }
+    })
   }
   
   let myRecomanded = myTeamListSelected.map((member)=> {
@@ -517,33 +537,34 @@ function Coworking({ questionsNumber }) {
           ))} */}
         </div>
       ) : (
-        <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
-          <div style={{fontFamily:'Pretendard-Regular', width:'25%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-            {myName}님과 어울리는 MBTI
-            <div>{MBTI}</div>
-            <Link to='/coworking'>
-              <button>다시하기</button>
-            </Link>
-          </div>
-          <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }}}>
-          {myTeamListSelected.map((member, index) => (
-                <Profile user={member} key={index} />
-          ))}
-          </Container>
-          <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
-          {myTeamListSelected.map((member, index) => (
-              <ProfileMin user={member} key={index} />
-          ))}
-          </Container>
-
-          {/* {myTeamListSelected.map((member, index) => (
-            <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-              <button style={{height:'100%'}}>
-                <Profile user={member} key={index} />
-              </button>
+        <Container maxWidth='flex' id='rainbow'>
+          <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
+            <div style={{width:'35%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <div><span style={{fontSize:25}}>{myName}</span> <span>님이 원하는 MBTI는</span></div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <div style={{marginTop:'20px', marginBottom:'50px'}}><Typography variant="h3" style={{borderBottom: '10px solid #DC0000', padding: '0 0 0 0.2em'}}>{MBTI}</Typography></div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <Button variant="contained" href='/coworkingstart' width='100%' endIcon={<ReplayIcon/>} style={{color:"black", backgroundColor:"#FFFBAC", fontWeight:"bold"}}>다시하기</Button>
+              </div>
             </div>
-          ))} */}
-        </div>
+            <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }, marginLeft:0, flexDirection:'row', alignItems:'center'}}>
+            {myTeamListSelected.map((member, index) => (
+                  <Profile user={member} key={index} ranking={ranking[index]}/>
+                  // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                  //     <Profile user={member} key={index} ranking={ranking[index]} />
+                  // </div>
+            ))}
+            </Container>
+            <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
+              {myTeamListSelected.map((member, index) => (
+                  <ProfileMin user={member} key={index} ranking={ranking[index]} />
+              ))}
+            </Container>
+          </div>
+        </Container>
       )}
     </div>
     </div>

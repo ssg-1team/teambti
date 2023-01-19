@@ -24,7 +24,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { style } from "@mui/system";
 import { Link } from "react-router-dom";
 import LeftDrawer from "../../components/base/LeftDrawer";
-import Profile from "./MentoProfile";
+import Profile from "../../components/RenewProfile";
 import ProfileMin from "../../components/ProfileMin";
 import "./MentoMenti.css"
 
@@ -362,8 +362,8 @@ function MentoMenti() {
       }
     })
   }
-  console.log(myTeamListSelected)
-  console.log(ranking)
+  //console.log(myTeamListSelected)
+  //console.log(ranking)
   
   return (
     <>
@@ -421,7 +421,7 @@ function MentoMenti() {
       ) : (
         <Container maxWidth='flex' id='rainbow'>
           <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
-            <div style={{width:'30%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+            <div style={{width:'35%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
               <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
                 <div><span style={{fontSize:25}}>{myName}</span> <span>님이 원하는 MBTI는</span></div>
               </div>
@@ -432,7 +432,7 @@ function MentoMenti() {
                 <Button variant="contained" href='/mentomentistart' width='100%' endIcon={<ReplayIcon/>} style={{color:"black", backgroundColor:"#FFFBAC", fontWeight:"bold"}}>다시하기</Button>
               </div>
             </div>
-            <Container maxWidth="md" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }, marginLeft:0, flexDirection:'row', alignItems:'center'}}>
+            <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }, marginLeft:0, flexDirection:'row', alignItems:'center'}}>
             {myTeamListSelected.map((member, index) => (
                   <Profile user={member} key={index} ranking={ranking[index]}/>
                   // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>

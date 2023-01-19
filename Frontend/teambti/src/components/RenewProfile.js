@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardActionArea,
   CardActions,
@@ -11,17 +11,32 @@ import {
   Box,
 } from "@mui/material";
 
-import { API_HOST } from "../../constant";
+import { API_HOST } from "../constant";
 import axios from "axios";
-import EmpModal from "../../components/EmpModal";
+import EmpModal from "./EmpModal";
 import { Link } from "react-router-dom";
 
-export default function MentoProfile({ user, key, ranking }) {
+export default function RenewProfile({ user, key, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const e_id = user.e_id;
-  const [myUrl, setMyUrl] = useState('');
+  const [myUrl, setMyUrl] = useState(9);
   const [myMBTI, setMyMBTI] = useState('');
+
+  useEffect(()=> {
+    axios
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data)
+        setMyUrl(response.data.completed)
+        // console.log(myUrl);
+      })
+  }, [])
 
   const handleOpen = () => {  
     axios
@@ -64,6 +79,7 @@ export default function MentoProfile({ user, key, ranking }) {
       })
       .then((response) => {
         setMyUrl(response.data.completed)
+        console.log(myUrl);
       })
     // #####[e]삭제NO
 
@@ -76,15 +92,15 @@ export default function MentoProfile({ user, key, ranking }) {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box style={{position:'relative'}}>
-      {ranking > 0 ? <img style={{position:'absolute', marginTop:10 ,top:-30, left:-30, width:80, zIndex:20}} src={require(`../../assets/image/icon/medal${ranking}.png`)} alt=""/> : <></>}
-      <Card sx={{ width: "90%" }}>
+    <Box style={{position:'relative', marginLeft:'20px'}}>
+      {ranking > 0 ? <img style={{position:'absolute', marginTop:10 ,top:-30, left:-30, width:80, zIndex:20}} src={require(`../assets/image/icon/medal${ranking}.png`)} alt=""/> : <></>}
+      <Card sx={{ width: "300px" }}>
         <CardActionArea onClick={handleOpen}>
           <CardMedia
             component="img"
-            height="90%"
+            height="100%"
             image={
-              user.image == null ? "images/characterExample.png" : {myUrl}
+              myUrl == null ? require('../../src/assets/image/parts/content/0.jpg') : (myUrl.length > 10 ? myUrl : require(`../../src/assets/image/parts/content/${myUrl}.jpg`))
             }
             alt="IMAGE"
           />
