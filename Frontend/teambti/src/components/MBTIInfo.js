@@ -788,7 +788,7 @@ const matchingInfo = [
         id : 110,
         mbti1 : "ESTP",
         mbti2 : "ISFJ",
-        content : "직설적인 표현을 조금만 자제해볼까요?",
+        content : "직설적인 표현보단 공감을 해줘요! 오늘도 고생 많았구나?",
     },
     {
         id : 111,
@@ -1418,7 +1418,7 @@ const matchingInfo = [
         id : 215,
         mbti1 : "ISFJ",
         mbti2 : "ESTP",
-        content : "사람과의 교류를 좋아해요! 관심을 한 번 표현해 주면 어떨까요?",
+        content : "지쳐보일 땐 옆에서 응원을 해줘요! 담당님 할 수 있어요!",
     },
     {
         id : 216,

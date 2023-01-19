@@ -13,7 +13,7 @@ import {
   TextField,
 } from "@mui/material/";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { API_HOST } from "../../constant";
 import Main from "../main/Main2";
@@ -37,9 +37,16 @@ export default function Login({ isLoggedIn, login }) {
         },
       })
       .then((response) => {
-        localStorage.setItem("e_id", response.data.e_id);
-        login(true);
-        console.log(response);
+        const login_id = response.data.id;
+        const login_pw = response.data.password;
+        if (login_id === undefined || login_pw === undefined) {
+          alert("아이디와 비밀번호를 확인해주세요!");
+        } else if (login_id === fData.get("email") && login_pw === fData.get("password")) {
+          localStorage.setItem("e_id", response.data.e_id);
+          login(true);
+          console.log("로그인성공");
+        }
+        console.log(response.data);
       })
       .catch((error) => {
         const status = error?.response?.status;
@@ -56,17 +63,18 @@ export default function Login({ isLoggedIn, login }) {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: "100%", backgroundColor:'black' }}>
+        <Grid container component="main" sx={{ height: "100%"}}>
+          
           <CssBaseline />
-          <Grid
+          <Grid style={{display:'flex', justifyContent:'center', alignItems:'center'}}
             item
             xs={false}
             sm={6}
             md={8}
             sx={{
-
             }}
-          />
+          ><img style={{height:'99vh',}} src={require(`../../assets/image/sublogo.png`)} alt=""/>
+          </Grid>
           <Grid
             item
             xs={12}

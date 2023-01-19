@@ -40,6 +40,10 @@ export default function Profile({ user, key, ranking }) {
       })
   }, [])
 
+  // useEffect(()=> {
+
+  // }, [myUrl])
+
   const handleOpen = () => {  
     axios
       .get(`${API_HOST}/member/getEmp/${e_id}`,{
@@ -80,8 +84,8 @@ export default function Profile({ user, key, ranking }) {
         },
       })
       .then((response) => {
-        setMyUrl(response.data.completed)
-        console.log(myUrl);
+        // setMyUrl(response.data.completed)
+        // console.log(myUrl);
       })
     // #####[e]삭제NO
 

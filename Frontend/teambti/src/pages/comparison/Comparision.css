@@ -1,6 +1,14 @@
 #half {
-    background-image: linear-gradient(-85deg, #FFF6BD 50%, #CEEDC7 50%);
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
+  background-image: linear-gradient(-85deg, #fff6bd 50%, #ceedc7 50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+#half-xs {
+  background-image: linear-gradient(-85deg, #fff6bd 50%, #ceedc7 50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 16px;
 }

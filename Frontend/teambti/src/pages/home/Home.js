@@ -59,6 +59,7 @@ function Home() {
         <Slider
           {...settings_lg}
           sx={{ display: { xs: "none", lg: "flex" }, mr: 1 }}
+        >
           {emps.map(
             (user, id) => user.e_id != e_id && <Profile user={user} key={id} />
           )}
@@ -77,7 +78,10 @@ function Home() {
           )}
         </Slider>
       </Container>
-      <Container maxWidth="xs" sx={{margin:0, padding:0, width:'100%', height:'100%',  display: { xs: "block", md:"none", lg: "none" }}}>
+      <Container
+        maxWidth="sm"
+        sx={{ display: { xs: "none", sm: "block", md: "none", lg: "none" } }}
+      >
         <Slider
           {...settings_xs}
           sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }}
@@ -96,7 +100,7 @@ function Home() {
             user.e_id != e_id && <ProfileMin user={user} key={user.e_id} />
         )}
       </Container>
-    </div>
+    </>
   );
 }
 
