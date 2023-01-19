@@ -102,7 +102,16 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
       eye: defaultParts,
       mouth: defaultParts,
       accessory: 0,
-      completed: defaultParts,
+      completed: defaultParts == 0 ? 'https://user-images.githubusercontent.com/97590478/213482208-b7bfdf1e-9c0e-4af6-8d4b-0f6f1f502d48.jpg'
+      : (defaultParts == 1 ? 'https://user-images.githubusercontent.com/97590478/213482211-d1e86a2f-ebd3-4b4c-b9e1-6f16fd9982a1.jpg' 
+      : (defaultParts == 2 ? 'https://user-images.githubusercontent.com/97590478/213482212-ac2db847-26ae-4ce3-9009-7cba69fa329a.jpg'  
+      : (defaultParts == 3 ? 'https://user-images.githubusercontent.com/97590478/213482218-669504e0-1e8a-4b9b-bad1-bc5bd86d7f0b.jpg'  
+      : (defaultParts == 4 ? 'https://user-images.githubusercontent.com/97590478/213482220-a9ec9ef7-8bda-4234-ab34-6c400f8f66f3.jpg'  
+      : (defaultParts == 5 ? 'https://user-images.githubusercontent.com/97590478/213482187-eb887eb5-b31f-4873-b743-90f916f243af.jpg'  
+      : (defaultParts == 6 ? 'https://user-images.githubusercontent.com/97590478/213482194-ca691990-e7eb-4268-ace8-8f0fdb98d7ec.jpg'  
+      : (defaultParts == 7 ? 'https://user-images.githubusercontent.com/97590478/213482199-576ca484-4bea-4686-b4cf-6e402033f5f7.jpg'  
+      : (defaultParts == 8 ? 'https://user-images.githubusercontent.com/97590478/213482201-181446bd-5c1e-44e0-987c-b0e488e1a917.jpg'
+      :  'https://user-images.githubusercontent.com/97590478/213482205-b6e32bfc-1c7a-459e-8f53-0c163769f02f.jpg'))))))))
     };
 
     axios
@@ -123,7 +132,7 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
           })
           .then((response) => {
             response.data.map((oneMBTI) => {
-              if (oneMBTI.m_id == defaultParts) {
+              if (oneMBTI.m_id == mbti) {
                 getMyMBTI(oneMBTI.type);
               }
             });
