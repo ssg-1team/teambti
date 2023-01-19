@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -18,9 +18,25 @@ import { Button } from "@mui/material";
 export default function ProfileMin({ user, id, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
+  const [myUrl, setMyUrl] = useState(9);
   const e_id = user.e_id;
 
   const theme = useTheme();
+
+  useEffect(() => {
+    axios
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data)
+        setMyUrl(response.data.completed);
+        // console.log(myUrl);
+      });
+  }, []);
 
   const handleOpen = () => {
     // #####[s]삭제NO
@@ -100,7 +116,13 @@ export default function ProfileMin({ user, id, ranking }) {
       <CardMedia
         component="img"
         sx={{ width: 151 }}
-        image={user.image == null ? "images/characterExample.png" : user.image}
+        image={
+          myUrl == null
+            ? require("../../src/assets/image/parts/content/0.jpg")
+            : myUrl.length > 10
+            ? myUrl
+            : require(`../../src/assets/image/parts/content/${myUrl}.jpg`)
+        }
         alt="Live from space album cover"
       />
     </Card>
