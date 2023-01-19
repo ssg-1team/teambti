@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface MemberService {
 	
+	public int isMember(MemberVO vo);
 	public LoginResponseVO login(MemberVO vo);
 	public List<MemberResponseVO> getAll(int id);
 	public MemberResponseVO getEmp(int id);

@@ -17,13 +17,14 @@
     </select>
     
 	<select id="getAll" parameterType="int" resultType="com.shinsegae.teambti.MemberResponseVO">
-	 	SELECT e.*, m.`type` AS MBTI
+	 	SELECT e.*, m.`type` AS MBTI, c.COMPLETED as image
 		FROM employ e
 		LEFT JOIN mbti m ON e.m_id = m.m_id
+		LEFT JOIN `character` c ON e.e_id = c.e_id
 		WHERE e.D_ID = (
 			SELECT d_id  FROM employ e 
 			WHERE e_id = #{e_id}
-		);
+		)
 	</select>
 
 	<select id="getEmp" parameterType="int" resultType="com.shinsegae.teambti.MemberResponseVO">

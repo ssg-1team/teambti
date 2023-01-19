@@ -20,16 +20,17 @@ public class MemberApiController {
 	MemberService memberService;
 	CharacterService characterService;
 
-	@GetMapping(value="/get", produces="text/plain;charset=utf-8")
+	@GetMapping(value="/test", produces="text/plain;charset=utf-8")
 	public String get() {
-		return "안녕";
+		return "test성공";
 	}
 	
 	// login
     @PostMapping("/login")
     public LoginResponseVO login(@RequestBody MemberVO params) {
-    	LoginResponseVO entity = memberService.login(params);
-        return entity;
+		LoginResponseVO entity = memberService.login(params);
+		return entity;
+
     }
     
     // home > 직원 불러오기

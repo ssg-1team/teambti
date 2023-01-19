@@ -12,6 +12,11 @@ public class MemberServiceImpl implements MemberService {
 	MemberMapper memberMapper;
 	
 	@Override
+	public int isMember(MemberVO vo) {
+		int r = memberMapper.isMember(vo);
+		return r;
+	}
+	
 	public LoginResponseVO login(MemberVO vo) {
 		LoginResponseVO entity = memberMapper.login(vo);
 		return entity;
