@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -26,6 +26,13 @@ const pages = [
 ];
 
 const Header = ({ login }) => {
+// const Header = ({ login, myHeaderColorNumber, getMyHeaderColorNumber }) => {
+  // useEffect(()=> {
+  //   document.getElementById('page_0').style.color='black';
+  //   document.getElementById('page_1').style.color='black';
+  //   document.getElementById('page_2').style.color='black';
+  //   document.getElementById(`page_${myHeaderColorNumber}`).style.color='red';
+  // }, [myHeaderColorNumber])
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -98,13 +105,22 @@ const Header = ({ login }) => {
                   <Button
                     variant="outlined"
                     key={id}
-                    onClick={handleCloseNavMenu}
+                    onClick={
+                      handleCloseNavMenu
+                    }
                     href={page.link}
                     sx={{ fontSize:15, textTransform:'none', my: 1, color: "black", display: "block" }}
                   >
                     {page.name}
                   </Button>
                 ))}
+                <Button
+                variant="outlined"
+                onClick={handleLogout}
+                sx={{ fontSize:15, textTransform:'none', my: 1, color: "black", display: "block" }}
+              >
+                로그아웃
+              </Button>
               </Menu>
             </Box>
             <Typography
@@ -132,11 +148,13 @@ const Header = ({ login }) => {
                   <Button
                     variant="outlined"
                     key={id}
-                    onClick={handleCloseNavMenu}
+                    onClick={() => {handleCloseNavMenu();
+                      // getMyHeaderColorNumber(id);
+                    }}
                     href={page.link}
                     sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
                   >
-                    {page.name}
+                   <span id={`page_${id}`}>{page.name}</span>
                   </Button>
                 ))}
               <Button

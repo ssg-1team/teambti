@@ -15,8 +15,8 @@ import CardMedia from "@mui/material/CardMedia";
 import { Box, Button, ButtonGroup, CardActionArea } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import axios from "axios";
-import { API_HOST } from '../../constant/index';
-import html2canvas from 'html2canvas';
+import { API_HOST } from "../../constant/index";
+import html2canvas from "html2canvas";
 import { characterButtonStyle } from "./CharacterButtonStyle";
 // 0번
 import back0 from "../../assets/image/parts/back/0.png";
@@ -164,55 +164,54 @@ function Character() {
   const [myBack, setMyBack] = useState(0);
 
   // 사용자의 id를 가져오기
-  const e_id = parseInt(localStorage.getItem('e_id'));
-  let myName = 'TEAMBTI'
+  const e_id = parseInt(localStorage.getItem("e_id"));
+  let myName = "TEAMBTI";
   axios
-    .get(`${API_HOST}/member/getEmp/${e_id}`,{
+    .get(`${API_HOST}/member/getEmp/${e_id}`, {
       headers: {
-        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
     })
     .then((response) => {
-      myName = `${response.data.name}`
-    })
+      myName = `${response.data.name}`;
+    });
 
   useEffect(() => {
     setMyParts();
-  },[])
-
+  }, []);
 
   axios
-    .get(`${API_HOST}/member/getEmp/${e_id}`,{
+    .get(`${API_HOST}/member/getEmp/${e_id}`, {
       headers: {
-        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
     })
     .then((response) => {
       // console.log(response.data);
-    })
+    });
 
   function downloadMyCharacter() {
-    const el = document.getElementById('myCharacterDiv');
-    html2canvas(el, {width: 441, height:566}).then(function(canvas, width) {
-      let downloadURL = canvas.toDataURL('image/png');
-      let aTag = document.getElementById('target');
+    const el = document.getElementById("myCharacterDiv");
+    html2canvas(el, { width: 441, height: 566 }).then(function (canvas, width) {
+      let downloadURL = canvas.toDataURL("image/png");
+      let aTag = document.getElementById("target");
       aTag.href = downloadURL;
-      aTag.download =`${myName}.jpg`
+      aTag.download = `${myName}.jpg`;
       aTag.click();
     });
   }
-  
+
   function setMyParts() {
     axios
-    .get(`${API_HOST}/char/getChar/${e_id}`,{
-      headers: {
-        "Access-Control-Allow-Origin" : "*",
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
         setMyEars(response.data.ear);
         setMyAcc(response.data.accessory);
         setMyBody(response.data.body);
@@ -220,38 +219,36 @@ function Character() {
         setMyHead(response.data.head);
         setMyMouth(response.data.mouth);
         setMyBack(response.data.background);
-      }
-      )
-  }  
-
-  function saveMyParts() {
-    const el = document.getElementById('myCharacterDiv');
-    html2canvas(el, {width: 441, height:566}).then((canvas) => {
-      let content = canvas.toDataURL('image/png', 1.0);
-      const data = {
-        "head" : myHead,
-        "background" : myBack,
-        "body" : myBody,
-        "ear" : myEars,
-        "eye" : myEyes,
-        "mouth" : myMouth,
-        "e_id" : e_id,
-        "accessory" : myAcc,
-        "completed" : content
-        }
-      axios
-      .post(`${API_HOST}/char/setChar`,data, {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin" : "*",
-        },
-      })
-      .then(() => {
-        alert('저장되었습니다!')
-      })
-    });
+      });
   }
 
+  function saveMyParts() {
+    const el = document.getElementById("myCharacterDiv");
+    html2canvas(el, { width: 441, height: 566 }).then((canvas) => {
+      let content = canvas.toDataURL("image/png", 1.0);
+      const data = {
+        head: myHead,
+        background: myBack,
+        body: myBody,
+        ear: myEars,
+        eye: myEyes,
+        mouth: myMouth,
+        e_id: e_id,
+        accessory: myAcc,
+        completed: content,
+      };
+      axios
+        .post(`${API_HOST}/char/setChar`, data, {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+        .then(() => {
+          alert("저장되었습니다!");
+        });
+    });
+  }
 
   const [expanded, setExpanded] = React.useState(false);
   // tags
@@ -262,730 +259,1444 @@ function Character() {
   };
 
   return (
-    <Container maxWidth='flex' sx={{height:'100%', width:'100%', backgroundColor:'#FFF6BD', borderRadius:'20px'}}>
-      <Grid container spacing={2} sx={{ ml:3, mr:0, mt: 3}}>
-        <Grid xs={4} >
-          <div style={{overflowY:"auto", maxHeight:"566px"}}>
-            {/* <Accordion expanded>
+    <>
+      <Container
+        maxWidth="flex"
+        sx={{
+          height: "100%",
+          width: "100%",
+          backgroundColor: "#FFF6BD",
+          borderRadius: "20px",
+          display: { xs: "none", sm: "none", md: "none", lg: "block" },
+        }}
+      >
+        <Grid container spacing={2} sx={{ ml: 3, mr: 0, mt: 3 }}>
+          <Grid xs={3}>
+            <div style={{ overflowY: "auto", maxHeight: "566px" }}>
+              <Accordion
+                expanded={expanded === "panel2"}
+                onChange={handleChange("panel2")}
+              >
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1bh-content"
-                  id="panel1bh-header"
+                  aria-controls="panel2bh-content"
+                  id="panel2bh-header"
                 >
-                  <Typography>머리</Typography>
+                  <Typography>귀</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography >
-                    {myHead}
-                    <button onClick={() => {setMyHead(1)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head1} alt="" /></button>
-                    <button onClick={() => {setMyHead(2)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head2} alt="" /></button>
-                    <button onClick={() => {setMyHead(3)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head3} alt="" /></button>
-                    <button onClick={() => {setMyHead(4)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head4} alt="" /></button>
-                    <button onClick={() => {setMyHead(5)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head5} alt="" /></button>
-                    <button onClick={() => {setMyHead(6)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head6} alt="" /></button>
-                    <button onClick={() => {setMyHead(7)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head7} alt="" /></button>
-                    <button onClick={() => {setMyHead(8)}} className={styles.CharacterBtn}><img style={{ width: "30px" }} src={head8} alt="" /></button>
+                  <Typography>
+                    <button
+                      onClick={() => {
+                        setMyEars(1);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears1} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEars(2);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears2} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEars(3);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears3} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEars(4);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears4} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEars(5);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears5} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEars(6);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears6} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEars(7);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears7} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEars(8);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears8} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEars(9);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={ears9} alt="" />
+                    </button>
                   </Typography>
                 </AccordionDetails>
-              </Accordion> */}
-            <Accordion
-              expanded={expanded === "panel2"}
-              onChange={handleChange("panel2")}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2bh-content"
-                id="panel2bh-header"
+              </Accordion>
+              <Accordion
+                expanded={expanded === "panel3"}
+                onChange={handleChange("panel3")}
               >
-                <Typography>귀</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <button
-                    onClick={() => {
-                      setMyEars(1);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears1} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEars(2);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears2} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEars(3);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears3} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEars(4);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears4} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEars(5);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears5} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEars(6);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears6} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEars(7);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears7} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEars(8);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears8} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEars(9);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={ears9} alt="" />
-                  </button>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel3"}
-              onChange={handleChange("panel3")}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel3bh-content"
-                id="panel3bh-header"
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel3bh-content"
+                  id="panel3bh-header"
+                >
+                  <Typography>눈</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>
+                    <button
+                      onClick={() => {
+                        setMyEyes(1);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes1} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(2);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes2} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(3);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes3} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(4);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes4} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(5);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes5} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(6);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes6} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(7);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes7} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(8);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes8} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(9);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes9} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(10);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes10} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(11);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes11} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(12);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes12} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(13);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes13} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(14);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes14} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyEyes(15);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={eyes15} alt="" />
+                    </button>
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion
+                expanded={expanded === "panel4"}
+                onChange={handleChange("panel4")}
               >
-                <Typography>눈</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <button
-                    onClick={() => {
-                      setMyEyes(1);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes1} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(2);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes2} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(3);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes3} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(4);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes4} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(5);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes5} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(6);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes6} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(7);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes7} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(8);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes8} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(9);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes9} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(10);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes10} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(11);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes11} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(12);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes12} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(13);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes13} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(14);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes14} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyEyes(15);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={eyes15} alt="" />
-                  </button>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel4"}
-              onChange={handleChange("panel4")}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel4bh-content"
-                id="panel4bh-header"
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel4bh-content"
+                  id="panel4bh-header"
+                >
+                  <Typography>입</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>
+                    <button
+                      onClick={() => {
+                        setMyMouth(1);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth1} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyMouth(2);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth2} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyMouth(3);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth3} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyMouth(4);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth4} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyMouth(5);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth5} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyMouth(6);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth6} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyMouth(7);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth7} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyMouth(8);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth8} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyMouth(9);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={mouth9} alt="" />
+                    </button>
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion
+                expanded={expanded === "panel5"}
+                onChange={handleChange("panel5")}
               >
-                <Typography>입</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <button
-                    onClick={() => {
-                      setMyMouth(1);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth1} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyMouth(2);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth2} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyMouth(3);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth3} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyMouth(4);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth4} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyMouth(5);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth5} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyMouth(6);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth6} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyMouth(7);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth7} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyMouth(8);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth8} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyMouth(9);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={mouth9} alt="" />
-                  </button>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel5"}
-              onChange={handleChange("panel5")}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel5bh-content"
-                id="panel5bh-header"
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel5bh-content"
+                  id="panel5bh-header"
+                >
+                  <Typography>몸통</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>
+                    <button
+                      onClick={() => {
+                        setMyBody(1);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body1} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(2);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body2} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(3);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body3} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(4);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body4} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(5);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body5} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(6);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body6} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(7);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body7} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(8);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body8} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(9);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body9} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(10);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body10} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(11);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body11} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBody(12);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={body12} alt="" />
+                    </button>
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion
+                expanded={expanded === "panel6"}
+                onChange={handleChange("panel6")}
               >
-                <Typography>몸통</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <button
-                    onClick={() => {
-                      setMyBody(1);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body1} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(2);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body2} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(3);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body3} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(4);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body4} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(5);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body5} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(6);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body6} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(7);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body7} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(8);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body8} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(9);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body9} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(10);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body10} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(11);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body11} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBody(12);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={body12} alt="" />
-                  </button>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel6"}
-              onChange={handleChange("panel6")}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel6bh-content"
-                id="panel2bh-header"
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel6bh-content"
+                  id="panel2bh-header"
+                >
+                  <Typography>악세사리</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>
+                    <button
+                      onClick={() => {
+                        setMyAcc(0);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc0} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyAcc(1);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc1} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyAcc(2);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc2} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyAcc(3);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc3} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyAcc(4);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc4} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyAcc(5);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc5} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyAcc(6);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc6} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyAcc(7);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc7} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyAcc(8);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={acc8} alt="" />
+                    </button>
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion
+                expanded={expanded === "panel7"}
+                onChange={handleChange("panel7")}
               >
-                <Typography>악세사리</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <button
-                    onClick={() => {
-                      setMyAcc(0);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc0} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyAcc(1);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc1} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyAcc(2);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc2} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyAcc(3);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc3} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyAcc(4);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc4} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyAcc(5);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc5} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyAcc(6);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc6} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyAcc(7);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc7} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyAcc(8);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={acc8} alt="" />
-                  </button>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel7"}
-              onChange={handleChange("panel7")}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel7bh-content"
-                id="panel7bh-header"
-              >
-                <Typography>배경</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <button
-                    onClick={() => {
-                      setMyBack(0);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back0} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(1);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back1} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(2);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back2} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(3);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back3} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(4);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back4} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(5);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back5} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(6);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back6} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(7);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back7} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(8);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back8} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(9);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back9} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(10);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back10} alt="" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setMyBack(11);
-                    }}
-                    className={styles.CharacterBtn}
-                  >
-                    <img style={{ width: "30px" }} src={back11} alt="" />
-                  </button>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-          
-          </Grid>
-          <Grid xs={4}>
-            <div style={{position:"relative"}} id="myCharacterDiv">
-
-              <div style={{backgroundColor:"red", width:"400px"}}></div>
-              <div style={{position:"absolute",top:"0", left:"0"}}>
-              <img 
-                style={{ position: "absolute" }}
-                src={require(`../../assets/image/parts/back/${myBack}.png`)}
-                alt=""
-              />
-              <img
-                style={{ position: "absolute" }}
-                src={require(`../../assets/image/parts/body/${myBody}.png`)}
-                alt=""
-              />
-              <img
-                style={{ position: "absolute" }}
-                src={require(`../../assets/image/parts/ears/${myEars}.png`)}
-                alt=""
-              />
-              <img
-                style={{ position: "absolute" }}
-                src={require(`../../assets/image/parts/head/${myHead}.png`)}
-                alt=""
-              />
-              <img
-                style={{ position: "absolute" }}
-                src={require(`../../assets/image/parts/mouth/${myMouth}.png`)}
-                alt=""
-              />
-              <img
-                style={{ position: "absolute" }}
-                src={require(`../../assets/image/parts/eyes/${myEyes}.png`)}
-                alt=""
-              />
-              <img
-                style={{ position: "absolute" }}
-                src={require(`../../assets/image/parts/acc/${myAcc}.png`)}
-                alt=""
-              />
-              </div>
-              <div>
-                
-              </div>
-              
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel7bh-content"
+                  id="panel7bh-header"
+                >
+                  <Typography>배경</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>
+                    <button
+                      onClick={() => {
+                        setMyBack(0);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back0} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(1);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back1} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(2);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back2} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(3);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back3} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(4);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back4} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(5);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back5} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(6);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back6} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(7);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back7} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(8);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back8} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(9);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back9} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(10);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back10} alt="" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMyBack(11);
+                      }}
+                      className={styles.CharacterBtn}
+                    >
+                      <img style={{ width: "30px" }} src={back11} alt="" />
+                    </button>
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
             </div>
           </Grid>
-          <Grid xs={4} sx={{pt:15, pr:10}}>
-            <Tag/>
-            <Button variant="contained" style={{background:"#86C8BC"}} sx={{mt:10, width:'100%'}} href="/">
-                    홈으로 돌아가기
+          <Grid xs={5}>
+            <div style={{ position: "relative" }} id="myCharacterDiv">
+              <div style={{ position: "absolute", top: "0", left: "0" }}>
+                <img
+                  style={{ position: "absolute" }}
+                  src={require(`../../assets/image/parts/back/${myBack}.png`)}
+                  alt=""
+                />
+                <img
+                  style={{ position: "absolute" }}
+                  src={require(`../../assets/image/parts/body/${myBody}.png`)}
+                  alt=""
+                />
+                <img
+                  style={{ position: "absolute" }}
+                  src={require(`../../assets/image/parts/ears/${myEars}.png`)}
+                  alt=""
+                />
+                <img
+                  style={{ position: "absolute" }}
+                  src={require(`../../assets/image/parts/head/${myHead}.png`)}
+                  alt=""
+                />
+                <img
+                  style={{ position: "absolute" }}
+                  src={require(`../../assets/image/parts/mouth/${myMouth}.png`)}
+                  alt=""
+                />
+                <img
+                  style={{ position: "absolute" }}
+                  src={require(`../../assets/image/parts/eyes/${myEyes}.png`)}
+                  alt=""
+                />
+                <img
+                  style={{ position: "absolute" }}
+                  src={require(`../../assets/image/parts/acc/${myAcc}.png`)}
+                  alt=""
+                />
+              </div>
+            </div>
+          </Grid>
+          <Grid xs={4} sx={{ pt: 15, pr: 10 }}>
+            <Tag />
+            <Button
+              variant="contained"
+              style={{ background: "#86C8BC" }}
+              sx={{ mt: 10, width: "100%" }}
+              href="/"
+            >
+              홈으로 돌아가기
             </Button>
-          <Grid>
-        </Grid>
-        <a id = 'target' style={{display:'none'}} href=""></a>
+            <Grid></Grid>
+            <a id="target" style={{ display: "none" }} href=""></a>
+          </Grid>
 
+          <ButtonGroup>
+            <Button
+              variant="contained"
+              style={{ background: "#86C8BC" }}
+              onClick={saveMyParts}
+            >
+              저장하기
+            </Button>
+            <Button
+              variant="contained"
+              style={{ background: "#86C8BC" }}
+              onClick={downloadMyCharacter}
+            >
+              다운로드
+            </Button>
+            <Button
+              variant="contained"
+              style={{ background: "#86C8BC" }}
+              onClick={setMyParts}
+            >
+              초기화
+            </Button>
+          </ButtonGroup>
         </Grid>
-      
-        <ButtonGroup>
-                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={saveMyParts}>
-                    저장하기
-                  </Button>
-                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={downloadMyCharacter}>
-                    다운로드
-                  </Button>
-                  <Button variant="contained" style={{background:"#86C8BC"}} onClick={setMyParts}>
-                    초기화
-                  </Button>
-                </ButtonGroup>
-      </Grid>
-    </Container>
+      </Container>
+      <Container
+        maxWidth="flex"
+        sx={{
+          height: "100%",
+          width: "100%",
+          // backgroundColor: "#FFF6BD",
+          // borderRadius: "20px",
+          display: { md: "block", lg: "none" },
+        }}
+      >
+        <div
+          style={{ position: "relative", margin: "auto" }}
+          id="myCharacterDiv"
+        >
+          <img
+            style={{ position: "absolute", width: "100%" }}
+            src={require(`../../assets/image/parts/body/${myBody}.png`)}
+            alt=""
+          />
+          <img
+            style={{ position: "absolute", width: "100%" }}
+            src={require(`../../assets/image/parts/ears/${myEars}.png`)}
+            alt=""
+          />
+          <img
+            style={{ position: "absolute", width: "100%" }}
+            src={require(`../../assets/image/parts/head/${myHead}.png`)}
+            alt=""
+          />
+          <img
+            style={{ position: "absolute", width: "100%" }}
+            src={require(`../../assets/image/parts/mouth/${myMouth}.png`)}
+            alt=""
+          />
+          <img
+            style={{ position: "absolute", width: "100%" }}
+            src={require(`../../assets/image/parts/eyes/${myEyes}.png`)}
+            alt=""
+          />
+          <img
+            style={{ position: "absolute", width: "100%" }}
+            src={require(`../../assets/image/parts/acc/${myAcc}.png`)}
+            alt=""
+          />
+          <img
+            style={{ width: "100%" }}
+            src={require(`../../assets/image/parts/back/${myBack}.png`)}
+            alt=""
+          />
+        </div>
+        <div
+          style={{
+            overflowY: "auto",
+            maxHeight: "566px",
+            width: "70%",
+            margin: "auto",
+          }}
+        >
+          <Accordion
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2bh-content"
+              id="panel2bh-header"
+            >
+              <Typography>귀</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <button
+                  onClick={() => {
+                    setMyEars(1);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears1} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEars(2);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears2} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEars(3);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears3} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEars(4);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears4} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEars(5);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears5} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEars(6);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears6} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEars(7);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears7} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEars(8);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears8} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEars(9);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={ears9} alt="" />
+                </button>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel3"}
+            onChange={handleChange("panel3")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3bh-content"
+              id="panel3bh-header"
+            >
+              <Typography>눈</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <button
+                  onClick={() => {
+                    setMyEyes(1);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes1} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(2);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes2} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(3);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes3} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(4);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes4} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(5);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes5} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(6);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes6} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(7);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes7} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(8);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes8} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(9);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes9} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(10);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes10} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(11);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes11} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(12);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes12} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(13);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes13} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(14);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes14} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyEyes(15);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={eyes15} alt="" />
+                </button>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel4"}
+            onChange={handleChange("panel4")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel4bh-content"
+              id="panel4bh-header"
+            >
+              <Typography>입</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <button
+                  onClick={() => {
+                    setMyMouth(1);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth1} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyMouth(2);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth2} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyMouth(3);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth3} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyMouth(4);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth4} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyMouth(5);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth5} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyMouth(6);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth6} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyMouth(7);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth7} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyMouth(8);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth8} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyMouth(9);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={mouth9} alt="" />
+                </button>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel5"}
+            onChange={handleChange("panel5")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel5bh-content"
+              id="panel5bh-header"
+            >
+              <Typography>몸통</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <button
+                  onClick={() => {
+                    setMyBody(1);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body1} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(2);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body2} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(3);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body3} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(4);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body4} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(5);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body5} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(6);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body6} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(7);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body7} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(8);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body8} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(9);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body9} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(10);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body10} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(11);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body11} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBody(12);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={body12} alt="" />
+                </button>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel6"}
+            onChange={handleChange("panel6")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel6bh-content"
+              id="panel2bh-header"
+            >
+              <Typography>악세사리</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <button
+                  onClick={() => {
+                    setMyAcc(0);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc0} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyAcc(1);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc1} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyAcc(2);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc2} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyAcc(3);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc3} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyAcc(4);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc4} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyAcc(5);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc5} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyAcc(6);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc6} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyAcc(7);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc7} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyAcc(8);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={acc8} alt="" />
+                </button>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel7"}
+            onChange={handleChange("panel7")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel7bh-content"
+              id="panel7bh-header"
+            >
+              <Typography>배경</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                <button
+                  onClick={() => {
+                    setMyBack(0);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back0} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(1);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back1} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(2);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back2} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(3);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back3} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(4);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back4} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(5);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back5} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(6);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back6} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(7);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back7} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(8);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back8} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(9);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back9} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(10);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back10} alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setMyBack(11);
+                  }}
+                  className={styles.CharacterBtn}
+                >
+                  <img style={{ width: "30px" }} src={back11} alt="" />
+                </button>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+        <Tag />
+        <ButtonGroup style={{ width: "100%" }}>
+          <Button
+            variant="contained"
+            style={{ background: "#86C8BC", width: "33.3%" }}
+            onClick={saveMyParts}
+          >
+            저장하기
+          </Button>
+          <Button
+            variant="contained"
+            style={{ background: "#86C8BC", width: "33.3%" }}
+            onClick={downloadMyCharacter}
+          >
+            다운로드
+          </Button>
+          <Button
+            variant="contained"
+            style={{ background: "#86C8BC", width: "33.3%" }}
+            onClick={setMyParts}
+          >
+            초기화
+          </Button>
+        </ButtonGroup>
+        <Button
+          sx={3}
+          variant="contained"
+          style={{ background: "#86C8BC" }}
+          sx={{ width: "100%" }}
+          href="/"
+        >
+          홈으로 돌아가기
+        </Button>
+      </Container>
+    </>
   );
 }
 

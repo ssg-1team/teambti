@@ -14,6 +14,7 @@ import {
   Button,
 } from "@mui/material";
 import LinearProgress from '@mui/material/LinearProgress';
+import ReplayIcon from '@mui/icons-material/Replay';
 import axios from "axios";
 import { API_HOST } from '../../constant/index';
 
@@ -23,8 +24,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { style } from "@mui/system";
 import { Link } from "react-router-dom";
 import LeftDrawer from "../../components/base/LeftDrawer";
-import Profile from "../../components/Profile";
+import Profile from "../../components/RenewProfile";
 import ProfileMin from "../../components/ProfileMin";
+import "./MentoMenti.css"
 
 
 function LinearProgressWithLabel(props) {
@@ -148,12 +150,13 @@ shuffle(myQuestions);
 let myTeamList = [[1, 'ESTJ'], [2, 'ESTP'], [3, 'ENTP'], [4, 'INFJ'], [5, 'ESTJ'], [6, 'ESFP'], [7, 'ISTJ'], [8, 'ENFP'], [9, 'ESFJ'], [10, 'ENTJ']];
 // Coworking 실행부
 function MentoMenti() {
+  const e_id = parseInt(localStorage.getItem('e_id'));
 
   const [emps, setEmps] = useState([]);
   const [myName, setMyName] = useState('');
   // 선택지 3/5/7 개수에 따라서 myQuestions 지정
   useEffect(() => {
-    const e_id = parseInt(localStorage.getItem('e_id'));
+    // const e_id = parseInt(localStorage.getItem('e_id'));
     // const [emps, setEmps] = useState([]);
     axios
       .get(`${API_HOST}/member/getAll/${e_id}`,{
@@ -204,7 +207,7 @@ function MentoMenti() {
   */
   useEffect(() => {
     // console.log("EIcnt", EICnt);
-    // console.log("NScnt", NSCnt);
+    // console.log("NScnt", NSCnt); 
     // console.log("FTcnt", FTCnt);
     // console.log("JPcnt", JPCnt);
       if (EICnt > 0) setEI("E");
@@ -245,16 +248,6 @@ function MentoMenti() {
   useEffect(() => {
     let interval = setInterval(() => {
     if (20 == questionsNowNumber) {
-//       alert(`EICnt : ${EICnt}
-// NSCnt : ${NSCnt}
-// FTCnt : ${FTCnt}
-// JPCnt : ${JPCnt}
-// EI : ${EI}
-// NS : ${NS}
-// FT : ${FT}
-// JP : ${JP}
-// MBTI : ${MBTI}
-// `)
       clearInterval(interval);
       // getDataCoWorking();
       }
@@ -294,7 +287,6 @@ function MentoMenti() {
   // 팀의 MBTI와 문자열 일치 정도 파악
   let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, content])=> {
     let cnt = 0;
-    
     for (let i =0;i<4;i++){
       if (!mbti) continue
       if (selectMBTI[i] == mbti[i]) {
@@ -302,7 +294,9 @@ function MentoMenti() {
       } 
     }
     return {e_id, mbti, cnt, position, name, content}
-  })
+  }).filter(function({e_id2, mbti, cnt, position, name, content}, index) {
+    return e_id2 != e_id
+  });
   // console.log(myTeamSameNumberList)
   // 내림차순 정렬
   let myTeamSameNumberListSorted = myTeamSameNumberList.sort(function (a, b) {
@@ -310,43 +304,29 @@ function MentoMenti() {
     if (a.cnt > b.cnt) return -1
     return 0
   })
-  // 배열 섞는 함수
-  const shuffleArray = array => {
-    for (let i = 0; i < array.length; i++) {
-      let j = Math.floor(Math.random() * (i + 1));
-      const x = array[i];
-      array[i] = array[j];
-      array[j] = x;
-    }
-    return array;
-  };
+ // 배열 섞는 함수
+  // const shuffleArray = array => {
+  //   for (let i = 0; i < array.length; i++) {
+  //     let j = Math.floor(Math.random() * (i + 1));
+  //     const x = array[i];
+  //     array[i] = array[j];
+  //     array[j] = x;
+  //   }
+  //   return array;
+  // };
   // 일치하는 개수따라 분리 후 객체를 섞음
-  let myTeamSameNumberList0 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 0);
-  let myTeamSameNumberList1 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 1);
-  let myTeamSameNumberList2 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 2);
-  let myTeamSameNumberList3 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 3);
-  let myTeamSameNumberList4 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 4);
-  shuffleArray(myTeamSameNumberList0);
-  shuffleArray(myTeamSameNumberList1);
-  shuffleArray(myTeamSameNumberList2);
-  shuffleArray(myTeamSameNumberList3);
-  shuffleArray(myTeamSameNumberList4);
+  // let myTeamSameNumberList0 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 0);
+  // let myTeamSameNumberList1 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 1);
+  // let myTeamSameNumberList2 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 2);
+  // let myTeamSameNumberList3 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 3);
+  // let myTeamSameNumberList4 = myTeamSameNumberList.filter(oneMember => oneMember.cnt == 4);
+  // shuffleArray(myTeamSameNumberList0);
+  // shuffleArray(myTeamSameNumberList1);
+  // shuffleArray(myTeamSameNumberList2);
+  // shuffleArray(myTeamSameNumberList3);
+  // shuffleArray(myTeamSameNumberList4);
     // 일치하는 사람이 4명이면, 섞은 후 3명만 뽑아낸다.
-  let ranking = []
-  if (myTeamSameNumberList4.length > 3) {
-    myTeamListSelected = myTeamSameNumberList4.slice(0,3);
-    let ranking = [1, 1, 1]
-
-    // 1, 2명이면 4개가 일치한 사람만 결과로 낸다.
-  } else if (myTeamSameNumberList4.length > 0) {
-    myTeamListSelected = myTeamSameNumberList4;
-    if (myTeamSameNumberList4.length == 1) {
-      let ranking = [1]
-    } else if (myTeamSameNumberList4.length == 2) {
-      let ranking = [1, 1]
-    }
-   // 없으면 앞에서 내림차순의 3명만 뺀다.
-  } else if (myTeamSameNumberList4.length == 0) {
+    let ranking = []
     myTeamListSelected = myTeamSameNumberListSorted.slice(0,3);
     myTeamListSelected.map((member, idx)=>{
       if (idx==0) {
@@ -359,12 +339,10 @@ function MentoMenti() {
         }
       }
     })
-  }
-  console.log(myTeamListSelected)
-  console.log(ranking)
+  
   
   return (
-    <div>
+    <>
       {20 > questionsNowNumber ? (
         <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
           <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column'}}>
@@ -417,30 +395,36 @@ function MentoMenti() {
           </div>
         </div>
       ) : (
-        <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
-          <div style={{width:'25%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-            {myName}님과 어울리는 MBTI
-            <div>{MBTI}</div>
-            <Link to='/mentomentistart'>
-              <button>다시하기</button>
-            </Link>
+        <Container maxWidth='flex' id='rainbow'>
+          <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
+            <div style={{width:'35%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <div><span style={{fontSize:25}}>{myName}</span> <span>님이 원하는 MBTI는</span></div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <div style={{marginTop:'20px', marginBottom:'50px'}}><Typography variant="h3" style={{borderBottom: '10px solid #DC0000', padding: '0 0 0 0.2em'}}>{MBTI}</Typography></div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <Button variant="contained" href='/mentomentistart' width='100%' endIcon={<ReplayIcon/>} style={{color:"black", backgroundColor:"#FFFBAC", fontWeight:"bold"}}>다시하기</Button>
+              </div>
+            </div>
+            <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }, marginLeft:0, flexDirection:'row', alignItems:'center'}}>
+            {myTeamListSelected.map((member, index) => (
+                  <Profile user={member} key={index} ranking={ranking[index]}/>
+                  // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                  //     <Profile user={member} key={index} ranking={ranking[index]} />
+                  // </div>
+            ))}
+            </Container>
+            <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
+              {myTeamListSelected.map((member, index) => (
+                  <ProfileMin user={member} key={index} ranking={ranking[index]} />
+              ))}
+            </Container>
           </div>
-          <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }}}>
-          {myTeamListSelected.map((member, index) => (
-                <Profile user={member} key={index} ranking={ranking[index]} />
-                // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                //     <Profile user={member} key={index} ranking={ranking[index]} />
-                // </div>
-          ))}
-          </Container>
-          <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
-          {myTeamListSelected.map((member, index) => (
-              <ProfileMin user={member} key={index} ranking={ranking[index]} />
-          ))}
-          </Container>
-        </div>
+        </Container>
       )}
-  </div>
+  </>
   );
 }
 
