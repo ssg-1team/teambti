@@ -14,6 +14,7 @@ import {
   Button,
 } from "@mui/material";
 import LinearProgress from '@mui/material/LinearProgress';
+import ReplayIcon from '@mui/icons-material/Replay';
 import axios from "axios";
 import { API_HOST } from '../../constant/index';
 
@@ -23,8 +24,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { style } from "@mui/system";
 import { Link } from "react-router-dom";
 import LeftDrawer from "../../components/base/LeftDrawer";
-import Profile from "../../components/Profile";
+import Profile from "./MentoProfile";
 import ProfileMin from "../../components/ProfileMin";
+import "./MentoMenti.css"
 
 
 function LinearProgressWithLabel(props) {
@@ -364,11 +366,11 @@ function MentoMenti() {
   console.log(ranking)
   
   return (
-    <div>
+    <>
       {20 > questionsNowNumber ? (
         <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
           <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column'}}>
-            <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
+            <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative', marginLeft:10}}>
               <Box sx={{ width: `100%`, height:25}}>
                 <LinearProgressWithLabel value={progress} />
               </Box>
@@ -417,30 +419,36 @@ function MentoMenti() {
           </div>
         </div>
       ) : (
-        <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
-          <div style={{width:'25%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-            {myName}님과 어울리는 MBTI
-            <div>{MBTI}</div>
-            <Link to='/mentomentistart'>
-              <button>다시하기</button>
-            </Link>
+        <Container maxWidth='flex' id='rainbow'>
+          <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
+            <div style={{width:'30%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <div><span style={{fontSize:25}}>{myName}</span> <span>님이 원하는 MBTI는</span></div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <div style={{marginTop:'20px', marginBottom:'50px'}}><Typography variant="h3" style={{borderBottom: '10px solid #DC0000', padding: '0 0 0 0.2em'}}>{MBTI}</Typography></div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                <Button variant="contained" href='/mentomentistart' width='100%' endIcon={<ReplayIcon/>} style={{color:"black", backgroundColor:"#FFFBAC", fontWeight:"bold"}}>다시하기</Button>
+              </div>
+            </div>
+            <Container maxWidth="md" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }, marginLeft:0, flexDirection:'row', alignItems:'center'}}>
+            {myTeamListSelected.map((member, index) => (
+                  <Profile user={member} key={index} ranking={ranking[index]}/>
+                  // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                  //     <Profile user={member} key={index} ranking={ranking[index]} />
+                  // </div>
+            ))}
+            </Container>
+            <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
+              {myTeamListSelected.map((member, index) => (
+                  <ProfileMin user={member} key={index} ranking={ranking[index]} />
+              ))}
+            </Container>
           </div>
-          <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }}}>
-          {myTeamListSelected.map((member, index) => (
-                <Profile user={member} key={index} ranking={ranking[index]} />
-                // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                //     <Profile user={member} key={index} ranking={ranking[index]} />
-                // </div>
-          ))}
-          </Container>
-          <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
-          {myTeamListSelected.map((member, index) => (
-              <ProfileMin user={member} key={index} ranking={ranking[index]} />
-          ))}
-          </Container>
-        </div>
+        </Container>
       )}
-  </div>
+  </>
   );
 }
 
