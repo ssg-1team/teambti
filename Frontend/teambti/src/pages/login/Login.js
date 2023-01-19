@@ -63,17 +63,18 @@ export default function Login({ isLoggedIn, login }) {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: "100%", backgroundColor:'black' }}>
+        <Grid container component="main" sx={{ height: "100%"}}>
+          
           <CssBaseline />
-          <Grid
+          <Grid style={{display:'flex', justifyContent:'center', alignItems:'center'}}
             item
             xs={false}
             sm={6}
             md={8}
             sx={{
-
             }}
-          />
+          ><img style={{height:'99vh',}} src={require(`../../assets/image/sublogo.png`)} alt=""/>
+          </Grid>
           <Grid
             item
             xs={12}
