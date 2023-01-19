@@ -441,7 +441,7 @@ function Coworking({ questionsNumber }) {
     <>
     {questionsNumber * 4 > questionsNowNumber ? (
     <div style={{display:'flex', flexDirection:'column', width:'100%', height:'91.5%', position:'absolute', top:'8.5%', left:0}}>
-      <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column', backgroundColor:'yellow'}}>
+      <div style={{ width: '100%', position:'relative', top:0, height:'100%', display: 'flex', flexDirection:'column'}}>
       
         <div style={{ width: '100%', height:"100%", display:'flex', flexDirection:'column', position:'relative'}}>
             <Box sx={{ width: `100%`, height:25}}>
