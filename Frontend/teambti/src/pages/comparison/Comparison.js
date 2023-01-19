@@ -68,7 +68,7 @@ function Comparision() {
   }, []);
 
   const other = useLocation();
-  console.log(other.state);
+  console.log(other.state.urlInfo);
 
   const [meOpen, setMeOpen] = useState(true);
   const [youOpen, setYouOpen] = useState(false);
@@ -154,9 +154,14 @@ function Comparision() {
                   <Card sx={{ Width: "100%", height: "100%" }}>
                     <CardMedia
                       component="img"
+                      // image={
+                      //   other.state.other.image == null
+                      //     ? "images/characterExample.png"
+                      //     : other.state.other.image
+                      // }
                       image={
                         other.state.other.image == null
-                          ? "images/characterExample.png"
+                          ? (other.state.urlInfo == null? require(`../../assets/image/parts/content/0.jpg`): other.state.urlInfo)
                           : other.state.other.image
                       }
                       alt="green iguana"
@@ -302,12 +307,17 @@ function Comparision() {
           <Card sx={{ width: "50%" }}>
             <CardMedia
               component="img"
+              // image={
+              //   other.state.other.image == null
+              //     ? "images/characterExample.png"
+              //     : other.state.other.image
+              // }
               image={
                 other.state.other.image == null
-                  ? "images/characterExample.png"
+                  ? (other.state.longUrl == null? require(`../../assets/image/parts/content/0.jpg`): other.state.longUrl)
                   : other.state.other.image
               }
-              alt="green iguana"
+              alt="반응형 성격비교 다른사람"
             />
             <CardContent>
               <Typography gutterBottom variant="h6" component="div">

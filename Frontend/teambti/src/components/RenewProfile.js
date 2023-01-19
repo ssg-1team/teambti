@@ -23,20 +23,20 @@ export default function RenewProfile({ user, key, ranking }) {
   const [myUrl, setMyUrl] = useState(user.url);
   const [myMBTI, setMyMBTI] = useState('');
 
-  // useEffect(()=> {
-  //   axios
-  //     .get(`${API_HOST}/char/getChar/${e_id}`, {
-  //       headers: {
-  //         // "Access-Control-Allow-Origin" : "*",
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((response) => {
-  //       // console.log(response.data)
-  //       setMyUrl(response.data.completed)
-  //       // console.log(myUrl);
-  //     })
-  // }, [])
+  useEffect(()=> {
+    axios
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data)
+        setMyUrl(response.data.completed)
+        // console.log(myUrl);
+      })
+  }, [])
 
   const handleOpen = () => {  
     axios
@@ -106,7 +106,7 @@ export default function RenewProfile({ user, key, ranking }) {
               </Button>
               <Link 
                 to={`/comparison`}
-                state={{other : user}}
+                state={{other : user, urlInfo: myUrl}}
                 style={{ textDecoration: "none", width:'45%'}}
                 >
                 <Button variant="contained" style={{width:'100%'}} >
@@ -121,6 +121,7 @@ export default function RenewProfile({ user, key, ranking }) {
           open={open}
           handleClose={handleClose}
           tags={tags}
+          longUrl={myUrl}
         />
       </Card>
     </Box>

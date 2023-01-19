@@ -8,7 +8,7 @@ import { mbtiInfo } from "./MBTIInfo";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import "../css/List.css";
 
-export default function EmpModal({ user, open, handleClose, tags }) {
+export default function EmpModal({ user, open, handleClose, tags, longUrl }) {
 
   const [value, setValue] = React.useState('1');
 
@@ -36,11 +36,15 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                   component="img"
                   height="370"
                   image={
-                    user.image == null
-                      ? require('../assets/image/parts/content/0.jpg')
+                    // user.image == null
+                    //   ? require('../assets/image/parts/content/0.jpg')
+                    //   : user.image
+                      user.image == null
+                      ? (longUrl == null? require(`../assets/image/parts/content/0.jpg`): longUrl)
                       : user.image
                   }
-                  alt="green iguana"
+
+                  alt="다른사람 프로필 사진"
                 />
               </Card>
             </Grid>

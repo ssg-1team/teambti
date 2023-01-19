@@ -19,6 +19,7 @@ export default function ProfileMin({ user, id, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const [myUrl, setMyUrl] = useState(9);
+  const [longUrl, setLongUrl] = useState(user.url);
   const e_id = user.e_id;
 
   const theme = useTheme();
@@ -32,9 +33,8 @@ export default function ProfileMin({ user, id, ranking }) {
         },
       })
       .then((response) => {
-        // console.log(response.data)
         setMyUrl(response.data.completed);
-        // console.log(myUrl);
+        setLongUrl(response.data.completed);
       });
   }, []);
 
@@ -101,10 +101,11 @@ export default function ProfileMin({ user, id, ranking }) {
             open={open}
             handleClose={handleClose}
             tags={tags}
+            longUrl={longUrl}
           />
           <Link
             to={`/comparison`}
-            state={{ other: user }}
+            state={{ other: user, longUrl:longUrl }}
             style={{ textDecoration: "none", width: "45%" }}
           >
             <Button variant="contained" style={{ width: "100%" }}>
