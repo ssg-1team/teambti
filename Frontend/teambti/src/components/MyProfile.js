@@ -13,6 +13,7 @@ import {
   CardContent,
   CardMedia,
   ButtonGroup,
+  CardActionArea,
 } from "@mui/material";
 import MbtiModal from "./MbtiModal";
 import { user } from "../constant/mock";
@@ -21,6 +22,7 @@ import { styled } from "@mui/material/styles";
 import Character from "../pages/character/Character";
 import { bigButtonStyle, flexButtonStyle, smallButtonStyle } from "./_shared.module";
 import { Navigate, useNavigate } from "react-router-dom";
+import EmpModal from "./EmpModal";
 
 
 
@@ -52,6 +54,9 @@ const MyProfile = () => {
   const [position, setPosition] = useState("");
   const [mbti, setMbti] = useState("");
   const [myUrl, setMyUrl] = useState(9);
+
+  const [tags, setTags] = useState([]);
+  const [open, setOpen] = useState(false);
   // useEffect(()=>{
 
   // }, [myUrl])
@@ -113,6 +118,58 @@ const MyProfile = () => {
   // #####[e]삭제NO
 
   // [s]삭제예정
+  const handleOpen = () => {  
+    axios
+      .get(`${API_HOST}/member/getEmp/${e_id}`,{
+        headers: {
+          "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data)
+      })
+    // #####[s]삭제NO
+    axios
+      .get(`${API_HOST}/member/getTag/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setTags(response.data);
+      })
+      .catch((error) => {
+        const status = error?.response?.status;
+        if (status === undefined) {
+          console.dir("데이터 오류" + JSON.stringify(error));
+        } else if (status === 400) {
+          console.dir("400에러");
+        } else if (status === 500) {
+          console.dir("내부 서버 오류");
+        }
+      });
+    axios
+      .get(`${API_HOST}/char/getChar/${e_id}`, {
+        headers: {
+          // "Access-Control-Allow-Origin" : "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setMyUrl(response.data.completed)
+        console.log(myUrl);
+      })
+    // #####[e]삭제NO
+
+    // [s]삭제예정
+    // setTags(tags_list);
+    // [e]
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
 
   function getMyMBTI(mbti) {
     setMbti(mbti);
@@ -132,13 +189,15 @@ const MyProfile = () => {
   return (
     <>
       <Card sx={{ maxWidth: 300, m:3}}>
+        <CardActionArea onClick={handleOpen}>
         <CardMedia
           component="img"
           height="450"
           //image={myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`)}
           image={myUrl==null? require(`../assets/image/parts/content/0.jpg`) : (myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`))}
-          alt="green iguana"
+          alt="IMAGE"
         />
+        </CardActionArea>
         <CardContent>
           <div style={{display:'flex', flexDirection:'column'}}>
             <Typography gutterBottom>
@@ -149,7 +208,18 @@ const MyProfile = () => {
             </Typography>
           </div>
         </CardContent>
+        <EmpModal
+          user={{name:name, mbti:mbti, position:position, image:myUrl, myUrl:myUrl}}
+          open={open}
+          handleClose={handleClose}
+          tags={tags}
+        />
       </Card>
+      <div style={{display: 'flex', justifyContent:'center', marginBottom:5}}>
+      <Button sx={flexButtonStyle} onClick={handleOpen} variant="contained" >
+          프로필
+        </Button>
+      </div>
       <div style={{display: 'flex', justifyContent:'center'}}>
         <Button sx={flexButtonStyle} onClick={editprofile} display= 'inline-block'>
           프로필 편집
