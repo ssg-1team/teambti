@@ -31,6 +31,7 @@ export default function ComparisionArrow({ user1, user2 }) {
             boxShadow: 4,
             color: "white",
           }}
+          style={{fontFamily:'Pretendard-Regular',}}
         >
           {matchingInfo.map(
             (info, id) =>
@@ -63,6 +64,7 @@ export default function ComparisionArrow({ user1, user2 }) {
             boxShadow: 4,
             color: "white",
           }}
+          style={{fontFamily:'Pretendard-Regular',}}
         >
           {matchingInfo.map(
             (info, id) =>

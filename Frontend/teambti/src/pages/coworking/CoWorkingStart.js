@@ -51,17 +51,17 @@ function CoworkingStart() {
                 도움 요청 이용하는 방법
             </div> */}
             <div style={{width:'100%',height:'20%'}}>
-                <Typography sx={{fontSize:"20px", textAlign:'center'}}>
+                <Typography sx={{fontSize:"20px", textAlign:'center'}} style={{fontFamily:'Pretendard-Regular',}}>
                 <div>누군가에게 도움을 요청하기란 쉽지 않죠?  상황에 적합한 인원을 찾아줄게요.</div>
                 <div style={{marginBottom:"10px"}}>지금 어떤 도움이 필요한지 생각하면서 다음 질문에 답해주세요!</div>
                 
                 <div style={{fontSize:"30px"}}><span style={{color:"red"}}>{myName}</span>님의 상황은 어떤가요?</div>
                 </Typography>
             </div>
-            <div style={{width:'100%', height:'50%', marginTop:"50px"}}>
-                <Button variant="contained" sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '29%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#ff6961', color:"white", fontSize:100}}}component={Link} to="/coworking3"><div>12<div style={{fontSize:20, textTransform: 'capitaliz'}}><span style={{textTransform: 'capitaliz'}}>Questions</span></div></div></Button>
-                <Button variant="contained" sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '29%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#42d6a4', color:"white", fontSize:100}}}component={Link} to="/coworking5"><div>20<div style={{fontSize:20, textTransform: 'capitaliz'}}><span style={{textTransform: 'capitaliz'}}>Questions</span></div></div></Button>
-                <Button variant="contained" sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '29%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#59adf6', color:"white", fontSize:100}}}component={Link} to="/coworking7"><div>28<div style={{fontSize:20, textTransform: 'capitaliz'}}><span style={{textTransform: 'capitaliz'}}>Questions</span></div></div></Button>
+            <div style={{width:'100%', height:'50%', marginTop:"50px",}}>
+                <Button variant="contained" style={{fontFamily:'Pretendard-Regular',}} sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '29%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#ff6961', color:"white", fontSize:100}}}component={Link} to="/coworking3"><div>12<div style={{fontSize:20, textTransform: 'capitaliz'}}><span style={{textTransform: 'capitaliz'}}>Questions</span></div></div></Button>
+                <Button variant="contained" style={{fontFamily:'Pretendard-Regular',}} sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '29%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#42d6a4', color:"white", fontSize:100}}}component={Link} to="/coworking5"><div>20<div style={{fontSize:20, textTransform: 'capitaliz'}}><span style={{textTransform: 'capitaliz'}}>Questions</span></div></div></Button>
+                <Button variant="contained" style={{fontFamily:'Pretendard-Regular',}} sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '29%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#59adf6', color:"white", fontSize:100}}}component={Link} to="/coworking7"><div>28<div style={{fontSize:20, textTransform: 'capitaliz'}}><span style={{textTransform: 'capitaliz'}}>Questions</span></div></div></Button>
             </div>
         </Container>
     );

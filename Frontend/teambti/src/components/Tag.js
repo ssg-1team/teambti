@@ -137,7 +137,7 @@ export default function Tag () {
       <ul className="tag-tags">
         {tags.map((tag, idx) => (
           <li className="tag-tag" key={idx} id={tag.t_id}>
-            <Chip label={tag.content} onDelete={() => removeTag(idx, tag.t_id)} />
+            <Chip style={{fontFamily:'Pretendard-Regular',}} label={tag.content} onDelete={() => removeTag(idx, tag.t_id)} />
 
           </li>
         ))}
@@ -147,9 +147,10 @@ export default function Tag () {
           id="outlined-start-adornment"
           sx={{ mt: 2, mb: 2, width: '100%' }}
           onKeyUp={(e) => (e.key === "Enter" ? addTag(e) : null)}
+          style={{fontFamily:'Pretendard-Regular',}}
           InputProps={{
             startAdornment: 
-              <InputAdornment position="start" >#</InputAdornment>,
+              <InputAdornment position="start" style={{fontFamily:'Pretendard-Regular',}} >#</InputAdornment>,
           }}
         />
     </Item>
