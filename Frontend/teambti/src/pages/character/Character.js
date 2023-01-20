@@ -116,7 +116,6 @@ import eyes14 from "../../assets/image/parts/eyes/14.png";
 import eyes15 from "../../assets/image/parts/eyes/15.png";
 import Tag from "../../components/Tag";
 import { Navigate } from "react-router-dom";
-import Swal from 'sweetalert2'
 
 // function changeMyHead (selectHead) {
 //   this.myhead = selectHead;
@@ -204,6 +203,17 @@ function Character() {
     });
   }
 
+  function downloadMyCharacterMobile() {
+    const el = document.getElementById("myCharacterDivMobile");
+    html2canvas(el, { width: 343, height: 440 }).then(function (canvas, width) {
+      let downloadURL = canvas.toDataURL("image/png");
+      let aTag = document.getElementById("targetMobile");
+      aTag.href = downloadURL;
+      aTag.download = `${myName}.jpg`;
+      aTag.click();
+    });
+  }
+
   function setMyParts() {
     axios
       .get(`${API_HOST}/char/getChar/${e_id}`, {
@@ -246,13 +256,35 @@ function Character() {
           },
         })
         .then(() => {
-          Swal.fire({
-            // position: 'top-end',
-            icon: 'success',
-            title: '저장이 완료되었습니다.',
-            showConfirmButton: false,
-            timer: 1200
-          })
+          alert("저장되었습니다!");
+        });
+    });
+  }
+
+  function saveMyPartsMobile() {
+    const el = document.getElementById("myCharacterDivMobile");
+    html2canvas(el, { width: 343, height: 440 }).then((canvas) => {
+      let content = canvas.toDataURL("image/png", 1.0);
+      const data = {
+        head: myHead,
+        background: myBack,
+        body: myBody,
+        ear: myEars,
+        eye: myEyes,
+        mouth: myMouth,
+        e_id: e_id,
+        accessory: myAcc,
+        completed: content,
+      };
+      axios
+        .post(`${API_HOST}/char/setChar`, data, {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+        .then(() => {
+          alert("저장되었습니다!");
         });
     });
   }
@@ -289,7 +321,7 @@ function Character() {
                   aria-controls="panel2bh-content"
                   id="panel2bh-header"
                 >
-                  <Typography style={{fontFamily:'Pretendard-Regular',}}>귀</Typography>
+                  <Typography>귀</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -377,7 +409,7 @@ function Character() {
                   aria-controls="panel3bh-content"
                   id="panel3bh-header"
                 >
-                  <Typography style={{fontFamily:'Pretendard-Regular',}}>눈</Typography>
+                  <Typography>눈</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -513,7 +545,7 @@ function Character() {
                   aria-controls="panel4bh-content"
                   id="panel4bh-header"
                 >
-                  <Typography style={{fontFamily:'Pretendard-Regular',}}>입</Typography>
+                  <Typography>입</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -601,7 +633,7 @@ function Character() {
                   aria-controls="panel5bh-content"
                   id="panel5bh-header"
                 >
-                  <Typography style={{fontFamily:'Pretendard-Regular',}}>몸통</Typography>
+                  <Typography>몸통</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -713,7 +745,7 @@ function Character() {
                   aria-controls="panel6bh-content"
                   id="panel2bh-header"
                 >
-                  <Typography style={{fontFamily:'Pretendard-Regular',}}>악세사리</Typography>
+                  <Typography>악세사리</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -801,7 +833,7 @@ function Character() {
                   aria-controls="panel7bh-content"
                   id="panel7bh-header"
                 >
-                  <Typography style={{fontFamily:'Pretendard-Regular',}}>배경</Typography>
+                  <Typography>배경</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -907,8 +939,8 @@ function Character() {
             </div>
           </Grid>
           <Grid xs={5}>
-            <div style={{ position: "relative", top: 0, left: 100  }} id="myCharacterDiv">
-              <div style={{ position: "absolute"}}>
+            <div style={{ position: "relative" }} id="myCharacterDiv">
+              <div style={{ position: "absolute", top: "0", left: "0" }}>
                 <img
                   style={{ position: "absolute" }}
                   src={require(`../../assets/image/parts/back/${myBack}.png`)}
@@ -964,21 +996,21 @@ function Character() {
           <ButtonGroup>
             <Button
               variant="contained"
-              style={{ background: "#86C8BC", fontFamily:'Pretendard-Regular', }}
+              style={{ background: "#86C8BC" }}
               onClick={saveMyParts}
             >
               저장하기
             </Button>
             <Button
               variant="contained"
-              style={{ background: "#86C8BC",  fontFamily:'Pretendard-Regular', }}
+              style={{ background: "#86C8BC" }}
               onClick={downloadMyCharacter}
             >
               다운로드
             </Button>
             <Button
               variant="contained"
-              style={{ background: "#86C8BC", fontFamily:'Pretendard-Regular',  }}
+              style={{ background: "#86C8BC" }}
               onClick={setMyParts}
             >
               초기화
@@ -998,7 +1030,7 @@ function Character() {
       >
         <div
           style={{ position: "relative", margin: "auto" }}
-          id="myCharacterDiv"
+          id="myCharacterDivMobile"
         >
           <img
             style={{ position: "absolute", width: "100%" }}
@@ -1670,18 +1702,18 @@ function Character() {
           </Accordion>
         </div>
         <Tag />
-        <ButtonGroup style={{ width: "100%", fontFamily:'Pretendard-Regular' }}>
+        <ButtonGroup style={{ width: "100%" }}>
           <Button
             variant="contained"
             style={{ background: "#86C8BC", width: "33.3%" }}
-            onClick={saveMyParts}
+            onClick={saveMyPartsMobile}
           >
             저장하기
           </Button>
           <Button
             variant="contained"
             style={{ background: "#86C8BC", width: "33.3%" }}
-            onClick={downloadMyCharacter}
+            onClick={downloadMyCharacterMobile}
           >
             다운로드
           </Button>
@@ -1694,12 +1726,16 @@ function Character() {
           </Button>
         </ButtonGroup>
         <Button
+          sx={3}
           variant="contained"
-          style={{ fontFamily:'Pretendard-Regular', background: "#86C8BC", width: "100%" }}
+          style={{ background: "#86C8BC" }}
+          sx={{ width: "100%" }}
           href="/"
         >
           홈으로 돌아가기
         </Button>
+        <Grid></Grid>
+        <a id="targetMobile" style={{ display: "none" }} href=""></a>
       </Container>
     </>
   );
