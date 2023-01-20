@@ -52,9 +52,13 @@ function Home() {
 
   return (
     <>
+    <Container maxWidth='flex' id='rainbow'>
+    <div style={{display:'flex', flexDirection:'column', height:'100%', justifyContent:'center', alignItems:'center'}}>
       <Container
         maxWidth="lg"
-        sx={{ display: { xs: "none", md: "none", lg: "block" } }}
+        sx={{ display: { xs: "none", md: "none", lg: "block" },  
+        flexDirection:'row', alignItems:'center'
+        }}
       >
         <Slider
           {...settings_lg}
@@ -93,12 +97,14 @@ function Home() {
       </Container>
       <Container
         maxWidth="xs"
-        sx={{ display: { xs: "block", sm: "none", md: "none", lg: "none" } }}
+        sx={{ display: { xs: "block", sm: "none", md: "none", lg: "none" }, height:"87.5vh" }}
       >
         {emps.map(
           (user) =>
             user.e_id != e_id && <ProfileMin user={user} key={user.e_id} />
         )}
+      </Container>
+      </div>
       </Container>
     </>
   );

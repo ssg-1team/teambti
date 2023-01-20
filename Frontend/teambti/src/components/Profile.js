@@ -117,7 +117,7 @@ export default function Profile({ user, key, ranking }) {
           <CardContent style={{}}>
             <Typography gutterBottom>
               <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
-              <div><span style={{fontSize:25}}>{user.name}</span> <span>{user.position}</span></div>
+              <div><span style={{fontSize:25}}>{user.name}</span></div>
               <div style={{fontSize:30}}>{user.mbti !== null ? user.mbti : "MBTI"}</div>
               </div>
             </Typography>

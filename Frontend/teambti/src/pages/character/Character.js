@@ -116,6 +116,7 @@ import eyes14 from "../../assets/image/parts/eyes/14.png";
 import eyes15 from "../../assets/image/parts/eyes/15.png";
 import Tag from "../../components/Tag";
 import { Navigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 // function changeMyHead (selectHead) {
 //   this.myhead = selectHead;
@@ -245,7 +246,13 @@ function Character() {
           },
         })
         .then(() => {
-          alert("저장되었습니다!");
+          Swal.fire({
+            // position: 'top-end',
+            icon: 'success',
+            title: '저장이 완료되었습니다.',
+            showConfirmButton: false,
+            timer: 1200
+          })
         });
     });
   }
@@ -900,8 +907,8 @@ function Character() {
             </div>
           </Grid>
           <Grid xs={5}>
-            <div style={{ position: "relative" }} id="myCharacterDiv">
-              <div style={{ position: "absolute", top: "0", left: "0" }}>
+            <div style={{ position: "relative", top: 0, left: 100  }} id="myCharacterDiv">
+              <div style={{ position: "absolute"}}>
                 <img
                   style={{ position: "absolute" }}
                   src={require(`../../assets/image/parts/back/${myBack}.png`)}
