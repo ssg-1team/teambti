@@ -242,7 +242,7 @@ function Coworking({ questionsNumber }) {
         // console.log(response.data)
         setEmps(response.data);
         myTeamList = response.data.map(function(data){
-          return [data.e_id, data.mbti, data.position, data.name, data.content]
+          return [data.e_id, data.mbti, data.position, data.name, data.image]
         })
         // console.log(myTeamList)
         // console.log(myTeamList);
@@ -381,7 +381,7 @@ function Coworking({ questionsNumber }) {
   // ex) [4, 3, 2, 1, 4, 2, 3, 1, 3, 3]
   console.log('myTeamList', myTeamList)
   // 팀의 MBTI와 문자열 일치 정도 파악
-  let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, content])=> {
+  let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, image])=> {
     let cnt = 0;
     
     for (let i =0;i<4;i++){
@@ -390,8 +390,8 @@ function Coworking({ questionsNumber }) {
         cnt += 1;
       } 
     }
-    return {e_id, mbti, cnt, position, name, content}
-  }).filter(function({e_id2, mbti, cnt, position, name, content}, index) {
+    return {e_id, mbti, cnt, position, name, image}
+  }).filter(function({e_id2, mbti, cnt, position, name, image}, index) {
     return e_id2 !== e_id;
   })
   // console.log(myTeamSameNumberList)
@@ -437,21 +437,6 @@ function Coworking({ questionsNumber }) {
       }
     }
   })
-
-  let myRecomanded = myTeamListSelected.map((member)=> {
-    axios
-    .get(`${API_HOST}/member/getEmp/${member.e_id}/`,{
-      headers: {
-        "Access-Control-Allow-Origin" : "*",
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      // console.log(response.data)
-      return response.data
-    })
-  })
-  console.log(myRecomanded)
 
   return (
     <>
