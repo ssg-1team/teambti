@@ -74,23 +74,16 @@ export default function ProfileMin({ user, id, ranking }) {
     <Card sx={{ display: "flex" }}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography component="div" variant="h5">
+          <Typography component="div" variant="h5" style={{fontFamily:'Pretendard-Regular',}}>
             {user.name}
           </Typography>
-          <Typography component="div" variant="h5">
+          <Typography component="div" variant="h5" style={{fontFamily:'Pretendard-Regular',}}>
             {user.mbti !== null ? user.mbti : "MBTI"}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            component="div"
-          >
-            {user.position}
           </Typography>
         </CardContent>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
           <Button
-            style={{ width: "45%" }}
+            style={{ width: "45%", fontFamily:'Pretendard-Regular', }}
             variant="contained"
             onClick={handleOpen}
           >
@@ -107,7 +100,7 @@ export default function ProfileMin({ user, id, ranking }) {
             state={{ other: user }}
             style={{ textDecoration: "none", width: "45%" }}
           >
-            <Button variant="contained" style={{ width: "100%" }}>
+            <Button variant="contained" style={{ width: "100%", fontFamily:'Pretendard-Regular', }}>
               성격비교
             </Button>
           </Link>

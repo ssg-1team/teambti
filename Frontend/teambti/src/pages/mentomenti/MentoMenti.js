@@ -398,35 +398,46 @@ function MentoMenti() {
           </div>
         </div>
       ) : (
-        <Container maxWidth='flex' id='rainbow'>
-          <div style={{display:'flex', flexDirection:'row', height:'100%'}}>
-            <div style={{width:'35%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
-                <div><span style={{fontSize:25}}>{myName}</span> <span>님이 원하는 MBTI는</span></div>
+<>
+          <Container maxWidth='flex' id='rainbow' sx={{display: { xs: "none", sm:"block", md:"block", lg: "block" }, m:0, height:"100%", width:"100%"}}>
+            <div style={{display:'flex', flexDirection:'row', height:'100%', alignItems: "center"}}>
+              <div style={{width:'25%', textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                  <div><span style={{fontSize:25}}>{myName}</span> <span>님이 원하는 MBTI는</span></div>
+                </div>
+                <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                  <div style={{marginTop:'20px', marginBottom:'50px'}}><Typography variant="h3" style={{borderBottom: '10px solid #DC0000', padding: '0 0 0 0.2em'}}>{MBTI}</Typography></div>
+                </div>
+                <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                  <Button variant="contained" href='/mentomentistart' width='100%' endIcon={<ReplayIcon/>} style={{color:"black", backgroundColor:"#FFFBAC", fontWeight:"bold"}}>다시하기</Button>
+                </div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
-                <div style={{marginTop:'20px', marginBottom:'50px'}}><Typography variant="h3" style={{borderBottom: '10px solid #DC0000', padding: '0 0 0 0.2em'}}>{MBTI}</Typography></div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
-                <Button variant="contained" href='/mentomentistart' width='100%' endIcon={<ReplayIcon/>} style={{color:"black", backgroundColor:"#FFFBAC", fontWeight:"bold"}}>다시하기</Button>
-              </div>
-            </div>
-            <Container maxWidth="lg" className="mmt" sx={{display: { xs: "none", sm:"flex", md:"flex", lg: "flex" }, marginLeft:0, flexDirection:'row', alignItems:'center'}}>
-            {myTeamListSelected.map((member, index) => (
-                  <Profile user={member} key={index} ranking={ranking[index]}/>
-                  // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                  //     <Profile user={member} key={index} ranking={ranking[index]} />
-                  // </div>
-            ))}
-            </Container>
-            <Container maxWidth="xs" sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
               {myTeamListSelected.map((member, index) => (
-                  <ProfileMin user={member} key={index} ranking={ranking[index]} />
+                    <Profile user={member} key={index} ranking={ranking[index]}/>
+                    // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                    //     <Profile user={member} key={index} ranking={ranking[index]} />
+                    // </div>
               ))}
-            </Container>
-          </div>
-        </Container>
-      )}
+            </div>
+          </Container>
+        
+          <Container maxWidth="xs" id='rainbow' sx={{display: { xs: "block", sm:"none", md:"none", lg: "none" }}}>
+            <div style={{textAlign:'center', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around', marginTop:'20px'}}>
+                  <div><span style={{fontSize:25}}>{myName}</span> <span>님이 원하는 MBTI는</span></div>
+                </div>
+                <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
+                  <div style={{marginTop:'20px', marginBottom:'20px'}}><Typography variant="h3" style={{borderBottom: '10px solid #DC0000', padding: '0 0 0 0.2em'}}>{MBTI}</Typography></div>
+                </div>
+                <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around', marginBottom:'20px'}}>
+                  <Button variant="contained" href='/mentomentistart' width='100%' endIcon={<ReplayIcon/>} style={{color:"black", backgroundColor:"#FFFBAC", fontWeight:"bold"}}>다시하기</Button>
+                </div>
+              </div>
+            {myTeamListSelected.map((member, index) => (
+              <ProfileMin user={member} key={index} ranking={ranking[index]} />
+              ))}
+          </Container>
+        </>      )}
   </>
   );
 }

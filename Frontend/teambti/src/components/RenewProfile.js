@@ -100,12 +100,12 @@ export default function RenewProfile({ user, key, ranking }) {
           <CardContent style={{}}>
             <Typography gutterBottom>
               <div style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}>
-              <div><span style={{fontSize:25}}>{user.name}</span></div>
-              <div style={{fontSize:30}}>{user.mbti !== null ? user.mbti : "MBTI"}</div>
+              <div><span style={{fontSize:25, fontFamily:'Pretendard-Regular',}}>{user.name}</span></div>
+              <div style={{fontSize:30, fontFamily:'Pretendard-Regular',}}>{user.mbti !== null ? user.mbti : "MBTI"}</div>
               </div>
             </Typography>
             <div style={{width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-              <Button style={{width:'45%'}} variant="contained" >
+              <Button style={{width:'45%', color:"white", backgroundColor:"#F38181", fontFamily:'Pretendard-Regular',}} variant="contained" >
                 프로필
               </Button>
               <Link 
@@ -113,7 +113,7 @@ export default function RenewProfile({ user, key, ranking }) {
                 state={{other : user}}
                 style={{ textDecoration: "none", width:'45%'}}
                 >
-                <Button variant="contained" style={{width:'100%'}} >
+                <Button variant="contained" style={{width:'100%', color:"white", backgroundColor:"#F38181", fontFamily:'Pretendard-Regular',}} >
                   성격비교 
                 </Button>
               </Link>

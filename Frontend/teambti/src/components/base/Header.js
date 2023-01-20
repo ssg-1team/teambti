@@ -152,7 +152,7 @@ const Header = ({ login }) => {
                       // getMyHeaderColorNumber(id);
                     }}
                     href={page.link}
-                    sx={{ fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
+                    sx={{ fontSize:20, fontFamily:'Pretendard-Regular', textTransform:'none', my: 1, color: "black", display: "block" }}
                   >
                    <span id={`page_${id}`}>{page.name}</span>
                   </Button>
@@ -160,7 +160,7 @@ const Header = ({ login }) => {
               <Button
                 variant="outlined"
                 onClick={handleLogout}
-                sx={{ fontFamily:'', fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
+                sx={{ fontFamily:'Pretendard-Regular', fontSize:20, textTransform:'none', my: 1, color: "black", display: "block" }}
               >
                     로그아웃
               </Button>
