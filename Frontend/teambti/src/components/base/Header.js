@@ -58,7 +58,7 @@ const Header = ({ login }) => {
   };
 
   return (
-    <div style={{height:'8.5%', display:'flex', flexDirection:'column', backgroundColor:'green' ,boxSizing:'border-box'}}>
+    <div style={{height:'8.5%', display:'flex', flexDirection:'column', boxSizing:'border-box'}}>
     <ThemeProvider theme={myTheme}>
       <AppBar position="static">
         <Container maxWidth="xl">

@@ -137,7 +137,7 @@ const MyProfile = () => {
           height="450"
           //image={myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`)}
           image={myUrl==null? require(`../assets/image/parts/content/0.jpg`) : (myUrl.length >= 5 ? myUrl : require(`../assets/image/parts/content/${myUrl}.jpg`))}
-          alt="green iguana"
+          alt=""
         />
         <CardContent>
           <div style={{display:'flex', flexDirection:'column'}}>
