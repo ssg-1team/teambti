@@ -900,8 +900,8 @@ function Character() {
             </div>
           </Grid>
           <Grid xs={5}>
-            <div style={{ position: "relative" }} id="myCharacterDiv">
-              <div style={{ position: "absolute", top: "0", left: "0" }}>
+            <div style={{ position: "relative", top: 0, left: 100  }} id="myCharacterDiv">
+              <div style={{ position: "absolute"}}>
                 <img
                   style={{ position: "absolute" }}
                   src={require(`../../assets/image/parts/back/${myBack}.png`)}

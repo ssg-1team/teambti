@@ -93,7 +93,7 @@ function Home() {
       </Container>
       <Container
         maxWidth="xs"
-        sx={{ display: { xs: "block", sm: "none", md: "none", lg: "none" } }}
+        sx={{ display: { xs: "block", sm: "none", md: "none", lg: "none" }, height:"87.5vh" }}
       >
         {emps.map(
           (user) =>

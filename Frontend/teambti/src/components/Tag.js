@@ -143,7 +143,7 @@ export default function Tag () {
         ))}
       </ul>
       <TextField
-          label="자신을 표현할 수 있는 태그 입력"
+          label="나만의 태그 입력"
           id="outlined-start-adornment"
           sx={{ mt: 2, mb: 2, width: '100%' }}
           onKeyUp={(e) => (e.key === "Enter" ? addTag(e) : null)}
