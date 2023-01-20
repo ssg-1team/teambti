@@ -203,6 +203,17 @@ function Character() {
     });
   }
 
+  function downloadMyCharacterMobile() {
+    const el = document.getElementById("myCharacterDivMobile");
+    html2canvas(el, { width: 343, height: 440 }).then(function (canvas, width) {
+      let downloadURL = canvas.toDataURL("image/png");
+      let aTag = document.getElementById("targetMobile");
+      aTag.href = downloadURL;
+      aTag.download = `${myName}.jpg`;
+      aTag.click();
+    });
+  }
+
   function setMyParts() {
     axios
       .get(`${API_HOST}/char/getChar/${e_id}`, {
@@ -225,6 +236,34 @@ function Character() {
   function saveMyParts() {
     const el = document.getElementById("myCharacterDiv");
     html2canvas(el, { width: 441, height: 566 }).then((canvas) => {
+      let content = canvas.toDataURL("image/png", 1.0);
+      const data = {
+        head: myHead,
+        background: myBack,
+        body: myBody,
+        ear: myEars,
+        eye: myEyes,
+        mouth: myMouth,
+        e_id: e_id,
+        accessory: myAcc,
+        completed: content,
+      };
+      axios
+        .post(`${API_HOST}/char/setChar`, data, {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+        .then(() => {
+          alert("저장되었습니다!");
+        });
+    });
+  }
+
+  function saveMyPartsMobile() {
+    const el = document.getElementById("myCharacterDivMobile");
+    html2canvas(el, { width: 343, height: 440 }).then((canvas) => {
       let content = canvas.toDataURL("image/png", 1.0);
       const data = {
         head: myHead,
@@ -991,7 +1030,7 @@ function Character() {
       >
         <div
           style={{ position: "relative", margin: "auto" }}
-          id="myCharacterDiv"
+          id="myCharacterDivMobile"
         >
           <img
             style={{ position: "absolute", width: "100%" }}
@@ -1667,14 +1706,14 @@ function Character() {
           <Button
             variant="contained"
             style={{ background: "#86C8BC", width: "33.3%" }}
-            onClick={saveMyParts}
+            onClick={saveMyPartsMobile}
           >
             저장하기
           </Button>
           <Button
             variant="contained"
             style={{ background: "#86C8BC", width: "33.3%" }}
-            onClick={downloadMyCharacter}
+            onClick={downloadMyCharacterMobile}
           >
             다운로드
           </Button>
@@ -1695,6 +1734,8 @@ function Character() {
         >
           홈으로 돌아가기
         </Button>
+        <Grid></Grid>
+        <a id="targetMobile" style={{ display: "none" }} href=""></a>
       </Container>
     </>
   );
