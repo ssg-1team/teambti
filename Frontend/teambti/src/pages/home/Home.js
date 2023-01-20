@@ -52,9 +52,13 @@ function Home() {
 
   return (
     <>
+    <Container maxWidth='flex' id='rainbow'>
+    <div style={{display:'flex', flexDirection:'column', height:'100%', justifyContent:'center', alignItems:'center'}}>
       <Container
         maxWidth="lg"
-        sx={{ display: { xs: "none", md: "none", lg: "block" } }}
+        sx={{ display: { xs: "none", md: "none", lg: "block" },  
+        flexDirection:'row', alignItems:'center'
+        }}
       >
         <Slider
           {...settings_lg}
@@ -99,6 +103,8 @@ function Home() {
           (user) =>
             user.e_id != e_id && <ProfileMin user={user} key={user.e_id} />
         )}
+      </Container>
+      </div>
       </Container>
     </>
   );
