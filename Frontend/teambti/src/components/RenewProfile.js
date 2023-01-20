@@ -20,8 +20,12 @@ export default function RenewProfile({ user, key, ranking }) {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState([]);
   const e_id = user.e_id;
-  const [myUrl, setMyUrl] = useState(user.url);
+  const [myUrl, setMyUrl] = useState(user.image);
   const [myMBTI, setMyMBTI] = useState('');
+
+  useEffect(()=>{
+    setMyUrl(user.image);
+  },[user])
 
   // useEffect(()=> {
   //   axios
