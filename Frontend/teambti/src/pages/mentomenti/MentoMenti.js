@@ -169,7 +169,7 @@ function MentoMenti() {
         // console.log(response.data)
         setEmps(response.data);
         myTeamList = response.data.map(function(data){
-          return [data.e_id, data.mbti, data.position, data.name, data.content]
+          return [data.e_id, data.mbti, data.position, data.name, data.image]
         })
       })
     axios
@@ -285,7 +285,7 @@ function MentoMenti() {
   let myTeamListSelected = []
   // console.log('myTeamList', myTeamList)
   // 팀의 MBTI와 문자열 일치 정도 파악
-  let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, content])=> {
+  let myTeamSameNumberList = myTeamList.map(([e_id, mbti, position, name, image])=> {
     let cnt = 0;
     for (let i =0;i<4;i++){
       if (!mbti) continue
@@ -293,8 +293,9 @@ function MentoMenti() {
         cnt += 1;
       } 
     }
-    return {e_id, mbti, cnt, position, name, content}
-  }).filter(function({e_id2, mbti, cnt, position, name, content}, index) {
+    return {e_id, mbti, cnt, position, name, image}
+  }).filter(function({e_id2, mbti, cnt, position, name, image}, index) {
+    // console.log(e_id2, image)
     return e_id2 != e_id
   });
   // console.log(myTeamSameNumberList)
