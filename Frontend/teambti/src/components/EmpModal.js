@@ -74,7 +74,10 @@ export default function EmpModal({ user, open, handleClose, tags }) {
               <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example" centered>
+                    <TabList onChange={handleChange} aria-label="lab API tabs example" 
+                      textColor="secondary"
+                      indicatorColor="secondary" 
+                      centered>
                       <Tab label="성격 장점" value="1" />
                       <Tab label="성격 단점" value="2" />
                       <Tab label="업무 스타일" value="3" />

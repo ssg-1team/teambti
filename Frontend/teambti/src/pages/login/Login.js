@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   Button,
@@ -17,6 +17,8 @@ import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/s
 import axios from "axios";
 import { API_HOST } from "../../constant";
 import Main from "../main/Main2";
+import { Container } from "@mui/system";
+import Swal from 'sweetalert2'
 
 const theme = createTheme();
 
@@ -40,7 +42,12 @@ export default function Login({ isLoggedIn, login }) {
         const login_id = response.data.id;
         const login_pw = response.data.password;
         if (login_id === undefined || login_pw === undefined) {
-          alert("아이디와 비밀번호를 확인해주세요!");
+          Swal.fire({
+            icon: 'error',
+            title: '로그인 불가',
+            text: '아이디 또는 비밀번호를 확인해주세요',
+            confirmButtonText: '확인',
+          })
         } else if (login_id === fData.get("email") && login_pw === fData.get("password")) {
           localStorage.setItem("e_id", response.data.e_id);
           login(true);
@@ -66,14 +73,15 @@ export default function Login({ isLoggedIn, login }) {
         <Grid container component="main" sx={{ height: "100%"}}>
           
           <CssBaseline />
-          <Grid style={{display:'flex', justifyContent:'center', alignItems:'center'}}
+          <Grid style={{display:'flex', justifyContent:'center', alignItems:'center'}} 
             item
-            xs={false}
-            sm={6}
+            xs={'0'}
+            sm={false}
             md={8}
             sx={{
             }}
-          ><img style={{height:'99vh',}} src={require(`../../assets/image/sublogo.png`)} alt=""/>
+          >
+            <img style={{height:'99vh'}} src={require(`../../assets/image/sublogo.png`)} alt=""/>
           </Grid>
           <Grid
             item
