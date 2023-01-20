@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+
 import Select from "@mui/material/Select";
 import axios from "axios";
 import { modalStyle } from "./Profile.module";
@@ -187,7 +189,7 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
                     alignItems: "center",
                   }}
                 >
-                  <div style={{ fontSize: 25 }}>나의 MBTI는?</div>
+                  <div style={{ fontSize: 25, marginTop:'30px' }}>나의 MBTI는?</div>
                   <br />
                   <br />
                   <FormControl style={{ width: "50%" }}>
@@ -202,6 +204,14 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
                       {mbtiList}
                     </Select>
                   </FormControl>
+                  <div style={{marginTop:"50px", color:"#7286D3"}}>
+                    <span style={{marginRight:"5px"}}><HelpOutlineIcon/></span>MBTI 검사를 하지 못했다면? 
+                    
+                    </div>
+                  <div style={{marginTop:"10px", color:"#7286D3"}}>
+                    
+                    <Button variant="outlined" color="secondary" href="javascript:void(window.open('https://www.16personalities.com/', '_blank'))">여기를 클릭</Button>
+                  </div>
                 </div>
                 {/* <Tag /> */}
                 <img
@@ -217,8 +227,9 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
             <br />
             <Button
               onClick={save}
-              style={{ width: "100%" }}
-              sx={bigButtonStyle}
+              style={{ width: "100%", padding:"10px", color:"white"}}
+              color='secondary'
+              variant="contained"
             >
               저장하기
             </Button>
