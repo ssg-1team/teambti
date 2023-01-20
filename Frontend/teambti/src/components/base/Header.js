@@ -21,8 +21,8 @@ import "../../css/components/header.css";
 
 const pages = [
   { name: "홈", link: "/" },
-  { name: "멘토찾기", link: "/mentomentistart" },
   { name: "도움요청", link: "/coworkingstart" },
+  { name: "멘토찾기", link: "/mentomentistart" },
 ];
 
 const Header = ({ login }) => {
