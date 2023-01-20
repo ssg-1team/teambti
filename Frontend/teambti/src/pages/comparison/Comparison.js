@@ -195,9 +195,9 @@ function Comparision() {
                     indicatorColor="primary"
                     centered
                   >
-                    <Tab label="성격 장점" value="1" />
-                    <Tab label="성격 단점" value="2" />
-                    <Tab label="업무 스타일" value="3" />
+                    <Tab style={{fontFamily:'Pretendard-Regular',}} label="성격 장점" value="1" />
+                    <Tab style={{fontFamily:'Pretendard-Regular',}} label="성격 단점" value="2" />
+                    <Tab style={{fontFamily:'Pretendard-Regular',}} label="업무 스타일" value="3" />
                   </TabList>
                 </Box>
                 <Box sx={{ bgcolor: "white", borderRadius: 1 }}>
@@ -243,9 +243,9 @@ function Comparision() {
                     aria-label="lab API tabs example"
                     centered
                   >
-                    <Tab label="성격 장점" value="1" />
-                    <Tab label="성격 단점" value="2" />
-                    <Tab label="업무 스타일" value="3" />
+                    <Tab style={{fontFamily:'Pretendard-Regular',}} label="성격 장점" value="1" />
+                    <Tab style={{fontFamily:'Pretendard-Regular',}} label="성격 단점" value="2" />
+                    <Tab style={{fontFamily:'Pretendard-Regular',}} label="업무 스타일" value="3" />
                   </TabList>
                 </Box>
                 <Box sx={{ bgcolor: "white", borderRadius: 1 }}>
@@ -371,9 +371,9 @@ function Comparision() {
                   indicatorColor="primary"
                   centered
                 >
-                  <Tab label="성격 장점" value="1" />
-                  <Tab label="성격 단점" value="2" />
-                  <Tab label="업무 스타일" value="3" />
+                  <Tab style={{fontFamily:'Pretendard-Regular',}} label="성격 장점" value="1" />
+                  <Tab style={{fontFamily:'Pretendard-Regular',}} label="성격 단점" value="2" />
+                  <Tab style={{fontFamily:'Pretendard-Regular',}} label="업무 스타일" value="3" />
                 </TabList>
               </Box>
               <Box

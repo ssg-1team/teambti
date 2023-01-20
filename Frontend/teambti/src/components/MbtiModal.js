@@ -154,6 +154,7 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
         onClick={handleOpen}
         color="secondary"
         variant="outlined"
+        style={{color:"#F38181", borderColor:"#F38181", fontFamily:'Pretendard-Regular'}}
         sx={{ fontSize: "20px" }}
         endIcon={<SettingsSuggestIcon sx={{ mb: 0.5 }} />}
       >
@@ -189,11 +190,11 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
                     alignItems: "center",
                   }}
                 >
-                  <div style={{ fontSize: 25, marginTop:'30px' }}>나의 MBTI는?</div>
+                  <div style={{ fontSize: 25, marginTop:'30px', fontFamily:'Pretendard-Regular', }}>나의 MBTI는?</div>
                   <br />
                   <br />
                   <FormControl style={{ width: "50%" }}>
-                    <InputLabel id="demo-simple-select-label">MBTI</InputLabel>
+                    <InputLabel id="demo-simple-select-label" style={{fontFamily:'Pretendard-Regular',}}>MBTI</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
@@ -204,13 +205,13 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
                       {mbtiList}
                     </Select>
                   </FormControl>
-                  <div style={{marginTop:"50px", color:"#7286D3"}}>
+                  <div style={{marginTop:"50px", color:"#7286D3", fontFamily:'Pretendard-Regular',}}>
                     <span style={{marginRight:"5px"}}><HelpOutlineIcon/></span>MBTI 검사를 하지 못했다면? 
                     
                     </div>
                   <div style={{marginTop:"10px", color:"#7286D3"}}>
                     
-                    <Button variant="outlined" color="secondary" href="javascript:void(window.open('https://www.16personalities.com/', '_blank'))">여기를 클릭</Button>
+                    <Button style={{fontFamily:'Pretendard-Regular',}} variant="outlined" color="secondary" href="javascript:void(window.open('https://www.16personalities.com/', '_blank'))">여기를 클릭</Button>
                   </div>
                 </div>
                 {/* <Tag /> */}
@@ -227,7 +228,7 @@ export default function MbtiModal({ title, getMyUrl, getMyMBTI }) {
             <br />
             <Button
               onClick={save}
-              style={{ width: "100%", padding:"10px", color:"white"}}
+              style={{ width: "100%", padding:"10px", color:"white", fontFamily:'Pretendard-Regular',}}
               color='secondary'
               variant="contained"
             >

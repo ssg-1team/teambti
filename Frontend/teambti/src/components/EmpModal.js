@@ -52,6 +52,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                   fontWeight: "medium",
                   p: 2,
                 }}
+                style={{fontFamily:'Pretendard-Regular',}}
               >
                 {user.name} / {user.mbti}
               </Box>
@@ -63,6 +64,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                   p: 2,
                   mb: 3
                 }}
+                style={{fontFamily:'Pretendard-Regular',}}
               >
                 {mbtiInfo.map(
                   (mbti, id) =>
@@ -78,12 +80,12 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                       textColor="secondary"
                       indicatorColor="secondary" 
                       centered>
-                      <Tab label="성격 장점" value="1" />
-                      <Tab label="성격 단점" value="2" />
-                      <Tab label="업무 스타일" value="3" />
+                      <Tab style={{fontFamily:'Pretendard-Regular',}} label="성격 장점" value="1" />
+                      <Tab style={{fontFamily:'Pretendard-Regular',}} label="성격 단점" value="2" />
+                      <Tab style={{fontFamily:'Pretendard-Regular',}} label="업무 스타일" value="3" />
                     </TabList>
                   </Box>
-                  <TabPanel value="1">
+                  <TabPanel value="1" style={{fontFamily:'Pretendard-Regular',}}>
                     {mbtiInfo.map(
                       (mbti, id) =>
                         mbti.mbti == user.mbti && (
@@ -92,7 +94,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                     )}
 
                   </TabPanel>
-                  <TabPanel value="2">
+                  <TabPanel value="2" style={{fontFamily:'Pretendard-Regular',}}>
                     {mbtiInfo.map(
                       (mbti, id) =>
                         mbti.mbti == user.mbti && (
@@ -101,7 +103,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
                     )}
       
                   </TabPanel>
-                  <TabPanel value="3">
+                  <TabPanel value="3" style={{fontFamily:'Pretendard-Regular',}}>
                     {mbtiInfo.map(
                       (mbti, id) =>
                         mbti.mbti == user.mbti && (
@@ -115,7 +117,7 @@ export default function EmpModal({ user, open, handleClose, tags }) {
             </Grid>
             <Grid item xs={12} sx={{mt:5}}>
               {tags.map((tag, id) => (
-                <Box sx={tagStyle} key={id}>
+                <Box sx={tagStyle} key={id} style={{fontFamily:'Pretendard-Regular',}}>
                   # {tag.content}
                 </Box>
               ))}

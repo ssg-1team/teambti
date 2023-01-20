@@ -282,7 +282,7 @@ function Character() {
                   aria-controls="panel2bh-content"
                   id="panel2bh-header"
                 >
-                  <Typography>귀</Typography>
+                  <Typography style={{fontFamily:'Pretendard-Regular',}}>귀</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -370,7 +370,7 @@ function Character() {
                   aria-controls="panel3bh-content"
                   id="panel3bh-header"
                 >
-                  <Typography>눈</Typography>
+                  <Typography style={{fontFamily:'Pretendard-Regular',}}>눈</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -506,7 +506,7 @@ function Character() {
                   aria-controls="panel4bh-content"
                   id="panel4bh-header"
                 >
-                  <Typography>입</Typography>
+                  <Typography style={{fontFamily:'Pretendard-Regular',}}>입</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -594,7 +594,7 @@ function Character() {
                   aria-controls="panel5bh-content"
                   id="panel5bh-header"
                 >
-                  <Typography>몸통</Typography>
+                  <Typography style={{fontFamily:'Pretendard-Regular',}}>몸통</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -706,7 +706,7 @@ function Character() {
                   aria-controls="panel6bh-content"
                   id="panel2bh-header"
                 >
-                  <Typography>악세사리</Typography>
+                  <Typography style={{fontFamily:'Pretendard-Regular',}}>악세사리</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -794,7 +794,7 @@ function Character() {
                   aria-controls="panel7bh-content"
                   id="panel7bh-header"
                 >
-                  <Typography>배경</Typography>
+                  <Typography style={{fontFamily:'Pretendard-Regular',}}>배경</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
@@ -957,21 +957,21 @@ function Character() {
           <ButtonGroup>
             <Button
               variant="contained"
-              style={{ background: "#86C8BC" }}
+              style={{ background: "#86C8BC", fontFamily:'Pretendard-Regular', }}
               onClick={saveMyParts}
             >
               저장하기
             </Button>
             <Button
               variant="contained"
-              style={{ background: "#86C8BC" }}
+              style={{ background: "#86C8BC",  fontFamily:'Pretendard-Regular', }}
               onClick={downloadMyCharacter}
             >
               다운로드
             </Button>
             <Button
               variant="contained"
-              style={{ background: "#86C8BC" }}
+              style={{ background: "#86C8BC", fontFamily:'Pretendard-Regular',  }}
               onClick={setMyParts}
             >
               초기화
@@ -1663,7 +1663,7 @@ function Character() {
           </Accordion>
         </div>
         <Tag />
-        <ButtonGroup style={{ width: "100%" }}>
+        <ButtonGroup style={{ width: "100%", fontFamily:'Pretendard-Regular' }}>
           <Button
             variant="contained"
             style={{ background: "#86C8BC", width: "33.3%" }}
@@ -1687,10 +1687,8 @@ function Character() {
           </Button>
         </ButtonGroup>
         <Button
-          sx={3}
           variant="contained"
-          style={{ background: "#86C8BC" }}
-          sx={{ width: "100%" }}
+          style={{ fontFamily:'Pretendard-Regular', background: "#86C8BC", width: "100%" }}
           href="/"
         >
           홈으로 돌아가기

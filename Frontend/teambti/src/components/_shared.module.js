@@ -14,7 +14,7 @@ export const bigButtonStyle = {
   fontSize: "1.0rem",
   fontWeight: "600",
   display: "inline",
-  // fontFamily: "GangwonEduSaeeum_OTFMediumA",
+  fontFamily:'Pretendard-Regular',
   "&:hover": {
     bgcolor: secondary_color_m,
   },
@@ -28,7 +28,7 @@ export const smallButtonStyle = {
   fontSize: "0.8rem",
   fontWeight: "1000",
   display: "inline",
-  // fontFamily: "GangwonEduSaeeum_OTFMediumA",
+  fontFamily:'Pretendard-Regular',
   "&:hover": {
     bgcolor: "#F7F5EB",
     color: "black",
@@ -43,7 +43,7 @@ export const mbtiButtonStyle = {
   fontSize: "0.8rem",
   fontWeight: "1000",
   display: "inline",
-  // fontFamily: "GangwonEduSaeeum_OTFMediumA",
+  fontFamily:'Pretendard-Regular',
   "&:hover": {
     bgcolor: "#F7F5EB",
     color: "black",
@@ -52,14 +52,13 @@ export const mbtiButtonStyle = {
 
 export const flexButtonStyle = {
   width: "30vh",
-  bgcolor: "#9e9e9e",
+  bgcolor: "#F38181",
   color: "white",
   textAlign: "center",
-  fontSize: "0.8rem",
   fontWeight: "1000",
   display: "inline",
   
-  // fontFamily: "GangwonEduSaeeum_OTFMediumA",
+  fontFamily:'Pretendard-Regular',
   "&:hover": {
     bgcolor: "#F7F5EB",
     color: "black",

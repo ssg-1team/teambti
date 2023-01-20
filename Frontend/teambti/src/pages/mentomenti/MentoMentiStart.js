@@ -54,7 +54,7 @@ function MentoMentiStart() {
                 멘토찾기 사용 방법
             </div> */}
             <div style={{width:'100%',height:'20%'}}>
-                <Typography sx={{fontSize:"20px", textAlign:'center'}}>
+                <Typography sx={{fontSize:"20px", textAlign:'center'}} style={{fontFamily:'Pretendard-Regular',}}>
                 <div>신입사원 여러분 안녕하세요! 평소에 꿈꿔와던 나의 선배님이 있나요?</div>
                 <div style={{marginBottom:"10px"}}>입사 후 나의 멘토님은 어떤 분이었으면 좋겠는지 생각하면서 다음 질문에 답해주세요!</div>
                 
@@ -62,8 +62,8 @@ function MentoMentiStart() {
                 </Typography>
                 
             </div>
-            <div style={{width:'100%',height:'50%', marginTop:"50px"}}>
-                <Button variant="contained" sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '96%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#ff6961', color:"white", fontSize:100}}}component={Link} to="/mentomenti">시작</Button>
+            <div style={{width:'100%',height:'50%', marginTop:"50px",}}>
+                <Button variant="contained" style={{fontFamily:'Pretendard-Regular',}} sx={{ textTransform:'none' ,borderRadius:10 ,margin:'2%', width: '96%', height: '90%', textAlign:'center', backgroundColor:'gray', fontSize:50, transition:'all 1s', ":hover":{bgcolor:'#ff6961', color:"white", fontSize:100}}}component={Link} to="/mentomenti">시작</Button>
             </div>
         </Container>
     );
