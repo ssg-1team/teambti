@@ -297,6 +297,8 @@ function MentoMenti() {
   }).filter(function({e_id2, mbti, cnt, position, name, image}, index) {
     // console.log(e_id2, image)
     return e_id2 != e_id
+  }).filter(function({e_id2, mbti, cnt, position, name, content}, index) {
+    return position != "사원";
   });
   // console.log(myTeamSameNumberList)
   // 내림차순 정렬
