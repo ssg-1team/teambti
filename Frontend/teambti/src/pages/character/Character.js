@@ -205,7 +205,10 @@ function Character() {
 
   function downloadMyCharacterMobile() {
     const el = document.getElementById("myCharacterDivMobile");
-    html2canvas(el, { width: 343, height: 440 }).then(function (canvas, width) {
+    html2canvas(el, { width: 354.94, height: 455.53 }).then(function (
+      canvas,
+      width
+    ) {
       let downloadURL = canvas.toDataURL("image/png");
       let aTag = document.getElementById("targetMobile");
       aTag.href = downloadURL;
@@ -263,7 +266,7 @@ function Character() {
 
   function saveMyPartsMobile() {
     const el = document.getElementById("myCharacterDivMobile");
-    html2canvas(el, { width: 343, height: 440 }).then((canvas) => {
+    html2canvas(el, { width: 354.94, height: 455.53 }).then((canvas) => {
       let content = canvas.toDataURL("image/png", 1.0);
       const data = {
         head: myHead,
@@ -1726,7 +1729,6 @@ function Character() {
           </Button>
         </ButtonGroup>
         <Button
-          sx={3}
           variant="contained"
           style={{ background: "#86C8BC" }}
           sx={{ width: "100%" }}
