@@ -21,6 +21,7 @@ import { characterButtonStyle } from "./CharacterButtonStyle";
 // 0번
 import back0 from "../../assets/image/parts/back/0.png";
 import acc0 from "../../assets/image/parts/acc/0.png";
+
 // 1번
 import ears1 from "../../assets/image/parts/ears/1.png";
 import head1 from "../../assets/image/parts/head/1.png";
@@ -91,17 +92,24 @@ import mouth9 from "../../assets/image/parts/mouth/9.png";
 import eyes9 from "../../assets/image/parts/eyes/9.png";
 import body9 from "../../assets/image/parts/body/9.png";
 import back9 from "../../assets/image/parts/back/9.png";
+
 // 10번
+
 import eyes10 from "../../assets/image/parts/eyes/10.png";
 import body10 from "../../assets/image/parts/body/10.png";
 import back10 from "../../assets/image/parts/back/10.png";
+
 // 11번
+
 import eyes11 from "../../assets/image/parts/eyes/11.png";
 import body11 from "../../assets/image/parts/body/11.png";
 import back11 from "../../assets/image/parts/back/11.png";
+
 // 12번
+
 import eyes12 from "../../assets/image/parts/eyes/12.png";
 import body12 from "../../assets/image/parts/body/12.png";
+
 // eyes는 15번까지
 import eyes13 from "../../assets/image/parts/eyes/13.png";
 import eyes14 from "../../assets/image/parts/eyes/14.png";
@@ -113,24 +121,31 @@ import Swal from 'sweetalert2'
 // function changeMyHead (selectHead) {
 //   this.myhead = selectHead;
 // }
+
 // function changeMyEars (selectEars) {
 //   this.myEars = selectEars;
 // }
+
 // function changeMyEyes (selectEyes) {
 //   this.myEyes = selectEyes;
 // }
+
 // function changeMyMouth (selectMouth) {
 //   this.myMouth = selectMouth;
 // }
+
 // function changeMyBody (selectBody) {
 //   this.myBody = selectBody;
 // }
+
 // function changeMyAcc(selectAcc) {
 //   this.myAcc = selectAcc;
 // }
+
 // function changeMyBack (selectBack) {
 //   this.myBack = selectBack;
 // }
+
 function Character() {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -140,6 +155,7 @@ function Character() {
     color: theme.palette.text.secondary,
   }));
   // const navigate = useNavigate();
+
   const [myHead, setMyHead] = useState(1);
   const [myEars, setMyEars] = useState(1);
   const [myEyes, setMyEyes] = useState(1);
@@ -147,6 +163,7 @@ function Character() {
   const [myBody, setMyBody] = useState(1);
   const [myAcc, setMyAcc] = useState(0);
   const [myBack, setMyBack] = useState(0);
+
   // 사용자의 id를 가져오기
   const e_id = parseInt(localStorage.getItem("e_id"));
   let myName = "TEAMBTI";
@@ -160,9 +177,11 @@ function Character() {
     .then((response) => {
       myName = `${response.data.name}`;
     });
+
   useEffect(() => {
     setMyParts();
   }, []);
+
   axios
     .get(`${API_HOST}/member/getEmp/${e_id}`, {
       headers: {
@@ -173,22 +192,12 @@ function Character() {
     .then((response) => {
       // console.log(response.data);
     });
+
   function downloadMyCharacter() {
     const el = document.getElementById("myCharacterDiv");
     html2canvas(el, { width: 441, height: 566 }).then(function (canvas, width) {
       let downloadURL = canvas.toDataURL("image/png");
       let aTag = document.getElementById("target");
-      aTag.href = downloadURL;
-      aTag.download = `${myName}.jpg`;
-      aTag.click();
-    });
-  }
-
-  function downloadMyCharacterMobile() {
-    const el = document.getElementById("myCharacterDivMobile");
-    html2canvas(el, { width: 343, height: 440 }).then(function (canvas, width) {
-      let downloadURL = canvas.toDataURL("image/png");
-      let aTag = document.getElementById("targetMobile");
       aTag.href = downloadURL;
       aTag.download = `${myName}.jpg`;
       aTag.click();
@@ -213,6 +222,7 @@ function Character() {
         setMyBack(response.data.background);
       });
   }
+
   function saveMyParts() {
     const el = document.getElementById("myCharacterDiv");
     html2canvas(el, { width: 441, height: 566 }).then((canvas) => {
@@ -247,40 +257,14 @@ function Character() {
     });
   }
 
-  function saveMyPartsMobile() {
-    const el = document.getElementById("myCharacterDivMobile");
-    html2canvas(el, { width: 343, height: 440 }).then((canvas) => {
-      let content = canvas.toDataURL("image/png", 1.0);
-      const data = {
-        head: myHead,
-        background: myBack,
-        body: myBody,
-        ear: myEars,
-        eye: myEyes,
-        mouth: myMouth,
-        e_id: e_id,
-        accessory: myAcc,
-        completed: content,
-      };
-      axios
-        .post(`${API_HOST}/char/setChar`, data, {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        })
-        .then(() => {
-          alert("저장되었습니다!");
-        });
-    });
-  }
-
   const [expanded, setExpanded] = React.useState(false);
   // tags
   const [tags, setTags] = useState([]);
+
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
   return (
     <>
       <Container
@@ -976,6 +960,7 @@ function Character() {
             <Grid></Grid>
             <a id="target" style={{ display: "none" }} href=""></a>
           </Grid>
+
           <ButtonGroup>
             <Button
               variant="contained"
@@ -1013,7 +998,7 @@ function Character() {
       >
         <div
           style={{ position: "relative", margin: "auto" }}
-          id="myCharacterDivMobile"
+          id="myCharacterDiv"
         >
           <img
             style={{ position: "absolute", width: "100%" }}
@@ -1689,14 +1674,14 @@ function Character() {
           <Button
             variant="contained"
             style={{ background: "#86C8BC", width: "33.3%" }}
-            onClick={saveMyPartsMobile}
+            onClick={saveMyParts}
           >
             저장하기
           </Button>
           <Button
             variant="contained"
             style={{ background: "#86C8BC", width: "33.3%" }}
-            onClick={downloadMyCharacterMobile}
+            onClick={downloadMyCharacter}
           >
             다운로드
           </Button>
@@ -1715,10 +1700,9 @@ function Character() {
         >
           홈으로 돌아가기
         </Button>
-        <Grid></Grid>
-        <a id="targetMobile" style={{ display: "none" }} href=""></a>
       </Container>
     </>
   );
 }
+
 export default Character;
